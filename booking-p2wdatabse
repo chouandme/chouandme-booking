@@ -1,0 +1,2874 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>จองคิว Grooming — Chou&Me Pet Wellness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600;700&family=Quicksand:wght@500;600;700&family=Sarabun:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown: #A07255;
+  --cream: #F1F3EC;
+  --gray: #CECCC3;
+  --yellow-green: #F2F7CD;
+  --slate: #ADB6B3;
+  --blue: #6A95C0;
+  --pink: #F4E2E2;
+  --sand: #D8C3B3;
+  --sage: #A0B995;
+  --white: #FFFEFB;
+  --text-dark: #3a2f27;
+  --text-mid: #6b5c50;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+  --radius-pill: 999px;
+  --shadow-card: 0 2px 16px rgba(160,114,85,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Mitr', 'Sarabun', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* RIBBON */
+.ribbon {
+  background: var(--brown);
+  color: #fff;
+  padding: 10px 0;
+  overflow: hidden;
+  transform: rotate(-1.5deg) translateY(-2px);
+  margin: 0 -20px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(160,114,85,0.22);
+}
+.ribbon-inner { display:flex; white-space:nowrap; animation:marquee 24s linear infinite; width:max-content; }
+.ribbon span { font-family:'Quicksand',sans-serif; font-size:14px; font-weight:600; letter-spacing:2px; padding:0 18px; }
+.ribbon span.dot { color:var(--yellow-green); font-size:18px; padding:0 4px; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* HEADER */
+.site-header {
+  background:var(--white); padding:16px 20px 14px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:2px solid var(--sand);
+  position:sticky; top:0; z-index:100;
+}
+.logo { font-family:'Quicksand',sans-serif; font-size:20px; font-weight:700; color:var(--brown); }
+.logo span { color:var(--sage); }
+.header-tag {
+  background:var(--pink); color:var(--brown);
+  font-size:11px; font-weight:600;
+  padding:4px 12px; border-radius:var(--radius-pill); letter-spacing:1px;
+}
+
+/* HERO */
+.hero {
+  background:var(--white); padding:36px 20px 56px;
+  text-align:center; position:relative; overflow:hidden;
+}
+.hero-deco { position:absolute; pointer-events:none; font-size:36px; opacity:.15; animation:floaty 4s ease-in-out infinite; }
+.hero-deco.d1{top:12px;left:10px} .hero-deco.d2{top:20px;right:14px;animation-delay:1.2s;font-size:28px}
+.hero-deco.d3{bottom:36px;left:20px;animation-delay:.7s;font-size:24px} .hero-deco.d4{bottom:28px;right:18px;animation-delay:1.8s}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(5deg)}}
+.hero-badge {
+  display:inline-block; background:var(--yellow-green); color:var(--text-mid);
+  font-size:12px; font-weight:600; padding:5px 16px; border-radius:var(--radius-pill);
+  margin-bottom:14px; letter-spacing:1px; border:1.5px solid var(--sage);
+}
+.hero h1 { font-family:'Quicksand',sans-serif; font-size:clamp(32px,8vw,54px); font-weight:700; color:var(--brown); line-height:1.1; margin-bottom:12px; }
+.hero h1 span { color:var(--sage); }
+.hero p { font-size:13px; color:var(--text-mid); max-width:320px; margin:0 auto; line-height:1.7; font-weight:300; }
+
+/* WAVE */
+.wave{display:block;width:100%;height:44px;overflow:hidden;line-height:0}
+.wave svg{width:100%;height:100%}
+
+/* BOOKING WRAP */
+.booking-wrap { padding:8px 16px 120px; max-width:560px; margin:0 auto; }
+
+/* STEP NAV */
+.step-nav { display:flex; align-items:center; justify-content:center; gap:0; padding:18px 0 20px; }
+.step-pill {
+  display:flex; align-items:center; gap:5px;
+  background:var(--gray); color:#fff;
+  font-family:'Quicksand',sans-serif; font-size:12px; font-weight:600;
+  padding:5px 12px; border-radius:var(--radius-pill);
+  transition:all .3s; white-space:nowrap; flex-shrink:0;
+}
+.step-pill .snum {
+  width:18px;height:18px; background:rgba(255,255,255,.28); border-radius:50%;
+  display:flex;align-items:center;justify-content:center; font-size:10px;
+}
+.step-pill.active { background:var(--brown); box-shadow:0 4px 14px rgba(160,114,85,.35); transform:scale(1.05); }
+.step-pill.done { background:var(--sage); }
+.step-connector { height:2px; flex:1; background:var(--gray); max-width:14px; min-width:4px; border-radius:2px; }
+.step-connector.done { background:var(--sage); }
+
+/* PROGRESS */
+.progress-bar { height:4px; background:var(--sand); border-radius:2px; margin-bottom:22px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--brown),var(--sage)); border-radius:2px; transition:width .45s ease; }
+
+/* PAGES */
+.booking-page { display:none; animation:fadeUp .38s ease; }
+.booking-page.active { display:block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* SUB-SECTIONS */
+.sub-section { margin-bottom:26px; transition:opacity .35s ease; }
+.sub-section.locked { opacity:.32; pointer-events:none; }
+.sub-section.unlocked { opacity:1; pointer-events:all; }
+.sub-section-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.sub-num {
+  width:28px;height:28px; border-radius:50%;
+  background:var(--brown); color:#fff;
+  font-family:'Quicksand',sans-serif; font-size:13px; font-weight:700;
+  display:flex;align-items:center;justify-content:center; flex-shrink:0;
+}
+.sub-section.locked .sub-num { background:var(--gray); }
+.section-title { font-family:'Quicksand',sans-serif; font-size:19px; font-weight:700; color:var(--brown); }
+.sub-section.locked .section-title { color:var(--slate); }
+.section-sub { font-size:12px; color:var(--text-mid); margin-bottom:13px; margin-top:2px; font-weight:300; padding-left:38px; }
+.sub-divider { height:1px; background:linear-gradient(90deg,var(--sand),transparent); margin:2px 0 22px; border-radius:1px; }
+
+/* CARDS */
+.card-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:6px; }
+.card-grid.col1 { grid-template-columns:1fr; }
+.sel-card {
+  background:var(--white); border:2.5px solid transparent;
+  border-radius:var(--radius-lg); padding:16px 12px;
+  cursor:pointer; transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  text-align:center; box-shadow:var(--shadow-card);
+  position:relative; overflow:hidden;
+  -webkit-tap-highlight-color:transparent; user-select:none;
+}
+.sel-card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(160,114,85,.13); }
+.sel-card.selected { border-color:var(--brown); background:#fdf8f4; transform:translateY(-3px); box-shadow:0 8px 24px rgba(160,114,85,.18); }
+.sel-card.selected::after {
+  content:'✓'; position:absolute; top:7px;right:9px;
+  background:var(--brown); color:#fff; width:18px;height:18px;
+  border-radius:50%; font-size:10px; font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.card-emoji { font-size:28px; margin-bottom:6px; display:block; line-height:1; }
+.card-label { font-family:'Quicksand',sans-serif; font-size:16px; font-weight:600; color:var(--text-dark); display:block; margin-bottom:3px; line-height:1.2; }
+.card-sub { font-size:10px; color:var(--text-mid); line-height:1.5; font-weight:300; }
+
+/* SERVICE CARDS */
+.service-card {
+  background:var(--white); border:2.5px solid transparent;
+  border-radius:var(--radius-lg); padding:16px 14px;
+  cursor:pointer; display:flex; align-items:flex-start; gap:13px;
+  box-shadow:var(--shadow-card);
+  transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  margin-bottom:10px; position:relative;
+  -webkit-tap-highlight-color:transparent; user-select:none;
+}
+.service-card:hover { transform:translateX(4px); box-shadow:0 6px 24px rgba(160,114,85,.13); }
+.service-card.selected { border-color:var(--brown); background:#fdf8f4; transform:translateX(4px); }
+.service-card.selected::after {
+  content:'✓'; position:absolute; top:10px;right:12px;
+  background:var(--brown); color:#fff; width:20px;height:20px;
+  border-radius:50%; font-size:11px; font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.svc-emoji { font-size:30px; flex-shrink:0; padding-top:2px; }
+.svc-info { flex:1; min-width:0; }
+.svc-name { font-family:'Quicksand',sans-serif; font-size:16px; font-weight:700; color:var(--text-dark); margin-bottom:4px; line-height:1.2; }
+.svc-desc { font-size:11px; color:var(--text-mid); line-height:1.5; font-weight:300; }
+.svc-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:7px; }
+.svc-tag { background:var(--yellow-green); border-radius:var(--radius-pill); padding:2px 9px; font-size:10px; font-weight:600; color:var(--text-mid); }
+.svc-tag.pink { background:var(--pink); color:var(--brown); }
+.svc-price { font-family:'Quicksand',sans-serif; font-size:16px; font-weight:700; color:var(--brown); flex-shrink:0; padding-top:2px; white-space:nowrap; }
+
+/* SERVICE NOTE */
+.service-note {
+  background:var(--pink); border-radius:14px; padding:11px 14px;
+  font-size:11px; color:var(--text-mid); margin-bottom:14px;
+  display:flex; gap:8px; align-items:flex-start;
+}
+.service-note .ni { font-size:14px; flex-shrink:0; }
+
+/* ADDON */
+.addon-grid { display:grid; grid-template-columns:1fr; gap:8px; margin-bottom:14px; }
+.addon-card {
+  background:var(--white); border:2.5px solid transparent;
+  border-radius:16px; padding:11px 13px;
+  cursor:pointer; display:flex; align-items:center; gap:11px;
+  transition:all .18s; box-shadow:var(--shadow-card);
+  -webkit-tap-highlight-color:transparent; user-select:none;
+}
+.addon-card:hover { transform:translateX(3px); }
+.addon-card.selected { border-color:var(--sage); background:#f6fbf4; }
+.addon-card.selected .addon-check { background:var(--sage); border-color:var(--sage); }
+.addon-card.selected .addon-check::after { opacity:1; }
+.addon-check {
+  width:22px;height:22px; border-radius:6px; border:2.5px solid var(--gray);
+  flex-shrink:0; position:relative; transition:all .18s;
+}
+.addon-check::after {
+  content:'✓'; position:absolute; inset:0;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff; font-size:12px; font-weight:700; opacity:0; transition:opacity .15s;
+}
+.addon-emoji { font-size:22px; flex-shrink:0; }
+.addon-info { flex:1; min-width:0; }
+.addon-name { font-family:'Quicksand',sans-serif; font-size:15px; font-weight:600; color:var(--text-dark); display:block; }
+.addon-desc { font-size:10px; color:var(--text-mid); font-weight:300; line-height:1.4; }
+.addon-price-tag { font-size:13px; font-weight:600; color:var(--brown); flex-shrink:0; }
+
+/* DATE / TIME */
+.date-input-wrap {
+  background:var(--white); border-radius:var(--radius-lg);
+  padding:18px; margin-bottom:14px; box-shadow:var(--shadow-card);
+}
+.date-input-wrap label { font-family:'Quicksand',sans-serif; font-size:15px; font-weight:600; color:var(--brown); display:block; margin-bottom:10px; }
+
+/* CUSTOM CALENDAR */
+.cal-wrap { user-select:none; }
+.cal-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:14px;
+}
+.cal-title {
+  font-family:'Quicksand',sans-serif; font-size:16px; font-weight:700;
+  color:var(--brown);
+}
+.cal-nav {
+  background:var(--cream); border:2px solid var(--sand); border-radius:10px;
+  width:34px; height:34px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; color:var(--brown); transition:all .16s;
+  -webkit-tap-highlight-color:transparent;
+}
+.cal-nav:hover { background:var(--sand); }
+.cal-nav:disabled { opacity:.3; cursor:not-allowed; }
+.cal-dow-row {
+  display:grid; grid-template-columns:repeat(7,1fr);
+  gap:2px; margin-bottom:4px;
+}
+.cal-dow {
+  text-align:center; font-family:'Quicksand',sans-serif;
+  font-size:11px; font-weight:700;
+  color:var(--slate); padding:4px 0;
+}
+.cal-dow.closed { color:var(--pink); }
+.cal-grid {
+  display:grid; grid-template-columns:repeat(7,1fr);
+  gap:4px;
+}
+.cal-day {
+  aspect-ratio:1; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Quicksand',sans-serif; font-size:13px; font-weight:600;
+  cursor:pointer; transition:all .18s cubic-bezier(.34,1.56,.64,1);
+  -webkit-tap-highlight-color:transparent;
+  border:2px solid transparent;
+  background:var(--cream); color:var(--text-dark);
+}
+.cal-day:hover:not(.disabled):not(.closed-day) { background:var(--sand); transform:scale(1.08); }
+.cal-day.selected {
+  background:var(--brown); color:#fff;
+  border-color:var(--brown);
+  box-shadow:0 4px 14px rgba(160,114,85,.28);
+  transform:scale(1.1);
+}
+.cal-day.today { border-color:var(--sage); }
+.cal-day.disabled { opacity:.28; cursor:not-allowed; }
+.cal-day.closed-day { background:var(--pink); color:#d0a0a0; cursor:not-allowed; font-size:10px; }
+.cal-day.empty { background:transparent; cursor:default; }
+.cal-day.other-month { opacity:.3; }
+
+.date-note {
+  background:var(--pink); border-radius:12px; padding:10px 14px;
+  font-size:13px; color:#b04040; font-weight:500; margin-top:10px; display:none;
+}
+.date-note.visible { display:block; }
+
+.selected-date-badge {
+  display:none; align-items:center; gap:8px;
+  background:var(--yellow-green); border-radius:12px;
+  padding:10px 14px; margin-top:12px;
+  font-size:13px; font-weight:600; color:var(--text-mid);
+}
+.selected-date-badge.visible { display:flex; }
+.selected-date-badge .sdb-icon { font-size:16px; }
+
+.timeslot-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-top:10px; }
+.timeslot-btn {
+  background:var(--cream); border:2.5px solid transparent;
+  border-radius:12px; padding:9px 4px;
+  font-family:'Mitr',sans-serif; font-size:13px; font-weight:500;
+  color:var(--text-dark); cursor:pointer; text-align:center;
+  transition:all .16s; -webkit-tap-highlight-color:transparent;
+}
+.timeslot-btn:hover:not(:disabled) { background:var(--sand); }
+.timeslot-btn.selected { background:var(--brown); color:#fff; border-color:var(--brown); }
+.timeslot-btn:disabled { opacity:.32; cursor:not-allowed; }
+.timeslot-btn.full { background:var(--pink); color:#c0a0a0; font-size:10px; }
+
+/* BOOKING ESTIMATE CARD (above calendar) */
+.estimate-card {
+  background: linear-gradient(135deg, var(--yellow-green) 0%, #e8f0c8 100%);
+  border-radius: 20px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  border: 2px solid #c8d49a;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.estimate-icon { font-size: 32px; flex-shrink: 0; }
+.estimate-body { flex: 1; min-width: 0; }
+.estimate-label {
+  font-size: 11px; font-weight: 600; color: var(--text-mid);
+  letter-spacing: 1px; margin-bottom: 3px;
+}
+.estimate-price {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 22px; font-weight: 700; color: var(--brown);
+  line-height: 1.1; margin-bottom: 2px;
+}
+.estimate-duration {
+  font-size: 12px; color: var(--text-mid); display: flex; align-items: center; gap: 4px;
+}
+.estimate-duration b { color: var(--brown); }
+.estimate-svc-tag {
+  display: inline-block;
+  background: rgba(160,114,85,.12);
+  color: var(--brown);
+  font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 99px; margin-top: 5px;
+}
+
+/* FORM */
+.form-field { margin-bottom:12px; }
+.form-field label { font-family:'Quicksand',sans-serif; font-size:15px; font-weight:600; color:var(--brown); display:block; margin-bottom:5px; }
+.form-field input, .form-field textarea {
+  width:100%; padding:12px 14px;
+  border:2.5px solid var(--sand); border-radius:14px;
+  font-family:'Mitr',sans-serif; font-size:14px; color:var(--text-dark);
+  background:var(--white); outline:none; transition:border .2s; resize:none;
+}
+.form-field input:focus, .form-field textarea:focus { border-color:var(--brown); }
+
+/* SUMMARY */
+.summary-card {
+  background:var(--white); border-radius:var(--radius-xl);
+  padding:22px 18px;
+  box-shadow:0 8px 36px rgba(160,114,85,.12);
+  margin-bottom:20px; border:2px solid var(--sand);
+}
+.summary-title { font-family:'Quicksand',sans-serif; font-size:19px; font-weight:700; color:var(--brown); margin-bottom:16px; }
+.summary-row {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  padding:8px 0; border-bottom:1px dashed var(--sand); gap:10px;
+}
+.summary-row:last-of-type { border-bottom:none; }
+.s-label { font-size:12px; color:var(--text-mid); flex-shrink:0; }
+.s-val { font-size:13px; font-weight:600; color:var(--text-dark); text-align:right; }
+.price-big { background:var(--yellow-green); border-radius:14px; padding:16px 18px; margin-top:14px; text-align:center; }
+.price-num { font-family:'Quicksand',sans-serif; font-size:28px; font-weight:700; color:var(--brown); display:block; }
+.duration-badge {
+  display:inline-flex; align-items:center; gap:5px;
+  background:var(--pink); color:var(--brown);
+  font-size:13px; font-weight:600;
+  padding:5px 13px; border-radius:var(--radius-pill); margin-top:8px;
+}
+.price-note { font-size:10px; color:var(--text-mid); margin-top:6px; font-weight:300; line-height:1.5; }
+
+/* BUTTONS */
+.btn {
+  display:block; width:100%; padding:15px 24px;
+  border:none; border-radius:var(--radius-pill);
+  font-family:'Quicksand',sans-serif; font-size:17px; font-weight:700;
+  cursor:pointer; text-align:center;
+  transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active { transform:scale(.97); }
+.btn-primary { background:var(--brown); color:#fff; box-shadow:0 6px 20px rgba(160,114,85,.3); }
+.btn-primary:hover { background:#8a6145; transform:translateY(-2px); }
+.btn-primary:disabled { background:var(--gray); box-shadow:none; cursor:not-allowed; transform:none; }
+.btn-secondary { background:var(--cream); color:var(--brown); border:2.5px solid var(--sand); margin-bottom:10px; }
+.btn-secondary:hover { background:var(--sand); }
+.btn-sage { background:var(--sage); color:#fff; box-shadow:0 6px 20px rgba(160,185,149,.32); }
+.btn-sage:hover { background:#8da880; transform:translateY(-2px); }
+
+/* MINI SUMMARY */
+.mini-summary {
+  position:fixed; bottom:0;left:0;right:0;
+  background:var(--white); border-top:2px solid var(--sand);
+  padding:10px 16px 14px; z-index:200; display:none;
+  box-shadow:0 -4px 20px rgba(160,114,85,.11);
+}
+.mini-summary.visible { display:block; }
+.mini-sum-row { display:flex; justify-content:space-between; align-items:center; }
+.mini-sum-info { font-size:12px; color:var(--text-mid); }
+.mini-sum-price { font-family:'Quicksand',sans-serif; font-size:20px; color:var(--brown); font-weight:700; }
+
+/* SUCCESS */
+.success-wrap { display:none; text-align:center; padding:48px 20px 80px; animation:fadeUp .5s ease; }
+.success-wrap.visible { display:block; }
+.success-icon { font-size:72px; margin-bottom:16px; animation:pop .5s cubic-bezier(.34,1.56,.64,1); }
+@keyframes pop { from{transform:scale(0)} to{transform:scale(1)} }
+.success-title { font-family:'Quicksand',sans-serif; font-size:28px; font-weight:700; color:var(--brown); margin-bottom:10px; }
+.success-sub { font-size:14px; color:var(--text-mid); line-height:1.8; }
+
+/* ALERT */
+.full-alert {
+  background:#fff0f0; border:2px solid #f4b0b0;
+  border-radius:12px; padding:11px 14px;
+  font-size:13px; color:#c05050; font-weight:600;
+  text-align:center; margin-top:8px; display:none;
+}
+.full-alert.visible { display:block; }
+
+/* ── ADMIN NAV TABS ── */
+.admin-tab-btn {
+  font-family:'Quicksand',sans-serif; font-size:12px; font-weight:700;
+  padding:6px 14px; border-radius:var(--radius-pill); border:2px solid var(--sand);
+  background:var(--cream); color:var(--text-mid); cursor:pointer;
+  transition:all .2s; -webkit-tap-highlight-color:transparent;
+}
+.admin-tab-btn.active { background:var(--brown); color:#fff; border-color:var(--brown); }
+
+/* ── ADMIN SHELL ── */
+#adminView { display:none; }
+#customerView { display:block; }
+
+/* ADMIN WRAP */
+.admin-wrap { max-width:1200px; margin:0 auto; padding:16px 14px 80px; }
+
+/* SUMMARY CARDS */
+.admin-summary-row { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:20px; }
+@media(min-width:640px){ .admin-summary-row{grid-template-columns:repeat(4,1fr);} }
+.admin-stat {
+  background:var(--white); border-radius:20px; padding:16px;
+  box-shadow:var(--shadow-card); text-align:center;
+}
+.admin-stat .stat-icon { font-size:24px; margin-bottom:6px; }
+.admin-stat .stat-num { font-family:'Quicksand',sans-serif; font-size:24px; font-weight:700; color:var(--brown); }
+.admin-stat .stat-label { font-size:11px; color:var(--text-mid); margin-top:2px; }
+
+/* VIEW TOGGLE */
+.view-toggle { display:flex; gap:8px; margin-bottom:16px; }
+.view-btn {
+  font-family:'Quicksand',sans-serif; font-size:13px; font-weight:700;
+  padding:8px 18px; border-radius:var(--radius-pill); border:2px solid var(--sand);
+  background:var(--cream); color:var(--text-mid); cursor:pointer; transition:all .2s;
+}
+.view-btn.active { background:var(--brown); color:#fff; border-color:var(--brown); }
+
+/* WEEK NAV */
+.week-nav { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.week-nav-btn {
+  background:var(--cream); border:2px solid var(--sand); border-radius:10px;
+  width:34px; height:34px; cursor:pointer; font-size:16px; color:var(--brown);
+  display:flex; align-items:center; justify-content:center; transition:all .16s;
+}
+.week-nav-btn:hover { background:var(--sand); }
+.week-label { font-family:'Quicksand',sans-serif; font-size:14px; font-weight:700; color:var(--brown); flex:1; text-align:center; }
+
+/* WEEKLY VIEW */
+.weekly-scroll-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  padding-bottom: 8px;
+  /* hide scrollbar on iOS but keep functional */
+  scrollbar-width: thin;
+  scrollbar-color: var(--sand) transparent;
+}
+.weekly-scroll-wrap::-webkit-scrollbar { height: 5px; }
+.weekly-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
+.weekly-scroll-wrap::-webkit-scrollbar-thumb { background: var(--sand); border-radius: 99px; }
+
+.weekly-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 6px;
+  min-width: max-content; /* forces all columns to stay in one row */
+}
+.week-col {
+  width: 130px;
+  flex: 0 0 130px; /* no grow, no shrink, fixed 130px */
+  scroll-snap-align: start;
+}
+@media(min-width: 900px){
+  .week-col { width: 150px; flex: 0 0 150px; }
+}
+.week-col-header {
+  background:var(--white); border-radius:14px 14px 0 0;
+  padding:10px 8px; text-align:center; border-bottom:2px solid var(--cream);
+}
+.week-col-header .wch-day { font-family:'Quicksand',sans-serif; font-size:12px; font-weight:700; color:var(--text-mid); }
+.week-col-header .wch-date { font-family:'Quicksand',sans-serif; font-size:18px; font-weight:700; color:var(--brown); }
+.week-col-header.today-col { background:var(--yellow-green); }
+.week-col-header.closed-col { background:var(--pink); opacity:.7; }
+.week-col-header .wch-closed { font-size:11px; color:#c05050; font-weight:600; }
+.week-col-body {
+  background:rgba(255,255,255,.5); border-radius:0 0 14px 14px;
+  padding:6px; min-height:120px;
+  border-left:1px solid var(--sand); border-right:1px solid var(--sand); border-bottom:1px solid var(--sand);
+}
+
+/* BOOKING CHIPS (weekly) */
+.bk-chip {
+  border-radius:12px; padding:8px 10px; margin-bottom:6px; cursor:pointer;
+  transition:transform .15s, box-shadow .15s; font-size:11px; position:relative;
+}
+.bk-chip:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.12); }
+.bk-chip-time { font-family:'Quicksand',sans-serif; font-weight:700; font-size:12px; }
+.bk-chip-name { font-weight:600; margin-top:2px; }
+.bk-chip-pet { opacity:.8; }
+.bk-chip-status { display:inline-block; font-size:9px; font-weight:700; padding:1px 6px; border-radius:99px; margin-top:4px; background:rgba(255,255,255,.5); }
+
+/* STATUS COLORS */
+.st-waiting { background:#FFF9E6; border-left:3px solid #F5C842; color:#7a6000; }
+.st-confirmed { background:#E8F0FB; border-left:3px solid #6A95C0; color:#1a3a6b; }
+.st-inprogress { background:#E8F5EE; border-left:3px solid #A0B995; color:#2a5a38; }
+.st-done { background:#ECECEC; border-left:3px solid #AEAEAE; color:#555; }
+.st-cancelled { background:#FDECEA; border-left:3px solid #E07070; color:#8a2020; }
+
+/* DAILY VIEW */
+.daily-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.daily-outer {
+  display: flex;
+  flex-direction: column;
+  min-width: 380px;
+}
+
+/* Header row: time gutter + groomer names */
+.daily-header-row {
+  display: flex;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--cream);
+  padding-bottom: 6px;
+}
+.daily-gutter-header { width: 52px; flex-shrink: 0; }
+.daily-groomer-header {
+  flex: 1;
+  font-family:'Quicksand',sans-serif; font-size:13px; font-weight:700;
+  text-align:center; padding:10px 6px; background:var(--white);
+  border-radius:14px; margin:0 3px; color:var(--brown);
+  box-shadow:var(--shadow-card); transition:background .2s;
+}
+.daily-groomer-header.drag-target { background:rgba(160,185,149,.3); }
+
+/* Timeline body: gutter + groomer columns side by side */
+.daily-body-row {
+  display: flex;
+  flex-shrink: 0;
+}
+.daily-gutter {
+  width: 52px;
+  flex-shrink: 0;
+  position: relative;
+}
+.daily-time-label {
+  height: 30px; display:flex; align-items:center;
+  font-size:11px; color:var(--text-mid); font-family:'Quicksand',sans-serif;
+  font-weight:600; padding-right:6px; justify-content:flex-end;
+  border-bottom: 1px dashed rgba(210,195,179,.3);
+}
+.daily-time-label.half { color:var(--gray); font-size:10px; }
+
+/* GROOMER COLUMN */
+.daily-groomer-col {
+  flex: 1;
+  position: relative;
+  margin: 0 3px;
+  border: 1px solid var(--sand);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: background .15s;
+}
+.daily-groomer-col.drag-active { background: rgba(160,185,149,.06); }
+
+/* Background grid rows inside col */
+.daily-slot-bg {
+  position:absolute; left:0; right:0; height:30px;
+  border-bottom:1px dashed rgba(210,195,179,.5);
+  pointer-events:none;
+}
+.daily-slot-bg.hour-mark { border-bottom:1px solid var(--gray); }
+
+/* DROP PREVIEW GHOST */
+.drop-preview {
+  position:absolute; left:3px; right:3px;
+  background:rgba(160,185,149,.35);
+  border:2px dashed var(--sage);
+  border-radius:10px; pointer-events:none;
+  z-index:5; display:none;
+}
+
+/* BOOKING BLOCK */
+.daily-bk-block {
+  position:absolute; left:3px; right:3px;
+  border-radius:10px; padding:5px 8px 14px;
+  font-size:11px; overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.10);
+  z-index:3; user-select:none; touch-action:none;
+  cursor:grab;
+}
+.daily-bk-block:hover { box-shadow:0 4px 16px rgba(0,0,0,.16); }
+.daily-bk-block.is-dragging { opacity:.4; z-index:1; pointer-events:none; }
+.daily-bk-title { font-family:'Quicksand',sans-serif; font-weight:700; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.daily-bk-sub { opacity:.85; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:1px; }
+.daily-bk-time-badge {
+  position:absolute; bottom:3px; right:6px;
+  font-family:'Quicksand',sans-serif; font-size:9px; font-weight:700; opacity:.7;
+}
+
+/* RESIZE HANDLES */
+.resize-handle {
+  position:absolute; left:0; right:0; height:12px;
+  cursor:ns-resize; z-index:10;
+  display:flex; align-items:center; justify-content:center;
+}
+.resize-handle::after {
+  content:''; display:block; width:24px; height:3px;
+  background:rgba(0,0,0,.18); border-radius:2px;
+}
+.resize-handle-top { top:0; }
+.resize-handle-bottom { bottom:0; }
+
+/* TIME TOOLTIP */
+.time-tooltip {
+  position:fixed; background:var(--text-dark); color:#fff;
+  padding:4px 10px; border-radius:8px; font-family:'Quicksand',sans-serif;
+  font-size:12px; font-weight:700; z-index:999; pointer-events:none;
+  display:none; white-space:nowrap;
+}
+
+/* MODAL edit fields */
+.modal-edit-section {
+  background:var(--cream); border-radius:16px;
+  padding:14px; margin-top:14px;
+}
+.modal-edit-title {
+  font-family:'Quicksand',sans-serif; font-size:13px; font-weight:700;
+  color:var(--brown); margin-bottom:10px;
+}
+.modal-edit-row {
+  display:grid; grid-template-columns:auto 1fr;
+  gap:6px 10px; align-items:center; margin-bottom:8px;
+}
+.modal-edit-row label { font-size:12px; color:var(--text-mid); white-space:nowrap; }
+.modal-edit-row input,
+.modal-edit-row select,
+.modal-edit-row textarea {
+  width:100%; padding:7px 10px;
+  border:2px solid var(--sand); border-radius:10px;
+  font-family:'Mitr',sans-serif; font-size:13px;
+  color:var(--text-dark); background:var(--white);
+  outline:none; transition:border .2s;
+}
+.modal-edit-row input:focus,
+.modal-edit-row select:focus,
+.modal-edit-row textarea:focus { border-color:var(--brown); }
+.modal-edit-row textarea { resize:none; grid-column:1/-1; }
+.modal-err { font-size:12px; color:#c05050; font-weight:600; margin-top:6px; display:none; }
+.modal-err.visible { display:block; }
+.modal-save-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
+
+
+/* MODAL */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(58,47,39,.45);
+  z-index:500; display:flex; align-items:flex-end; justify-content:center;
+  animation:fadeIn .2s ease;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-overlay.hidden { display:none; }
+.modal-sheet {
+  background:var(--white); border-radius:28px 28px 0 0;
+  width:100%; max-width:540px; max-height:90vh; overflow-y:auto;
+  padding:24px 20px 36px; animation:slideUp .28s cubic-bezier(.34,1.4,.64,1);
+}
+@keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-handle { width:40px; height:4px; background:var(--sand); border-radius:2px; margin:0 auto 18px; }
+.modal-title { font-family:'Quicksand',sans-serif; font-size:20px; font-weight:700; color:var(--brown); margin-bottom:16px; }
+.modal-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px dashed var(--sand); font-size:13px; gap:10px; }
+.modal-row:last-of-type{border-bottom:none}
+.modal-row .ml { color:var(--text-mid); flex-shrink:0; }
+.modal-row .mv { font-weight:600; text-align:right; }
+.modal-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:18px; }
+.modal-btn {
+  padding:11px 8px; border-radius:14px; font-family:'Quicksand',sans-serif;
+  font-size:13px; font-weight:700; border:none; cursor:pointer;
+  transition:all .18s; text-align:center; -webkit-tap-highlight-color:transparent;
+}
+.modal-btn.call { background:var(--yellow-green); color:var(--text-dark); }
+.modal-btn.line { background:#06C755; color:#fff; }
+.modal-btn.cancel-bk { background:var(--pink); color:#c05050; }
+.modal-btn.change-status { background:var(--blue); color:#fff; }
+.status-select {
+  width:100%; padding:11px 14px; border:2px solid var(--sand);
+  border-radius:12px; font-family:'Mitr',sans-serif; font-size:14px;
+  color:var(--text-dark); background:var(--cream); outline:none;
+  margin-top:12px;
+}
+
+/* TOAST */
+.toast {
+  position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--text-dark); color:#fff;
+  padding:11px 22px; border-radius:var(--radius-pill);
+  font-size:13px; font-weight:600; z-index:600;
+  opacity:0; transition:all .3s; pointer-events:none; white-space:nowrap;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+.toast.error { background:#c05050; }
+.toast.success { background:var(--sage); }
+
+/* DRAG DROP — kept for weekly view week-col-body hover */
+.week-col-body.drag-over { background:rgba(160,185,149,.18) !important; outline:2px dashed var(--sage); border-radius:0 0 14px 14px; }
+
+/* DEBUG TABLE */
+.debug-table { width:100%; border-collapse:collapse; font-size:11px; }
+.debug-table th { background:var(--cream); color:var(--text-mid); font-weight:700; padding:6px 8px; text-align:left; border-bottom:2px solid var(--sand); white-space:nowrap; font-family:'Quicksand',sans-serif; }
+.debug-table td { padding:6px 8px; border-bottom:1px dashed var(--sand); color:var(--text-dark); vertical-align:top; max-width:140px; word-break:break-word; }
+.debug-table tr:hover td { background:var(--cream); }
+.debug-table .demo-row td { opacity:.55; }
+.debug-pill { display:inline-block; padding:1px 7px; border-radius:99px; font-size:10px; font-weight:700; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">Chou<span>&</span>Me</div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <button class="admin-tab-btn active" id="tabCustomer" onclick="switchView('customer')">หน้าจอง</button>
+    <button class="admin-tab-btn" id="tabAdmin" onclick="switchView('admin')">หลังบ้าน</button>
+  </div>
+</header>
+
+<div id="customerView">
+<div class="ribbon"><div class="ribbon-inner" id="ribbonInner"></div></div>
+
+<section class="hero">
+  <div class="hero-deco d1">🐾</div>
+  <div class="hero-deco d2">✿</div>
+  <div class="hero-deco d3">★</div>
+  <div class="hero-deco d4">♡</div>
+  <div class="hero-badge">✦ Grooming Booking ✦</div>
+  <h1>จองคิว<br><span>Grooming</span></h1>
+  <p>เลือกบริการ ขนาดตัว และเวลาที่สะดวก ระบบจะช่วยคำนวณราคาและเวลาที่ใช้โดยประมาณ</p>
+</section>
+
+<div class="wave">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,28 C150,46 350,0 600,22 C850,46 1050,0 1200,18 L1200,44 L0,44 Z" fill="#F1F3EC"/>
+  </svg>
+</div>
+
+<div class="booking-wrap">
+
+  <div class="step-nav" id="stepNav"></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+  <!-- PAGE A: ประเภท + น้ำหนัก + ขน -->
+  <div class="booking-page active" id="pageA">
+
+    <!-- 1. Pet type -->
+    <div class="sub-section unlocked" id="subPet">
+      <div class="sub-section-header">
+        <div class="sub-num">1</div>
+        <div class="section-title">เพื่อนของคุณเป็น?</div>
+      </div>
+      <div class="card-grid">
+        <div class="sel-card" data-val="dog" onclick="selectPetType(this,'dog')">
+          <span class="card-emoji">🐕</span>
+          <span class="card-label">สุนัข</span>
+          <span class="card-sub">Dog</span>
+        </div>
+        <div class="sel-card" data-val="cat" onclick="selectPetType(this,'cat')">
+          <span class="card-emoji">🐈</span>
+          <span class="card-label">แมว</span>
+          <span class="card-sub">Cat</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-divider"></div>
+
+    <!-- 2. Weight -->
+    <div class="sub-section locked" id="subWeight">
+      <div class="sub-section-header">
+        <div class="sub-num">2</div>
+        <div class="section-title">น้ำหนักโดยประมาณ</div>
+      </div>
+      <p class="section-sub">ช่วยให้ประเมินราคาและเวลาได้แม่นยำ</p>
+      <div class="card-grid col1" id="weightGrid"></div>
+    </div>
+
+    <div class="sub-divider"></div>
+
+    <!-- 3. Coat -->
+    <div class="sub-section locked" id="subCoat">
+      <div class="sub-section-header">
+        <div class="sub-num">3</div>
+        <div class="section-title">ลักษณะขน</div>
+      </div>
+      <p class="section-sub">ช่วยประเมินเวลาและราคาที่แม่นยำ</p>
+      <div class="card-grid" id="coatGrid"></div>
+    </div>
+
+    <br>
+    <button class="btn btn-primary" id="btnNextA" onclick="goToPage('B')" disabled>ถัดไป: เลือกบริการ →</button>
+  </div>
+
+  <!-- PAGE B: บริการ + Add-ons -->
+  <div class="booking-page" id="pageB">
+
+    <!-- 4. Service -->
+    <div class="sub-section unlocked" id="subService">
+      <div class="sub-section-header">
+        <div class="sub-num">4</div>
+        <div class="section-title">เลือกบริการ</div>
+      </div>
+      <p class="section-sub">ตัดขนต้องอาบน้ำก่อนเสมอ — ระบบรวมไว้ให้อัตโนมัติ</p>
+      <div class="service-note">
+        <span class="ni">💡</span>
+        <span>ราคาอาบน้ำรวมบริการ เช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น</span>
+      </div>
+      <div id="serviceList"></div>
+    </div>
+
+    <div class="sub-divider"></div>
+
+    <!-- 5. Add-ons -->
+    <div class="sub-section locked" id="subAddon">
+      <div class="sub-section-header">
+        <div class="sub-num">5</div>
+        <div class="section-title">บริการเสริม</div>
+      </div>
+      <p class="section-sub">เลือกได้หลายรายการ ไม่บังคับ</p>
+      <div class="addon-grid" id="addonGrid"></div>
+    </div>
+
+    <br>
+    <button class="btn btn-secondary" onclick="goToPage('A')">← ย้อนกลับ</button>
+    <button class="btn btn-primary" id="btnNextB" onclick="goToPage('C')" disabled>ถัดไป: เลือกวัน-เวลา →</button>
+  </div>
+
+  <!-- PAGE C: วันและเวลา + ข้อมูลลูกค้า (merged) -->
+  <div class="booking-page" id="pageC">
+
+    <!-- 6. Date & Time -->
+    <div class="sub-section unlocked" id="subDate">
+      <div class="sub-section-header">
+        <div class="sub-num">6</div>
+        <div class="section-title">เลือกวันและเวลา</div>
+      </div>
+      <p class="section-sub">เปิดให้บริการ อังคาร – อาทิตย์ เวลา 09:00–20:00 น.</p>
+      <div class="estimate-card" id="estimateCard"></div>
+      <div class="date-input-wrap">
+        <label>📆 เลือกวันที่</label>
+        <div class="cal-wrap">
+          <div class="cal-header">
+            <button class="cal-nav" id="calPrev" onclick="calNav(-1)">‹</button>
+            <div class="cal-title" id="calTitle"></div>
+            <button class="cal-nav" id="calNext" onclick="calNav(1)">›</button>
+          </div>
+          <div class="cal-dow-row">
+            <div class="cal-dow closed">อา</div>
+            <div class="cal-dow">จ</div><!-- closed but shown -->
+            <div class="cal-dow">อ</div>
+            <div class="cal-dow">พ</div>
+            <div class="cal-dow">พฤ</div>
+            <div class="cal-dow">ศ</div>
+            <div class="cal-dow">ส</div>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+        <div class="selected-date-badge" id="selectedDateBadge">
+          <span class="sdb-icon">✦</span>
+          <span id="selectedDateText"></span>
+        </div>
+        <div class="date-note" id="dateNote">🚫 วันจันทร์ร้านปิด กรุณาเลือกวันอื่น</div>
+      </div>
+      <div class="date-input-wrap" id="timeWrap" style="display:none">
+        <label>🕐 เวลาเริ่มต้น</label>
+        <div class="timeslot-grid" id="timeslotGrid"></div>
+        <div class="full-alert" id="fullAlert">⛔ ช่วงเวลานี้เต็มแล้ว กรุณาเลือกเวลาอื่น</div>
+      </div>
+    </div>
+
+    <div class="sub-divider"></div>
+
+    <!-- 7. Customer Info -->
+    <div class="sub-section locked" id="subCustomer">
+      <div class="sub-section-header">
+        <div class="sub-num">7</div>
+        <div class="section-title">ข้อมูลผู้จอง</div>
+      </div>
+      <p class="section-sub">กรอกข้อมูลเพื่อยืนยันการจอง</p>
+      <div class="form-field"><label>ชื่อลูกค้า *</label><input type="text" id="custName" placeholder="ชื่อ – นามสกุล"></div>
+      <div class="form-field"><label>เบอร์โทร *</label><input type="tel" id="custPhone" placeholder="0XX-XXX-XXXX"></div>
+      <div class="form-field"><label>ชื่อสัตว์เลี้ยง *</label><input type="text" id="petName" placeholder="ชื่อเล่นของน้อง"></div>
+      <div class="form-field"><label>หมายเหตุเพิ่มเติม</label><textarea id="custNote" rows="3" placeholder="เช่น น้องตื่นเต้น ชอบให้อุ้ม ฯลฯ"></textarea></div>
+    </div>
+
+    <br>
+    <button class="btn btn-secondary" onclick="goToPage('B')">← ย้อนกลับ</button>
+    <button class="btn btn-primary" onclick="doSummary()">ดูสรุปการจอง →</button>
+  </div>
+
+  <!-- PAGE D: Summary -->
+  <div class="booking-page" id="pageD">
+    <div class="sub-section unlocked">
+      <div class="sub-section-header">
+        <div class="sub-num">✦</div>
+        <div class="section-title">สรุปการจอง</div>
+      </div>
+      <p class="section-sub">กรุณาตรวจสอบข้อมูลก่อนยืนยัน</p>
+    </div>
+    <div class="summary-card" id="summaryCard"></div>
+    <button class="btn btn-secondary" onclick="goToPage('C')">← แก้ไขข้อมูล</button>
+    <button class="btn btn-sage" onclick="confirmBooking()">✓ ยืนยันการจอง</button>
+  </div>
+
+</div>
+
+<!-- SUCCESS -->
+<div class="success-wrap" id="successWrap">
+  <div class="success-icon">🎉</div>
+  <div class="success-title">จองคิวสำเร็จแล้ว!</div>
+  <p class="success-sub">ขอบคุณที่ไว้วางใจ Chou&Me Pet Wellness 🐾<br>เราจะดูแลน้องของคุณอย่างดีที่สุดนะคะ<br><br>เราจะติดต่อกลับเพื่อยืนยันคิวทางโทรศัพท์</p>
+  <br><br>
+  <button class="btn btn-primary" style="max-width:280px;margin:0 auto" onclick="location.reload()">+ จองอีกครั้ง</button>
+</div>
+
+<!-- MINI STICKY SUMMARY -->
+<div class="mini-summary" id="miniSummary">
+  <div class="mini-sum-row">
+    <div class="mini-sum-info" id="miniInfo"></div>
+    <div class="mini-sum-price" id="miniPrice"></div>
+  </div>
+</div>
+
+</div><!-- /customerView -->
+
+<script>
+const ribbonItems=['GROOMING','•','SPA','•','BATH','•','HAIRCUT','•','CAT GROOMING','•','DOG GROOMING','•','CHOU&ME','•'];
+const ri=document.getElementById('ribbonInner');
+let rh=''; for(let r=0;r<4;r++) ribbonItems.forEach(t=>{ rh+=t==='•'?`<span class="dot">${t}</span>`:`<span>${t}</span>`; }); ri.innerHTML=rh;
+
+// ══════════════════════════════════════════════════════════════
+// SUPABASE CONFIG
+// ══════════════════════════════════════════════════════════════
+const SUPABASE_URL        = 'https://qlyyeetzvtegbgasmmmb.supabase.co';
+const SUPABASE_ANON_KEY   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFseXllZXR6dnRlZ2JnYXNtbW1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNTA1MjMsImV4cCI6MjA5MzgyNjUyM30.nryBXiYnGTPNpAAEPOdqRExVDd3IeT4S0vAiZ1sHkkg';
+const SUPABASE_API_KEY    = 'sb_publishable_ebR239mDNQb1xAY7zo6dkQ_zXZ_NH_k'; // SDK publishable key (stored for reference)
+
+// REST API always uses the anon JWT for Authorization + apikey headers
+const SB_HEADERS = {
+  'Content-Type':  'application/json',
+  'apikey':        SUPABASE_ANON_KEY,
+  'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+  'Prefer':        'return=representation'
+};
+
+// ── CONNECTION STATE ──
+let dbConnected = false; // true once a successful fetch completes
+
+// ── DB STATUS BANNER ──
+function setDbStatus(state, msg) {
+  // state: 'loading' | 'ok' | 'error' | 'offline'
+  let el = document.getElementById('dbStatusBanner');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'dbStatusBanner';
+    el.style.cssText = [
+      'position:fixed','top:58px','left:0','right:0',
+      'text-align:center','padding:8px 16px','font-size:12px','font-weight:600',
+      'z-index:300','transition:all .35s','pointer-events:none'
+    ].join(';');
+    document.body.appendChild(el);
+  }
+  const styles = {
+    loading: 'background:#F2F7CD;color:#6b5c50',
+    ok:      'background:#E8F5EE;color:#2a5a38',
+    error:   'background:#FDECEA;color:#8a2020',
+    offline: 'background:#F4E2E2;color:#8a2020'
+  };
+  el.style.cssText += ';' + (styles[state] || styles.loading);
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.style.opacity = '1';
+  if (state === 'ok') {
+    setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.style.display='none', 400); }, 2500);
+  }
+}
+
+// ── CONNECTION DIAGNOSIS ──
+// "Failed to fetch" means one of:
+//  1. App runs inside a sandboxed iframe (Claude artifacts) — network blocked
+//  2. No internet
+//  3. Wrong SUPABASE_URL
+//  4. Supabase project paused/deleted
+// Solution: open index.html from a real host (Vercel, Netlify, local server)
+async function testConnection() {
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/', { headers: SB_HEADERS });
+    if (res.ok || res.status === 200 || res.status === 404) {
+      dbConnected = true;
+      console.log('Supabase reachable, status:', res.status);
+      return true;
+    }
+    console.warn('Supabase responded with', res.status);
+    return false;
+  } catch(e) {
+    console.error('Supabase connection test failed:', e.message);
+    if (e.message.includes('Failed to fetch') || e.message.includes('NetworkError')) {
+      setDbStatus('offline',
+        '⚠️ ไม่สามารถเชื่อมต่อ Supabase ได้ — ' +
+        'กรุณาเปิดไฟล์จาก Vercel / Netlify / localhost แทนการเปิดใน Claude Artifact'
+      );
+    }
+    return false;
+  }
+}
+
+// ── FIELD MAPPING ──────────────────────────────────────────────
+// Frontend (camelCase)  ↔  Supabase (snake_case)
+function toDb(bk) {
+  return {
+    id:           bk.id,
+    customer_name: bk.customerName   || '',
+    phone:         bk.phone          || '',
+    pet_name:      bk.petName        || '',
+    pet_type:      bk.petType        || '',
+    weight_range:  bk.weightRange    || '',
+    coat_type:     bk.coatType       || '',
+    service:       bk.service        || '',
+    addons:        JSON.stringify(bk.addOns || []),
+    price_min:     bk.estimatedPriceMin    || 0,
+    price_max:     bk.estimatedPriceMax    || 0,
+    duration_min:  bk.estimatedDurationMin || 0,
+    duration_max:  bk.estimatedDurationMax || 0,
+    date:          bk.date           || '',
+    start_time:    bk.startTime      || '',
+    end_time:      bk.endTime        || '',
+    groomer_id:    bk.groomerId      || 'groomer1',
+    status:        bk.status         || 'รอยืนยัน',
+    notes:         bk.notes          || '',
+    created_at:    bk.createdAt      || new Date().toISOString()
+  };
+}
+
+function fromDb(row) {
+  let addOns = [];
+  try { addOns = JSON.parse(row.addons || '[]'); } catch(e) { addOns = []; }
+  return {
+    id:                   row.id,
+    customerName:         row.customer_name  || '',
+    phone:                row.phone          || '',
+    petName:              row.pet_name       || '',
+    petType:              row.pet_type       || '',
+    weightRange:          row.weight_range   || '',
+    coatType:             row.coat_type      || '',
+    service:              row.service        || '',
+    addOns,
+    estimatedPriceMin:    row.price_min      || 0,
+    estimatedPriceMax:    row.price_max      || 0,
+    estimatedDurationMin: row.duration_min   || 0,
+    estimatedDurationMax: row.duration_max   || 0,
+    date:                 row.date           || '',
+    startTime:            row.start_time     || '',
+    endTime:              row.end_time       || '',
+    groomerId:            row.groomer_id     || 'groomer1',
+    status:               row.status         || 'รอยืนยัน',
+    notes:                row.notes          || '',
+    createdAt:            row.created_at     || ''
+  };
+}
+
+// ══════════════════════════════════════════════════════════════
+// SHARED BOOKINGS CACHE — populated from Supabase on load
+// ══════════════════════════════════════════════════════════════
+let bookings = [];
+// backward-compat alias used by countBusy
+const existingBookings = bookings;
+
+// ══════════════════════════════════════════════════════════════
+// SHARED BOOKINGS CACHE — populated from Supabase on load
+// ══════════════════════════════════════════════════════════════
+
+// ── 1. LOAD all bookings from Supabase ──
+async function loadBookings() {
+  setDbStatus('loading', '⏳ กำลังโหลดข้อมูล...');
+  try {
+    const res = await fetch(
+      SUPABASE_URL + '/rest/v1/bookings?select=*&order=date.asc,start_time.asc',
+      { headers: SB_HEADERS }
+    );
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error('HTTP ' + res.status + ' — ' + JSON.stringify(body));
+    }
+    const rows = await res.json();
+    bookings.length = 0;
+    rows.forEach(r => bookings.push(fromDb(r)));
+    dbConnected = true;
+    setDbStatus('ok', '✓ โหลดข้อมูลเรียบร้อยแล้ว (' + bookings.length + ' รายการ)');
+    console.log('loadBookings: loaded ' + bookings.length + ' bookings');
+    bookings.forEach((b, i) =>
+      console.log(i + ' | ' + b.id + ' | ' + b.date + ' ' + b.startTime + ' | ' + b.petName + ' | ' + b.status)
+    );
+  } catch (err) {
+    dbConnected = false;
+    const msg = err.message || '';
+    if (msg.includes('Failed to fetch') || msg.includes('NetworkError') || msg.includes('Load failed')) {
+      // Sandboxed environment or no internet — explain clearly
+      setDbStatus('offline',
+        '⚠️ เชื่อมต่อ Supabase ไม่ได้ — กรุณาเปิดไฟล์ผ่าน Vercel, Netlify หรือ localhost แทนการรันใน Claude Artifact'
+      );
+      console.error('loadBookings: network blocked (sandbox or no internet). Deploy to a real host to use Supabase.');
+    } else {
+      setDbStatus('error', '❌ เกิดข้อผิดพลาดในการโหลดข้อมูล: ' + msg.slice(0,80));
+      console.error('loadBookings error:', err);
+    }
+  }
+}
+
+// ── 2. CREATE a new booking ──
+async function createBooking(bk) {
+  if (!dbConnected) {
+    // Offline: skip DB, just use local cache
+    console.warn('createBooking: offline — saving locally only');
+    return bk;
+  }
+  const body = toDb(bk);
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/bookings', {
+      method: 'POST',
+      headers: SB_HEADERS,
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(JSON.stringify(err));
+    }
+    const rows = await res.json();
+    console.log('createBooking: inserted', rows);
+    return rows[0] ? fromDb(rows[0]) : bk;
+  } catch (err) {
+    console.error('createBooking error:', err);
+    throw err;
+  }
+}
+
+// ── 3. UPDATE a booking by id ──
+async function updateBooking(id, fields) {
+  if (!dbConnected) {
+    console.warn('updateBooking: offline — local only, id=' + id);
+    return; // already updated in local cache by caller
+  }
+  // Build partial DB object from only the changed frontend fields
+  const partial = {};
+  if (fields.customerName   !== undefined) partial.customer_name = fields.customerName;
+  if (fields.phone          !== undefined) partial.phone         = fields.phone;
+  if (fields.petName        !== undefined) partial.pet_name      = fields.petName;
+  if (fields.petType        !== undefined) partial.pet_type      = fields.petType;
+  if (fields.weightRange    !== undefined) partial.weight_range  = fields.weightRange;
+  if (fields.coatType       !== undefined) partial.coat_type     = fields.coatType;
+  if (fields.service        !== undefined) partial.service       = fields.service;
+  if (fields.addOns         !== undefined) partial.addons        = JSON.stringify(fields.addOns);
+  if (fields.estimatedPriceMin    !== undefined) partial.price_min    = fields.estimatedPriceMin;
+  if (fields.estimatedPriceMax    !== undefined) partial.price_max    = fields.estimatedPriceMax;
+  if (fields.estimatedDurationMin !== undefined) partial.duration_min = fields.estimatedDurationMin;
+  if (fields.estimatedDurationMax !== undefined) partial.duration_max = fields.estimatedDurationMax;
+  if (fields.date           !== undefined) partial.date          = fields.date;
+  if (fields.startTime      !== undefined) partial.start_time    = fields.startTime;
+  if (fields.endTime        !== undefined) partial.end_time      = fields.endTime;
+  if (fields.groomerId      !== undefined) partial.groomer_id    = fields.groomerId;
+  if (fields.status         !== undefined) partial.status        = fields.status;
+  if (fields.notes          !== undefined) partial.notes         = fields.notes;
+
+  try {
+    const res = await fetch(
+      SUPABASE_URL + '/rest/v1/bookings?id=eq.' + encodeURIComponent(id),
+      { method: 'PATCH', headers: SB_HEADERS, body: JSON.stringify(partial) }
+    );
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(JSON.stringify(err));
+    }
+    console.log('updateBooking: updated id=' + id, partial);
+  } catch (err) {
+    console.error('updateBooking error:', err);
+    showToast('เกิดข้อผิดพลาดในการบันทึกข้อมูล', 'error');
+  }
+}
+
+// ── 4. REFRESH dashboard after any DB change ──
+async function refreshDashboard() {
+  await loadBookings();
+  if (document.getElementById('adminView').style.display !== 'none') {
+    buildAdminStats();
+    renderCurrentView();
+  }
+}
+
+// ── STATE ──
+const S={
+  petType:null, weight:null, coat:null,
+  haircut:null, // null | 'clipper' | 'scissor'
+  addons:[],
+  date:null, time:null,
+  custName:'', custPhone:'', petName:'', custNote:''
+};
+
+// ── DATA ──
+const dogWeights=['ต่ำกว่า 2.5 กก.','2.5–5 กก.','5.1–10 กก.','10.1–15 กก.','15.1–25 กก.','25.1–40 กก.','มากกว่า 40 กก.'];
+const catWeights=['ต่ำกว่า 3 กก.','3–5 กก.','5.1–10 กก.','มากกว่า 10 กก.'];
+
+const dogCoats=[
+  {val:'short', label:'ขนสั้น',              emoji:'🐕', sub:'เช่น ชิวาวา, เฟรนช์บูลด็อก, บีเกิล'},
+  {val:'long',  label:'ขนยาว',               emoji:'🐩', sub:'เช่น ปอม, ชิสุ, มอลทีส, พุดเดิ้ล'},
+  {val:'thick', label:'ขนหนา / สองชั้น',     emoji:'🐻', sub:'เช่น โกลเด้น, ฮัสกี้, คอร์กี้'},
+  {val:'matted',label:'ขนพันกัน / สังกะตัง', emoji:'🌀', sub:'ขนจับตัวเป็นก้อน ต้องใช้เวลาแก้ขนเพิ่ม'},
+];
+const catCoats=[
+  {val:'short', label:'ขนสั้น',              emoji:'🐱', sub:'เช่น ไทย, อเมริกันช็อตแฮร์'},
+  {val:'long',  label:'ขนยาว',               emoji:'😺', sub:'เช่น เปอร์เซีย, เมนคูน, แร็กดอลล์'},
+  {val:'thick', label:'ขนหนา',               emoji:'🦁', sub:'ขนแน่น เป่ายาก ใช้เวลาเพิ่ม'},
+  {val:'matted',label:'ขนพันกัน / สังกะตัง', emoji:'🌀', sub:'ขนจับตัวเป็นก้อน ต้องใช้เวลาแก้ขนเพิ่ม'},
+];
+
+const dogPrices={
+  'ต่ำกว่า 2.5 กก.':{bath_short:250,bath_long:300,trim:200,scissor:300},
+  '2.5–5 กก.':      {bath_short:300,bath_long:350,trim:250,scissor:350},
+  '5.1–10 กก.':     {bath_short:400,bath_long:450,trim:300,scissor:450},
+  '10.1–15 กก.':    {bath_short:500,bath_long:600,trim:350,scissor:600},
+  '15.1–25 กก.':    {bath_short:600,bath_long:700,trim:500,scissor:700},
+  '25.1–40 กก.':    {bath_short:700,bath_long:900,trim:600,scissor:900},
+  'มากกว่า 40 กก.': {bath_short:900,bath_long:1100,trim:700,scissor:1100},
+};
+const catPrices={
+  'ต่ำกว่า 3 กก.':  {bath_short:300,bath_long:350,trim:250,scissor:350},
+  '3–5 กก.':        {bath_short:400,bath_long:450,trim:300,scissor:450},
+  '5.1–10 กก.':     {bath_short:500,bath_long:600,trim:400,scissor:600},
+  'มากกว่า 10 กก.': {bath_short:600,bath_long:700,trim:500,scissor:700},
+};
+
+const addons=[
+  {val:'spa',     label:'สปา',              emoji:'🧖',desc:'ช่วยทำความสะอาดล้ำลึก ผ่อนคลาย และบำรุงผิวและเส้นขน',      prL:[100,200],prH:[200,400],dur:[10,20]},
+  {val:'medshamp',label:'แชมพูยา',           emoji:'💊',desc:'เหมาะสำหรับสัตว์เลี้ยงที่มีปัญหาผิวหนังหรืออาการคัน',      prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'oilshamp',label:'แชมพูขจัดคราบมัน', emoji:'🧴',desc:'ช่วยลดความมัน กลิ่นตัว และทำความสะอาดล้ำลึก',            prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'dryshamp',label:'แชมพูสำหรับผิวแห้ง',emoji:'🌿',desc:'ช่วยเพิ่มความชุ่มชื้น ลดอาการผิวแห้งและระคายเคือง',       prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'treat',   label:'ทรีตเมนต์',         emoji:'✨',desc:'บำรุงขนให้นุ่ม เงางาม ลดขนพันกัน',                       prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'teeth',   label:'แปรงฟัน',           emoji:'🦷',desc:'ช่วยลดกลิ่นปากและดูแลสุขภาพช่องปาก',                    prL:[50,50],  prH:[100,100],dur:[5,10]},
+  {val:'dbl',     label:'สางขนสองชั้น',      emoji:'🌊',desc:'เหมาะสำหรับสายพันธุ์ขนหนาและขนสองชั้น',                 prL:[100,400],prH:[100,400],dur:[30,60]},
+  {val:'demat',   label:'สางขนสังกะตัง',     emoji:'🔧',desc:'สำหรับขนพันกันหรือจับตัวเป็นก้อน',                       prL:[100,400],prH:[100,400],dur:[30,60]},
+];
+
+// ── HELPERS ──
+function getKg(w){
+  if(!w) return 5;
+  if(w.includes('ต่ำกว่า 2.5')) return 2;
+  if(w.includes('2.5–5')||w.includes('ต่ำกว่า 3')||w.includes('3–5')) return 4;
+  if(w.includes('5.1–10')) return 7;
+  if(w.includes('10.1–15')) return 12;
+  if(w.includes('15.1–25')) return 20;
+  if(w.includes('25.1–40')) return 30;
+  if(w.includes('มากกว่า 40')) return 45;
+  if(w.includes('มากกว่า 10')) return 12;
+  return 5;
+}
+function isHeavy(){ return getKg(S.weight)>=10; }
+
+// Bath key: long/thick/matted → bath_long, else → bath_short
+function getBathKey(){ return (S.coat==='long'||S.coat==='thick'||S.coat==='matted')?'bath_long':'bath_short'; }
+
+function calcPrice(){
+  if(!S.weight) return {min:0,max:0};
+  const tbl=S.petType==='dog'?dogPrices:catPrices;
+  const row=tbl[S.weight]; if(!row) return {min:0,max:0};
+  const bk=getBathKey();
+  let base=row[bk]||0;
+  if(S.haircut==='clipper') base+=row['trim']||0;
+  if(S.haircut==='scissor') base+=row['scissor']||0;
+  let mn=0,mx=0;
+  const hv=isHeavy();
+  S.addons.forEach(av=>{
+    const a=addons.find(x=>x.val===av);
+    if(a){mn+=hv?a.prH[0]:a.prL[0];mx+=hv?a.prH[1]:a.prL[1];}
+  });
+  return {min:base+mn,max:base+mx};
+}
+
+function calcDuration(){
+  const kg=getKg(S.weight); let mn=60,mx=90;
+  if(kg<5){mn=60;mx=90;}else if(kg<=10){mn=75;mx=105;}else if(kg<=20){mn=90;mx=120;}else if(kg<=40){mn=105;mx=150;}else{mn=120;mx=180;}
+  if(S.coat==='long'){mn+=30;mx+=60;}
+  if(S.coat==='thick'){mn+=30;mx+=60;}
+  if(S.coat==='matted'){mn+=45;mx+=90;}
+  if(S.haircut==='clipper'){mn+=45;mx+=90;}
+  if(S.haircut==='scissor'){mn+=60;mx+=120;}
+  S.addons.forEach(av=>{const a=addons.find(x=>x.val===av);if(a){mn+=a.dur[0];mx+=a.dur[1];}});
+  return{mn,mx};
+}
+
+function fmtDur(mn,mx){
+  const sMin=Math.floor(mn/60)+(mn%60>=30?.5:0);
+  const sMax=Math.floor(mx/60)+(mx%60>=30?.5:0);
+  if(sMin===sMax) return `ประมาณ ${sMin} ชั่วโมง`;
+  return `ประมาณ ${sMin}–${sMax} ชั่วโมง`;
+}
+
+// ── PAGE NAV ──
+const PAGES=['A','B','C','D'];
+const PAGE_LABELS=['น้อง & ขน','บริการ','วัน-เวลา & ข้อมูล','สรุป'];
+let currentPage='A';
+
+function goToPage(p){
+  document.getElementById('page'+currentPage).classList.remove('active');
+  currentPage=p;
+  document.getElementById('page'+p).classList.add('active');
+  // rebuild service list on entering B so prices reflect latest state
+  if(p==='B'){
+    S.haircut=null; S.addons=[];
+    lock('subAddon');
+    document.getElementById('btnNextB').disabled=true;
+    buildServiceGrid();
+  }
+  // populate estimate card when entering C
+  if(p==='C') buildEstimateCard();
+  updateStepNav();
+  updateMini();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateStepNav(){
+  const nav=document.getElementById('stepNav');
+  const idx=PAGES.indexOf(currentPage);
+  let html='';
+  PAGES.forEach((p,i)=>{
+    if(i>0) html+=`<div class="step-connector${i<=idx?' done':''}"></div>`;
+    const done=i<idx,active=i===idx;
+    html+=`<div class="step-pill${done?' done':''}${active?' active':''}">
+      <div class="snum">${done?'✓':(i+1)}</div>
+      <span class="slabel">${PAGE_LABELS[i]}</span>
+    </div>`;
+  });
+  nav.innerHTML=html;
+  document.getElementById('progressFill').style.width=(idx/(PAGES.length-1)*100)+'%';
+}
+
+function unlock(id){
+  const el=document.getElementById(id);
+  el.classList.remove('locked');
+  el.classList.add('unlocked');
+}
+function lock(id){
+  const el=document.getElementById(id);
+  el.classList.remove('unlocked');
+  el.classList.add('locked');
+}
+
+// ── PET TYPE ──
+function selectPetType(el,val){
+  el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  // Reset downstream
+  S.petType=val; S.weight=null; S.coat=null; S.haircut=null; S.addons=[];
+  // Rebuild & unlock weight
+  buildWeightGrid();
+  unlock('subWeight');
+  // Re-lock coat
+  lock('subCoat');
+  document.getElementById('coatGrid').innerHTML='';
+  document.getElementById('btnNextA').disabled=true;
+  updateMini();
+}
+
+// ── WEIGHT ──
+function buildWeightGrid(){
+  const weights=S.petType==='dog'?dogWeights:catWeights;
+  document.getElementById('weightGrid').innerHTML=weights.map(w=>
+    `<div class="sel-card" data-val="${w}" onclick="selectWeight(this,'${encodeURIComponent(w)}')">
+      <span class="card-label" style="font-size:15px">${w}</span>
+    </div>`).join('');
+}
+
+function selectWeight(el,encoded){
+  el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  S.weight=decodeURIComponent(encoded); S.coat=null; S.haircut=null;
+  buildCoatGrid();
+  unlock('subCoat');
+  document.getElementById('btnNextA').disabled=true;
+  updateMini();
+}
+
+// ── COAT ──
+function buildCoatGrid(){
+  const coats=S.petType==='dog'?dogCoats:catCoats;
+  document.getElementById('coatGrid').innerHTML=coats.map(c=>
+    `<div class="sel-card" data-val="${c.val}" onclick="selectCoat(this,'${c.val}')">
+      <span class="card-emoji">${c.emoji}</span>
+      <span class="card-label">${c.label}</span>
+      <span class="card-sub">${c.sub}</span>
+    </div>`).join('');
+}
+
+function selectCoat(el,val){
+  el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  S.coat=val;
+  document.getElementById('btnNextA').disabled=false;
+  updateMini();
+}
+
+// ── SERVICE ──
+// 3 options: bath only | bath + clipper | bath + scissor
+function buildServiceGrid(){
+  if(!S.weight||!S.coat) return;
+  const tbl=S.petType==='dog'?dogPrices:catPrices;
+  const row=tbl[S.weight];
+  const bk=getBathKey();
+  const animal=S.petType==='dog'?'สุนัข':'แมว';
+  const bathTypeLabel=(S.coat==='long'||S.coat==='thick'||S.coat==='matted')?'ขนยาว/หนา':'ขนสั้น';
+
+  const pBath=row?row[bk]:0;
+  const pTrim=row?row['trim']:0;
+  const pSci=row?row['scissor']:0;
+
+  const svcs=[
+    {key:'bath_only', hcut:null,      emoji:'🛁',
+     name:`อาบน้ำ${animal}`,
+     desc:`รวมเช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น`,
+     tags:[`อาบน้ำ (${bathTypeLabel})`],
+     price:pBath},
+    {key:'bath_clipper', hcut:'clipper', emoji:'✂️',
+     name:`อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)`,
+     desc:`อาบน้ำก่อน แล้วจึงตัดขนด้วยเครื่องปัตตาเลี่ยน`,
+     tags:[`อาบน้ำ (${bathTypeLabel})`,'ตัดขนปัตตาเลี่ยน'],
+     price:row?pBath+pTrim:0},
+    {key:'bath_scissor', hcut:'scissor', emoji:'💇',
+     name:`อาบน้ำ + ตัดขน (กรรไกร)`,
+     desc:`อาบน้ำก่อน แล้วตัดขนด้วยกรรไกร ละเอียดกว่า ใช้เวลาเพิ่ม`,
+     tags:[`อาบน้ำ (${bathTypeLabel})`,'ตัดขนกรรไกร'],
+     price:row?pBath+pSci:0},
+  ];
+
+  // Always render with no pre-selection — user must choose
+  document.getElementById('serviceList').innerHTML=svcs.map(sv=>{
+    return `<div class="service-card" data-key="${sv.key}" onclick="selectService(this,'${sv.key}','${sv.hcut}')">
+      <span class="svc-emoji">${sv.emoji}</span>
+      <div class="svc-info">
+        <div class="svc-name">${sv.name}</div>
+        <div class="svc-desc">${sv.desc}</div>
+        <div class="svc-tags">
+          ${sv.tags.map((t,i)=>`<span class="svc-tag${i>0?' pink':''}">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div class="svc-price">${row?`฿${sv.price.toLocaleString()}`:''}</div>
+    </div>`;
+  }).join('');
+}
+
+function selectService(el, key, hcutStr){
+  document.querySelectorAll('.service-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  S.haircut = hcutStr==='null'?null:hcutStr;
+  unlock('subAddon');
+  buildAddonGrid();
+  document.getElementById('btnNextB').disabled=false;
+  updateMini();
+}
+
+// ── ADDONS ──
+function buildAddonGrid(){
+  const hv=isHeavy();
+  document.getElementById('addonGrid').innerHTML=addons.map(a=>{
+    const pr=hv?a.prH:a.prL;
+    const ps=pr[0]===pr[1]?`+฿${pr[0]}`:`+฿${pr[0]}–฿${pr[1]}`;
+    const sel=S.addons.includes(a.val)?'selected':'';
+    return `<div class="addon-card ${sel}" data-val="${a.val}" onclick="toggleAddon(this)">
+      <div class="addon-check"></div>
+      <span class="addon-emoji">${a.emoji}</span>
+      <div class="addon-info">
+        <span class="addon-name">${a.label}</span>
+        <span class="addon-desc">${a.desc}</span>
+      </div>
+      <div class="addon-price-tag">${ps}</div>
+    </div>`;
+  }).join('');
+}
+
+function toggleAddon(el){
+  const v=el.dataset.val;
+  el.classList.toggle('selected');
+  const chk=el.querySelector('.addon-check');
+  if(el.classList.contains('selected')){
+    chk.style.background='var(--sage)';chk.style.borderColor='var(--sage)';
+    if(!S.addons.includes(v)) S.addons.push(v);
+  } else {
+    chk.style.background='';chk.style.borderColor='';
+    S.addons=S.addons.filter(x=>x!==v);
+  }
+  updateMini();
+}
+
+// ── ESTIMATE CARD ──
+function buildEstimateCard(){
+  const{min:pMin,max:pMax}=calcPrice();
+  const{mn,mx}=calcDuration();
+  const svcLabel=S.haircut===null
+    ?`อาบน้ำ${S.petType==='dog'?'สุนัข':'แมว'}`
+    :S.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
+  const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
+  const durStr=fmtDur(mn,mx);
+  const addonCount=S.addons.length;
+  document.getElementById('estimateCard').innerHTML=`
+    <div class="estimate-icon">🧾</div>
+    <div class="estimate-body">
+      <div class="estimate-label">ราคาและเวลาโดยประมาณ</div>
+      <div class="estimate-price">${priceStr}</div>
+      <div class="estimate-duration">⏱ <b>${durStr}</b></div>
+      <div class="estimate-svc-tag">${svcLabel}${addonCount?` + ${addonCount} เสริม`:''}</div>
+    </div>`;
+}
+
+// ── CUSTOM CALENDAR ──
+const thMonths=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+const thDaysShort=['อา','จ','อ','พ','พฤ','ศ','ส'];
+
+let calYear, calMonth;
+(function initCal(){
+  const now=new Date();
+  calYear=now.getFullYear(); calMonth=now.getMonth();
+  renderCal();
+})();
+
+function calNav(dir){
+  calMonth+=dir;
+  if(calMonth>11){calMonth=0;calYear++;}
+  if(calMonth<0){calMonth=11;calYear--;}
+  renderCal();
+}
+
+function renderCal(){
+  const now=new Date(); now.setHours(0,0,0,0);
+  const title=document.getElementById('calTitle');
+  const grid=document.getElementById('calGrid');
+  const prevBtn=document.getElementById('calPrev');
+
+  title.textContent=`${thMonths[calMonth]} ${calYear+543}`;
+
+  // Disable prev if we're already at current month
+  const isCurrentMonth=(calYear===now.getFullYear()&&calMonth===now.getMonth());
+  prevBtn.disabled=isCurrentMonth;
+
+  // First day of month (0=Sun)
+  const firstDow=new Date(calYear,calMonth,1).getDay();
+  // Total days in month
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+
+  let html='';
+  // Empty cells before first day
+  for(let i=0;i<firstDow;i++) html+=`<div class="cal-day empty"></div>`;
+
+  for(let d=1;d<=daysInMonth;d++){
+    const date=new Date(calYear,calMonth,d);
+    const dow=date.getDay(); // 0=Sun,1=Mon
+    const isPast=date<now;
+    const isMon=dow===1;
+    const isToday=date.getTime()===now.getTime();
+
+    // Format yyyy-mm-dd
+    const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isSelected=S.date===dateStr;
+
+    let cls='cal-day';
+    if(isPast) cls+=' disabled';
+    else if(isMon) cls+=' closed-day';
+    else if(isToday) cls+=' today';
+    if(isSelected) cls+=' selected';
+
+    const label=isMon?'ปิด':String(d);
+    const clickable=!isPast&&!isMon;
+    html+=`<div class="${cls}" ${clickable?`onclick="selectDate('${dateStr}',${dow})"`:''} title="${dateStr}">${label}</div>`;
+  }
+  grid.innerHTML=html;
+}
+
+function selectDate(dateStr, dow){
+  S.date=dateStr; S.time=null;
+  // re-lock customer
+  lock('subCustomer');
+  // hide time wrap, reset
+  document.getElementById('timeWrap').style.display='none';
+  document.getElementById('dateNote').classList.remove('visible');
+
+  // Update badge
+  const d=new Date(dateStr+'T12:00:00');
+  const badge=document.getElementById('selectedDateBadge');
+  document.getElementById('selectedDateText').textContent=
+    d.toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  badge.classList.add('visible');
+
+  // Re-render calendar to show selection
+  renderCal();
+
+  // Show timeslots
+  buildTimeslots(dateStr);
+  document.getElementById('timeWrap').style.display='block';
+}
+
+function buildTimeslots(date){
+  const slots=[];
+  for(let h=9;h<20;h++){
+    if(h===13) continue; // lunch break — no 13:00 or 13:30
+    slots.push(`${String(h).padStart(2,'0')}:00`);
+    if(h<19) slots.push(`${String(h).padStart(2,'0')}:30`);
+  }
+  document.getElementById('timeslotGrid').innerHTML=slots.map(t=>{
+    const busy=countBusy(date,t),full=busy>=2;
+    return `<button class="timeslot-btn${full?' full':''}" ${full?'disabled':''} onclick="selectTime(this,'${t}')">${full?'เต็ม':t}</button>`;
+  }).join('');
+}
+
+function countBusy(date,slot){
+  const [sh,sm]=slot.split(':').map(Number),ss=sh*60+sm;
+  let n=0;
+  bookings.forEach(b=>{
+    if(b.date!==date||b.status==='ยกเลิก') return;
+    const t=b.startTime||b.time||'00:00';
+    const dur=b.estimatedDurationMax||b.durationMin||60;
+    const [bh,bm]=t.split(':').map(Number),bs=bh*60+bm,be=bs+dur;
+    if(ss>=bs&&ss<be) n++;
+  });
+  return n;
+}
+
+function selectTime(el,t){
+  document.querySelectorAll('.timeslot-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+  S.time=t;
+  unlock('subCustomer');
+  updateMini();
+}
+
+// ── SUMMARY ──
+function doSummary(){
+  const n=document.getElementById('custName').value.trim();
+  const ph=document.getElementById('custPhone').value.trim();
+  const pe=document.getElementById('petName').value.trim();
+  if(!n||!ph||!pe){alert('กรุณากรอกข้อมูลให้ครบถ้วน');return;}
+  S.custName=n; S.custPhone=ph;
+  S.petName=pe; S.custNote=document.getElementById('custNote').value.trim();
+  buildSummary();
+  goToPage('D');
+}
+
+function buildSummary(){
+  const{mn,mx}=calcDuration();
+  const{min:pMin,max:pMax}=calcPrice();
+  const petLabel=S.petType==='dog'?'🐕 สุนัข':'🐈 แมว';
+  const coatData=(S.petType==='dog'?dogCoats:catCoats).find(c=>c.val===S.coat);
+  const svcLabel=S.haircut===null
+    ?`อาบน้ำ${S.petType==='dog'?'สุนัข':'แมว'}`
+    :S.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
+  const addonLabels=S.addons.map(av=>addons.find(a=>a.val===av)?.label).filter(Boolean);
+  let pickup='';
+  if(S.time){
+    const[h,m]=S.time.split(':').map(Number);
+    const pm=new Date(2000,0,1,h,m+mx);
+    pickup=`${String(pm.getHours()).padStart(2,'0')}:${String(pm.getMinutes()).padStart(2,'0')} น.`;
+  }
+  const dateDisp=S.date?new Date(S.date+'T12:00:00').toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
+  const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
+
+  document.getElementById('summaryCard').innerHTML=`
+    <div class="summary-title">📋 รายละเอียดการจอง</div>
+    <div class="summary-row"><span class="s-label">ประเภทสัตว์</span><span class="s-val">${petLabel}</span></div>
+    <div class="summary-row"><span class="s-label">ชื่อน้อง</span><span class="s-val">${S.petName}</span></div>
+    <div class="summary-row"><span class="s-label">น้ำหนัก</span><span class="s-val">${S.weight}</span></div>
+    <div class="summary-row"><span class="s-label">ลักษณะขน</span><span class="s-val">${coatData?.label||''}</span></div>
+    <div class="summary-row"><span class="s-label">บริการ</span><span class="s-val">${svcLabel}</span></div>
+    <div class="summary-row"><span class="s-label">บริการเสริม</span><span class="s-val">${addonLabels.length?addonLabels.join(', '):'–'}</span></div>
+    <div class="summary-row"><span class="s-label">วันที่</span><span class="s-val">${dateDisp}</span></div>
+    <div class="summary-row"><span class="s-label">เวลาเริ่ม</span><span class="s-val">${S.time} น.</span></div>
+    <div class="summary-row"><span class="s-label">รับกลับโดยประมาณ</span><span class="s-val">ก่อน ${pickup}</span></div>
+    <div class="summary-row"><span class="s-label">ชื่อลูกค้า</span><span class="s-val">${S.custName}</span></div>
+    <div class="summary-row"><span class="s-label">เบอร์โทร</span><span class="s-val">${S.custPhone}</span></div>
+    ${S.custNote?`<div class="summary-row"><span class="s-label">หมายเหตุ</span><span class="s-val">${S.custNote}</span></div>`:''}
+    <div class="price-big">
+      <span class="price-num">ราคาประมาณ ${priceStr}</span>
+      <div class="duration-badge">⏱ ${fmtDur(mn,mx)}</div>
+      <p class="price-note">ราคาจริงอาจเปลี่ยนแปลงตามสภาพขน ขนาดตัว และพฤติกรรมของสัตว์เลี้ยง</p>
+    </div>`;
+}
+
+// ── MINI SUMMARY ──
+function updateMini(){
+  const mini=document.getElementById('miniSummary');
+  const{min:pMin,max:pMax}=calcPrice();
+  if(currentPage==='A'||currentPage==='D'||pMin===0){mini.classList.remove('visible');return;}
+  mini.classList.add('visible');
+  const svcShort=S.haircut===null?'อาบน้ำ':S.haircut==='clipper'?'อาบน้ำ+ตัดขน(เครื่อง)':'อาบน้ำ+ตัดขน(กรรไกร)';
+  document.getElementById('miniInfo').textContent=svcShort+(S.petName?' · '+S.petName:'');
+  document.getElementById('miniPrice').textContent=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()}–฿${pMax.toLocaleString()}`;
+}
+
+// ── CONFIRM ──
+async function confirmBooking(){
+  try {
+    // ── 1. Derive duration & price safely ──
+    const dur = calcDuration();
+    const mn = dur && typeof dur.mn === 'number' ? dur.mn : 60;
+    const mx = dur && typeof dur.mx === 'number' ? dur.mx : 90;
+
+    const pr = calcPrice();
+    const pMin = pr && typeof pr.min === 'number' ? pr.min : 0;
+    const pMax = pr && typeof pr.max === 'number' ? pr.max : 0;
+
+    // ── 2. Service label — guard against undefined haircut ──
+    const petType   = S.petType  || 'dog';
+    const animalTh  = petType === 'dog' ? 'สุนัข' : 'แมว';
+    let svcLabel;
+    if (S.haircut === 'clipper') {
+      svcLabel = 'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)';
+    } else if (S.haircut === 'scissor') {
+      svcLabel = 'อาบน้ำ + ตัดขน (กรรไกร)';
+    } else {
+      svcLabel = 'อาบน้ำ' + animalTh;
+    }
+
+    // ── 3. Add-on labels ──
+    const addonArr = Array.isArray(S.addons) ? S.addons : [];
+    const addonLabels = addonArr
+      .map(av => { const a = addons.find(x => x.val === av); return a ? a.label : null; })
+      .filter(Boolean);
+
+    // ── 4. Coat label ──
+    const coatList  = petType === 'dog' ? dogCoats : catCoats;
+    const coatData  = coatList.find(c => c.val === S.coat);
+    const coatLabel = coatData ? coatData.label : (S.coat || '');
+
+    // ── 5. End time — guard against null startTime ──
+    const startTime = S.time || '09:00';
+    const endTime   = calcEndTimeStr(startTime, mx);
+
+    // ── 6. Auto-assign groomer ──
+    const newDate   = S.date || '';
+    const dayBksOnDate = bookings.filter(b => b.date === newDate && b.status !== 'ยกเลิก');
+    const g1Busy = dayBksOnDate.filter(b => b.groomerId === 'groomer1')
+      .some(b => overlaps(b.startTime, b.estimatedDurationMax, startTime, mx));
+    const groomerId = g1Busy ? 'groomer2' : 'groomer1';
+
+    // ── 7. Build canonical booking object ──
+    const newBk = {
+      id:                   'BK-' + Date.now(),
+      customerName:         S.custName  || '',
+      phone:                S.custPhone || '',
+      petName:              S.petName   || '',
+      petType:              petType,
+      weightRange:          S.weight    || '',
+      coatType:             coatLabel,
+      service:              svcLabel,
+      addOns:               addonLabels,
+      estimatedPriceMin:    pMin,
+      estimatedPriceMax:    pMax,
+      estimatedDurationMin: mn,
+      estimatedDurationMax: mx,
+      date:                 S.date      || '',
+      startTime:            startTime,
+      endTime:              endTime,
+      groomerId:            groomerId,
+      status:               'รอยืนยัน',
+      notes:                S.custNote  || '',
+      createdAt:            new Date().toISOString()
+    };
+
+    // ── 7. Push to Supabase + local cache ──
+    // Disable confirm button to prevent double-submit
+    const confirmBtn = document.querySelector('button[onclick="confirmBooking()"]');
+    if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.textContent = 'กำลังบันทึก...'; }
+
+    try {
+      const saved = await createBooking(newBk);
+      // Add to local cache immediately (optimistic)
+      bookings.push(saved || newBk);
+
+      console.log('--- booking saved ---');
+      console.log(JSON.stringify(saved || newBk, null, 2));
+      console.log('--- all bookings (' + bookings.length + ') ---');
+      bookings.forEach(function(b, i) {
+        console.log(i + ' | ' + b.id + ' | ' + b.date + ' ' + b.startTime + ' | ' + b.petName + ' | ' + b.status);
+      });
+
+      // Reload from DB to get any server-side defaults
+      await loadBookings();
+
+      // Refresh admin if open
+      try {
+        if (document.getElementById('adminView').style.display !== 'none') {
+          buildAdminStats(); renderCurrentView();
+        }
+      } catch(e) {}
+
+      // Show success
+      const bw = document.querySelector('.booking-wrap');
+      if (bw) bw.style.display = 'none';
+      const sw = document.getElementById('successWrap');
+      if (sw) sw.classList.add('visible');
+      const ms = document.getElementById('miniSummary');
+      if (ms) ms.classList.remove('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (dbErr) {
+      console.error('confirmBooking DB error:', dbErr);
+      alert('ไม่สามารถบันทึกการจองได้ กรุณาลองใหม่อีกครั้ง\n\n' + dbErr.message);
+      if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.textContent = '✓ ยืนยันการจอง'; }
+    }
+
+  } catch (err) {
+    console.error('confirmBooking error:', err);
+    alert('เกิดข้อผิดพลาดในการจอง กรุณาลองใหม่อีกครั้ง\n\n' + err.message);
+  }
+}
+
+function calcEndTimeStr(start, durationMin) {
+  // Guard: if start is null/undefined, return fallback
+  if (!start || typeof start !== 'string' || !start.includes(':')) {
+    return '10:00';
+  }
+  const parts = start.split(':').map(Number);
+  const h = parts[0] || 0;
+  const m = parts[1] || 0;
+  const total = h * 60 + m + (durationMin || 60);
+  const eh = Math.floor(total / 60) % 24;
+  const em = total % 60;
+  return String(eh).padStart(2, '0') + ':' + String(em).padStart(2, '0');
+}
+
+// ── INIT ──
+updateStepNav();
+</script>
+<!-- ADMIN JS -->
+<script>
+// ══════════════════════════════════════════
+// ADMIN DASHBOARD — Chou&Me
+// ══════════════════════════════════════════
+
+// ── VIEW SWITCHING ──
+function switchView(v){
+  const isAdmin = v==='admin';
+  document.getElementById('customerView').style.display = isAdmin?'none':'block';
+  document.getElementById('adminView').style.display    = isAdmin?'block':'none';
+  document.getElementById('tabCustomer').classList.toggle('active',!isAdmin);
+  document.getElementById('tabAdmin').classList.toggle('active',isAdmin);
+  document.getElementById('miniSummary').style.display = isAdmin?'none':'';
+  if(isAdmin){
+    loadBookings().then(() => {
+      buildAdminStats();
+      renderCurrentView();
+    });
+  }
+}
+
+// ── WEEK STATE ──
+let adminWeekOffset = 0; // 0 = current week
+let adminDaySelected = null;
+let currentAdminView = 'week';
+
+function getWeekDates(offset){
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0=Sun
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - dayOfWeek + 1 + offset*7);
+  monday.setHours(0,0,0,0);
+  const days = [];
+  for(let i=0;i<7;i++){
+    const d = new Date(monday);
+    d.setDate(monday.getDate()+i);
+    days.push(d);
+  }
+  return days; // Mon–Sun
+}
+
+function dateToStr(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+
+function navWeek(dir){
+  adminWeekOffset += dir;
+  renderCurrentView();
+  buildAdminStats();
+}
+
+function switchAdminView(v){
+  currentAdminView = v;
+  document.getElementById('weeklyView').style.display = v==='week'?'block':'none';
+  document.getElementById('dailyView').style.display  = v==='day'?'block':'none';
+  document.getElementById('vbWeek').classList.toggle('active',v==='week');
+  document.getElementById('vbDay').classList.toggle('active',v==='day');
+  renderCurrentView();
+}
+
+function renderCurrentView(){
+  updateWeekLabel();
+  if(currentAdminView==='week') renderWeekly();
+  else renderDaily();
+}
+
+function updateWeekLabel(){
+  const days = getWeekDates(adminWeekOffset);
+  const thMonths=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+  const s=days[0], e=days[6];
+  document.getElementById('weekLabel').textContent=`${s.getDate()} ${thMonths[s.getMonth()]} – ${e.getDate()} ${thMonths[e.getMonth()]}`;
+}
+
+// ── STATUS HELPERS ──
+const STATUS_CLASS={
+  'รอยืนยัน':'st-waiting',
+  'ยืนยันแล้ว':'st-confirmed',
+  'กำลังให้บริการ':'st-inprogress',
+  'เสร็จแล้ว':'st-done',
+  'ยกเลิก':'st-cancelled',
+};
+const THAI_DOW=['อา','จ','อ','พ','พฤ','ศ','ส'];
+
+// ── STATS ──
+function buildAdminStats(){
+  const today = dateToStr(new Date());
+  const weekDays = getWeekDates(adminWeekOffset).map(dateToStr);
+
+  const todayBks = bookings.filter(b=>b.date===today&&b.status!=='ยกเลิก');
+  const weekBks  = bookings.filter(b=>weekDays.includes(b.date)&&b.status!=='ยกเลิก');
+  const todayRev = todayBks.reduce((a,b)=>a+(b.estimatedPriceMin+b.estimatedPriceMax)/2,0);
+  const waiting  = bookings.filter(b=>b.status==='รอยืนยัน').length;
+
+  document.getElementById('adminStats').innerHTML=`
+    <div class="admin-stat"><div class="stat-icon">📋</div><div class="stat-num">${todayBks.length}</div><div class="stat-label">คิววันนี้</div></div>
+    <div class="admin-stat"><div class="stat-icon">📅</div><div class="stat-num">${weekBks.length}</div><div class="stat-label">คิวสัปดาห์นี้</div></div>
+    <div class="admin-stat"><div class="stat-icon">💰</div><div class="stat-num">฿${Math.round(todayRev).toLocaleString()}</div><div class="stat-label">รายได้ประมาณวันนี้</div></div>
+    <div class="admin-stat"><div class="stat-icon">⏳</div><div class="stat-num">${waiting}</div><div class="stat-label">รอยืนยัน</div></div>`;
+}
+
+// ── WEEKLY RENDER ──
+function renderWeekly(){
+  const days = getWeekDates(adminWeekOffset);
+  const today = dateToStr(new Date());
+  // Show Tue–Sun (index 1=Mon skip, 2=Tue ... 6=Sun,0=Sun next)
+  // Days array: [Mon,Tue,Wed,Thu,Fri,Sat,Sun]
+  // We show all 7 but Mon as closed
+  let html='';
+  days.forEach((d,i)=>{
+    const ds = dateToStr(d);
+    const dow = d.getDay(); // 0=Sun,1=Mon
+    const isMon = dow===1;
+    const isToday = ds===today;
+    const dayBks = bookings.filter(b=>b.date===ds&&b.status!=='ยกเลิก').sort((a,b)=>(a.startTime||'').localeCompare(b.startTime||''));
+    const hdrCls = `week-col-header${isToday?' today-col':''}${isMon?' closed-col':''}`;
+    html+=`<div class="week-col">
+      <div class="${hdrCls}">
+        <div class="wch-day">${THAI_DOW[dow]}</div>
+        <div class="wch-date">${d.getDate()}</div>
+        ${isMon?'<div class="wch-closed">ปิด</div>':''}
+      </div>
+      <div class="week-col-body" data-date="${ds}">
+        ${isMon?'<div style="text-align:center;padding:12px;font-size:11px;color:#c0a0a0">ปิดทำการ</div>':
+          dayBks.length===0?'<div style="text-align:center;padding:12px;font-size:11px;color:var(--gray)">ว่าง</div>':
+          dayBks.map(b=>`
+            <div class="bk-chip ${STATUS_CLASS[b.status]||'st-waiting'}" draggable="true"
+              data-id="${b.id}" onclick="openModal('${b.id}')"
+              ondragstart="onWeekDragStart(event,'${b.id}')"
+            >
+              <div class="bk-chip-time">${b.startTime} → ${b.endTime}</div>
+              <div class="bk-chip-name">${b.customerName}</div>
+              <div class="bk-chip-pet">${b.petType==='dog'?'🐕':'🐈'} ${b.petName}</div>
+              <div class="bk-chip-status">${b.status}</div>
+            </div>`).join('')}
+      </div>
+    </div>`;
+  });
+  document.getElementById('weeklyGrid').innerHTML=html;
+
+  // Attach drop handlers to week col bodies
+  document.querySelectorAll('.week-col-body').forEach(el=>{
+    el.addEventListener('dragover',e=>{e.preventDefault();el.style.background='rgba(160,185,149,.15)';});
+    el.addEventListener('dragleave',e=>{el.style.background='';});
+    el.addEventListener('drop',e=>{
+      e.preventDefault(); el.style.background='';
+      const id=e.dataTransfer.getData('bkId') || weekDragId;
+      const newDate=el.dataset.date;
+      if(!id||!newDate) return;
+      const dow=new Date(newDate+'T12:00:00').getDay();
+      if(dow===1){showToast('วันจันทร์ร้านปิด ไม่สามารถย้ายคิวได้','error');return;}
+      const bk=bookings.find(b=>b.id===id);
+      if(!bk) return;
+      // Try same time on new date
+      if(canBook(newDate,bk.startTime,bk.estimatedDurationMax,bk.id)){
+        bk.date=newDate;
+        bk.endTime=calcEndTime(bk.startTime,bk.estimatedDurationMax);
+        weekDragId=null;
+        updateBooking(bk.id, { date: bk.date, endTime: bk.endTime });
+        showToast('ย้ายคิวเรียบร้อยแล้ว ✓','success');
+        renderWeekly(); buildAdminStats();
+      } else {
+        showToast('ช่วงเวลานี้เต็มแล้ว ไม่สามารถย้ายคิวได้','error');
+      }
+    });
+  });
+}
+
+// ── DAILY RENDER ──
+const HOUR_START = 9;
+const HOUR_END   = 19;
+const SLOT_PX    = 30; // px per 30 minutes
+const MIN_PER_PX = 30 / SLOT_PX; // 1 px = 1 minute
+
+function minsFromOpen(timeStr) {
+  if (!timeStr || !timeStr.includes(':')) return 0;
+  const [h, m] = timeStr.split(':').map(Number);
+  return (h - HOUR_START) * 60 + m;
+}
+function pxFromOpen(timeStr)   { return minsFromOpen(timeStr) / 30 * SLOT_PX; }
+function pxToTime(px)          {
+  const totalMins = Math.round(px / SLOT_PX) * 30 + HOUR_START * 60;
+  const h = Math.floor(totalMins / 60), m = totalMins % 60;
+  return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0');
+}
+function totalPx()             { return (HOUR_END - HOUR_START) * 2 * SLOT_PX; }
+const HEADER_H = 44; // px height of groomer header row
+
+function getGroomerBks(groomer) {
+  return bookings.filter(b =>
+    b.date === adminDaySelected &&
+    b.status !== 'ยกเลิก' &&
+    (b.groomerId === groomer || (!b.groomerId && groomer === 'groomer1'))
+  );
+}
+
+function autoAssignGroomers() {
+  // Only assign groomerId to bookings that don't have one yet.
+  // Never overwrite an explicit assignment made by drag or edit.
+  const byDate = {};
+  bookings.filter(b => b.status !== 'ยกเลิก').forEach(b => {
+    if (!byDate[b.date]) byDate[b.date] = [];
+    byDate[b.date].push(b);
+  });
+
+  Object.values(byDate).forEach(dayBks => {
+    dayBks.sort((a, b) => (a.startTime || '').localeCompare(b.startTime || ''));
+    // First pass: respect existing assignments
+    // Second pass: assign missing ones to whichever groomer fits
+    dayBks.forEach(b => {
+      if (b.groomerId) return; // already assigned — leave it
+      // Find first groomer with no overlap
+      const g1Clash = dayBks.some(x =>
+        x.id !== b.id && x.groomerId === 'groomer1' &&
+        overlaps(x.startTime, x.estimatedDurationMax, b.startTime, b.estimatedDurationMax)
+      );
+      b.groomerId = g1Clash ? 'groomer2' : 'groomer1';
+    });
+  });
+}
+
+function renderDaily() {
+  autoAssignGroomers();
+
+  const days  = getWeekDates(adminWeekOffset);
+  const today = dateToStr(new Date());
+  if (!adminDaySelected) adminDaySelected = today;
+
+  // Day tab row
+  let tabHtml = '';
+  days.forEach(d => {
+    const ds  = dateToStr(d);
+    const dow = d.getDay();
+    const isMon = dow === 1;
+    tabHtml += `<button class="view-btn${ds === adminDaySelected ? ' active' : ''}"
+      onclick="selectDay('${ds}')" ${isMon ? 'disabled style="opacity:.4"' : ''}>
+      ${THAI_DOW[dow]} ${d.getDate()}${isMon ? ' (ปิด)' : ''}
+    </button>`;
+  });
+  document.getElementById('dayTabRow').innerHTML = tabHtml;
+
+  const g1Bks = getGroomerBks('groomer1');
+  const g2Bks = getGroomerBks('groomer2');
+  const colH  = totalPx(); // exact height of timeline in px
+
+  // ── Time gutter ──
+  let gutterHtml = '';
+  for (let h = HOUR_START; h < HOUR_END; h++) {
+    gutterHtml += `<div class="daily-time-label" style="height:${SLOT_PX}px">${String(h).padStart(2,'0')}:00</div>`;
+    gutterHtml += `<div class="daily-time-label half" style="height:${SLOT_PX}px"></div>`;
+  }
+
+  // ── Build one groomer column ──
+  function buildCol(gBks, groomer) {
+    // Grid lines
+    let lines = '';
+    for (let i = 0; i < (HOUR_END - HOUR_START) * 2; i++) {
+      const isHour = i % 2 === 1; // :00 rows are even (0,2,4…), :30 rows are odd
+      lines += `<div class="daily-slot-bg${isHour ? ' hour-mark' : ''}" style="top:${i * SLOT_PX}px"></div>`;
+    }
+
+    // Booking blocks — top = pxFromOpen, NO extra HEADER_H
+    let blocks = '';
+    gBks.forEach(b => {
+      const topPx    = pxFromOpen(b.startTime);
+      const dur      = b.estimatedDurationMax || 60;
+      const heightPx = Math.max(dur / 30 * SLOT_PX - 4, 26);
+      const cls      = STATUS_CLASS[b.status] || 'st-waiting';
+      blocks += `<div class="daily-bk-block ${cls}"
+        data-id="${b.id}" data-groomer="${groomer}"
+        style="top:${topPx}px; height:${heightPx}px">
+        <div class="resize-handle resize-handle-top"    data-resize="top"    data-id="${b.id}" data-groomer="${groomer}"></div>
+        <div class="daily-bk-title">${b.petName} · ${b.customerName}</div>
+        <div class="daily-bk-sub">${b.service}</div>
+        <div class="daily-bk-time-badge">${b.startTime}–${b.endTime}</div>
+        <div class="resize-handle resize-handle-bottom" data-resize="bottom" data-id="${b.id}" data-groomer="${groomer}"></div>
+      </div>`;
+    });
+
+    return `<div class="daily-groomer-col" id="col-${groomer}" data-groomer="${groomer}"
+      style="height:${colH}px">
+      ${lines}${blocks}
+      <div class="drop-preview" id="ghost-${groomer}"></div>
+    </div>`;
+  }
+
+  // ── Assemble ──
+  document.getElementById('dailyOuter').innerHTML = `
+    <div class="daily-header-row">
+      <div class="daily-gutter-header"></div>
+      <div class="daily-groomer-header" id="hdr-groomer1">ช่าง 1</div>
+      <div class="daily-groomer-header" id="hdr-groomer2">ช่าง 2</div>
+    </div>
+    <div class="daily-body-row">
+      <div class="daily-gutter">${gutterHtml}</div>
+      ${buildCol(g1Bks, 'groomer1')}
+      ${buildCol(g2Bks, 'groomer2')}
+    </div>`;
+
+  attachDailyEvents();
+}
+
+// ══════════════════════════════════════════
+// POINTER-BASED DRAG & RESIZE (works on iPad touch)
+// ══════════════════════════════════════════
+let ix = null; // active interaction — see attachDailyEvents
+// ══════════════════════════════════════════
+// DRAG & RESIZE — Safari-safe touch + mouse
+// Uses document-level move/end listeners instead of setPointerCapture
+// ══════════════════════════════════════════
+
+// helpers to get clientX/Y from either mouse or touch event
+function evtXY(e) {
+  if (e.touches && e.touches.length > 0) {
+    return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }
+  if (e.changedTouches && e.changedTouches.length > 0) {
+    return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+  }
+  return { x: e.clientX, y: e.clientY };
+}
+
+const tooltip = document.getElementById('timeTooltip');
+function showTooltip(x, y, text) {
+  if (!tooltip) return;
+  tooltip.textContent = text;
+  tooltip.style.display = 'block';
+  tooltip.style.left = Math.min(x + 14, window.innerWidth - 100) + 'px';
+  tooltip.style.top  = Math.max(y - 36, 4) + 'px';
+}
+function hideTooltip() { if (tooltip) tooltip.style.display = 'none'; }
+
+function getColRect(groomer) {
+  const col = document.getElementById('col-' + groomer);
+  return col ? col.getBoundingClientRect() : null;
+}
+function groomerAtClientX(clientX) {
+  for (const g of ['groomer1', 'groomer2']) {
+    const r = getColRect(g);
+    if (r && clientX >= r.left && clientX <= r.right) return g;
+  }
+  return null;
+}
+function snapToPx(px) { return Math.round(px / SLOT_PX) * SLOT_PX; }
+
+function canGroomerBook(groomer, startTime, dur, excludeId) {
+  return !getGroomerBks(groomer).some(b =>
+    b.id !== excludeId &&
+    overlaps(b.startTime, b.estimatedDurationMax, startTime, dur)
+  );
+}
+
+function setGhost(groomer, topPx, heightPx, show, ok) {
+  const g = document.getElementById('ghost-' + groomer);
+  if (!g) return;
+  g.style.display    = show ? 'block' : 'none';
+  g.style.top        = topPx + 'px';          // no HEADER_H — col starts at 09:00
+  g.style.height     = Math.max(heightPx, 10) + 'px';
+  g.style.background = ok ? 'rgba(160,185,149,.4)' : 'rgba(240,120,120,.3)';
+  g.style.borderColor = ok ? 'var(--sage)' : '#e07070';
+}
+function clearGhosts() {
+  ['groomer1', 'groomer2'].forEach(g => {
+    const ghost = document.getElementById('ghost-' + g);
+    if (ghost) ghost.style.display = 'none';
+    const hdr = document.getElementById('hdr-' + g);
+    if (hdr) hdr.classList.remove('drag-target');
+    const col = document.getElementById('col-' + g);
+    if (col) col.classList.remove('drag-active');
+  });
+}
+
+// ── attach events after renderDaily ──
+function attachDailyEvents() {
+  document.querySelectorAll('.daily-bk-block').forEach(el => {
+    el.addEventListener('mousedown',  onBkDown, false);
+    el.addEventListener('touchstart', onBkDown, { passive: false });
+  });
+  document.querySelectorAll('.resize-handle').forEach(el => {
+    el.addEventListener('mousedown',  onResizeDown, false);
+    el.addEventListener('touchstart', onResizeDown, { passive: false });
+  });
+}
+
+// ── DRAG: start ──
+function onBkDown(e) {
+  // Don't start drag from resize handle
+  if (e.target.dataset && e.target.dataset.resize) return;
+  e.preventDefault();
+  const el      = e.currentTarget;
+  const bkId    = el.dataset.id;
+  const groomer = el.dataset.groomer;
+  const bk      = bookings.find(b => b.id === bkId);
+  if (!bk) return;
+  const { x, y } = evtXY(e);
+
+  // Capture how far down within the block the user touched,
+  // so the block doesn't jump when dragging starts.
+  const rect = el.getBoundingClientRect();
+  const offsetWithinBlock = y - rect.top; // px from block top to touch point
+
+  ix = {
+    type: 'drag', bkId, groomer,
+    startX: x, startY: y,
+    startPx: pxFromOpen(bk.startTime),
+    offsetWithinBlock,            // ← new
+    dur: bk.estimatedDurationMax || 60,
+    moved: false,
+    pendingGroomer: groomer,
+    pendingTime: bk.startTime,
+    pendingOk: true
+  };
+  document.addEventListener('mousemove',   onDragMove,  false);
+  document.addEventListener('mouseup',     onDragEnd,   false);
+  document.addEventListener('touchmove',   onDragMove,  { passive: false });
+  document.addEventListener('touchend',    onDragEnd,   false);
+  document.addEventListener('touchcancel', onDragEnd,   false);
+}
+
+// ── DRAG: move ──
+function onDragMove(e) {
+  if (!ix || ix.type !== 'drag') return;
+  e.preventDefault();
+  const { x, y } = evtXY(e);
+  const dy = y - ix.startY;
+  const dx = x - ix.startX;
+
+  if (!ix.moved && Math.abs(dy) < 6 && Math.abs(dx) < 6) return;
+  ix.moved = true;
+
+  // dim the original block
+  const el = document.querySelector(`.daily-bk-block[data-id="${ix.bkId}"]`);
+  if (el) el.classList.add('is-dragging');
+
+  const targetGroomer = groomerAtClientX(x) || ix.groomer;
+
+  // col div top in screen space = exactly the 09:00 row (no header inside col)
+  // rawPx = distance from 09:00 to where the block TOP should land
+  const colRect = getColRect(targetGroomer) || getColRect(ix.groomer);
+  let rawPx;
+  if (colRect) {
+    rawPx = (y - colRect.top) - ix.offsetWithinBlock;
+  } else {
+    rawPx = ix.startPx + (y - ix.startY);
+  }
+
+  const snapPx  = snapToPx(rawPx);
+  const maxPx   = totalPx() - ix.dur / 30 * SLOT_PX;
+  const clamped = Math.max(0, Math.min(maxPx, snapPx));
+  const newTime = pxToTime(clamped);
+  const heightPx = ix.dur / 30 * SLOT_PX;
+  const ok = canGroomerBook(targetGroomer, newTime, ix.dur, ix.bkId);
+
+  clearGhosts();
+  setGhost(targetGroomer, clamped, heightPx - 4, true, ok);
+  const hdr = document.getElementById('hdr-' + targetGroomer);
+  if (hdr) hdr.classList.add('drag-target');
+  const col = document.getElementById('col-' + targetGroomer);
+  if (col) col.classList.add('drag-active');
+
+  ix.pendingGroomer = targetGroomer;
+  ix.pendingTime    = newTime;
+  ix.pendingOk      = ok;
+  showTooltip(x, y, newTime);
+}
+
+// ── DRAG: end ──
+function onDragEnd(e) {
+  if (!ix || ix.type !== 'drag') return;
+  document.removeEventListener('mousemove',  onDragMove);
+  document.removeEventListener('mouseup',    onDragEnd);
+  document.removeEventListener('touchmove',  onDragMove);
+  document.removeEventListener('touchend',   onDragEnd);
+  document.removeEventListener('touchcancel',onDragEnd);
+
+  const el = document.querySelector(`.daily-bk-block[data-id="${ix.bkId}"]`);
+  if (el) el.classList.remove('is-dragging');
+  clearGhosts();
+  hideTooltip();
+
+  const bkId = ix.bkId;
+  const moved = ix.moved;
+  const pendingOk = ix.pendingOk;
+  const pendingTime = ix.pendingTime;
+  const pendingGroomer = ix.pendingGroomer;
+  ix = null; // clear BEFORE any re-render
+
+  if (!moved) {
+    // It was a tap/click — open the modal
+    openModal(bkId);
+    return;
+  }
+
+  if (pendingOk) {
+    const bk = bookings.find(b => b.id === bkId);
+    if (bk) {
+      bk.startTime = pendingTime;
+      bk.endTime   = calcEndTime(pendingTime, bk.estimatedDurationMax);
+      bk.groomerId = pendingGroomer;
+      bk.date      = adminDaySelected;
+      updateBooking(bk.id, { startTime: bk.startTime, endTime: bk.endTime, groomerId: bk.groomerId, date: bk.date });
+      showToast('ย้ายคิวเรียบร้อยแล้ว ✓', 'success');
+      renderCurrentView(); buildAdminStats();
+    }
+  } else {
+    showToast('ช่วงเวลานี้เต็มแล้ว ไม่สามารถย้ายคิวได้', 'error');
+    renderDaily();
+  }
+}
+
+// ── RESIZE: start ──
+function onResizeDown(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const handle  = e.currentTarget;
+  const edge    = handle.dataset.resize;
+  const bkId    = handle.dataset.id;
+  const groomer = handle.dataset.groomer;
+  const bk = bookings.find(b => b.id === bkId);
+  if (!bk) return;
+  const { y } = evtXY(e);
+  ix = {
+    type: 'resize', bkId, groomer, edge,
+    startY:      y,
+    origStartPx: pxFromOpen(bk.startTime),
+    origEndPx:   pxFromOpen(bk.endTime),
+    moved: false,
+    pendingStart: bk.startTime,
+    pendingEnd:   bk.endTime,
+    pendingDur:   bk.estimatedDurationMax || 60
+  };
+  document.addEventListener('mousemove',  onResizeMove, false);
+  document.addEventListener('mouseup',    onResizeEnd,  false);
+  document.addEventListener('touchmove',  onResizeMove, { passive: false });
+  document.addEventListener('touchend',   onResizeEnd,  false);
+  document.addEventListener('touchcancel',onResizeEnd,  false);
+}
+
+// ── RESIZE: move ──
+function onResizeMove(e) {
+  if (!ix || ix.type !== 'resize') return;
+  e.preventDefault();
+  const { x, y } = evtXY(e);
+  const dy = y - ix.startY;
+  ix.moved = true;
+
+  let newStartPx = ix.origStartPx;
+  let newEndPx   = ix.origEndPx;
+
+  if (ix.edge === 'bottom') {
+    newEndPx = snapToPx(ix.origEndPx + dy);
+    newEndPx = Math.max(newStartPx + SLOT_PX, Math.min(totalPx(), newEndPx));
+  } else {
+    newStartPx = snapToPx(ix.origStartPx + dy);
+    newStartPx = Math.max(0, Math.min(newEndPx - SLOT_PX, newStartPx));
+  }
+
+  const newStart = pxToTime(newStartPx);
+  const newEnd   = pxToTime(newEndPx);
+  const dur = (newEndPx - newStartPx) / SLOT_PX * 30;
+
+  // live-update the block visually — top is pxFromOpen (no HEADER_H)
+  const el = document.querySelector(`.daily-bk-block[data-id="${ix.bkId}"]`);
+  if (el) {
+    el.style.top    = newStartPx + 'px';
+    el.style.height = Math.max(newEndPx - newStartPx - 4, 26) + 'px';
+    const badge = el.querySelector('.daily-bk-time-badge');
+    if (badge) badge.textContent = newStart + '–' + newEnd;
+  }
+
+  ix.pendingStart = newStart;
+  ix.pendingEnd   = newEnd;
+  ix.pendingDur   = dur;
+  showTooltip(x, y, newStart + '–' + newEnd);
+}
+
+// ── RESIZE: end ──
+function onResizeEnd(e) {
+  if (!ix || ix.type !== 'resize') return;
+  document.removeEventListener('mousemove',  onResizeMove);
+  document.removeEventListener('mouseup',    onResizeEnd);
+  document.removeEventListener('touchmove',  onResizeMove);
+  document.removeEventListener('touchend',   onResizeEnd);
+  document.removeEventListener('touchcancel',onResizeEnd);
+  hideTooltip();
+
+  if (ix.moved) {
+    const bk = bookings.find(b => b.id === ix.bkId);
+    if (bk) {
+      const ok = canGroomerBook(ix.groomer, ix.pendingStart, ix.pendingDur, ix.bkId);
+      if (ok) {
+        bk.startTime = ix.pendingStart;
+        bk.endTime   = ix.pendingEnd;
+        bk.estimatedDurationMin = ix.pendingDur;
+        bk.estimatedDurationMax = ix.pendingDur;
+        updateBooking(bk.id, { startTime: bk.startTime, endTime: bk.endTime, estimatedDurationMin: bk.estimatedDurationMin, estimatedDurationMax: bk.estimatedDurationMax });
+        showToast('ปรับเวลาเรียบร้อยแล้ว ✓', 'success');
+        renderCurrentView(); buildAdminStats();
+      } else {
+        showToast('ไม่สามารถปรับขนาดได้ ช่วงเวลาชนกับการจองอื่น', 'error');
+        renderDaily();
+      }
+    }
+  }
+  ix = null;
+}
+
+// ── click guard: only open modal if not dragged ──
+// click on daily block is handled inside onDragEnd (when ix.moved === false)
+
+// ── WEEKLY DRAG (HTML5 drag API for cross-day drops in weekly view) ──
+let weekDragId = null;
+function onWeekDragStart(e, id) {
+  weekDragId = id;
+  e.dataTransfer.setData('bkId', id);
+}
+
+
+// ── TIME HELPERS ──
+function calcEndTime(startTime, durationMin) {
+  if (!startTime || !startTime.includes(':')) return '10:00';
+  const [h,m] = startTime.split(':').map(Number);
+  const total = h * 60 + m + (durationMin || 60);
+  return String(Math.floor(total/60)%24).padStart(2,'0') + ':' + String(total%60).padStart(2,'0');
+}
+function timeToMin(t) {
+  if (!t || !t.includes(':')) return 0;
+  const [h,m] = t.split(':').map(Number);
+  return h * 60 + m;
+}
+function overlaps(t1, d1, t2, d2) {
+  const s1 = timeToMin(t1), e1 = s1 + (d1||0);
+  const s2 = timeToMin(t2), e2 = s2 + (d2||0);
+  return s1 < e2 && e1 > s2;
+}
+function canBook(date, time, dur, excludeId = null) {
+  const overlap = bookings.filter(b =>
+    b.id !== excludeId &&
+    b.date === date &&
+    b.status !== 'ยกเลิก' &&
+    overlaps(b.startTime, b.estimatedDurationMax, time, dur)
+  );
+  return overlap.length < 2;
+}
+
+function selectDay(ds) { adminDaySelected = ds; renderDaily(); }
+
+// ── MODAL ──
+let modalBkId = null;
+
+function openModal(id) {
+  const bk = bookings.find(b => b.id === id);
+  if (!bk) return;
+  modalBkId = id;
+  document.getElementById('editSection').style.display = 'none';
+
+  document.getElementById('modalTitle').textContent =
+    `${bk.petType === 'dog' ? '🐕' : '🐈'} ${bk.petName} — ${bk.customerName}`;
+
+  const addonStr  = bk.addOns && bk.addOns.length ? bk.addOns.join(', ') : '–';
+  const priceStr  = bk.estimatedPriceMin === bk.estimatedPriceMax
+    ? `฿${bk.estimatedPriceMin.toLocaleString()}`
+    : `฿${bk.estimatedPriceMin.toLocaleString()}–฿${bk.estimatedPriceMax.toLocaleString()}`;
+  const isDemo    = (bk.id || '').startsWith('DEMO');
+  const groomerLbl = bk.groomerId === 'groomer2' ? 'ช่าง 2' : 'ช่าง 1';
+
+  document.getElementById('modalBody').innerHTML = `
+    ${isDemo ? '<div style="background:var(--yellow-green);border-radius:10px;padding:7px 12px;font-size:11px;font-weight:700;color:var(--text-mid);margin-bottom:12px">⚠️ ข้อมูลตัวอย่าง (Demo)</div>' : ''}
+    <div class="modal-row"><span class="ml">รหัสจอง</span><span class="mv" style="font-size:11px;opacity:.7">${bk.id}</span></div>
+    <div class="modal-row"><span class="ml">วันที่</span><span class="mv">${new Date(bk.date+'T12:00:00').toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</span></div>
+    <div class="modal-row"><span class="ml">ช่าง</span><span class="mv">${groomerLbl}</span></div>
+    <div class="modal-row"><span class="ml">เวลา</span><span class="mv">${bk.startTime} – ${bk.endTime} น.</span></div>
+    <div class="modal-row"><span class="ml">ชื่อลูกค้า</span><span class="mv">${bk.customerName}</span></div>
+    <div class="modal-row"><span class="ml">เบอร์โทร</span><span class="mv">${bk.phone}</span></div>
+    <div class="modal-row"><span class="ml">ชื่อน้อง</span><span class="mv">${bk.petName}</span></div>
+    <div class="modal-row"><span class="ml">น้ำหนัก</span><span class="mv">${bk.weightRange||'–'}</span></div>
+    <div class="modal-row"><span class="ml">ลักษณะขน</span><span class="mv">${bk.coatType||'–'}</span></div>
+    <div class="modal-row"><span class="ml">บริการ</span><span class="mv">${bk.service}</span></div>
+    <div class="modal-row"><span class="ml">บริการเสริม</span><span class="mv">${addonStr}</span></div>
+    <div class="modal-row"><span class="ml">ราคาประมาณ</span><span class="mv">${priceStr}</span></div>
+    <div class="modal-row"><span class="ml">สถานะ</span><span class="mv">${bk.status}</span></div>
+    ${bk.notes ? `<div class="modal-row"><span class="ml">หมายเหตุ</span><span class="mv">${bk.notes}</span></div>` : ''}
+    <div class="modal-row"><span class="ml">จองเมื่อ</span><span class="mv" style="font-size:11px;opacity:.7">${bk.createdAt ? new Date(bk.createdAt).toLocaleString('th-TH') : '–'}</span></div>`;
+
+  document.getElementById('modalOverlay').classList.remove('hidden');
+}
+
+function toggleEditSection() {
+  const sec = document.getElementById('editSection');
+  const bk  = bookings.find(b => b.id === modalBkId);
+  if (!bk) return;
+  const isHidden = sec.style.display === 'none';
+  sec.style.display = isHidden ? 'block' : 'none';
+  if (isHidden) {
+    document.getElementById('editDate').value    = bk.date || '';
+    document.getElementById('editGroomer').value = bk.groomerId || 'groomer1';
+    document.getElementById('editStart').value   = bk.startTime || '';
+    document.getElementById('editEnd').value     = bk.endTime   || '';
+    document.getElementById('editStatus').value  = bk.status    || 'รอยืนยัน';
+    document.getElementById('editNotes').value   = bk.notes     || '';
+    document.getElementById('editErr').classList.remove('visible');
+  }
+}
+
+function saveEdit() {
+  const bk = bookings.find(b => b.id === modalBkId);
+  if (!bk) return;
+  const errEl = document.getElementById('editErr');
+  errEl.classList.remove('visible');
+
+  const newDate    = document.getElementById('editDate').value;
+  const newGroomer = document.getElementById('editGroomer').value;
+  const newStart   = document.getElementById('editStart').value;
+  const newEnd     = document.getElementById('editEnd').value;
+  const newStatus  = document.getElementById('editStatus').value;
+  const newNotes   = document.getElementById('editNotes').value;
+
+  // Validate
+  if (!newDate || !newStart || !newEnd) {
+    errEl.textContent = 'กรุณากรอกข้อมูลให้ครบถ้วน'; errEl.classList.add('visible'); return;
+  }
+  const dow = new Date(newDate + 'T12:00:00').getDay();
+  if (dow === 1) {
+    errEl.textContent = 'วันจันทร์ร้านปิด กรุณาเลือกวันอื่น'; errEl.classList.add('visible'); return;
+  }
+  const [sh, sm] = newStart.split(':').map(Number);
+  const [eh, em] = newEnd.split(':').map(Number);
+  if (sh < 9 || sh >= 19) {
+    errEl.textContent = 'เวลาเริ่มต้องอยู่ระหว่าง 09:00–19:00'; errEl.classList.add('visible'); return;
+  }
+  if (eh * 60 + em <= sh * 60 + sm) {
+    errEl.textContent = 'เวลาสิ้นสุดต้องหลังเวลาเริ่ม'; errEl.classList.add('visible'); return;
+  }
+  const newDur = (eh * 60 + em) - (sh * 60 + sm);
+  // Check groomer overlap (excluding self)
+  const overlap = bookings.filter(b =>
+    b.id !== bk.id &&
+    b.date === newDate &&
+    b.groomerId === newGroomer &&
+    b.status !== 'ยกเลิก' &&
+    overlaps(b.startTime, b.estimatedDurationMax, newStart, newDur)
+  );
+  if (overlap.length > 0) {
+    errEl.textContent = 'ช่วงเวลาดังกล่าวชนกับการจองอื่นของช่างคนนี้'; errEl.classList.add('visible'); return;
+  }
+
+  // Apply locally
+  bk.date = newDate;
+  bk.groomerId = newGroomer;
+  bk.startTime = newStart;
+  bk.endTime   = newEnd;
+  bk.estimatedDurationMin = newDur;
+  bk.estimatedDurationMax = newDur;
+  bk.status = newStatus;
+  bk.notes  = newNotes;
+
+  // Persist to Supabase
+  updateBooking(bk.id, { date: bk.date, groomerId: bk.groomerId, startTime: bk.startTime, endTime: bk.endTime, estimatedDurationMin: bk.estimatedDurationMin, estimatedDurationMax: bk.estimatedDurationMax, status: bk.status, notes: bk.notes });
+
+  document.getElementById('modalOverlay').classList.add('hidden');
+  showToast('บันทึกการแก้ไขเรียบร้อยแล้ว ✓', 'success');
+  renderCurrentView(); buildAdminStats();
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modalOverlay')) return;
+  document.getElementById('modalOverlay').classList.add('hidden');
+}
+
+function callCustomer() {
+  const bk = bookings.find(b => b.id === modalBkId);
+  if (bk) window.location.href = `tel:${bk.phone.replace(/-/g,'')}`;
+}
+function openLine() { showToast('กรุณาเปิด LINE และค้นหาเบอร์ลูกค้า'); }
+
+function changeStatus() {
+  const bk = bookings.find(b => b.id === modalBkId);
+  if (!bk) return;
+  bk.status = document.getElementById('statusSelect') ?
+    document.getElementById('statusSelect').value : bk.status;
+  showToast(`เปลี่ยนสถานะเป็น "${bk.status}" แล้ว`, 'success');
+  renderCurrentView(); buildAdminStats();
+}
+function focusStatus() {
+  const s = document.getElementById('editStatus');
+  if (s) { document.getElementById('editSection').style.display = 'block'; s.focus(); }
+}
+function cancelBooking() {
+  if (!confirm('ยืนยันการยกเลิกคิวนี้?')) return;
+  const bk = bookings.find(b => b.id === modalBkId);
+  if (bk) {
+    bk.status = 'ยกเลิก';
+    updateBooking(bk.id, { status: 'ยกเลิก' });
+  }
+  document.getElementById('modalOverlay').classList.add('hidden');
+  showToast('ยกเลิกคิวเรียบร้อยแล้ว', 'error');
+  renderCurrentView(); buildAdminStats();
+}
+
+
+// ── TOAST ──
+let toastTimer;
+function showToast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast show'+(type?' '+type:'');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.className='toast',2800);
+}
+
+// ── DEBUG MODAL ──
+function openDebugModal(){
+  const overlay=document.getElementById('debugModalOverlay');
+  const wrap=document.getElementById('debugTableWrap');
+  document.getElementById('debugBkCount').textContent=`${bookings.length} รายการ`;
+
+  const cols=[
+    {key:'id',          label:'รหัส'},
+    {key:'customerName',label:'ชื่อลูกค้า'},
+    {key:'phone',       label:'โทร'},
+    {key:'petName',     label:'ชื่อน้อง'},
+    {key:'petType',     label:'ประเภท'},
+    {key:'service',     label:'บริการ'},
+    {key:'date',        label:'วันที่'},
+    {key:'startTime',   label:'เริ่ม'},
+    {key:'endTime',     label:'สิ้นสุด'},
+    {key:'status',      label:'สถานะ'},
+    {key:'estimatedPriceMin',label:'ราคาต่ำ'},
+    {key:'estimatedPriceMax',label:'ราคาสูง'},
+    {key:'createdAt',   label:'จองเมื่อ'},
+  ];
+
+  const thead='<tr>'+cols.map(c=>`<th>${c.label}</th>`).join('')+'</tr>';
+  const tbody=bookings.map(b=>{
+    const isDemo=b.id.startsWith('DEMO');
+    const stCls=STATUS_CLASS[b.status]||'';
+    return `<tr class="${isDemo?'demo-row':''}">
+      ${cols.map(c=>{
+        let v=b[c.key]??'–';
+        if(c.key==='status') v=`<span class="debug-pill ${stCls}" style="font-size:9px">${v}</span>`;
+        if(c.key==='createdAt'&&v!=='–') v=new Date(v).toLocaleString('th-TH',{dateStyle:'short',timeStyle:'short'});
+        if(c.key==='petType') v=v==='dog'?'🐕 สุนัข':'🐈 แมว';
+        if(c.key==='id'&&isDemo) v=`<span style="background:var(--yellow-green);padding:1px 5px;border-radius:4px;font-size:9px">${v}</span>`;
+        return `<td>${v}</td>`;
+      }).join('')}
+    </tr>`;
+  }).join('');
+
+  wrap.innerHTML=`<table class="debug-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table>`;
+  overlay.classList.remove('hidden');
+
+  // Also log to console (Safari-safe)
+  console.log('--- all bookings (' + bookings.length + ') ---');
+  bookings.forEach(function(b, i) {
+    console.log(i + ' | ' + b.id + ' | ' + b.date + ' ' + (b.startTime||'') + ' | ' + (b.petName||'') + ' | ' + (b.service||'') + ' | ' + b.status);
+  });
+}
+
+function closeDebugModal(e){
+  if(e&&e.target!==document.getElementById('debugModalOverlay')) return;
+  document.getElementById('debugModalOverlay').classList.add('hidden');
+}
+
+// ── INIT ADMIN (don't render until switched to) ──
+// Pre-load bookings in background so customer page capacity check is accurate
+loadBookings().catch(e => console.error('init loadBookings:', e));
+
+/*
+══════════════════════════════════════════════════════════════
+SUPABASE ROW LEVEL SECURITY (RLS) — SQL Policies needed
+══════════════════════════════════════════════════════════════
+If you get 403 / permission denied errors, run this SQL
+in your Supabase dashboard → SQL Editor:
+
+-- Allow anyone (anon) to read bookings
+CREATE POLICY "allow_select" ON bookings
+  FOR SELECT TO anon USING (true);
+
+-- Allow anyone to insert new bookings
+CREATE POLICY "allow_insert" ON bookings
+  FOR INSERT TO anon WITH CHECK (true);
+
+-- Allow anyone to update bookings
+CREATE POLICY "allow_update" ON bookings
+  FOR UPDATE TO anon USING (true) WITH CHECK (true);
+
+-- Enable RLS on the table if not already enabled
+ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
+
+NOTE: For production, restrict these policies to authenticated
+admin users for UPDATE and use service_role key server-side.
+══════════════════════════════════════════════════════════════
+*/
+</script>
+
+<div id="adminView">
+  <div class="admin-wrap">
+
+    <!-- SUMMARY STATS -->
+    <div class="admin-summary-row" id="adminStats"></div>
+
+    <!-- VIEW TOGGLE + WEEK NAV -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+      <div class="view-toggle">
+        <button class="view-btn active" id="vbWeek" onclick="switchAdminView('week')">📅 สัปดาห์</button>
+        <button class="view-btn" id="vbDay" onclick="switchAdminView('day')">⏱ รายวัน</button>
+        <button class="view-btn" onclick="openDebugModal()" style="background:var(--yellow-green);border-color:#c8d49a;color:var(--text-mid)">🗂 ดูข้อมูล Booking</button>
+      </div>
+      <div class="week-nav">
+        <button class="week-nav-btn" onclick="navWeek(-1)">‹</button>
+        <div class="week-label" id="weekLabel"></div>
+        <button class="week-nav-btn" onclick="navWeek(1)">›</button>
+      </div>
+    </div>
+
+    <!-- WEEKLY VIEW -->
+    <div id="weeklyView">
+      <div class="weekly-scroll-wrap">
+        <div class="weekly-grid" id="weeklyGrid"></div>
+      </div>
+    </div>
+
+    <!-- DAILY VIEW -->
+    <div id="dailyView" style="display:none">
+      <div style="display:flex;gap:8px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px" id="dayTabRow"></div>
+      <div class="daily-wrap">
+        <div class="daily-outer" id="dailyOuter"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BOOKING DETAIL MODAL -->
+<div class="modal-overlay hidden" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal-sheet" id="modalSheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modalTitle">รายละเอียดการจอง</div>
+    <!-- Read-only info -->
+    <div id="modalBody"></div>
+    <!-- Quick action buttons -->
+    <div class="modal-actions">
+      <button class="modal-btn call" onclick="callCustomer()">📞 โทรลูกค้า</button>
+      <button class="modal-btn line" onclick="openLine()">💬 เปิด LINE</button>
+      <button class="modal-btn cancel-bk" onclick="cancelBooking()">🗑 ยกเลิกคิว</button>
+      <button class="modal-btn change-status" onclick="toggleEditSection()">✏️ แก้ไขการจอง</button>
+    </div>
+    <!-- Editable section -->
+    <div class="modal-edit-section" id="editSection" style="display:none">
+      <div class="modal-edit-title">✏️ แก้ไขรายละเอียด</div>
+      <div class="modal-edit-row">
+        <label>วันที่</label>
+        <input type="date" id="editDate">
+      </div>
+      <div class="modal-edit-row">
+        <label>ช่าง</label>
+        <select id="editGroomer">
+          <option value="groomer1">ช่าง 1</option>
+          <option value="groomer2">ช่าง 2</option>
+        </select>
+      </div>
+      <div class="modal-edit-row">
+        <label>เวลาเริ่ม</label>
+        <input type="time" id="editStart" step="1800">
+      </div>
+      <div class="modal-edit-row">
+        <label>เวลาสิ้นสุด</label>
+        <input type="time" id="editEnd" step="1800">
+      </div>
+      <div class="modal-edit-row">
+        <label>สถานะ</label>
+        <select id="editStatus">
+          <option>รอยืนยัน</option>
+          <option>ยืนยันแล้ว</option>
+          <option>กำลังให้บริการ</option>
+          <option>เสร็จแล้ว</option>
+          <option>ยกเลิก</option>
+        </select>
+      </div>
+      <div class="modal-edit-row" style="grid-column:1/-1">
+        <label style="grid-column:1/-1">หมายเหตุ</label>
+        <textarea id="editNotes" rows="2" style="grid-column:1/-1"></textarea>
+      </div>
+      <div class="modal-err" id="editErr"></div>
+      <div class="modal-save-row">
+        <button class="modal-btn change-status" onclick="saveEdit()">💾 บันทึกการแก้ไข</button>
+        <button class="modal-btn call" onclick="toggleEditSection()">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- TIME TOOLTIP (global) -->
+<div class="time-tooltip" id="timeTooltip"></div>
+
+<!-- DEBUG BOOKING DATA MODAL -->
+<div class="modal-overlay hidden" id="debugModalOverlay" onclick="closeDebugModal(event)">
+  <div class="modal-sheet" style="max-height:80vh">
+    <div class="modal-handle"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div class="modal-title" style="margin:0">🗂 ข้อมูล Booking ทั้งหมด</div>
+      <div id="debugBkCount" style="font-size:12px;color:var(--text-mid)"></div>
+    </div>
+    <div id="debugTableWrap" style="overflow-x:auto"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+</body>
+</html>
