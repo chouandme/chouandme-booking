@@ -9,8 +9,7 @@
 <meta name="theme-color" content="#A07255">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600;700&family=Quicksand:wght@500;600;700;800&family=Sarabun:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600;700&family=Quicksand:wght@500;600;700&family=Sarabun:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
   --brown: #A07255;
@@ -28,7 +27,7 @@
   --radius-lg: 24px;
   --radius-xl: 36px;
   --radius-pill: 999px;
-  --shadow-card: 0 2px 10px rgba(160,114,85,0.08);
+  --shadow-card: 0 2px 16px rgba(160,114,85,0.08);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -45,92 +44,71 @@ body {
   color: #fff;
   padding: 10px 0;
   overflow: hidden;
+  transform: rotate(-1.5deg) translateY(-2px);
   margin: 0 -20px;
   position: relative;
   z-index: 10;
-  box-shadow: 0 4px 10px rgba(167, 165, 164, 0.22);
+  box-shadow: 0 4px 16px rgba(160,114,85,0.22);
 }
-.ribbon-inner { display:flex; white-space:nowrap; animation:marquee 34s linear infinite; width:max-content; }
-.ribbon span { font-family:'Quicksand',sans-serif; font-size:12px; font-weight:600; letter-spacing:3px; padding:0 10px; }
-.ribbon span.dot { color:var(--pink); font-size:12px; padding:0 12px; transform: translateY(-1px);}
+.ribbon-inner { display:flex; white-space:nowrap; animation:marquee 24s linear infinite; width:max-content; }
+.ribbon span { font-family:'Quicksand',sans-serif; font-size:14px; font-weight:600; letter-spacing:2px; padding:0 18px; }
+.ribbon span.dot { color:var(--yellow-green); font-size:18px; padding:0 4px; }
 @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
 /* HEADER */
 .site-header {
-  background:var(--cream); padding:16px 20px 14px;
+  background:var(--white); padding:16px 20px 14px;
   display:flex; align-items:center; justify-content:space-between;
+  border-bottom:2px solid var(--sand);
   position:sticky; top:0; z-index:100;
 }
-.logo { font-family:'Quicksand',sans-serif; font-size:20px; font-weight:800; color:var(--brown); letter-spacing:2px; }
+.logo { font-family:'Quicksand',sans-serif; font-size:20px; font-weight:700; color:var(--brown); }
 .logo span { color:var(--sage); }
 .header-tag {
-  background:var(--pink); color:var(--text-dark);
-  font-family:'Quicksand',sans-serif; font-size:11px; font-weight:800;
+  background:var(--pink); color:var(--brown);
+  font-size:11px; font-weight:600;
   padding:4px 12px; border-radius:var(--radius-pill); letter-spacing:1px;
 }
 
 /* HERO */
 .hero {
- background:
-radial-gradient(circle at top left,#F4E2E2 0%,transparent 45%),
-radial-gradient(circle at top right,#F2F7CD 0%,transparent 30%),
-linear-gradient(
-  175deg,
-  #F1F3EC 0%,
-  #F1F3EC 60%,
-  #f8efef 100%); 
-  padding:46px 20px 66px;
+  background:var(--white); padding:36px 20px 56px;
   text-align:center; position:relative; overflow:hidden;
 }
-.hero-deco { position:absolute; pointer-events:none; font-size:36px; animation:floaty 4s ease-in-out infinite; }
-.hero-deco.d1{top:22px;left:160px} .hero-deco.d2{top:60px;right:100px;animation-delay:1.2s;font-size:28px}
-.hero-deco.d3{bottom:36px;left:100px;animation-delay:.7s;font-size:24px} .hero-deco.d4{bottom:28px;right:50px;animation-delay:1.8s}
+.hero-deco { position:absolute; pointer-events:none; font-size:36px; opacity:.15; animation:floaty 4s ease-in-out infinite; }
+.hero-deco.d1{top:12px;left:10px} .hero-deco.d2{top:20px;right:14px;animation-delay:1.2s;font-size:28px}
+.hero-deco.d3{bottom:36px;left:20px;animation-delay:.7s;font-size:24px} .hero-deco.d4{bottom:28px;right:18px;animation-delay:1.8s}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(5deg)}}
 .hero-badge {
   display:inline-block; background:var(--yellow-green); color:var(--text-mid);
-  font-family:'Quicksand',sans-serif; font-size:12px; font-weight:600; padding:5px 16px; border-radius:var(--radius-pill);
-  margin-bottom:14px; letter-spacing:1px; border:1px solid var(--sage);
+  font-size:12px; font-weight:600; padding:5px 16px; border-radius:var(--radius-pill);
+  margin-bottom:14px; letter-spacing:1px; border:1.5px solid var(--sage);
 }
-.hero h1 { font-size:clamp(32px,8vw,54px); font-weight:500; color:var(--brown); line-height:1; margin-bottom:12px; }
+.hero h1 { font-family:'Quicksand',sans-serif; font-size:clamp(32px,8vw,54px); font-weight:700; color:var(--brown); line-height:1.1; margin-bottom:12px; }
 .hero h1 span { color:var(--sage); }
-.hero p { font-size:13px; color:var(--text-mid); max-width:320px; margin:0 auto; line-height:2; font-weight:300; }
+.hero p { font-size:13px; color:var(--text-mid); max-width:320px; margin:0 auto; line-height:1.7; font-weight:300; }
 
 /* WAVE */
-.wave{display:block;width:100%;height:34px;overflow:hidden;line-height:0}
+.wave{display:block;width:100%;height:44px;overflow:hidden;line-height:0}
 .wave svg{width:100%;height:100%}
-.wave-overlap {
-  height: 20px;
-  margin-top: -20px;
-  position: relative;
-  z-index: 5;
-  line-height: 0;
-  overflow: hidden;
-}
-.wave-overlap svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
 
 /* BOOKING WRAP */
 .booking-wrap { padding:8px 16px 120px; max-width:560px; margin:0 auto; }
 
 /* STEP NAV */
 .step-nav { display:flex; align-items:center; justify-content:center; gap:0; padding:18px 0 20px; }
-.step-pill {display:flex; align-items:center; gap:6px; padding:7px 14px;
-  border-radius:999px; background:rgba(255, 255, 255, 0.066);
-  border:1px solid rgba(255,255,255,0.35);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  box-shadow:0 8px 24px rgba(0,0,0,0.06), inset 0 1px 1px rgba(255,255,255,0.55), inset 0 -1px 1px rgba(255,255,255,0.18);
-  color:var(--brown); transition:all .3s ease;}
+.step-pill {
+  display:flex; align-items:center; gap:5px;
+  background:var(--gray); color:#fff;
+  font-family:'Quicksand',sans-serif; font-size:12px; font-weight:600;
+  padding:5px 12px; border-radius:var(--radius-pill);
+  transition:all .3s; white-space:nowrap; flex-shrink:0;
+}
 .step-pill .snum {
   width:18px;height:18px; background:rgba(255,255,255,.28); border-radius:50%;
-  display:flex;align-items:center;justify-content:center; font-size:10px;}
-.step-pill.active{background:#a0b99568;
-  border:1px solid rgba(255,255,255,0.5);
-  box-shadow:0 10px 30px rgba(160,114,85,0.12), inset 0 1px 2px rgba(255,255,255,0.7);
-  transform:translateY(-1px) scale(1.04); }
+  display:flex;align-items:center;justify-content:center; font-size:10px;
+}
+.step-pill.active { background:var(--brown); box-shadow:0 4px 14px rgba(160,114,85,.35); transform:scale(1.05); }
 .step-pill.done { background:var(--sage); }
 .step-connector { height:2px; flex:1; background:var(--gray); max-width:14px; min-width:4px; border-radius:2px; }
 .step-connector.done { background:var(--sage); }
@@ -336,6 +314,7 @@ linear-gradient(
 .timeslot-btn.selected { background:var(--brown); color:#fff; border-color:var(--brown); }
 .timeslot-btn:disabled { opacity:.32; cursor:not-allowed; }
 .timeslot-btn.full { background:var(--pink); color:#c0a0a0; font-size:10px; }
+.timeslot-btn.too-late { background:#f5f0e8; color:#b8a898; font-size:10px; }
 
 /* BOOKING ESTIMATE CARD (above calendar) */
 .estimate-card {
@@ -458,86 +437,29 @@ linear-gradient(
 <body>
 
 <header class="site-header">
-  <div class="logo">Chou<span> & </span>Me</div>
+  <div class="logo">Chou<span>&</span>Me</div>
   <div class="header-tag">✦ PET WELLNESS</div>
+</header>
+
+<div class="logo">Chou<span>&</span>Me</div>
   
 </header>
 
 <div class="ribbon"><div class="ribbon-inner" id="ribbonInner"></div></div>
 
 <section class="hero">
-  <div class="hero-deco d1">🐶</div>
-  <div class="hero-deco d2">🐾</div>
-  <div class="hero-deco d3">✨</div>
-  <div class="hero-deco d4">🐱</div>
+  <div class="hero-deco d1">🐾</div>
+  <div class="hero-deco d2">✿</div>
+  <div class="hero-deco d3">★</div>
+  <div class="hero-deco d4">♡</div>
   <div class="hero-badge">✦ Grooming Booking ✦</div>
   <h1>จองคิว<br><span>Grooming</span></h1>
-  <p>เลือกบริการ น้ำหนักโดยประมาณ และเวลาที่สะดวก ระบบจะช่วยคำนวณราคาและเวลาที่ใช้โดยประมาณเพื่อทำการจอง</p>
+  <p>เลือกบริการ ขนาดตัว และเวลาที่สะดวก ระบบจะช่วยคำนวณราคาและเวลาที่ใช้โดยประมาณ</p>
 </section>
 
-<div class="wave-overlap">
-  <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
-    <path
-d="
-      M0,38
-
-      Q12,-4 24,38
-      T48,38
-      T72,38
-      T96,38
-      T120,38
-      T144,38
-      T168,38
-      T192,38
-      T216,38
-      T240,38
-      T264,38
-      T288,38
-      T312,38
-      T336,38
-      T360,38
-      T384,38
-      T408,38
-      T432,38
-      T456,38
-      T480,38
-      T504,38
-      T528,38
-      T552,38
-      T576,38
-      T600,38
-      T624,38
-      T648,38
-      T672,38
-      T696,38
-      T720,38
-      T744,38
-      T768,38
-      T792,38
-      T816,38
-      T840,38
-      T864,38
-      T888,38
-      T912,38
-      T936,38
-      T960,38
-      T984,38
-      T1008,38
-      T1032,38
-      T1056,38
-      T1080,38
-      T1104,38
-      T1128,38
-      T1152,38
-      T1176,38
-      T1200,38
-
-      L1200,80
-      L0,80
-      Z
-      "
-fill="#F1F3EC"
-    />
+<div class="wave">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,28 C150,46 350,0 600,22 C850,46 1050,0 1200,18 L1200,44 L0,44 Z" fill="#F1F3EC"/>
   </svg>
 </div>
 
@@ -553,7 +475,7 @@ fill="#F1F3EC"
     <div class="sub-section unlocked" id="subPet">
       <div class="sub-section-header">
         <div class="sub-num">1</div>
-        <div class="section-title">ประเภทสัตว์เลี้ยง</div>
+        <div class="section-title">เพื่อนของคุณเป็น?</div>
       </div>
       <div class="card-grid">
         <div class="sel-card" data-val="dog" onclick="selectPetType(this,'dog')">
@@ -730,55 +652,108 @@ fill="#F1F3EC"
 <script>
 // ── Supabase + shared data layer ──
 // ══════════════════════════════════════════
-// LOCAL DATA STORE — localStorage shared with admin.html
 // ══════════════════════════════════════════
-const STORAGE_KEY = 'bookings'; // same key used by admin.html
+// SUPABASE CONFIG
+// ══════════════════════════════════════════
+const SB_URL  = 'https://qlyyeetzvtegbgasmmmb.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFseXllZXR6dnRlZ2JnYXNtbW1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNTA1MjMsImV4cCI6MjA5MzgyNjUyM30.nryBXiYnGTPNpAAEPOdqRExVDd3IeT4S0vAiZ1sHkkg';
+const SB_HEADERS_INSERT = {
+  'Content-Type': 'application/json',
+  'apikey': SB_ANON,
+  'Authorization': 'Bearer ' + SB_ANON,
+  'Prefer': 'return=minimal'   // customer page only inserts, no read-back needed
+};
+const SB_HEADERS_READ = {
+  'Content-Type': 'application/json',
+  'apikey': SB_ANON,
+  'Authorization': 'Bearer ' + SB_ANON
+};
 
-function saveToStorage() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
-    console.log('saveToStorage: saved', bookings.length, 'bookings');
-  } catch(e) {
-    console.error('saveToStorage error:', e);
-  }
+// Map JS camelCase booking → Supabase snake_case row
+function toRow(bk){
+  return {
+    id:                     bk.id,
+    customer_name:          bk.customerName          || '',
+    phone:                  bk.phone                 || '',
+    pet_name:               bk.petName               || '',
+    pet_type:               bk.petType               || '',
+    weight_range:           bk.weightRange            || '',
+    coat_type:              bk.coatType              || '',
+    service:                bk.service               || '',
+    add_ons:                JSON.stringify(bk.addOns || []),
+    estimated_price_min:    bk.estimatedPriceMin      || 0,
+    estimated_price_max:    bk.estimatedPriceMax      || 0,
+    estimated_duration_min: bk.estimatedDurationMin   || 60,
+    estimated_duration_max: bk.estimatedDurationMax   || 60,
+    date:                   bk.date                  || '',
+    start_time:             bk.startTime             || '',
+    end_time_min:           bk.endTimeMin            || '',
+    end_time_max:           bk.endTimeMax            || '',
+    end_time:               bk.endTime               || '',
+    groomer_id:             bk.groomerId             || 'groomer1',
+    status:                 bk.status                || 'รอยืนยัน',
+    notes:                  bk.notes                 || '',
+    created_at:             bk.createdAt             || new Date().toISOString()
+  };
 }
 
-function loadFromStorage() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    const stored = raw ? JSON.parse(raw) : [];
-    bookings.length = 0;
-    stored.forEach(b => bookings.push(b));
-    console.log('loadFromStorage: loaded', bookings.length, 'bookings');
-  } catch(e) {
-    console.error('loadFromStorage error:', e);
-  }
-}
-
-// Shared time helpers
-function timeToMin(t) { if(!t||!t.includes(':')) return 0; const[h,m]=t.split(':').map(Number); return h*60+m; }
-function overlaps(t1,d1,t2,d2) { const s1=timeToMin(t1),e1=s1+(d1||0),s2=timeToMin(t2),e2=s2+(d2||0); return s1<e2&&e1>s2; }
-function calcEndTime(s,d) { if(!s||!s.includes(':')) return '10:00'; const[h,m]=s.split(':').map(Number),t=h*60+m+(d||60); return String(Math.floor(t/60)%24).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); }
-
-// In-memory cache — loaded from localStorage on init
+// ── DATA STATE ─────────────────────────────
+const STORAGE_KEY = 'bookings';
 let bookings = [];
 const existingBookings = bookings; // backward-compat alias
+let dbOnline = false;
 
-async function loadBookings() {
-  loadFromStorage();
+// ── LOAD (for capacity check on page load) ──
+async function loadBookings(){
+  try {
+    const res = await fetch(
+      SB_URL + '/rest/v1/bookings?select=id,date,start_time,estimated_duration_max,groomer_id,status&order=date.asc',
+      { headers: SB_HEADERS_READ }
+    );
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const rows = await res.json();
+    bookings.length = 0;
+    rows.forEach(r => bookings.push({
+      id: r.id, date: r.date, startTime: r.start_time,
+      estimatedDurationMax: r.estimated_duration_max || 60,
+      groomerId: r.groomer_id, status: r.status
+    }));
+    dbOnline = true;
+    console.log('loadBookings: Supabase OK,', bookings.length, 'rows');
+  } catch(err){
+    // Silently fall back to localStorage — customer page still works without live data
+    dbOnline = false;
+    console.log('loadBookings: offline mode -', err.message);
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const stored = raw ? JSON.parse(raw) : [];
+      bookings.length = 0; stored.forEach(b => bookings.push(b));
+    } catch(e2){}
+  }
 }
-async function updateBooking(id, fields) {
+
+// ── SAVE (called after confirmBooking) ──────
+async function saveToStorage(){
+  // No-op: actual save happens in confirmBooking via Supabase INSERT
+}
+
+async function updateBooking(id, fields){
   const bk = bookings.find(b => b.id === id);
-  if (bk) Object.assign(bk, fields);
-  saveToStorage();
+  if(bk) Object.assign(bk, fields);
+  // Customer page doesn't update bookings after save — no-op
 }
-async function refreshDashboard() { /* admin is on admin.html */ }
+async function refreshDashboard(){ /* admin is on admin.html */ }
+
+// Shared time helpers
+function timeToMin(t){ if(!t||!t.includes(':'))return 0; const[h,m]=t.split(':').map(Number); return h*60+m; }
+function overlaps(t1,d1,t2,d2){ const s1=timeToMin(t1),e1=s1+(d1||0),s2=timeToMin(t2),e2=s2+(d2||0); return s1<e2&&e1>s2; }
+function calcEndTime(s,d){ if(!s||!s.includes(':'))return '10:00'; const[h,m]=s.split(':').map(Number),t=h*60+m+(d||60); return String(Math.floor(t/60)%24).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); }
 
 
 // ── Customer booking UI ──
-const ribbonItems=['GROOMING','PAW','SPA','PAW','CAT GROOMING','PAW','CHOU & ME','PAW','HAIRCUT','PAW','DOG GROOMING','PAW','CHOU & ME','PAW'];
+const ribbonItems=['GROOMING','•','SPA','•','BATH','•','HAIRCUT','•','CAT GROOMING','•','DOG GROOMING','•','CHOU&ME','•'];
 const ri=document.getElementById('ribbonInner');
-let rh=''; for(let r=0;r<4;r++) ribbonItems.forEach(t=>{ rh+=t==='PAW'?`<span class="dot"> <i class="fa-solid fa-paw"></i></span>`:`<span>${t}</span>`; }); ri.innerHTML=rh;
+let rh=''; for(let r=0;r<4;r++) ribbonItems.forEach(t=>{ rh+=t==='•'?`<span class="dot">${t}</span>`:`<span>${t}</span>`; }); ri.innerHTML=rh;
 
 // ── STATE ──
 const S={
@@ -868,15 +843,20 @@ function calcPrice(){
   return {min:base+mn,max:base+mx};
 }
 
+// SHOP_CLOSE_MINS: 20:00 = 1200 minutes from midnight
+const SHOP_CLOSE_MINS = 20 * 60; // 1200
+
 function calcDuration(){
-  const kg=getKg(S.weight); let mn=60,mx=90;
-  if(kg<5){mn=60;mx=90;}else if(kg<=10){mn=75;mx=105;}else if(kg<=20){mn=90;mx=120;}else if(kg<=40){mn=105;mx=150;}else{mn=120;mx=180;}
-  if(S.coat==='long'){mn+=30;mx+=60;}
-  if(S.coat==='thick'){mn+=30;mx+=60;}
-  if(S.coat==='matted'){mn+=45;mx+=90;}
-  if(S.haircut==='clipper'){mn+=45;mx+=90;}
-  if(S.haircut==='scissor'){mn+=60;mx+=120;}
-  S.addons.forEach(av=>{const a=addons.find(x=>x.val===av);if(a){mn+=a.dur[0];mx+=a.dur[1];}});
+  const kg=getKg(S.weight); let mn=60;
+  if(kg<5){mn=60;}else if(kg<=10){mn=75;}else if(kg<=20){mn=90;}else if(kg<=40){mn=105;}else{mn=120;}
+  if(S.coat==='long'){mn+=30;}
+  if(S.coat==='thick'){mn+=30;}
+  if(S.coat==='matted'){mn+=45;}
+  if(S.haircut==='clipper'){mn+=45;}
+  if(S.haircut==='scissor'){mn+=60;}
+  S.addons.forEach(av=>{const a=addons.find(x=>x.val===av);if(a){mn+=a.dur[0];}});
+  // Max is always min + 60 minutes (range capped at 1 hour)
+  const mx = mn + 60;
   return{mn,mx};
 }
 
@@ -889,7 +869,7 @@ function fmtDur(mn,mx){
 
 // ── PAGE NAV ──
 const PAGES=['A','B','C','D'];
-const PAGE_LABELS=['รายละเอียด','บริการ','วัน-เวลา & ข้อมูล','สรุป'];
+const PAGE_LABELS=['น้อง & ขน','บริการ','วัน-เวลา & ข้อมูล','สรุป'];
 let currentPage='A';
 
 function goToPage(p){
@@ -1092,6 +1072,8 @@ function buildEstimateCard(){
   const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
   const durStr=fmtDur(mn,mx);
   const addonCount=S.addons.length;
+  // Warn if any time slot could exceed closing
+  const slotWarning = mx > 120 ? `<div style="font-size:10px;color:#b07a30;margin-top:4px">⚠️ บางช่วงเวลาอาจไม่สามารถจองได้</div>` : '';
   document.getElementById('estimateCard').innerHTML=`
     <div class="estimate-icon">🧾</div>
     <div class="estimate-body">
@@ -1099,6 +1081,7 @@ function buildEstimateCard(){
       <div class="estimate-price">${priceStr}</div>
       <div class="estimate-duration">⏱ <b>${durStr}</b></div>
       <div class="estimate-svc-tag">${svcLabel}${addonCount?` + ${addonCount} เสริม`:''}</div>
+      ${slotWarning}
     </div>`;
 }
 
@@ -1189,15 +1172,34 @@ function selectDate(dateStr, dow){
 }
 
 function buildTimeslots(date){
+  // Get max duration so we can block slots that would run past closing
+  const{mx}=calcDuration();
+
   const slots=[];
   for(let h=9;h<20;h++){
     if(h===13) continue; // lunch break — no 13:00 or 13:30
     slots.push(`${String(h).padStart(2,'0')}:00`);
     if(h<19) slots.push(`${String(h).padStart(2,'0')}:30`);
   }
+
   document.getElementById('timeslotGrid').innerHTML=slots.map(t=>{
-    const busy=countBusy(date,t),full=busy>=2;
-    return `<button class="timeslot-btn${full?' full':''}" ${full?'disabled':''} onclick="selectTime(this,'${t}')">${full?'เต็ม':t}</button>`;
+    const [sh,sm]=t.split(':').map(Number);
+    const startMins = sh*60+sm;
+    const endMins   = startMins + mx;
+
+    // Check groomer capacity
+    const busy = countBusy(date,t);
+    const full  = busy >= 2;
+
+    // Check if booking would run past shop closing (20:00)
+    const tooLate = endMins > SHOP_CLOSE_MINS;
+
+    const disabled = full || tooLate;
+    let label = t;
+    if(full) label = 'เต็ม';
+    else if(tooLate) label = 'ใกล้ปิด';
+
+    return `<button class="timeslot-btn${full?' full':''}${tooLate?' too-late':''}" ${disabled?'disabled':''} onclick="selectTime(this,'${t}')">${label}</button>`;
   }).join('');
 }
 
@@ -1207,7 +1209,7 @@ function countBusy(date,slot){
   bookings.forEach(b=>{
     if(b.date!==date||b.status==='ยกเลิก') return;
     const t=b.startTime||b.time||'00:00';
-    const dur=b.estimatedDurationMax||b.durationMin||60;
+    const dur=b.estimatedDurationMax||b.estimatedDurationMin||60;
     const [bh,bm]=t.split(':').map(Number),bs=bh*60+bm,be=bs+dur;
     if(ss>=bs&&ss<be) n++;
   });
@@ -1215,9 +1217,22 @@ function countBusy(date,slot){
 }
 
 function selectTime(el,t){
+  // Validate: startTime + maxDuration must not exceed 20:00
+  const{mx}=calcDuration();
+  const[sh,sm]=t.split(':').map(Number);
+  if(sh*60+sm+mx > SHOP_CLOSE_MINS){
+    const alertEl=document.getElementById('fullAlert');
+    if(alertEl){
+      alertEl.textContent='เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน';
+      alertEl.classList.add('visible');
+    }
+    return;
+  }
   document.querySelectorAll('.timeslot-btn').forEach(b=>b.classList.remove('selected'));
   el.classList.add('selected');
   S.time=t;
+  const alertEl=document.getElementById('fullAlert');
+  if(alertEl) alertEl.classList.remove('visible');
   unlock('subCustomer');
   updateMini();
 }
@@ -1243,12 +1258,19 @@ function buildSummary(){
     ?`อาบน้ำ${S.petType==='dog'?'สุนัข':'แมว'}`
     :S.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
   const addonLabels=S.addons.map(av=>addons.find(a=>a.val===av)?.label).filter(Boolean);
-  let pickup='';
+
+  // Pickup range: earliest (mn) to latest (mx)
+  let pickupRange='';
   if(S.time){
     const[h,m]=S.time.split(':').map(Number);
-    const pm=new Date(2000,0,1,h,m+mx);
-    pickup=`${String(pm.getHours()).padStart(2,'0')}:${String(pm.getMinutes()).padStart(2,'0')} น.`;
+    const t0=h*60+m;
+    const earlyH=Math.floor((t0+mn)/60)%24, earlyM=(t0+mn)%60;
+    const lateH =Math.floor((t0+mx)/60)%24, lateM =(t0+mx)%60;
+    const early=`${String(earlyH).padStart(2,'0')}:${String(earlyM).padStart(2,'0')}`;
+    const late =`${String(lateH).padStart(2,'0')}:${String(lateM).padStart(2,'0')}`;
+    pickupRange = early===late ? `${early} น.` : `${early}–${late} น.`;
   }
+
   const dateDisp=S.date?new Date(S.date+'T12:00:00').toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
   const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
 
@@ -1262,7 +1284,7 @@ function buildSummary(){
     <div class="summary-row"><span class="s-label">บริการเสริม</span><span class="s-val">${addonLabels.length?addonLabels.join(', '):'–'}</span></div>
     <div class="summary-row"><span class="s-label">วันที่</span><span class="s-val">${dateDisp}</span></div>
     <div class="summary-row"><span class="s-label">เวลาเริ่ม</span><span class="s-val">${S.time} น.</span></div>
-    <div class="summary-row"><span class="s-label">รับกลับโดยประมาณ</span><span class="s-val">ก่อน ${pickup}</span></div>
+    <div class="summary-row"><span class="s-label">เวลารับกลับโดยประมาณ</span><span class="s-val">${pickupRange}</span></div>
     <div class="summary-row"><span class="s-label">ชื่อลูกค้า</span><span class="s-val">${S.custName}</span></div>
     <div class="summary-row"><span class="s-label">เบอร์โทร</span><span class="s-val">${S.custPhone}</span></div>
     ${S.custNote?`<div class="summary-row"><span class="s-label">หมายเหตุ</span><span class="s-val">${S.custNote}</span></div>`:''}
@@ -1319,11 +1341,20 @@ async function confirmBooking(){
     const coatData  = coatList.find(c => c.val === S.coat);
     const coatLabel = coatData ? coatData.label : (S.coat || '');
 
-    // ── 5. End time — guard against null startTime ──
-    const startTime = S.time || '09:00';
-    const endTime   = calcEndTimeStr(startTime, mx);
+    // ── 5. End times — min and max ──
+    const startTime   = S.time || '09:00';
+    const [startH, startM] = startTime.split(':').map(Number);
+    const startMins   = startH * 60 + startM;
 
-    // ── 6. Auto-assign groomer ──
+    // Validate: max end must not exceed shop closing (20:00)
+    if (startMins + mx > SHOP_CLOSE_MINS) {
+      throw new Error('เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน');
+    }
+
+    const endTimeMin  = calcEndTimeStr(startTime, mn);  // earliest possible end
+    const endTimeMax  = calcEndTimeStr(startTime, mx);  // latest possible end (used for blocking)
+
+    // ── 6. Auto-assign groomer (use mx for overlap blocking) ──
     const newDate   = S.date || '';
     const dayBksOnDate = bookings.filter(b => b.date === newDate && b.status !== 'ยกเลิก');
     const g1Busy = dayBksOnDate.filter(b => b.groomerId === 'groomer1')
@@ -1347,19 +1378,44 @@ async function confirmBooking(){
       estimatedDurationMax: mx,
       date:                 S.date      || '',
       startTime:            startTime,
-      endTime:              endTime,
+      endTimeMin:           endTimeMin,   // earliest end (mn)
+      endTimeMax:           endTimeMax,   // latest end (mx) — used for blocking
+      endTime:              endTimeMax,   // admin scheduler uses this for positioning
       groomerId:            groomerId,
       status:               'รอยืนยัน',
       notes:                S.custNote  || '',
       createdAt:            new Date().toISOString()
     };
 
-    // ── 8. Save to local array + localStorage (shared with admin.html) ──
-    bookings.push(newBk);
-    saveToStorage();
+    // ── 8. Save to Supabase ──
+    let saveOk = false;
+    if(dbOnline){
+      try {
+        const res = await fetch(SB_URL + '/rest/v1/bookings', {
+          method: 'POST',
+          headers: SB_HEADERS_INSERT,
+          body: JSON.stringify(toRow(newBk))
+        });
+        if(!res.ok){ const t = await res.text(); throw new Error('HTTP ' + res.status + ': ' + t); }
+        saveOk = true;
+        console.log('booking saved to Supabase:', newBk.id);
+      } catch(err){
+        console.error('confirmBooking Supabase error:', err.message);
+        // Fallback: save to localStorage so admin can still see it
+        bookings.push(newBk);
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings)); } catch(e){}
+        console.warn('booking saved to localStorage fallback');
+        saveOk = true;
+      }
+    } else {
+      // Offline: save to localStorage
+      bookings.push(newBk);
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings)); } catch(e){}
+      console.log('booking saved (offline localStorage):', newBk.id);
+      saveOk = true;
+    }
 
-    console.log('booking saved');
-    bookings.forEach((b,i) => console.log(i, b.id, b.date, b.startTime, b.petName, b.status));
+    if(!saveOk) throw new Error('ไม่สามารถบันทึกได้');
 
     // Show success screen
     const bw = document.querySelector('.booking-wrap');
@@ -1392,7 +1448,7 @@ function calcEndTimeStr(start, durationMin) {
 
 // ── INIT ──
 updateStepNav();
-loadFromStorage(); // load any previously saved bookings for capacity check
+loadBookings(); // load bookings from Supabase for capacity check (async, non-blocking)
 </script>
 </body>
 </html>
