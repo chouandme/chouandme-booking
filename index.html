@@ -190,8 +190,7 @@ linear-gradient(
 .sel-card {
   background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0;
   border-radius:var(--radius-lg); padding:16px 12px; box-sizing: border-box;
-  display: inline-flex; align-items: center; justify-content: center;
-  cursor:pointer; transition: transform 180ms cubic-bezier(.2,.7,.2,1), box-shadow 220ms ease;}
+  cursor:pointer; transition: transform 180ms cubic-bezier(.2,.7,.2,1), box-shadow 220ms ease;
   text-align:center;
   box-shadow:
     /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
@@ -202,26 +201,23 @@ linear-gradient(
     /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
   position:relative; overflow:hidden;
   -webkit-tap-highlight-color:transparent; user-select:none;}
-.sel-card:hover { transform:translateY(-2px); scale(1.03); 
- background:
-    linear-gradient(
-      180deg,
-      #a0725539 0%,
-      #a0725570 80%,
-      #a0725562 100%);
-  border:
-    1px solid rgba(255,255,255,.55);
+.sel-card:hover { transform:translateY(-2px) scale(1);
+  background:linear-gradient(180deg, #fbf4f1 0%, #dcd2ca 50%, #dcd0c6 100%);
+  border:0;
   box-shadow:
-    0 6px 14px rgba(160,114,85,.22),
-    inset 0 1px 1px rgba(255,255,255,.45),
-    inset 0 -1px 2px rgba(0,0,0,.08);
+    0 9px 20px -7px rgba(255,255,255,1),
+    0 18px 36px -5px rgba(0,0,0,0.10),
+    0 4px 5px #c9733e51,
+    inset 0 1px 0 rgba(255,255,255,0.95),
+    inset 0 -1px 1px rgba(255,255,255,0.95),
+    inset 0 -7px 13px -6px rgba(255,255,255,0.95);
   backdrop-filter:blur(6px);}
-.sel-card:hover .card-emoji{transform:translateY(-2px) scale(1.03);}
+.sel-card:hover .card-emoji{transform:translateY(-2px) scale(1);}
 .sel-card.selected { border-color:var(--brown);  color:#fff;
   background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%);
   border:0;
   box-shadow:
-    0 0 0 3px rgba(80,140,255,0.35),
+    0 0 0 3px #D8C3B3,
     0 9px 20px -7px rgba(255,255,255,1),
     0 18px 36px -5px rgba(0,0,0,0.10),
     0 1px 2px rgba(0,0,0,0.10),
@@ -229,7 +225,7 @@ linear-gradient(
     inset 0 -1px 1px rgba(255,255,255,0.95),
     inset 0 -7px 13px -6px rgba(255,255,255,0.95);
   backdrop-filter:blur(6px);
-  transform:scale(1);
+  transform:scale(1.03);
   animation:checkPop .28s cubic-bezier(.34,1.56,.64,1);}
 .sel-card.selected::after {
   content:'✓'; position:absolute; top:8px;right:12px;
