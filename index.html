@@ -1188,8 +1188,7 @@ function buildTimeslots(date){
     const endMins   = startMins + mx;
 
     // Check groomer capacity
-    const busy = countBusy(date,t);
-    const full  = busy >= 2;
+    const full    = isSlotFull(date, t);
 
     // Check if booking would run past shop closing (20:00)
     const tooLate = endMins > SHOP_CLOSE_MINS;
@@ -1203,17 +1202,65 @@ function buildTimeslots(date){
   }).join('');
 }
 
-function countBusy(date,slot){
-  const [sh,sm]=slot.split(':').map(Number),ss=sh*60+sm;
-  let n=0;
-  bookings.forEach(b=>{
-    if(b.date!==date||b.status==='ยกเลิก') return;
-    const t=b.startTime||b.time||'00:00';
-    const dur=b.estimatedDurationMax||b.estimatedDurationMin||60;
-    const [bh,bm]=t.split(':').map(Number),bs=bh*60+bm,be=bs+dur;
-    if(ss>=bs&&ss<be) n++;
+// Groomer list cache for customer page (loaded once from Supabase)
+let groomerList = [];
+
+async function loadGroomerList(){
+  try {
+    const res = await fetch(SB_URL + '/rest/v1/groomers?select=id,name&order=sort_order.asc',
+      { headers: SB_HEADERS_READ });
+    if(res.ok){ groomerList = await res.json(); }
+  } catch(e){}
+  // Fallback: load from localStorage groomers key
+  if(!groomerList.length){
+    try {
+      const raw = localStorage.getItem('chouandme_groomers');
+      if(raw) groomerList = JSON.parse(raw);
+    } catch(e){}
+  }
+  // Final fallback: 2 default groomers
+  if(!groomerList.length) groomerList = [{id:'groomer1'},{id:'groomer2'}];
+}
+
+// Count how many groomers are busy at a given slot
+// A slot is "full" when ALL groomers are busy during that time
+function countBusy(date, slot){
+  const [sh,sm] = slot.split(':').map(Number);
+  const ss = sh*60+sm;
+  const {mx} = calcDuration();
+  const se = ss + mx; // new booking end
+
+  // For each groomer, check if ANY existing booking overlaps this slot
+  const busyGroomers = new Set();
+  bookings.forEach(b => {
+    if(b.date !== date || b.status === 'ยกเลิก') return;
+    const t = b.startTime || '00:00';
+    const dur = b.estimatedDurationMax || b.estimatedDurationMin || 60;
+    const [bh,bm] = t.split(':').map(Number);
+    const bs = bh*60+bm, be = bs+dur;
+    // overlap: existing booking overlaps the new slot window
+    if(bs < se && be > ss){
+      busyGroomers.add(b.groomerId || 'groomer1');
+    }
   });
-  return n;
+  return busyGroomers.size; // number of groomers busy during this slot
+}
+
+function isSlotFull(date, slot){
+  // Slot is full when all groomers are busy
+  return countBusy(date, slot) >= groomerList.length;
+}
+
+// Auto-assign: find first groomer with no overlap at startTime for duration mx
+function assignGroomer(date, startTime, mx){
+  const dayBks = bookings.filter(b => b.date === date && b.status !== 'ยกเลิก');
+  for(const g of groomerList){
+    const busy = dayBks
+      .filter(b => (b.groomerId || 'groomer1') === g.id)
+      .some(b => overlaps(b.startTime, b.estimatedDurationMax || 60, startTime, mx));
+    if(!busy) return g.id;
+  }
+  return groomerList[0]?.id || 'groomer1'; // fallback (shouldn't reach here)
 }
 
 function selectTime(el,t){
@@ -1354,12 +1401,9 @@ async function confirmBooking(){
     const endTimeMin  = calcEndTimeStr(startTime, mn);  // earliest possible end
     const endTimeMax  = calcEndTimeStr(startTime, mx);  // latest possible end (used for blocking)
 
-    // ── 6. Auto-assign groomer (use mx for overlap blocking) ──
-    const newDate   = S.date || '';
-    const dayBksOnDate = bookings.filter(b => b.date === newDate && b.status !== 'ยกเลิก');
-    const g1Busy = dayBksOnDate.filter(b => b.groomerId === 'groomer1')
-      .some(b => overlaps(b.startTime, b.estimatedDurationMax, startTime, mx));
-    const groomerId = g1Busy ? 'groomer2' : 'groomer1';
+    // ── 6. Auto-assign: find first groomer with no overlap ──
+    const newDate = S.date || '';
+    const groomerId = assignGroomer(newDate, startTime, mx);
 
     // ── 7. Build canonical booking object ──
     const newBk = {
@@ -1448,7 +1492,9 @@ function calcEndTimeStr(start, durationMin) {
 
 // ── INIT ──
 updateStepNav();
-loadBookings(); // load bookings from Supabase for capacity check (async, non-blocking)
+// Load both bookings and groomer list in parallel for capacity check
+Promise.all([loadBookings(), loadGroomerList()])
+  .then(() => { console.log('init: ready, groomers:', groomerList.length, 'bookings:', bookings.length); });
 </script>
 </body>
 </html>
