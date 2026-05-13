@@ -83,8 +83,8 @@ linear-gradient(
   text-align:center; position:relative; overflow:hidden;
 }
 .hero-deco { position:absolute; pointer-events:none; font-size:36px; animation:floaty 4s ease-in-out infinite; }
-.hero-deco.d1{top:22px;left:60px} .hero-deco.d2{top:60px;right:80px;animation-delay:1.2s;font-size:28px}
-.hero-deco.d3{bottom:15px;left:80px;animation-delay:.7s;font-size:24px} .hero-deco.d4{bottom:8px;right:30px;animation-delay:1.8s}
+.hero-deco.d1{top:22px;left:30px} .hero-deco.d2{top:60px;right:40px;animation-delay:1.2s;font-size:28px}
+.hero-deco.d3{bottom:15px;left:40px;animation-delay:.7s;font-size:24px} .hero-deco.d4{bottom:8px;right:15px;animation-delay:1.8s}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(5deg)}}
 .hero-badge {
   display:inline-block; background:var(--yellow-green); color:var(--text-mid);
@@ -286,7 +286,7 @@ linear-gradient(
 .svc-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:7px; }
 .svc-tag { background:var(--brown); border-radius:var(--radius-pill); padding:2px 9px; font-size:11px; font-weight:500; color:var(--cream); }
 .svc-tag.pink { background:var(--yellow-green); color:var(--brown); }
-.svc-price { font-family:'Sarabun',sans-serif; font-size:14px; font-weight:700; color:var(--brown); flex-shrink:0; padding-top:2px; white-space:nowrap; }
+.svc-price { font-family:'Sarabun',sans-serif; font-size:14px; font-weight:700; color:var(--brown); flex-shrink:0; padding-top:24px; white-space:nowrap; }
 
 /* SERVICE NOTE */
 .service-note {
@@ -389,8 +389,8 @@ linear-gradient(
 }
 .cal-dow {
   text-align:center; font-family:'Mitr',sans-serif;
-  font-size:11px; font-weight:700;
-  color:var(--slate); padding:4px 0;
+  font-size:12px; font-weight:500;
+  color:var(--brown); padding:4px 0;
 }
 .cal-dow.closed { color:var(--gray); }
 .cal-grid {
@@ -409,13 +409,13 @@ linear-gradient(
 .cal-day:hover:not(.disabled):not(.closed-day) { background:var(--sand); transform:scale(1.05); }
 .cal-day.selected {
   background:var(--brown); color:#fff;
-  border-color:var(--brown);
+  
   box-shadow:0 4px 14px rgba(160,114,85,.28);
   transform:scale(1.05);
 }
 .cal-day.today { border-color:var(--yellow-green); }
 .cal-day.disabled { opacity:.28; cursor:not-allowed; }
-.cal-day.closed-day { background:var(--cream); color:var(--gray); cursor:not-allowed; font-size:12px; }
+.cal-day.closed-day { background:var(--cream); color:var(--gray); cursor:not-allowed; font-size:13px; }
 .cal-day.empty { background:transparent; cursor:default; }
 .cal-day.other-month { opacity:.3; }
 
@@ -434,27 +434,33 @@ linear-gradient(
 .selected-date-badge.visible { display:flex; }
 .selected-date-badge .sdb-icon { font-size:16px; }
 
-.timeslot-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-top:10px; }
+.timeslot-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:7px; margin-top:10px; }
 .timeslot-btn {
-  background:var(--cream); border:2.5px solid transparent;
+  background:var(--white); border:2.5px solid transparent;
   border-radius:12px; padding:9px 4px;
-  font-family:'Mitr',sans-serif; font-size:13px; font-weight:500;
+  font-family:'Sarabun',sans-serif; font-size:14px; font-weight:600;
   color:var(--text-dark); cursor:pointer; text-align:center;
   transition:all .16s; -webkit-tap-highlight-color:transparent;
 }
 .timeslot-btn:hover:not(:disabled) { background:var(--sand); }
-.timeslot-btn.selected { background:var(--brown); color:#fff; border-color:var(--brown); }
+.timeslot-btn.selected { background:var(--brown); color:#fff; }
 .timeslot-btn:disabled { opacity:.32; cursor:not-allowed; }
-.timeslot-btn.full { background:var(--pink); color:#c0a0a0; font-size:10px; }
+.timeslot-btn.full { background:#f5f0e8; color:#b8a898; font-size:10px; }
 .timeslot-btn.too-late { background:#f5f0e8; color:#b8a898; font-size:10px; }
 
 /* BOOKING ESTIMATE CARD (above calendar) */
 .estimate-card {
-  background: linear-gradient(135deg, var(--yellow-green) 0%, #e8f0c8 100%);
+  background: linear-gradient(180deg, #fefff5e2 0%, #eff1d4c9 60%, #eef3d1c6 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0;
   border-radius: 20px;
   padding: 16px 18px;
   margin-bottom: 16px;
-  border: 2px solid #c8d49a;
+   box-shadow:
+    /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
+    /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
+    /* contact */         0 1px 2px #ccd584b1,
+    /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
+    /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
+    /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -466,7 +472,7 @@ linear-gradient(
   letter-spacing: 1px; margin-bottom: 3px;
 }
 .estimate-price {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Sarabun', sans-serif;
   font-size: 22px; font-weight: 700; color: var(--brown);
   line-height: 1.1; margin-bottom: 2px;
 }
@@ -476,44 +482,50 @@ linear-gradient(
 .estimate-duration b { color: var(--brown); }
 .estimate-svc-tag {
   display: inline-block;
-  background: rgba(160,114,85,.12);
-  color: var(--brown);
-  font-size: 10px; font-weight: 700;
+  background: var(--brown);
+  color: var(--white);
+  font-size: 11px; font-weight: 500;
   padding: 2px 8px; border-radius: 99px; margin-top: 5px;
 }
 
 /* FORM */
 .form-field { margin-bottom:12px; }
-.form-field label { font-family:'Quicksand',sans-serif; font-size:15px; font-weight:600; color:var(--brown); display:block; margin-bottom:5px; }
+.form-field label { font-family:'Mitr',sans-serif; font-size:15px; font-weight:600; color:var(--brown); display:block; margin-bottom:5px; }
 .form-field input, .form-field textarea {
   width:100%; padding:12px 14px;
-  border:2.5px solid var(--sand); border-radius:14px;
-  font-family:'Mitr',sans-serif; font-size:14px; color:var(--text-dark);
+  border:1px solid var(--sand); border-radius:14px;
+  font-family:'Sarabun',sans-serif; font-size:14px; font-weight:500; color:var(--text-dark);
   background:var(--white); outline:none; transition:border .2s; resize:none;
 }
 .form-field input:focus, .form-field textarea:focus { border-color:var(--brown); }
 
 /* SUMMARY */
 .summary-card {
-  background:var(--white); border-radius:var(--radius-xl);
+  background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 60%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0; border-radius:var(--radius-xl);
   padding:22px 18px;
-  box-shadow:0 8px 36px rgba(160,114,85,.12);
-  margin-bottom:20px; border:2px solid var(--sand);
+  box-shadow:
+    /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
+    /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
+    /* contact */         0 1px 2px rgba(40,30,0,0.10),
+    /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
+    /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
+    /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
+  margin-bottom:20px;
 }
-.summary-title { font-family:'Quicksand',sans-serif; font-size:19px; font-weight:700; color:var(--brown); margin-bottom:16px; }
+.summary-title { font-family:'Mitr',sans-serif; font-size:19px; font-weight:700; color:var(--brown); margin-bottom:16px; }
 .summary-row {
   display:flex; justify-content:space-between; align-items:flex-start;
   padding:8px 0; border-bottom:1px dashed var(--sand); gap:10px;
 }
 .summary-row:last-of-type { border-bottom:none; }
 .s-label { font-size:12px; color:var(--text-mid); flex-shrink:0; }
-.s-val { font-size:13px; font-weight:600; color:var(--text-dark); text-align:right; }
-.price-big { background:var(--yellow-green); border-radius:14px; padding:16px 18px; margin-top:14px; text-align:center; }
-.price-num { font-family:'Quicksand',sans-serif; font-size:28px; font-weight:700; color:var(--brown); display:block; }
+.s-val { font-family:'Sarabun',sans-serif; font-size:13px; font-weight:700; color:var(--text-dark); text-align:right; }
+.price-big { background:var(--yellow-green); border: 0; border-radius:14px; padding:16px 18px; margin-top:14px; text-align:center; }
+.price-num { font-family:'Sarabun',sans-serif; font-size:22px; font-weight:700; color:var(--brown); display:block; }
 .duration-badge {
   display:inline-flex; align-items:center; gap:5px;
-  background:var(--pink); color:var(--brown);
-  font-size:13px; font-weight:600;
+  background:var(--brown); color:var(--white);
+  font-size:12px; font-weight:500;
   padding:5px 13px; border-radius:var(--radius-pill); margin-top:8px;
 }
 .price-note { font-size:10px; color:var(--text-mid); margin-top:6px; font-weight:300; line-height:1.5; }
@@ -522,19 +534,19 @@ linear-gradient(
 .btn {
   display:block; width:100%; padding:15px 24px;
   border:none; border-radius:var(--radius-pill);
-  font-family:'Quicksand',sans-serif; font-size:17px; font-weight:700;
+  font-family:'Mitr',sans-serif; font-size:17px; font-weight:500;
   cursor:pointer; text-align:center;
   transition:all .22s cubic-bezier(.34,1.56,.64,1);
   -webkit-tap-highlight-color:transparent;
 }
 .btn:active { transform:scale(.97); }
 .btn-primary { background:var(--brown); color:#fff; box-shadow:0 6px 20px rgba(160,114,85,.3); }
-.btn-primary:hover { background:#8a6145; transform:translateY(-2px); }
+.btn-primary:hover { background:#8a6145; transform:translateY(-1px); }
 .btn-primary:disabled { background:var(--gray); box-shadow:none; cursor:not-allowed; transform:none; }
-.btn-secondary { background:var(--cream); color:var(--brown); border:2.5px solid var(--sand); margin-bottom:10px; }
+.btn-secondary { background:var(--cream); color:var(--brown); border:1px solid var(--sand); margin-bottom:10px; }
 .btn-secondary:hover { background:var(--sand); }
 .btn-sage { background:var(--sage); color:#fff; box-shadow:0 6px 20px rgba(160,185,149,.32); }
-.btn-sage:hover { background:#8da880; transform:translateY(-2px); }
+.btn-sage:hover { background:#8da880; transform:translateY(-1px); }
 
 /* MINI SUMMARY */
 .mini-summary {
@@ -558,7 +570,7 @@ linear-gradient(
 
 /* ALERT */
 .full-alert {
-  background:#fff0f0; border:2px solid #f4b0b0;
+  background:#fff0f0; border:1px solid #f4b0b0;
   border-radius:12px; padding:11px 14px;
   font-size:13px; color:#c05050; font-weight:600;
   text-align:center; margin-top:8px; display:none;
@@ -689,7 +701,7 @@ fill="#F1F3EC"
         <div class="section-title">น้ำหนักโดยประมาณ</div>
       </div>
       <p class="section-sub">ช่วยให้ประเมินราคาและระยะเวลาได้แม่นยำ</p>
-      <div class="card-grid col1" id="weightGrid"></div>
+      <div class="card-grid" id="weightGrid"></div>
     </div>
 
     <div class="sub-divider"></div>
@@ -701,11 +713,11 @@ fill="#F1F3EC"
         <div class="section-title">ลักษณะขน</div>
       </div>
       <p class="section-sub">ช่วยให้ประเมินราคาและระยะเวลาได้แม่นยำ</p>
-      <div class="card-grid" id="coatGrid"></div>
+      <div class="card-grid col1" id="coatGrid"></div>
     </div>
 
     <br>
-    <button class="btn btn-primary" id="btnNextA" onclick="goToPage('B')" disabled>ถัดไป: เลือกบริการ →</button>
+    <button class="btn btn-primary" id="btnNextA" onclick="goToPage('B')" disabled>ถัดไป: เลือกบริการ ⇨</button>
   </div>
 
   <!-- PAGE B: บริการ + Add-ons -->
@@ -737,8 +749,8 @@ fill="#F1F3EC"
     </div>
 
     <br>
-    <button class="btn btn-secondary" onclick="goToPage('A')">← ย้อนกลับ</button>
-    <button class="btn btn-primary" id="btnNextB" onclick="goToPage('C')" disabled>ถัดไป: เลือกวัน-เวลา →</button>
+    <button class="btn btn-secondary" onclick="goToPage('A')">⇦ ย้อนกลับ</button>
+    <button class="btn btn-primary" id="btnNextB" onclick="goToPage('C')" disabled>ถัดไป: เลือกวัน-เวลา ⇨</button>
   </div>
 
   <!-- PAGE C: วันและเวลา + ข้อมูลลูกค้า (merged) -->
@@ -760,8 +772,8 @@ fill="#F1F3EC"
             <button class="cal-nav" id="calNext" onclick="calNav(1)">›</button>
           </div>
           <div class="cal-dow-row">
-            <div class="cal-dow closed">อา</div>
-            <div class="cal-dow">จ</div><!-- closed but shown -->
+            <div class="cal-dow">อา</div>
+            <div class="cal-dow closed">จ</div><!-- closed but shown -->
             <div class="cal-dow">อ</div>
             <div class="cal-dow">พ</div>
             <div class="cal-dow">พฤ</div>
@@ -798,8 +810,8 @@ fill="#F1F3EC"
     </div>
 
     <br>
-    <button class="btn btn-secondary" onclick="goToPage('B')">← ย้อนกลับ</button>
-    <button class="btn btn-primary" onclick="doSummary()">ดูสรุปการจอง →</button>
+    <button class="btn btn-secondary" onclick="goToPage('B')">⇦ ย้อนกลับ</button>
+    <button class="btn btn-primary" onclick="doSummary()">ดูสรุปการจอง ⇨</button>
   </div>
 
   <!-- PAGE D: Summary -->
@@ -812,7 +824,7 @@ fill="#F1F3EC"
       <p class="section-sub">กรุณาตรวจสอบข้อมูลก่อนยืนยัน</p>
     </div>
     <div class="summary-card" id="summaryCard"></div>
-    <button class="btn btn-secondary" onclick="goToPage('C')">← แก้ไขข้อมูล</button>
+    <button class="btn btn-secondary" onclick="goToPage('C')">⇦ แก้ไขข้อมูล</button>
     <button class="btn btn-sage" onclick="confirmBooking()">✓ ยืนยันการจอง</button>
   </div>
 
@@ -958,51 +970,50 @@ const dogCoats=[
   {val:'short', label:'ขนสั้น',              emoji:'🐕', sub:'เช่น ชิวาวา, เฟรนช์บูลด็อก, บีเกิล'},
   {val:'long',  label:'ขนยาว',               emoji:'🐩', sub:'เช่น ชิสุ, มอลทีส, พุดเดิ้ล โกลเด้น'},
   {val:'thick', label:'ขนหนา/สองชั้น',     emoji:'🐻', sub:'เช่น ปอม ฮัสกี้, คอร์กี้'},
-  {val:'matted',label:'ขนพันกัน/สังกะตัง', emoji:'🌀', sub:'ขนจับตัวเป็นก้อน ต้องใช้เวลาสางขนเพิ่ม'},
+ 
 ];
 const catCoats=[
-  {val:'short', label:'ขนสั้น',              emoji:'🐱', sub:'เช่น ไทย, อเมริกันช็อตแฮร์, บริติชช็อตแฮร์'},
-  {val:'long',  label:'ขนยาว',               emoji:'😺', sub:'เช่น เปอร์เซีย, เมนคูน, แร็กดอลล์'},
+  {val:'short', label:'ขนสั้น',              emoji:'😺', sub:'เช่น ไทย, อเมริกันช็อตแฮร์, บริติชช็อตแฮร์'},
+  {val:'long',  label:'ขนยาว',               emoji:'😼', sub:'เช่น เปอร์เซีย, เมนคูน, แร็กดอลล์'},
   {val:'thick', label:'ขนหนา',               emoji:'🦁', sub:'ขนแน่น เป่ายาก ใช้เวลาเพิ่ม'},
-  {val:'matted',label:'ขนพันกัน/สังกะตัง', emoji:'🌀', sub:'ขนจับตัวเป็นก้อน ต้องใช้เวลาสางขนเพิ่ม'},
+  
 ];
 
 const dogPrices={
   'ต่ำกว่า 2.5 กก.':{bath_short:250,bath_long:300,trim:200,scissor:300},
-  '2.5–5 กก.':      {bath_short:300,bath_long:350,trim:250,scissor:350},
-  '5.1–10 กก.':     {bath_short:400,bath_long:450,trim:300,scissor:450},
-  '10.1–15 กก.':    {bath_short:500,bath_long:600,trim:350,scissor:600},
-  '15.1–25 กก.':    {bath_short:600,bath_long:700,trim:500,scissor:700},
-  '25.1–40 กก.':    {bath_short:700,bath_long:900,trim:600,scissor:900},
+  '2.5 – 5 กก.':      {bath_short:300,bath_long:350,trim:250,scissor:350},
+  '5.1 – 10 กก.':     {bath_short:400,bath_long:450,trim:300,scissor:450},
+  '10.1 – 15 กก.':    {bath_short:500,bath_long:600,trim:350,scissor:600},
+  '15.1 – 25 กก.':    {bath_short:600,bath_long:700,trim:500,scissor:700},
+  '25.1 – 40 กก.':    {bath_short:700,bath_long:900,trim:600,scissor:900},
   'มากกว่า 40 กก.': {bath_short:900,bath_long:1100,trim:700,scissor:1100},
 };
 const catPrices={
   'ต่ำกว่า 3 กก.':  {bath_short:300,bath_long:350,trim:250,scissor:350},
-  '3–5 กก.':        {bath_short:400,bath_long:450,trim:300,scissor:450},
-  '5.1–10 กก.':     {bath_short:500,bath_long:600,trim:400,scissor:600},
+  '3 – 5 กก.':        {bath_short:400,bath_long:450,trim:300,scissor:450},
+  '5.1 – 10 กก.':     {bath_short:500,bath_long:600,trim:400,scissor:600},
   'มากกว่า 10 กก.': {bath_short:600,bath_long:700,trim:500,scissor:700},
 };
 
 const addons=[
-  {val:'spa',     label:'สปา',              emoji:'🧖',desc:'ช่วยทำความสะอาดล้ำลึก ผ่อนคลาย และบำรุงผิวและเส้นขน',      prL:[100,200],prH:[200,400],dur:[10,20]},
-  {val:'medshamp',label:'แชมพูยา',           emoji:'💊',desc:'เหมาะสำหรับสัตว์เลี้ยงที่มีปัญหาผิวหนังหรืออาการคัน',      prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'oilshamp',label:'แชมพูขจัดคราบมัน', emoji:'🧴',desc:'ช่วยลดความมัน กลิ่นตัว และทำความสะอาดล้ำลึก',            prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'dryshamp',label:'แชมพูสำหรับผิวแห้ง',emoji:'🌿',desc:'ช่วยเพิ่มความชุ่มชื้น ลดอาการผิวแห้งและระคายเคือง',       prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'treat',   label:'ทรีตเมนต์',         emoji:'✨',desc:'บำรุงขนให้นุ่ม เงางาม ลดขนพันกัน',                       prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'teeth',   label:'แปรงฟัน',           emoji:'🦷',desc:'ช่วยลดกลิ่นปากและดูแลสุขภาพช่องปาก',                    prL:[50,50],  prH:[100,100],dur:[5,10]},
-  {val:'dbl',     label:'สางขนสองชั้น',      emoji:'🌊',desc:'เหมาะสำหรับสายพันธุ์ขนหนาและขนสองชั้น',                 prL:[100,400],prH:[100,400],dur:[30,60]},
-  {val:'demat',   label:'สางขนสังกะตัง',     emoji:'🔧',desc:'สำหรับขนพันกันหรือจับตัวเป็นก้อน',                       prL:[100,400],prH:[100,400],dur:[30,60]},
+  {val:'spa',     label:'สปา',              emoji:'🛁',desc:'ช่วยทำความสะอาดล้ำลึก ผ่อนคลาย บำรุงผิวและเส้นขน',      prL:[100,200],prH:[200,400],dur:[10,15]},
+  {val:'medshamp',label:'แชมพูยา',           emoji:'🫙',desc:'สำหรับน้องหมาน้องแมวที่มีปัญหาผิวหนังหรืออาการคัน',      prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'oilshamp',label:'ขจัดคราบมัน',     emoji:'🧼',desc:'ช่วยลดความมัน กลิ่นตัว และทำความสะอาดล้ำลึก',            prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'treat',   label:'ทรีตเมนต์',         emoji:'🌸',desc:'บำรุงขนให้นุ่ม เงางาม ลดขนพันกัน',                       prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'teeth',   label:'แปรงฟัน',           emoji:'🦷',desc:'ช่วยลดกลิ่นปากและดูแลสุขภาพช่องปาก',                    prL:[50,50],  prH:[100,100],dur:[5]},
+  {val:'dbl',     label:'สางขนสองชั้น',      emoji:'🪮',desc:'สำหรับขนหนาหรือขนสองชั้น',                         prL:[100,400],prH:[100,400],dur:[15,30]},
+  {val:'demat',   label:'สางขนสังกะตัง',     emoji:'😶‍🌫️',desc:'สำหรับขนพันกันหรือจับตัวเป็นก้อน',                       prL:[100,400],prH:[100,400],dur:[30,60]},
 ];
 
 // ── HELPERS ──
 function getKg(w){
   if(!w) return 5;
   if(w.includes('ต่ำกว่า 2.5')) return 2;
-  if(w.includes('2.5–5')||w.includes('ต่ำกว่า 3')||w.includes('3–5')) return 4;
-  if(w.includes('5.1–10')) return 7;
-  if(w.includes('10.1–15')) return 12;
-  if(w.includes('15.1–25')) return 20;
-  if(w.includes('25.1–40')) return 30;
+  if(w.includes('2.5 – 5')||w.includes('ต่ำกว่า 3')||w.includes('3 – 5')) return 4;
+  if(w.includes('5.1 – 10')) return 7;
+  if(w.includes('10.1 – 15')) return 12;
+  if(w.includes('15.1 – 25')) return 20;
+  if(w.includes('25.1 – 40')) return 30;
   if(w.includes('มากกว่า 40')) return 45;
   if(w.includes('มากกว่า 10')) return 12;
   return 5;
@@ -1172,20 +1183,20 @@ function buildServiceGrid(){
   const pSci=row?row['scissor']:0;
 
   const svcs=[
-    {key:'bath_only', hcut:null,      emoji:'🛁',
+    {key:'bath_only', hcut:null,      emoji:'🚿',
      name:`อาบน้ำ${animal}`,
      desc:`รวมเช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น`,
-     tags:[`อาบน้ำ (${bathTypeLabel})`],
+     tags:[`Bathing (${bathTypeLabel})`],
      price:pBath},
     {key:'bath_clipper', hcut:'clipper', emoji:'✂️',
      name:`อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)`,
-     desc:`อาบน้ำก่อน แล้วจึงตัดขนด้วยเครื่องปัตตาเลี่ยน`,
-     tags:[`อาบน้ำ (${bathTypeLabel})`,'ตัดขนปัตตาเลี่ยน'],
+     desc:`อาบน้ำและตัดขนด้วยเครื่องปัตตาเลี่ยน`,
+     tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Clippers)'],
      price:row?pBath+pTrim:0},
-    {key:'bath_scissor', hcut:'scissor', emoji:'💇',
+    {key:'bath_scissor', hcut:'scissor', emoji:'✂️',
      name:`อาบน้ำ + ตัดขน (กรรไกร)`,
-     desc:`อาบน้ำก่อน แล้วตัดขนด้วยกรรไกร ละเอียดกว่า ใช้เวลาเพิ่ม`,
-     tags:[`อาบน้ำ (${bathTypeLabel})`,'ตัดขนกรรไกร'],
+     desc:`อาบน้ำและตัดขนด้วยกรรไกร ละเอียดกว่า ใช้เวลาเพิ่ม`,
+     tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Scissors)'],
      price:row?pBath+pSci:0},
   ];
 
@@ -1259,13 +1270,13 @@ function buildEstimateCard(){
   const durStr=fmtDur(mn,mx);
   const addonCount=S.addons.length;
   // Warn if any time slot could exceed closing
-  const slotWarning = mx > 120 ? `<div style="font-size:10px;color:#b07a30;margin-top:4px">⚠️ บางช่วงเวลาอาจไม่สามารถจองได้</div>` : '';
+  const slotWarning = mx > 120 ? `<div style="font-size:10px;color:#b07a30;margin-top:4px">⚠️ จากการประเมินเวลาทำให้บางช่วงเวลาอาจไม่สามารถจองได้</div>` : '';
   document.getElementById('estimateCard').innerHTML=`
     <div class="estimate-icon">🧾</div>
     <div class="estimate-body">
-      <div class="estimate-label">ราคาและเวลาโดยประมาณ</div>
+      <div class="estimate-label">ระยะเวลาและราคาจริงอาจเปลี่ยนแปลงตามสภาพขนและพฤติกรรมของน้องหมาน้องแมว</div>
       <div class="estimate-price">${priceStr}</div>
-      <div class="estimate-duration">⏱ <b>${durStr}</b></div>
+      <div class="estimate-duration">🕓 <b>${durStr}</b></div>
       <div class="estimate-svc-tag">${svcLabel}${addonCount?` + ${addonCount} เสริม`:''}</div>
       ${slotWarning}
     </div>`;
@@ -1508,7 +1519,7 @@ function buildSummary(){
   const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
 
   document.getElementById('summaryCard').innerHTML=`
-    <div class="summary-title">📋 รายละเอียดการจอง</div>
+    <div class="summary-title">🧾 รายละเอียดการจอง</div>
     <div class="summary-row"><span class="s-label">ประเภทสัตว์</span><span class="s-val">${petLabel}</span></div>
     <div class="summary-row"><span class="s-label">ชื่อน้อง</span><span class="s-val">${S.petName}</span></div>
     <div class="summary-row"><span class="s-label">น้ำหนัก</span><span class="s-val">${S.weight}</span></div>
@@ -1522,9 +1533,9 @@ function buildSummary(){
     <div class="summary-row"><span class="s-label">เบอร์โทร</span><span class="s-val">${S.custPhone}</span></div>
     ${S.custNote?`<div class="summary-row"><span class="s-label">หมายเหตุ</span><span class="s-val">${S.custNote}</span></div>`:''}
     <div class="price-big">
-      <span class="price-num">ราคาประมาณ ${priceStr}</span>
-      <div class="duration-badge">⏱ ${fmtDur(mn,mx)}</div>
-      <p class="price-note">ราคาจริงอาจเปลี่ยนแปลงตามสภาพขน ขนาดตัว และพฤติกรรมของสัตว์เลี้ยง</p>
+      <span class="price-num">ราคาคาดการณ์ ${priceStr}</span>
+      <div class="duration-badge">🕓 ${fmtDur(mn,mx)}</div>
+      <p class="price-note">ระยะเวลาและราคาจริงอาจเปลี่ยนแปลงตามสภาพขนและพฤติกรรมของน้องหมาน้องแมว</p>
     </div>`;
 }
 
