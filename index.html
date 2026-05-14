@@ -498,11 +498,12 @@ linear-gradient(
   background:var(--white); outline:none; transition:border .2s; resize:none;
 }
 .form-field input:focus, .form-field textarea:focus { border-color:var(--brown); }
+.form-field .hint { font-size:11px; color:var(--text-mid); margin-top:3px; font-weight:300; }
 
 /* SUMMARY */
-.summary-card {
-  background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 60%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0; border-radius:var(--radius-xl);
-  padding:22px 18px;
+.summary-box {
+  background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0;
+  border-radius:var(--radius-lg); padding:18px;
   box-shadow:
     /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
     /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
@@ -510,402 +511,537 @@ linear-gradient(
     /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
     /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
     /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
-  margin-bottom:20px;
+  margin-bottom:14px;
 }
-.summary-title { font-family:'Mitr',sans-serif; font-size:19px; font-weight:700; color:var(--brown); margin-bottom:16px; }
-.summary-row {
-  display:flex; justify-content:space-between; align-items:flex-start;
-  padding:8px 0; border-bottom:1px dashed var(--sand); gap:10px;
+.summary-row { display:flex; justify-content:space-between; align-items:flex-start; padding:8px 0; border-bottom:1px solid var(--sand); }
+.summary-row:last-child { border-bottom:none; }
+.summary-label { font-size:12px; color:var(--text-mid); font-weight:500; }
+.summary-val { font-size:13px; font-weight:600; color:var(--text-dark); text-align:right; max-width:62%; }
+
+/* CONSENT */
+.consent-block {
+  background:var(--pink); border-radius:14px; padding:13px 14px;
+  margin-bottom:14px; display:flex; gap:10px; align-items:flex-start;
 }
-.summary-row:last-of-type { border-bottom:none; }
-.s-label { font-size:12px; color:var(--text-mid); flex-shrink:0; }
-.s-val { font-family:'Sarabun',sans-serif; font-size:13px; font-weight:700; color:var(--text-dark); text-align:right; }
-.price-big { background:var(--yellow-green); border: 0; border-radius:14px; padding:16px 18px; margin-top:14px; text-align:center; }
-.price-num { font-family:'Sarabun',sans-serif; font-size:22px; font-weight:700; color:var(--brown); display:block; }
-.duration-badge {
-  display:inline-flex; align-items:center; gap:5px;
-  background:var(--brown); color:var(--white);
-  font-size:12px; font-weight:500;
-  padding:5px 13px; border-radius:var(--radius-pill); margin-top:8px;
-}
-.price-note { font-size:10px; color:var(--text-mid); margin-top:6px; font-weight:300; line-height:1.5; }
+.consent-check-wrap { padding-top:1px; }
+.consent-check { width:20px;height:20px; flex-shrink:0; cursor:pointer; accent-color:var(--brown); }
+.consent-text { font-size:12px; color:var(--text-dark); line-height:1.6; font-weight:300; }
+.consent-text a { color:var(--brown); }
 
 /* BUTTONS */
-.btn {
-  display:block; width:100%; padding:15px 24px;
-  border:none; border-radius:var(--radius-pill);
-  font-family:'Mitr',sans-serif; font-size:17px; font-weight:500;
-  cursor:pointer; text-align:center;
-  transition:all .22s cubic-bezier(.34,1.56,.64,1);
+.btn-primary {
+  width:100%; padding:15px; border:none; border-radius:var(--radius-pill);
+  background:var(--brown); color:#fff;
+  font-family:'Mitr',sans-serif; font-size:16px; font-weight:600;
+  cursor:pointer; transition:all .2s; letter-spacing:1px;
   -webkit-tap-highlight-color:transparent;
 }
-.btn:active { transform:scale(.97); }
-.btn-primary { background:var(--brown); color:#fff; box-shadow:0 6px 20px rgba(160,114,85,.3); }
-.btn-primary:hover { background:#8a6145; transform:translateY(-1px); }
-.btn-primary:disabled { background:var(--gray); box-shadow:none; cursor:not-allowed; transform:none; }
-.btn-secondary { background:var(--cream); color:var(--brown); border:1px solid var(--sand); margin-bottom:10px; }
-.btn-secondary:hover { background:var(--sand); }
-.btn-sage { background:var(--sage); color:#fff; box-shadow:0 6px 20px rgba(160,185,149,.32); }
-.btn-sage:hover { background:#8da880; transform:translateY(-1px); }
-
-/* MINI SUMMARY */
-.mini-summary {
-  position:fixed; bottom:0;left:0;right:0;
-  background:var(--brown); 
-  padding:10px 16px 14px; z-index:200; display:none;
-  box-shadow:0 -4px 20px rgba(160,114,85,.11);
+.btn-primary:hover { filter:brightness(1.08); transform:translateY(-1px); }
+.btn-primary:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+.btn-secondary {
+  background:none; border:2px solid var(--sand);
+  border-radius:var(--radius-pill); padding:11px;
+  font-family:'Mitr',sans-serif; font-size:14px; font-weight:500;
+  color:var(--text-mid); cursor:pointer; width:100%; transition:all .2s;
+  -webkit-tap-highlight-color:transparent;
 }
-.mini-summary.visible { display:block; }
-.mini-sum-row { display:flex; justify-content:space-between; align-items:center; }
-.mini-sum-info { font-size:14px; color:var(--white); }
-.mini-sum-price { font-family:'Sarabun',sans-serif; font-size:20px; color:var(--white); font-weight:700; }
+.btn-secondary:hover { border-color:var(--brown); color:var(--brown); }
 
-/* SUCCESS */
-.success-wrap { display:none; text-align:center; padding:48px 20px 80px; animation:fadeUp .5s ease; }
-.success-wrap.visible { display:block; }
-.success-icon { font-size:72px; margin-bottom:16px; animation:pop .5s cubic-bezier(.34,1.56,.64,1); }
-@keyframes pop { from{transform:scale(0)} to{transform:scale(1)} }
-.success-title { font-family:'Quicksand',sans-serif; font-size:28px; font-weight:700; color:var(--brown); margin-bottom:10px; }
-.success-sub { font-size:14px; color:var(--text-mid); line-height:1.8; }
-
-/* ALERT */
-.full-alert {
-  background:#fff0f0; border:1px solid #f4b0b0;
-  border-radius:12px; padding:11px 14px;
-  font-size:13px; color:#c05050; font-weight:600;
-  text-align:center; margin-top:8px; display:none;
+/* STICKY FOOTER */
+.sticky-footer {
+  position:fixed; bottom:0; left:0; right:0;
+  background:linear-gradient(0deg, var(--cream) 80%, transparent);
+  padding:14px 20px 24px; z-index:200;
+  display:flex; flex-direction:column; gap:8px;
+  max-width:560px; margin:0 auto;
 }
-.full-alert.visible { display:block; }
+
+/* TOAST */
+.toast {
+  position:fixed; bottom:100px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--text-dark); color:#fff;
+  padding:10px 20px; border-radius:var(--radius-pill);
+  font-size:13px; font-weight:500;
+  opacity:0; transition:all .3s; z-index:999; white-space:nowrap;
+  pointer-events:none;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* CONFIRMATION */
+.confirm-hero {
+  background:linear-gradient(135deg,var(--yellow-green) 0%,var(--pink) 100%);
+  border-radius:var(--radius-xl); padding:32px 20px;
+  text-align:center; margin-bottom:20px;
+}
+.confirm-check { font-size:60px; margin-bottom:12px; }
+.confirm-hero h2 { font-size:22px; color:var(--brown); margin-bottom:6px; }
+.confirm-hero p { font-size:13px; color:var(--text-mid); line-height:1.8; font-weight:300; }
+.confirm-id {
+  background:var(--white); border-radius:12px; padding:9px 16px;
+  font-family:'Sarabun',sans-serif; font-size:13px; font-weight:700; color:var(--brown);
+  display:inline-block; margin-top:12px; letter-spacing:1px;
+}
+.calendar-link-btn {
+  width:100%; padding:13px; border:2px solid var(--brown);
+  border-radius:var(--radius-pill); background:transparent;
+  font-family:'Mitr',sans-serif; font-size:14px; font-weight:600;
+  color:var(--brown); cursor:pointer; transition:all .2s;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  -webkit-tap-highlight-color:transparent;
+}
+.calendar-link-btn:hover { background:var(--brown); color:#fff; }
+
+/* LOADING */
+.loading-overlay {
+  position:fixed; inset:0; background:rgba(241,243,236,0.88);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  z-index:999; backdrop-filter:blur(4px);
+  transition:opacity .3s;
+}
+.loading-overlay.hidden { opacity:0; pointer-events:none; }
+.spinner { width:42px;height:42px; border:3.5px solid var(--sand); border-top-color:var(--brown); border-radius:50%; animation:spin .7s linear infinite; }
+@keyframes spin { to{transform:rotate(360deg)} }
+.loading-text { margin-top:14px; font-size:14px; color:var(--text-mid); font-weight:500; }
+
+/* ANIMATIONS */
+@keyframes checkPop { 0%{transform:scale(.8)} 70%{transform:scale(1.06)} 100%{transform:scale(1)} }
+
+/* MODAL */
+.modal-backdrop {
+  position:fixed; inset:0; background:rgba(58,47,39,0.38);
+  z-index:500; display:flex; align-items:flex-end; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity .25s;
+}
+.modal-backdrop.open { opacity:1; pointer-events:all; }
+.modal-sheet {
+  background:var(--cream); border-radius:28px 28px 0 0;
+  padding:24px 20px 36px; width:100%; max-width:560px;
+  transform:translateY(30px); transition:transform .28s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-backdrop.open .modal-sheet { transform:translateY(0); }
+.modal-handle { width:36px;height:4px; background:var(--gray); border-radius:2px; margin:0 auto 18px; }
+.modal-title { font-size:18px; font-weight:600; color:var(--brown); margin-bottom:6px; }
+.modal-body { font-size:13px; color:var(--text-mid); line-height:1.8; font-weight:300; }
+.modal-close-btn {
+  margin-top:20px; width:100%; padding:13px;
+  border:none; border-radius:var(--radius-pill);
+  background:var(--brown); color:#fff;
+  font-family:'Mitr',sans-serif; font-size:15px; font-weight:600;
+  cursor:pointer; -webkit-tap-highlight-color:transparent;
+}
+
+/* GROOMER PILL ROW */
+.groomer-pill-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.groomer-pill {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 2px solid var(--sand);
+  background: var(--white);
+  font-family: 'Sarabun', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all 0.18s;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+.groomer-pill:hover {
+  border-color: var(--brown);
+  color: var(--brown);
+}
+.groomer-pill.selected {
+  background: var(--brown);
+  border-color: var(--brown);
+  color: #fff;
+}
+
+/* GROOMER BADGES */
+.groomer-badge-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.groomer-badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--yellow-green);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+
+.groomer-info-card {
+  background: linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%);
+  border-radius: 18px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  box-shadow:
+    0 9px 20px -7px rgba(255,252,235,1),
+    0 18px 36px -5px rgba(40,30,0,0.10),
+    0 1px 2px rgba(40,30,0,0.10),
+    inset 0 1px 0 rgba(255,253,240,0.95),
+    inset 0 -1px 1px rgba(255,253,240,0.95),
+    inset 0 -7px 13px -6px rgba(255,253,240,0.95);
+}
+
+.groomer-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.groomer-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.groomer-name {
+  font-family: 'Sarabun', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 3px;
+}
+
+.groomer-role {
+  font-size: 11px;
+  color: var(--text-mid);
+  margin-bottom: 6px;
+  font-weight: 300;
+}
+
 </style>
 </head>
 <body>
 
+<div class="ribbon">
+  <div class="ribbon-inner">
+    <span>CHOU&ME PET WELLNESS</span><span class="dot">✦</span>
+    <span>GROOMING</span><span class="dot">✦</span>
+    <span>จองออนไลน์</span><span class="dot">✦</span>
+    <span>SPA & CARE</span><span class="dot">✦</span>
+    <span>CHOU&ME PET WELLNESS</span><span class="dot">✦</span>
+    <span>GROOMING</span><span class="dot">✦</span>
+    <span>จองออนไลน์</span><span class="dot">✦</span>
+    <span>SPA & CARE</span><span class="dot">✦</span>
+  </div>
+</div>
+
 <header class="site-header">
-  <div class="logo">Chou<span> & </span>Me</div>
-  <div class="header-tag">✦ PET WELLNESS</div>
-  
+  <div class="logo">CHOU<span>&</span>ME</div>
+  <div class="header-tag">PET WELLNESS</div>
 </header>
 
-<div class="ribbon"><div class="ribbon-inner" id="ribbonInner"></div></div>
-
 <section class="hero">
-  <div class="hero-deco d1">🐶</div>
-  <div class="hero-deco d2">🐾</div>
-  <div class="hero-deco d3">✨</div>
-  <div class="hero-deco d4">🐱</div>
-  <div class="hero-badge">✦ Grooming Booking ✦</div>
+  <span class="hero-deco d1">🐾</span>
+  <span class="hero-deco d2">✂️</span>
+  <span class="hero-deco d3">🛁</span>
+  <span class="hero-deco d4">🐩</span>
+  <div class="hero-badge">✦ ONLINE BOOKING ✦</div>
   <h1>จองคิว<br><span>Grooming</span></h1>
-  <p>เลือกบริการ น้ำหนักโดยประมาณ และเวลาที่สะดวก ระบบจะช่วยคำนวณราคาและเวลาที่ใช้โดยประมาณเพื่อทำการจอง</p>
+  <p>เลือกวันเวลาที่สะดวก ยืนยันนัดหมายได้ทันที</p>
 </section>
 
 <div class="wave-overlap">
-  <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
-    <path
-d="
-      M0,38
-
-      Q12,-4 24,38
-      T48,38
-      T72,38
-      T96,38
-      T120,38
-      T144,38
-      T168,38
-      T192,38
-      T216,38
-      T240,38
-      T264,38
-      T288,38
-      T312,38
-      T336,38
-      T360,38
-      T384,38
-      T408,38
-      T432,38
-      T456,38
-      T480,38
-      T504,38
-      T528,38
-      T552,38
-      T576,38
-      T600,38
-      T624,38
-      T648,38
-      T672,38
-      T696,38
-      T720,38
-      T744,38
-      T768,38
-      T792,38
-      T816,38
-      T840,38
-      T864,38
-      T888,38
-      T912,38
-      T936,38
-      T960,38
-      T984,38
-      T1008,38
-      T1032,38
-      T1056,38
-      T1080,38
-      T1104,38
-      T1128,38
-      T1152,38
-      T1176,38
-      T1200,38
-
-      L1200,80
-      L0,80
-      Z
-      "
-fill="#F1F3EC"
-    />
+  <svg viewBox="0 0 1440 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C360,0 1080,20 1440,0 L1440,20 Z" fill="#F1F3EC"/>
   </svg>
 </div>
 
 <div class="booking-wrap">
 
-  <div class="step-nav" id="stepNav"></div>
-  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <nav class="step-nav" id="stepNav">
+    <!-- Pills rendered by JS -->
+  </nav>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
-  <!-- PAGE A: ประเภท + น้ำหนัก + ขน -->
-  <div class="booking-page active" id="pageA">
-
-    <!-- 1. Pet type -->
-    <div class="sub-section unlocked" id="subPet">
+  <!-- PAGE 1: Pet & Groomer -->
+  <div class="booking-page active" id="page1">
+    <div class="sub-section unlocked" id="sec-pet">
       <div class="sub-section-header">
         <div class="sub-num">1</div>
-        <div class="section-title">ประเภทสัตว์เลี้ยง</div>
-      </div>
-      <div class="card-grid">
-        <div class="sel-card" data-val="dog" onclick="selectPetType(this,'dog')">
-          <span class="card-emoji">🐕</span>
-          <span class="card-label">สุนัข</span>
-          <span class="card-sub">Dog</span>
-        </div>
-        <div class="sel-card" data-val="cat" onclick="selectPetType(this,'cat')">
-          <span class="card-emoji">🐈</span>
-          <span class="card-label">แมว</span>
-          <span class="card-sub">Cat</span>
+        <div>
+          <div class="section-title">น้องหมาของคุณ</div>
         </div>
       </div>
+      <div class="card-grid" id="petGrid"></div>
     </div>
 
-    <div class="sub-divider"></div>
-
-    <!-- 2. Weight -->
-    <div class="sub-section locked" id="subWeight">
+    <div class="sub-section locked" id="sec-groomer">
       <div class="sub-section-header">
         <div class="sub-num">2</div>
-        <div class="section-title">น้ำหนักโดยประมาณ</div>
+        <div>
+          <div class="section-title">เลือก Groomer</div>
+          <div class="section-sub">เลือก Groomer ที่ต้องการ</div>
+        </div>
       </div>
-      <p class="section-sub">ช่วยให้ประเมินราคาและระยะเวลาได้แม่นยำ</p>
-      <div class="card-grid" id="weightGrid"></div>
+      <div id="groomerArea"></div>
     </div>
+  </div>
 
-    <div class="sub-divider"></div>
-
-    <!-- 3. Coat -->
-    <div class="sub-section locked" id="subCoat">
+  <!-- PAGE 2: Service -->
+  <div class="booking-page" id="page2">
+    <div class="sub-section unlocked" id="sec-service">
       <div class="sub-section-header">
         <div class="sub-num">3</div>
-        <div class="section-title">ลักษณะขน</div>
-      </div>
-      <p class="section-sub">ช่วยให้ประเมินราคาและระยะเวลาได้แม่นยำ</p>
-      <div class="card-grid col1" id="coatGrid"></div>
-    </div>
-
-    <br>
-    <button class="btn btn-primary" id="btnNextA" onclick="goToPage('B')" disabled>ถัดไป: เลือกบริการ ⇨</button>
-  </div>
-
-  <!-- PAGE B: บริการ + Add-ons -->
-  <div class="booking-page" id="pageB">
-
-    <!-- 4. Service -->
-    <div class="sub-section unlocked" id="subService">
-      <div class="sub-section-header">
-        <div class="sub-num">4</div>
-        <div class="section-title">เลือกบริการ</div>
-      </div>
-      <p class="section-sub">ตัดขนต้องอาบน้ำก่อนเสมอ ไม่สามารถเลือกตัดขนอย่างเดียวได้</p>
-      <div class="service-note">
-        <span>⭐️ ราคาอาบน้ำรวมบริการ เช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น</span>
+        <div>
+          <div class="section-title">บริการ</div>
+        </div>
       </div>
       <div id="serviceList"></div>
+      <div class="service-note">
+        <span class="ni">💡</span>
+        <span>ราคาเป็นราคาเริ่มต้น อาจมีค่าบริการเพิ่มตามขนาดและสภาพขน สอบถามได้ที่หน้าร้าน</span>
+      </div>
     </div>
 
-    <div class="sub-divider"></div>
-
-    <!-- 5. Add-ons -->
-    <div class="sub-section locked" id="subAddon">
+    <div class="sub-section locked" id="sec-addon">
       <div class="sub-section-header">
-        <div class="sub-num">5</div>
-        <div class="section-title">บริการเสริม</div>
+        <div class="sub-num">4</div>
+        <div>
+          <div class="section-title">บริการเสริม</div>
+          <div class="section-sub">เลือกได้มากกว่า 1 อย่าง</div>
+        </div>
       </div>
-      <p class="section-sub">เลือกได้หลายรายการ ไม่บังคับ</p>
       <div class="addon-grid" id="addonGrid"></div>
     </div>
-
-    <br>
-    <button class="btn btn-secondary" onclick="goToPage('A')">⇦ ย้อนกลับ</button>
-    <button class="btn btn-primary" id="btnNextB" onclick="goToPage('C')" disabled>ถัดไป: เลือกวัน-เวลา ⇨</button>
   </div>
 
-  <!-- PAGE C: วันและเวลา + ข้อมูลลูกค้า (merged) -->
-  <div class="booking-page" id="pageC">
-
-    <!-- 6. Date & Time -->
-    <div class="sub-section unlocked" id="subDate">
+  <!-- PAGE 3: Date & Time -->
+  <div class="booking-page" id="page3">
+    <div class="sub-section unlocked" id="sec-datetime">
       <div class="sub-section-header">
-        <div class="sub-num">6</div>
-        <div class="section-title">เลือกวันและเวลา</div>
-      </div>
-      <p class="section-sub">เปิดให้บริการ อังคาร – อาทิตย์ เวลา 09:00 – 20:00 น.</p>
-      <div class="estimate-card" id="estimateCard"></div>
-      <div class="date-input-wrap">
-        <div class="cal-wrap">
-          <div class="cal-header">
-            <button class="cal-nav" id="calPrev" onclick="calNav(-1)">‹</button>
-            <div class="cal-title" id="calTitle"></div>
-            <button class="cal-nav" id="calNext" onclick="calNav(1)">›</button>
-          </div>
-          <div class="cal-dow-row">
-            <div class="cal-dow">อา</div>
-            <div class="cal-dow closed">จ</div><!-- closed but shown -->
-            <div class="cal-dow">อ</div>
-            <div class="cal-dow">พ</div>
-            <div class="cal-dow">พฤ</div>
-            <div class="cal-dow">ศ</div>
-            <div class="cal-dow">ส</div>
-          </div>
-          <div class="cal-grid" id="calGrid"></div>
+        <div class="sub-num">5</div>
+        <div>
+          <div class="section-title">เลือกวันและเวลา</div>
         </div>
+      </div>
+
+      <div class="estimate-card" id="estimateCard">
+        <div class="estimate-icon">⏱️</div>
+        <div class="estimate-body">
+          <div class="estimate-label">ประมาณการ</div>
+          <div class="estimate-price" id="estimatePrice">—</div>
+          <div class="estimate-duration">
+            <span>⏳</span><span>ระยะเวลาประมาณ <b id="estimateDur">—</b> นาที</span>
+          </div>
+          <span class="estimate-svc-tag" id="estimateSvcTag">—</span>
+        </div>
+      </div>
+
+      <div class="date-input-wrap">
+        <label>📅 เลือกวัน</label>
+        <div class="cal-wrap" id="calWrap"></div>
         <div class="selected-date-badge" id="selectedDateBadge">
-          <span class="sdb-icon">✦</span>
+          <span class="sdb-icon">📅</span>
           <span id="selectedDateText"></span>
         </div>
-        <div class="date-note" id="dateNote">❌ คลินิกปิดวันจันทร์ กรุณาเลือกวันอื่น</div>
       </div>
+
       <div class="date-input-wrap" id="timeWrap" style="display:none">
-        <label>เลือกเวลาที่ต้องการจอง</label>
-        <div class="timeslot-grid" id="timeslotGrid"></div>
-        <div class="full-alert" id="fullAlert">❌ ช่วงเวลานี้เต็มแล้ว กรุณาเลือกเวลาอื่น</div>
+        <label>🕐 เลือกเวลา</label>
+        <div class="timeslot-grid" id="timeGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 4: Contact -->
+  <div class="booking-page" id="page4">
+    <div class="sub-section unlocked" id="sec-contact">
+      <div class="sub-section-header">
+        <div class="sub-num">6</div>
+        <div>
+          <div class="section-title">ข้อมูลติดต่อ</div>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>ชื่อเจ้าของ *</label>
+        <input type="text" id="ownerName" placeholder="ชื่อ-นามสกุล" autocomplete="name">
+      </div>
+      <div class="form-field">
+        <label>เบอร์โทร *</label>
+        <input type="tel" id="ownerPhone" placeholder="0XX-XXX-XXXX" autocomplete="tel">
+      </div>
+      <div class="form-field">
+        <label>ชื่อน้องหมา</label>
+        <input type="text" id="petNameInput" placeholder="ชื่อน้องหมา (ถ้ามี)">
+      </div>
+      <div class="form-field">
+        <label>หมายเหตุ</label>
+        <textarea id="ownerNote" rows="3" placeholder="แจ้งพฤติกรรมพิเศษ, โรคประจำตัว ฯลฯ"></textarea>
       </div>
     </div>
 
-    <div class="sub-divider"></div>
-
-    <!-- 7. Customer Info -->
-    <div class="sub-section locked" id="subCustomer">
+    <div class="sub-section unlocked" id="sec-summary">
       <div class="sub-section-header">
         <div class="sub-num">7</div>
-        <div class="section-title">ข้อมูลผู้จอง</div>
+        <div><div class="section-title">สรุปการจอง</div></div>
       </div>
-      <div class="form-field"><label>ชื่อลูกค้า*</label><input type="text" id="custName" placeholder="ชื่อเจ้าของ"></div>
-      <div class="form-field"><label>เบอร์โทร*</label><input type="tel" id="custPhone" placeholder="0XX-XXX-XXXX"></div>
-      <div class="form-field"><label>ชื่อสัตว์เลี้ยง*</label><input type="text" id="petName" placeholder="ชื่อเล่นของน้อง"></div>
-      <div class="form-field"><label>หมายเหตุเพิ่มเติม</label><textarea id="custNote" rows="3" placeholder="เช่น น้องตื่นเต้น ชอบให้อุ้ม กลัวเสียงดัง ฯลฯ"></textarea></div>
+      <div class="summary-box" id="summaryBox"></div>
+      <div class="consent-block">
+        <div class="consent-check-wrap">
+          <input type="checkbox" class="consent-check" id="consentCheck">
+        </div>
+        <div class="consent-text">ฉันยอมรับ<a href="#" onclick="openModal('policyModal');return false;">นโยบายความเป็นส่วนตัว</a>และ<a href="#" onclick="openModal('cancelModal');return false;">เงื่อนไขการยกเลิก</a></div>
+      </div>
     </div>
-
-    <br>
-    <button class="btn btn-secondary" onclick="goToPage('B')">⇦ ย้อนกลับ</button>
-    <button class="btn btn-primary" onclick="doSummary()">ดูสรุปการจอง ⇨</button>
   </div>
 
-  <!-- PAGE D: Summary -->
-  <div class="booking-page" id="pageD">
-    <div class="sub-section unlocked">
-      <div class="sub-section-header">
-        <div class="sub-num">8</div>
-        <div class="section-title">สรุปการจอง</div>
-      </div>
-      <p class="section-sub">กรุณาตรวจสอบข้อมูลก่อนยืนยัน</p>
+  <!-- PAGE 5: Confirm -->
+  <div class="booking-page" id="page5">
+    <div class="confirm-hero">
+      <div class="confirm-check">🎉</div>
+      <h2>จองสำเร็จ!</h2>
+      <p>ทีมงาน Chou&Me จะติดต่อยืนยันนัดหมายผ่านทางโทรศัพท์</p>
+      <div class="confirm-id" id="confirmId"></div>
     </div>
-    <div class="summary-card" id="summaryCard"></div>
-    <button class="btn btn-secondary" onclick="goToPage('C')">⇦ แก้ไขข้อมูล</button>
-    <button class="btn btn-sage" onclick="confirmBooking()">✓ ยืนยันการจอง</button>
+    <div class="summary-box" id="confirmSummary"></div>
+    <button class="calendar-link-btn" id="calBtn">📅 เพิ่มใน Google Calendar</button>
   </div>
 
+</div><!-- /booking-wrap -->
+
+<!-- STICKY FOOTER -->
+<div class="sticky-footer" id="stickyFooter">
+  <button class="btn-primary" id="nextBtn">ถัดไป →</button>
+  <button class="btn-secondary" id="backBtn" style="display:none">← ย้อนกลับ</button>
 </div>
 
-<!-- SUCCESS -->
-<div class="success-wrap" id="successWrap">
-  <div class="success-icon">🎉</div>
-  <div class="success-title">จองคิวสำเร็จแล้ว!</div>
-  <p class="success-sub">ขอบคุณที่ไว้วางใจ Chou&Me Pet Wellness<br>เราจะดูแลสมาชิกครอบครัวของคุณอย่างดีที่สุด<br><br>จะมีการติดต่อกลับเพื่อยืนยันคิวทางโทรศัพท์หรือ LINE OFFICIAL</p>
-  <br><br>
-  <button class="btn btn-primary" style="max-width:280px;margin:0 auto" onclick="location.reload()">+ จองอีกครั้ง</button>
+<!-- LOADING -->
+<div class="loading-overlay hidden" id="loadingOverlay">
+  <div class="spinner"></div>
+  <div class="loading-text" id="loadingText">กำลังบันทึก...</div>
 </div>
 
-<!-- MINI STICKY SUMMARY -->
-<div class="mini-summary" id="miniSummary">
-  <div class="mini-sum-row">
-    <div class="mini-sum-info" id="miniInfo"></div>
-    <div class="mini-sum-price" id="miniPrice"></div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- MODALS -->
+<div class="modal-backdrop" id="policyModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">นโยบายความเป็นส่วนตัว</div>
+    <div class="modal-body">
+      เราเก็บรวบรวมข้อมูลส่วนตัว (ชื่อ เบอร์โทร ชื่อสัตว์เลี้ยง) เพื่อใช้ในการยืนยันและบริหารนัดหมายเท่านั้น ข้อมูลจะไม่ถูกเปิดเผยแก่บุคคลที่สาม และจะถูกเก็บรักษาตามมาตรฐาน PDPA
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('policyModal')">รับทราบ</button>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="cancelModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">เงื่อนไขการยกเลิก</div>
+    <div class="modal-body">
+      กรุณาแจ้งยกเลิกหรือเลื่อนนัดล่วงหน้าอย่างน้อย 24 ชั่วโมง หากยกเลิกกระชั้นชิดหรือไม่มาตามนัดโดยไม่แจ้ง ทางร้านขอสงวนสิทธิ์ในการปรับค่าธรรมเนียม
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('cancelModal')">รับทราบ</button>
   </div>
 </div>
 
 <script>
-// ── Supabase + shared data layer ──
-// ══════════════════════════════════════════
-// ══════════════════════════════════════════
-// SUPABASE CONFIG
-// ══════════════════════════════════════════
-const SB_URL  = 'https://qlyyeetzvtegbgasmmmb.supabase.co';
-const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFseXllZXR6dnRlZ2JnYXNtbW1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNTA1MjMsImV4cCI6MjA5MzgyNjUyM30.nryBXiYnGTPNpAAEPOdqRExVDd3IeT4S0vAiZ1sHkkg';
-const SB_HEADERS_INSERT = {
-  'Content-Type': 'application/json',
-  'apikey': SB_ANON,
-  'Authorization': 'Bearer ' + SB_ANON,
-  'Prefer': 'return=minimal'   // customer page only inserts, no read-back needed
-};
+// ── SUPABASE CONFIG ──────────────────────────
+const SB_URL = 'https://ygglofvfbsofqtgavhxs.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlnb2xvZnZmYnNvZnF0Z2F2aHhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwODA5OTUsImV4cCI6MjA2MTY1Njk5NX0.9CzrKw_7i8nXy_XnV4kBfAa_Ej-m38h0H-fcidXXwbU';
 const SB_HEADERS_READ = {
+  'apikey': SB_KEY,
+  'Authorization': 'Bearer ' + SB_KEY
+};
+const SB_HEADERS_INSERT = {
+  ...SB_HEADERS_READ,
   'Content-Type': 'application/json',
-  'apikey': SB_ANON,
-  'Authorization': 'Bearer ' + SB_ANON
+  'Prefer': 'return=minimal'
 };
 
-// Map JS camelCase booking → Supabase snake_case row
-function toRow(bk){
-  return {
-    id:                     bk.id,
-    customer_name:          bk.customerName          || '',
-    phone:                  bk.phone                 || '',
-    pet_name:               bk.petName               || '',
-    pet_type:               bk.petType               || '',
-    weight_range:           bk.weightRange            || '',
-    coat_type:              bk.coatType              || '',
-    service:                bk.service               || '',
-    add_ons:                JSON.stringify(bk.addOns || []),
-    estimated_price_min:    bk.estimatedPriceMin      || 0,
-    estimated_price_max:    bk.estimatedPriceMax      || 0,
-    estimated_duration_min: bk.estimatedDurationMin   || 60,
-    estimated_duration_max: bk.estimatedDurationMax   || 60,
-    date:                   bk.date                  || '',
-    start_time:             bk.startTime             || '',
-    end_time_min:           bk.endTimeMin            || '',
-    end_time_max:           bk.endTimeMax            || '',
-    end_time:               bk.endTime               || '',
-    groomer_id:             bk.groomerId             || 'groomer1',
-    status:                 bk.status                || 'รอยืนยัน',
-    notes:                  bk.notes                 || '',
-    created_at:             bk.createdAt             || new Date().toISOString()
-  };
-}
+// ── BUSINESS CONFIG ──────────────────────────
+const OPEN_DAYS   = [2,3,4,5,6]; // Tue–Sat (0=Sun)
+const SLOT_START  = 9;           // 09:00
+const SLOT_END    = 18;          // last slot at 18:00
+const SLOT_STEP   = 60;          // minutes
+const MAX_PARALLEL = 2;
+const BOOKING_HORIZON_DAYS = 60;
+const CLOSED_DATES = [];
+
+// ── PET CONFIG ──────────────────────────────
+const PETS = [
+  { id:'small',  emoji:'🐶', label:'เล็ก',  sub:'< 5 kg' },
+  { id:'medium', emoji:'🐕', label:'กลาง',  sub:'5–15 kg' },
+  { id:'large',  emoji:'🦮', label:'ใหญ่',  sub:'15–30 kg' },
+  { id:'xlarge', emoji:'🐕‍🦺', label:'ใหญ่มาก', sub:'> 30 kg' },
+];
+
+// ── GROOMER CONFIG (default, overridden by Supabase) ──
+let groomerList = [];
+
+// ── SERVICE CATALOG ─────────────────────────
+const SERVICES = [
+  {
+    id:'bath_trim', emoji:'✂️🛁', name:'อาบน้ำ + ตัดขน',
+    desc:'อาบน้ำ เป่าขน ตัดแต่งทรงตามที่ต้องการ',
+    tags:['ยอดนิยม'], prices:{small:350,medium:500,large:750,xlarge:1000},
+    duration:{small:90,medium:120,large:150,xlarge:180}
+  },
+  {
+    id:'bath_only', emoji:'🛁', name:'อาบน้ำเปล่า',
+    desc:'อาบน้ำ เป่าขน ดูแลความสะอาดพื้นฐาน',
+    tags:['รวดเร็ว'], prices:{small:250,medium:350,large:550,xlarge:750},
+    duration:{small:60,medium:75,large:90,xlarge:120}
+  },
+  {
+    id:'spa', emoji:'🌿✨', name:'Spa Package',
+    desc:'อาบน้ำ + มาส์กขน + นวดผ่อนคลาย',
+    tags:['พรีเมียม','สปา'], prices:{small:550,medium:750,large:1050,xlarge:1350},
+    duration:{small:120,medium:150,large:180,xlarge:210}
+  },
+  {
+    id:'groom_only', emoji:'✂️', name:'ตัดขนอย่างเดียว',
+    desc:'ตัดขนแต่งทรง ไม่รวมอาบน้ำ',
+    tags:[], prices:{small:250,medium:350,large:500,xlarge:700},
+    duration:{small:60,medium:75,large:90,xlarge:120}
+  },
+];
+
+// ── ADDON CATALOG ────────────────────────────
+const ADDONS = [
+  { id:'teeth', emoji:'🦷', name:'แปรงฟัน', desc:'ลดกลิ่นปาก ดูแลสุขภาพช่องปาก', price:80, duration:15 },
+  { id:'ear',   emoji:'👂', name:'ทำความสะอาดหู', desc:'เช็ดทำความสะอาดหูด้านนอก', price:60, duration:10 },
+  { id:'nail',  emoji:'💅', name:'ตัดเล็บ', desc:'ตัดเล็บและตะไบให้เรียบ', price:80, duration:15 },
+  { id:'blueberry', emoji:'🫐', name:'Blueberry Facial', desc:'มาส์กหน้าด้วยบลูเบอร์รี่ออร์แกนิก', price:120, duration:15 },
+  { id:'paw',   emoji:'🐾', name:'Paw Balm', desc:'บำรุงอุ้งเท้าด้วยบาล์มธรรมชาติ', price:100, duration:10 },
+];
+
+// ── STEP CONFIG ──────────────────────────────
+const STEPS = [
+  { label:'น้องหมา', page:1 },
+  { label:'บริการ', page:2 },
+  { label:'วันเวลา', page:3 },
+  { label:'ยืนยัน', page:4 },
+];
 
 // ── DATA STATE ─────────────────────────────
-const STORAGE_KEY = 'bookings';
 let bookings = [];
-const existingBookings = bookings; // backward-compat alias
-let dbOnline = false;
 
 // ── LOAD (for capacity check on page load) ──
 async function loadBookings(){
   try {
     const res = await fetch(
-      SB_URL + '/rest/v1/bookings?select=id,date,start_time,estimated_duration_max,groomer_id,status&order=date.asc',
+      SB_URL + '/rest/v1/bookings?select=id,date,start_time,estimated_duration_max,groomer_id,status&status=neq.cancelled&order=date.asc',
       { headers: SB_HEADERS_READ }
     );
     if(!res.ok) throw new Error('HTTP ' + res.status);
@@ -916,780 +1052,507 @@ async function loadBookings(){
       estimatedDurationMax: r.estimated_duration_max || 60,
       groomerId: r.groomer_id, status: r.status
     }));
-    dbOnline = true;
     console.log('loadBookings: Supabase OK,', bookings.length, 'rows');
   } catch(err){
-    // Silently fall back to localStorage — customer page still works without live data
-    dbOnline = false;
-    console.log('loadBookings: offline mode -', err.message);
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      const stored = raw ? JSON.parse(raw) : [];
-      bookings.length = 0; stored.forEach(b => bookings.push(b));
-    } catch(e2){}
+    console.log('loadBookings: failed -', err.message);
   }
 }
 
 // ── SAVE (called after confirmBooking) ──────
-async function saveToStorage(){
-  // No-op: actual save happens in confirmBooking via Supabase INSERT
-}
-
-async function updateBooking(id, fields){
-  const bk = bookings.find(b => b.id === id);
-  if(bk) Object.assign(bk, fields);
-  // Customer page doesn't update bookings after save — no-op
-}
-async function refreshDashboard(){ /* admin is on admin.html */ }
-
-// Shared time helpers
-function timeToMin(t){ if(!t||!t.includes(':'))return 0; const[h,m]=t.split(':').map(Number); return h*60+m; }
-function overlaps(t1,d1,t2,d2){ const s1=timeToMin(t1),e1=s1+(d1||0),s2=timeToMin(t2),e2=s2+(d2||0); return s1<e2&&e1>s2; }
-function calcEndTime(s,d){ if(!s||!s.includes(':'))return '10:00'; const[h,m]=s.split(':').map(Number),t=h*60+m+(d||60); return String(Math.floor(t/60)%24).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); }
-
-
-// ── Customer booking UI ──
-const ribbonItems=['GROOMING','PAW','SPA','PAW','CAT GROOMING','PAW','CHOU & ME','PAW','HAIRCUT','PAW','DOG GROOMING','PAW','CHOU & ME','PAW'];
-const ri=document.getElementById('ribbonInner');
-let rh=''; for(let r=0;r<4;r++) ribbonItems.forEach(t=>{ rh+=t==='PAW'?`<span class="dot"><i class="fa-solid fa-paw"></i></span>`:`<span>${t}</span>`; }); ri.innerHTML=rh;
-
-// ── STATE ──
-const S={
-  petType:null, weight:null, coat:null,
-  haircut:null, // null | 'clipper' | 'scissor'
-  addons:[],
-  date:null, time:null,
-  custName:'', custPhone:'', petName:'', custNote:''
-};
-
-// ── DATA ──
-const dogWeights=['ต่ำกว่า 2.5 กก.','2.5 – 5 กก.','5.1 – 10 กก.','10.1 – 15 กก.','15.1 – 25 กก.','25.1 – 40 กก.','มากกว่า 40 กก.'];
-const catWeights=['ต่ำกว่า 3 กก.','3 – 5 กก.','5.1 – 10 กก.','มากกว่า 10 กก.'];
-
-const dogCoats=[
-  {val:'short', label:'ขนสั้น',              emoji:'🐕', sub:'เช่น ชิวาวา, เฟรนช์บูลด็อก, บีเกิล'},
-  {val:'long',  label:'ขนยาว',               emoji:'🐩', sub:'เช่น ชิสุ, มอลทีส, พุดเดิ้ล โกลเด้น'},
-  {val:'thick', label:'ขนหนา/สองชั้น',     emoji:'🐻', sub:'เช่น ปอม ฮัสกี้, คอร์กี้'},
- 
-];
-const catCoats=[
-  {val:'short', label:'ขนสั้น',              emoji:'😺', sub:'เช่น ไทย, อเมริกันช็อตแฮร์, บริติชช็อตแฮร์'},
-  {val:'long',  label:'ขนยาว',               emoji:'😼', sub:'เช่น เปอร์เซีย, เมนคูน, แร็กดอลล์'},
-  {val:'thick', label:'ขนหนา',               emoji:'🦁', sub:'ขนแน่น เป่ายาก ใช้เวลาเพิ่ม'},
-  
-];
-
-const dogPrices={
-  'ต่ำกว่า 2.5 กก.':{bath_short:250,bath_long:300,trim:200,scissor:300},
-  '2.5 – 5 กก.':      {bath_short:300,bath_long:350,trim:250,scissor:350},
-  '5.1 – 10 กก.':     {bath_short:400,bath_long:450,trim:300,scissor:450},
-  '10.1 – 15 กก.':    {bath_short:500,bath_long:600,trim:350,scissor:600},
-  '15.1 – 25 กก.':    {bath_short:600,bath_long:700,trim:500,scissor:700},
-  '25.1 – 40 กก.':    {bath_short:700,bath_long:900,trim:600,scissor:900},
-  'มากกว่า 40 กก.': {bath_short:900,bath_long:1100,trim:700,scissor:1100},
-};
-const catPrices={
-  'ต่ำกว่า 3 กก.':  {bath_short:300,bath_long:350,trim:250,scissor:350},
-  '3 – 5 กก.':        {bath_short:400,bath_long:450,trim:300,scissor:450},
-  '5.1 – 10 กก.':     {bath_short:500,bath_long:600,trim:400,scissor:600},
-  'มากกว่า 10 กก.': {bath_short:600,bath_long:700,trim:500,scissor:700},
-};
-
-const addons=[
-  {val:'spa',     label:'สปา',              emoji:'🛁',desc:'ช่วยทำความสะอาดล้ำลึก ผ่อนคลาย บำรุงผิวและเส้นขน',      prL:[100,200],prH:[200,400],dur:[10,15]},
-  {val:'medshamp',label:'แชมพูยา',           emoji:'🫙',desc:'สำหรับน้องหมาน้องแมวที่มีปัญหาผิวหนังหรืออาการคัน',      prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'oilshamp',label:'ขจัดคราบมัน',     emoji:'🧼',desc:'ช่วยลดความมัน กลิ่นตัว และทำความสะอาดล้ำลึก',            prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'treat',   label:'ทรีตเมนต์',         emoji:'🌸',desc:'บำรุงขนให้นุ่ม เงางาม ลดขนพันกัน',                       prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'teeth',   label:'แปรงฟัน',           emoji:'🦷',desc:'ช่วยลดกลิ่นปากและดูแลสุขภาพช่องปาก',                    prL:[50,50],  prH:[100,100],dur:[5]},
-  {val:'dbl',     label:'สางขนสองชั้น',      emoji:'🪮',desc:'สำหรับขนหนาหรือขนสองชั้น',                         prL:[100,400],prH:[100,400],dur:[15,30]},
-  {val:'demat',   label:'สางขนสังกะตัง',     emoji:'😶‍🌫️',desc:'สำหรับขนพันกันหรือจับตัวเป็นก้อน',                       prL:[100,400],prH:[100,400],dur:[30,60]},
-];
-
-// ── HELPERS ──
-function getKg(w){
-  if(!w) return 5;
-  if(w.includes('ต่ำกว่า 2.5')) return 2;
-  if(w.includes('2.5 – 5')||w.includes('ต่ำกว่า 3')||w.includes('3 – 5')) return 4;
-  if(w.includes('5.1 – 10')) return 7;
-  if(w.includes('10.1 – 15')) return 12;
-  if(w.includes('15.1 – 25')) return 20;
-  if(w.includes('25.1 – 40')) return 30;
-  if(w.includes('มากกว่า 40')) return 45;
-  if(w.includes('มากกว่า 10')) return 12;
-  return 5;
-}
-function isHeavy(){ return getKg(S.weight)>=10; }
-
-// Bath key: long/thick/matted → bath_long, else → bath_short
-function getBathKey(){ return (S.coat==='long'||S.coat==='thick'||S.coat==='matted')?'bath_long':'bath_short'; }
-
-function calcPrice(){
-  if(!S.weight) return {min:0,max:0};
-  const tbl=S.petType==='dog'?dogPrices:catPrices;
-  const row=tbl[S.weight]; if(!row) return {min:0,max:0};
-  const bk=getBathKey();
-  let base=row[bk]||0;
-  if(S.haircut==='clipper') base+=row['trim']||0;
-  if(S.haircut==='scissor') base+=row['scissor']||0;
-  let mn=0,mx=0;
-  const hv=isHeavy();
-  S.addons.forEach(av=>{
-    const a=addons.find(x=>x.val===av);
-    if(a){mn+=hv?a.prH[0]:a.prL[0];mx+=hv?a.prH[1]:a.prL[1];}
+async function saveBookingToSupabase(bk){
+  const res = await fetch(SB_URL + '/rest/v1/bookings', {
+    method: 'POST',
+    headers: SB_HEADERS_INSERT,
+    body: JSON.stringify(toRow(bk))
   });
-  return {min:base+mn,max:base+mx};
+  if(!res.ok){ const t = await res.text(); throw new Error('HTTP ' + res.status + ': ' + t); }
+  return true;
 }
 
-// SHOP_CLOSE_MINS: 20:00 = 1200 minutes from midnight
-const SHOP_CLOSE_MINS = 20 * 60; // 1200
-
-function calcDuration(){
-  const kg=getKg(S.weight); let mn=60;
-  if(kg<5){mn=60;}else if(kg<=10){mn=75;}else if(kg<=20){mn=90;}else if(kg<=40){mn=105;}else{mn=120;}
-  if(S.coat==='long'){mn+=30;}
-  if(S.coat==='thick'){mn+=30;}
-  if(S.coat==='matted'){mn+=45;}
-  if(S.haircut==='clipper'){mn+=45;}
-  if(S.haircut==='scissor'){mn+=60;}
-  S.addons.forEach(av=>{const a=addons.find(x=>x.val===av);if(a){mn+=a.dur[0];}});
-  // Max is always min + 60 minutes (range capped at 1 hour)
-  const mx = mn + 60;
-  return{mn,mx};
-}
-
-function fmtDur(mn,mx){
-  const sMin=Math.floor(mn/60)+(mn%60>=30?.5:0);
-  const sMax=Math.floor(mx/60)+(mx%60>=30?.5:0);
-  if(sMin===sMax) return `ประมาณ ${sMin} ชั่วโมง`;
-  return `ประมาณ ${sMin}–${sMax} ชั่วโมง`;
-}
-
-// ── PAGE NAV ──
-const PAGES=['A','B','C','D'];
-const PAGE_LABELS=['รายละเอียด','บริการ','วันเวลา','สรุป'];
-let currentPage='A';
-
-function goToPage(p){
-  document.getElementById('page'+currentPage).classList.remove('active');
-  currentPage=p;
-  document.getElementById('page'+p).classList.add('active');
-  // rebuild service list on entering B so prices reflect latest state
-  if(p==='B'){
-    S.haircut=null; S.addons=[];
-    lock('subAddon');
-    document.getElementById('btnNextB').disabled=true;
-    buildServiceGrid();
-  }
-  // populate estimate card when entering C
-  if(p==='C') buildEstimateCard();
-  updateStepNav();
-  updateMini();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function updateStepNav(){
-  const nav=document.getElementById('stepNav');
-  const idx=PAGES.indexOf(currentPage);
-  let html='';
-  PAGES.forEach((p,i)=>{
-    if(i>0) html+=`<div class="step-connector${i<=idx?' done':''}"></div>`;
-    const done=i<idx,active=i===idx;
-    html+=`<div class="step-pill${done?' done':''}${active?' active':''}">
-      <div class="snum">${done?'✓':(i+1)}</div>
-      <span class="slabel">${PAGE_LABELS[i]}</span>
-    </div>`;
-  });
-  nav.innerHTML=html;
-  document.getElementById('progressFill').style.width=(idx/(PAGES.length-1)*100)+'%';
-}
-
-function unlock(id){
-  const el=document.getElementById(id);
-  el.classList.remove('locked');
-  el.classList.add('unlocked');
-}
-function lock(id){
-  const el=document.getElementById(id);
-  el.classList.remove('unlocked');
-  el.classList.add('locked');
-}
-
-// ── PET TYPE ──
-function selectPetType(el,val){
-  el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  // Reset downstream
-  S.petType=val; S.weight=null; S.coat=null; S.haircut=null; S.addons=[];
-  // Rebuild & unlock weight
-  buildWeightGrid();
-  unlock('subWeight');
-  // Re-lock coat
-  lock('subCoat');
-  document.getElementById('coatGrid').innerHTML='';
-  document.getElementById('btnNextA').disabled=true;
-  updateMini();
-}
-
-// ── WEIGHT ──
-function buildWeightGrid(){
-  const weights=S.petType==='dog'?dogWeights:catWeights;
-  document.getElementById('weightGrid').innerHTML=weights.map(w=>
-    `<div class="sel-card" data-val="${w}" onclick="selectWeight(this,'${encodeURIComponent(w)}')">
-      <span class="card-label">${w}</span>
-    </div>`).join('');
-}
-
-function selectWeight(el,encoded){
-  el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  S.weight=decodeURIComponent(encoded); S.coat=null; S.haircut=null;
-  buildCoatGrid();
-  unlock('subCoat');
-  document.getElementById('btnNextA').disabled=true;
-  updateMini();
-}
-
-// ── COAT ──
-function buildCoatGrid(){
-  const coats=S.petType==='dog'?dogCoats:catCoats;
-  document.getElementById('coatGrid').innerHTML=coats.map(c=>
-    `<div class="sel-card" data-val="${c.val}" onclick="selectCoat(this,'${c.val}')">
-      <span class="card-emoji">${c.emoji}</span>
-      <span class="card-label">${c.label}</span>
-      <span class="card-sub">${c.sub}</span>
-    </div>`).join('');
-}
-
-function selectCoat(el,val){
-  el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  S.coat=val;
-  document.getElementById('btnNextA').disabled=false;
-  updateMini();
-}
-
-// ── SERVICE ──
-// 3 options: bath only | bath + clipper | bath + scissor
-function buildServiceGrid(){
-  if(!S.weight||!S.coat) return;
-  const tbl=S.petType==='dog'?dogPrices:catPrices;
-  const row=tbl[S.weight];
-  const bk=getBathKey();
-  const animal=S.petType==='dog'?'สุนัข':'แมว';
-  const bathTypeLabel=(S.coat==='long'||S.coat==='thick'||S.coat==='matted')?'ขนยาว/หนา':'ขนสั้น';
-
-  const pBath=row?row[bk]:0;
-  const pTrim=row?row['trim']:0;
-  const pSci=row?row['scissor']:0;
-
-  const svcs=[
-    {key:'bath_only', hcut:null,      emoji:'🚿',
-     name:`อาบน้ำ${animal}`,
-     desc:`รวมเช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น`,
-     tags:[`Bathing (${bathTypeLabel})`],
-     price:pBath},
-    {key:'bath_clipper', hcut:'clipper', emoji:'✂️',
-     name:`อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)`,
-     desc:`อาบน้ำและตัดขนด้วยเครื่องปัตตาเลี่ยน`,
-     tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Clippers)'],
-     price:row?pBath+pTrim:0},
-    {key:'bath_scissor', hcut:'scissor', emoji:'✂️',
-     name:`อาบน้ำ + ตัดขน (กรรไกร)`,
-     desc:`อาบน้ำและตัดขนด้วยกรรไกร ละเอียดกว่า ใช้เวลาเพิ่ม`,
-     tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Scissors)'],
-     price:row?pBath+pSci:0},
-  ];
-
-  // Always render with no pre-selection — user must choose
-  document.getElementById('serviceList').innerHTML=svcs.map(sv=>{
-    return `<div class="service-card" data-key="${sv.key}" onclick="selectService(this,'${sv.key}','${sv.hcut}')">
-      <span class="svc-emoji">${sv.emoji}</span>
-      <div class="svc-info">
-        <div class="svc-name">${sv.name}</div>
-        <div class="svc-desc">${sv.desc}</div>
-        <div class="svc-tags">
-          ${sv.tags.map((t,i)=>`<span class="svc-tag${i>0?' pink':''}">${t}</span>`).join('')}
-        </div>
-      </div>
-      <div class="svc-price">${row?`฿${sv.price.toLocaleString()}`:''}</div>
-    </div>`;
-  }).join('');
-}
-
-function selectService(el, key, hcutStr){
-  document.querySelectorAll('.service-card').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  S.haircut = hcutStr==='null'?null:hcutStr;
-  unlock('subAddon');
-  buildAddonGrid();
-  document.getElementById('btnNextB').disabled=false;
-  updateMini();
-}
-
-// ── ADDONS ──
-function buildAddonGrid(){
-  const hv=isHeavy();
-  document.getElementById('addonGrid').innerHTML=addons.map(a=>{
-    const pr=hv?a.prH:a.prL;
-    const ps=pr[0]===pr[1]?`+฿${pr[0]}`:`+฿${pr[0]}–฿${pr[1]}`;
-    const sel=S.addons.includes(a.val)?'selected':'';
-    return `<div class="addon-card ${sel}" data-val="${a.val}" onclick="toggleAddon(this)">
-      <div class="addon-check"></div>
-      <span class="addon-emoji">${a.emoji}</span>
-      <div class="addon-info">
-        <span class="addon-name">${a.label}</span>
-        <span class="addon-desc">${a.desc}</span>
-      </div>
-      <div class="addon-price-tag">${ps}</div>
-    </div>`;
-  }).join('');
-}
-
-function toggleAddon(el){
-  const v=el.dataset.val;
-  el.classList.toggle('selected');
-  const chk=el.querySelector('.addon-check');
-  if(el.classList.contains('selected')){
-    chk.style.background='var(--sage)';chk.style.borderColor='var(--sage)';
-    if(!S.addons.includes(v)) S.addons.push(v);
-  } else {
-    chk.style.background='';chk.style.borderColor='';
-    S.addons=S.addons.filter(x=>x!==v);
-  }
-  updateMini();
-}
-
-// ── ESTIMATE CARD ──
-function buildEstimateCard(){
-  const{min:pMin,max:pMax}=calcPrice();
-  const{mn,mx}=calcDuration();
-  const svcLabel=S.haircut===null
-    ?`อาบน้ำ${S.petType==='dog'?'สุนัข':'แมว'}`
-    :S.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
-  const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
-  const durStr=fmtDur(mn,mx);
-  const addonCount=S.addons.length;
-  // Warn if any time slot could exceed closing
-  const slotWarning = mx > 120 ? `<div style="font-size:10px;color:#b07a30;margin-top:4px">⚠️ จากการประเมินเวลาทำให้บางช่วงเวลาอาจไม่สามารถจองได้</div>` : '';
-  document.getElementById('estimateCard').innerHTML=`
-    <div class="estimate-icon">🧾</div>
-    <div class="estimate-body">
-      <div class="estimate-label">ระยะเวลาและราคาจริงอาจเปลี่ยนแปลงตามสภาพขนและพฤติกรรมของน้องหมาน้องแมว</div>
-      <div class="estimate-price">${priceStr}</div>
-      <div class="estimate-duration">🕓 <b>${durStr}</b></div>
-      <div class="estimate-svc-tag">${svcLabel}${addonCount?` + ${addonCount} เสริม`:''}</div>
-      ${slotWarning}
-    </div>`;
-}
-
-// ── CUSTOM CALENDAR ──
-const thMonths=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
-const thDaysShort=['อา','จ','อ','พ','พฤ','ศ','ส'];
-
-let calYear, calMonth;
-(function initCal(){
-  const now=new Date();
-  calYear=now.getFullYear(); calMonth=now.getMonth();
-  renderCal();
-})();
-
-function calNav(dir){
-  calMonth+=dir;
-  if(calMonth>11){calMonth=0;calYear++;}
-  if(calMonth<0){calMonth=11;calYear--;}
-  renderCal();
-}
-
-function renderCal(){
-  const now=new Date(); now.setHours(0,0,0,0);
-  const title=document.getElementById('calTitle');
-  const grid=document.getElementById('calGrid');
-  const prevBtn=document.getElementById('calPrev');
-
-  title.textContent=`${thMonths[calMonth]} ${calYear+543}`;
-
-  // Disable prev if we're already at current month
-  const isCurrentMonth=(calYear===now.getFullYear()&&calMonth===now.getMonth());
-  prevBtn.disabled=isCurrentMonth;
-
-  // First day of month (0=Sun)
-  const firstDow=new Date(calYear,calMonth,1).getDay();
-  // Total days in month
-  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
-
-  let html='';
-  // Empty cells before first day
-  for(let i=0;i<firstDow;i++) html+=`<div class="cal-day empty"></div>`;
-
-  for(let d=1;d<=daysInMonth;d++){
-    const date=new Date(calYear,calMonth,d);
-    const dow=date.getDay(); // 0=Sun,1=Mon
-    const isPast=date<now;
-    const isMon=dow===1;
-    const isToday=date.getTime()===now.getTime();
-
-    // Format yyyy-mm-dd
-    const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const isSelected=S.date===dateStr;
-
-    let cls='cal-day';
-    if(isPast) cls+=' disabled';
-    else if(isMon) cls+=' closed-day';
-    else if(isToday) cls+=' today';
-    if(isSelected) cls+=' selected';
-
-    const label=isMon?'ปิด':String(d);
-    const clickable=!isPast&&!isMon;
-    html+=`<div class="${cls}" ${clickable?`onclick="selectDate('${dateStr}',${dow})"`:''} title="${dateStr}">${label}</div>`;
-  }
-  grid.innerHTML=html;
-}
-
-function selectDate(dateStr, dow){
-  S.date=dateStr; S.time=null;
-  // re-lock customer
-  lock('subCustomer');
-  // hide time wrap, reset
-  document.getElementById('timeWrap').style.display='none';
-  document.getElementById('dateNote').classList.remove('visible');
-
-  // Update badge
-  const d=new Date(dateStr+'T12:00:00');
-  const badge=document.getElementById('selectedDateBadge');
-  document.getElementById('selectedDateText').textContent=
-    d.toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  badge.classList.add('visible');
-
-  // Re-render calendar to show selection
-  renderCal();
-
-  // Show timeslots
-  buildTimeslots(dateStr);
-  document.getElementById('timeWrap').style.display='block';
-}
-
-function buildTimeslots(date){
-  // Get max duration so we can block slots that would run past closing
-  const{mx}=calcDuration();
-
-  const slots=[];
-  for(let h=9;h<20;h++){
-    if(h===13) continue; // lunch break — no 13:00 or 13:30
-    slots.push(`${String(h).padStart(2,'0')}:00`);
-    if(h<19) slots.push(`${String(h).padStart(2,'0')}:30`);
-  }
-
-  document.getElementById('timeslotGrid').innerHTML=slots.map(t=>{
-    const [sh,sm]=t.split(':').map(Number);
-    const startMins = sh*60+sm;
-    const endMins   = startMins + mx;
-
-    // Check groomer capacity
-    const full    = isSlotFull(date, t);
-
-    // Check if booking would run past shop closing (20:00)
-    const tooLate = endMins > SHOP_CLOSE_MINS;
-
-    const disabled = full || tooLate;
-    let label = t;
-    if(full) label = 'เต็ม';
-    else if(tooLate) label = 'ใกล้ปิด';
-
-    return `<button class="timeslot-btn${full?' full':''}${tooLate?' too-late':''}" ${disabled?'disabled':''} onclick="selectTime(this,'${t}')">${label}</button>`;
-  }).join('');
-}
-
-// Groomer list cache for customer page (loaded once from Supabase)
+// ── GROOMER LOADER ───────────────────────────
 let groomerList = [];
-
 async function loadGroomerList(){
   try {
-    const res = await fetch(SB_URL + '/rest/v1/groomers?select=id,name&order=sort_order.asc',
+    const res = await fetch(
+      SB_URL + '/rest/v1/groomers?select=*&active=eq.true&order=sort_order.asc',
       { headers: SB_HEADERS_READ });
     if(res.ok){ groomerList = await res.json(); }
   } catch(e){}
-  // Fallback: load from localStorage groomers key
-  if(!groomerList.length){
-    try {
-      const raw = localStorage.getItem('chouandme_groomers');
-      if(raw) groomerList = JSON.parse(raw);
-    } catch(e){}
-  }
-  // Final fallback: 2 default groomers
   if(!groomerList.length) groomerList = [{id:'groomer1'},{id:'groomer2'}];
 }
 
-// Count how many groomers are busy at a given slot
-// A slot is "full" when ALL groomers are busy during that time
-function countBusy(date, slot){
-  const [sh,sm] = slot.split(':').map(Number);
-  const ss = sh*60+sm;
-  const {mx} = calcDuration();
-  const se = ss + mx; // new booking end
+// ── BOOKING STATE ────────────────────────────
+let sel = {
+  pet: null, groomer: null,
+  service: null, addons: [],
+  date: null, time: null,
+  ownerName: '', ownerPhone: '', petName: '', note: ''
+};
+let currentPage = 1;
+const TOTAL_PAGES = 5;
 
-  // For each groomer, check if ANY existing booking overlaps this slot
-  const busyGroomers = new Set();
-  bookings.forEach(b => {
-    if(b.date !== date || b.status === 'ยกเลิก') return;
-    const t = b.startTime || '00:00';
-    const dur = b.estimatedDurationMax || b.estimatedDurationMin || 60;
-    const [bh,bm] = t.split(':').map(Number);
-    const bs = bh*60+bm, be = bs+dur;
-    // overlap: existing booking overlaps the new slot window
-    if(bs < se && be > ss){
-      busyGroomers.add(b.groomerId || 'groomer1');
+// ── HELPERS ──────────────────────────────────
+function qs(sel){ return document.querySelector(sel); }
+function toast(msg, ms=2800){
+  const el = qs('#toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), ms);
+}
+function showLoading(msg='กำลังบันทึก...'){ qs('#loadingText').textContent=msg; qs('#loadingOverlay').classList.remove('hidden'); }
+function hideLoading(){ qs('#loadingOverlay').classList.add('hidden'); }
+function openModal(id){ qs('#'+id).classList.add('open'); }
+function closeModal(id){ qs('#'+id).classList.remove('open'); }
+
+function thaiDate(d){
+  if(!d) return '';
+  const [y,m,day] = d.split('-').map(Number);
+  const months = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+  const days = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัส','ศุกร์','เสาร์'];
+  const dt = new Date(y, m-1, day);
+  return `${days[dt.getDay()]}ที่ ${day} ${months[m]} ${y+543}`;
+}
+
+function calcDuration(){
+  if(!sel.service || !sel.pet) return 0;
+  const svc = SERVICES.find(s=>s.id===sel.service);
+  let dur = svc ? (svc.duration[sel.pet]||60) : 60;
+  sel.addons.forEach(aid=>{ const a=ADDONS.find(x=>x.id===aid); if(a) dur+=a.duration; });
+  return dur;
+}
+
+function calcPrice(){
+  if(!sel.service || !sel.pet) return 0;
+  const svc = SERVICES.find(s=>s.id===sel.service);
+  let price = svc ? (svc.prices[sel.pet]||0) : 0;
+  sel.addons.forEach(aid=>{ const a=ADDONS.find(x=>x.id===aid); if(a) price+=a.price; });
+  return price;
+}
+
+function toRow(bk){
+  return {
+    id: bk.id,
+    date: bk.date,
+    start_time: bk.startTime,
+    estimated_duration_max: bk.estimatedDurationMax,
+    groomer_id: bk.groomerId,
+    status: bk.status,
+    owner_name: bk.ownerName,
+    owner_phone: bk.ownerPhone,
+    pet_name: bk.petName,
+    pet_size: bk.petSize,
+    service_id: bk.serviceId,
+    addons: bk.addons,
+    note: bk.note,
+    price: bk.price,
+    source: 'web'
+  };
+}
+
+// ── CAPACITY ─────────────────────────────────
+function isFull(date, time, groomerId, excludeId=null){
+  const slotBookings = bookings.filter(b =>
+    b.date === date &&
+    b.id !== excludeId &&
+    b.groomerId === groomerId
+  );
+  if(slotBookings.length >= 1) return true;
+  // parallel capacity check
+  const slotStart = toMin(time);
+  const newEnd = slotStart + calcDuration();
+  const conflicts = bookings.filter(b => {
+    if(b.date !== date || b.id === excludeId) return false;
+    if(groomerId && b.groomerId !== groomerId) return false;
+    const bStart = toMin(b.startTime);
+    const bEnd = bStart + (b.estimatedDurationMax || 60);
+    return slotStart < bEnd && newEnd > bStart;
+  });
+  return conflicts.length >= MAX_PARALLEL;
+}
+function toMin(t){ const [h,m]=t.split(':').map(Number); return h*60+m; }
+
+// ── UI BUILDERS ──────────────────────────────
+function buildStepNav(){
+  const nav = qs('#stepNav');
+  nav.innerHTML = '';
+  STEPS.forEach((s, i) => {
+    const pill = document.createElement('button');
+    pill.className = 'step-pill';
+    const stateClass = currentPage === s.page ? 'active' : currentPage > s.page ? 'done' : '';
+    if(stateClass) pill.classList.add(stateClass);
+    pill.innerHTML = `<span class="snum">${i+1}</span><span>${s.label}</span>`;
+    pill.onclick = () => { if(currentPage > s.page) goToPage(s.page); };
+    nav.appendChild(pill);
+    if(i < STEPS.length-1){
+      const conn = document.createElement('div');
+      conn.className = 'step-connector' + (currentPage > s.page ? ' done' : '');
+      nav.appendChild(conn);
     }
   });
-  return busyGroomers.size; // number of groomers busy during this slot
+  const pct = ((currentPage-1)/(TOTAL_PAGES-1))*100;
+  qs('#progressFill').style.width = pct + '%';
 }
 
-function isSlotFull(date, slot){
-  // Slot is full when all groomers are busy
-  return countBusy(date, slot) >= groomerList.length;
+function buildPetGrid(){
+  const grid = qs('#petGrid');
+  grid.innerHTML = '';
+  PETS.forEach(p => {
+    const card = document.createElement('button');
+    card.className = 'sel-card' + (sel.pet===p.id?' selected':'');
+    card.innerHTML = `<span class="card-emoji">${p.emoji}</span><span class="card-label">${p.label}</span><span class="card-sub">${p.sub}</span>`;
+    card.onclick = () => { sel.pet=p.id; buildPetGrid(); unlockSection('sec-groomer'); buildGroomerArea(); };
+    grid.appendChild(card);
+  });
 }
 
-// Auto-assign: find first groomer with no overlap at startTime for duration mx
-function assignGroomer(date, startTime, mx){
-  const dayBks = bookings.filter(b => b.date === date && b.status !== 'ยกเลิก');
-  for(const g of groomerList){
-    const busy = dayBks
-      .filter(b => (b.groomerId || 'groomer1') === g.id)
-      .some(b => overlaps(b.startTime, b.estimatedDurationMax || 60, startTime, mx));
-    if(!busy) return g.id;
+function buildGroomerArea(){
+  const area = qs('#groomerArea');
+  if(!groomerList.length){ area.innerHTML='<p style="color:var(--text-mid);font-size:13px">ไม่พบข้อมูล Groomer</p>'; return; }
+  area.innerHTML = '';
+
+  const pillRow = document.createElement('div');
+  pillRow.className = 'groomer-pill-row';
+
+  groomerList.forEach(g => {
+    const pill = document.createElement('button');
+    pill.className = 'groomer-pill' + (sel.groomer===g.id ? ' selected' : '');
+    pill.textContent = g.name || g.id;
+    pill.onclick = () => {
+      sel.groomer = g.id;
+      buildGroomerArea();
+      renderGroomerInfoCard(g);
+    };
+    pillRow.appendChild(pill);
+  });
+  area.appendChild(pillRow);
+
+  if(sel.groomer){
+    const g = groomerList.find(x => x.id === sel.groomer);
+    if(g) renderGroomerInfoCard(g);
   }
-  return groomerList[0]?.id || 'groomer1'; // fallback (shouldn't reach here)
 }
 
-function selectTime(el,t){
-  // Validate: startTime + maxDuration must not exceed 20:00
-  const{mx}=calcDuration();
-  const[sh,sm]=t.split(':').map(Number);
-  if(sh*60+sm+mx > SHOP_CLOSE_MINS){
-    const alertEl=document.getElementById('fullAlert');
-    if(alertEl){
-      alertEl.textContent='เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน';
-      alertEl.classList.add('visible');
-    }
-    return;
+function renderGroomerInfoCard(g){
+  let card = qs('#groomerInfoCard');
+  if(!card){
+    card = document.createElement('div');
+    card.id = 'groomerInfoCard';
+    qs('#groomerArea').appendChild(card);
   }
-  document.querySelectorAll('.timeslot-btn').forEach(b=>b.classList.remove('selected'));
-  el.classList.add('selected');
-  S.time=t;
-  const alertEl=document.getElementById('fullAlert');
-  if(alertEl) alertEl.classList.remove('visible');
-  unlock('subCustomer');
-  updateMini();
-}
-
-// ── SUMMARY ──
-function doSummary(){
-  const n=document.getElementById('custName').value.trim();
-  const ph=document.getElementById('custPhone').value.trim();
-  const pe=document.getElementById('petName').value.trim();
-  if(!n||!ph||!pe){alert('กรุณากรอกข้อมูลให้ครบถ้วน');return;}
-  S.custName=n; S.custPhone=ph;
-  S.petName=pe; S.custNote=document.getElementById('custNote').value.trim();
-  buildSummary();
-  goToPage('D');
-}
-
-function buildSummary(){
-  const{mn,mx}=calcDuration();
-  const{min:pMin,max:pMax}=calcPrice();
-  const petLabel=S.petType==='dog'?'🐕 สุนัข':'🐈 แมว';
-  const coatData=(S.petType==='dog'?dogCoats:catCoats).find(c=>c.val===S.coat);
-  const svcLabel=S.haircut===null
-    ?`อาบน้ำ${S.petType==='dog'?'สุนัข':'แมว'}`
-    :S.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
-  const addonLabels=S.addons.map(av=>addons.find(a=>a.val===av)?.label).filter(Boolean);
-
-  // Pickup range: earliest (mn) to latest (mx)
-  let pickupRange='';
-  if(S.time){
-    const[h,m]=S.time.split(':').map(Number);
-    const t0=h*60+m;
-    const earlyH=Math.floor((t0+mn)/60)%24, earlyM=(t0+mn)%60;
-    const lateH =Math.floor((t0+mx)/60)%24, lateM =(t0+mx)%60;
-    const early=`${String(earlyH).padStart(2,'0')}:${String(earlyM).padStart(2,'0')}`;
-    const late =`${String(lateH).padStart(2,'0')}:${String(lateM).padStart(2,'0')}`;
-    pickupRange = early===late ? `${early} น.` : `${early}–${late} น.`;
-  }
-
-  const dateDisp=S.date?new Date(S.date+'T12:00:00').toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
-  const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
-
-  document.getElementById('summaryCard').innerHTML=`
-    <div class="summary-title">🧾 รายละเอียดการจอง</div>
-    <div class="summary-row"><span class="s-label">ประเภทสัตว์</span><span class="s-val">${petLabel}</span></div>
-    <div class="summary-row"><span class="s-label">ชื่อน้อง</span><span class="s-val">${S.petName}</span></div>
-    <div class="summary-row"><span class="s-label">น้ำหนัก</span><span class="s-val">${S.weight}</span></div>
-    <div class="summary-row"><span class="s-label">ลักษณะขน</span><span class="s-val">${coatData?.label||''}</span></div>
-    <div class="summary-row"><span class="s-label">บริการ</span><span class="s-val">${svcLabel}</span></div>
-    <div class="summary-row"><span class="s-label">บริการเสริม</span><span class="s-val">${addonLabels.length?addonLabels.join(', '):'–'}</span></div>
-    <div class="summary-row"><span class="s-label">วันที่</span><span class="s-val">${dateDisp}</span></div>
-    <div class="summary-row"><span class="s-label">เวลาเริ่ม</span><span class="s-val">${S.time} น.</span></div>
-    <div class="summary-row"><span class="s-label">เวลารับกลับโดยประมาณ</span><span class="s-val">${pickupRange}</span></div>
-    <div class="summary-row"><span class="s-label">ชื่อลูกค้า</span><span class="s-val">${S.custName}</span></div>
-    <div class="summary-row"><span class="s-label">เบอร์โทร</span><span class="s-val">${S.custPhone}</span></div>
-    ${S.custNote?`<div class="summary-row"><span class="s-label">หมายเหตุ</span><span class="s-val">${S.custNote}</span></div>`:''}
-    <div class="price-big">
-      <span class="price-num">ราคาคาดการณ์ ${priceStr}</span>
-      <div class="duration-badge">🕓 ${fmtDur(mn,mx)}</div>
-      <p class="price-note">ระยะเวลาและราคาจริงอาจเปลี่ยนแปลงตามสภาพขนและพฤติกรรมของน้องหมาน้องแมว</p>
+  const badges = (g.badges||[]).map(b=>`<span class="groomer-badge">${b}</span>`).join('');
+  card.className = 'groomer-info-card';
+  card.innerHTML = `
+    <div class="groomer-avatar">${g.avatar_emoji||'🐾'}</div>
+    <div class="groomer-details">
+      <div class="groomer-name">${g.name||g.id}</div>
+      <div class="groomer-role">${g.role||'Groomer'}</div>
+      ${badges ? `<div class="groomer-badge-row">${badges}</div>` : ''}
     </div>`;
 }
 
-// ── MINI SUMMARY ──
-function updateMini(){
-  const mini=document.getElementById('miniSummary');
-  const{min:pMin,max:pMax}=calcPrice();
-  if(currentPage==='A'||currentPage==='D'||pMin===0){mini.classList.remove('visible');return;}
-  mini.classList.add('visible');
-  const svcShort=S.haircut===null?'อาบน้ำ':S.haircut==='clipper'?'อาบน้ำ+ตัดขน(เครื่อง)':'อาบน้ำ+ตัดขน(กรรไกร)';
-  document.getElementById('miniInfo').textContent=svcShort+(S.petName?' · '+S.petName:'');
-  document.getElementById('miniPrice').textContent=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()}–฿${pMax.toLocaleString()}`;
+function buildServiceList(){
+  const list = qs('#serviceList');
+  list.innerHTML = '';
+  SERVICES.forEach(svc => {
+    const price = sel.pet ? svc.prices[sel.pet] : null;
+    const card = document.createElement('div');
+    card.className = 'service-card' + (sel.service===svc.id?' selected':'');
+    card.innerHTML = `
+      <span class="svc-emoji">${svc.emoji}</span>
+      <div class="svc-info">
+        <div class="svc-name">${svc.name}</div>
+        <div class="svc-desc">${svc.desc}</div>
+        <div class="svc-tags">${svc.tags.map(t=>`<span class="svc-tag">${t}</span>`).join('')}</div>
+      </div>
+      ${price ? `<span class="svc-price">฿${price.toLocaleString()}+</span>` : ''}`;
+    card.onclick = () => {
+      sel.service=svc.id; buildServiceList();
+      unlockSection('sec-addon'); buildAddonGrid();
+      updateEstimate();
+    };
+    list.appendChild(card);
+  });
 }
 
-// ── CONFIRM ──
+function buildAddonGrid(){
+  const grid = qs('#addonGrid');
+  grid.innerHTML = '';
+  ADDONS.forEach(a => {
+    const card = document.createElement('div');
+    const picked = sel.addons.includes(a.id);
+    card.className = 'addon-card' + (picked?' selected':'');
+    card.innerHTML = `
+      <div class="addon-check"></div>
+      <span class="addon-emoji">${a.emoji}</span>
+      <div class="addon-info">
+        <span class="addon-name">${a.name}</span>
+        <span class="addon-desc">${a.desc}</span>
+      </div>
+      <span class="addon-price-tag">+฿${a.price}</span>`;
+    card.onclick = () => {
+      if(picked) sel.addons=sel.addons.filter(x=>x!==a.id);
+      else sel.addons.push(a.id);
+      buildAddonGrid(); updateEstimate();
+    };
+    grid.appendChild(card);
+  });
+}
+
+function updateEstimate(){
+  const dur = calcDuration();
+  const price = calcPrice();
+  const svc = SERVICES.find(s=>s.id===sel.service);
+  qs('#estimatePrice').textContent = price ? `฿${price.toLocaleString()}+` : '—';
+  qs('#estimateDur').textContent = dur || '—';
+  qs('#estimateSvcTag').textContent = svc ? svc.name : '—';
+}
+
+// ── CALENDAR ─────────────────────────────────
+let calYear, calMonth;
+function initCalendar(){
+  const now = new Date();
+  calYear = now.getFullYear(); calMonth = now.getMonth();
+  renderCalendar();
+}
+function renderCalendar(){
+  const wrap = qs('#calWrap');
+  const today = new Date(); today.setHours(0,0,0,0);
+  const maxDate = new Date(today); maxDate.setDate(today.getDate()+BOOKING_HORIZON_DAYS);
+
+  const firstDay = new Date(calYear, calMonth, 1);
+  const lastDay  = new Date(calYear, calMonth+1, 0);
+  const months   = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+  const dowLabels = ['อา','จ','อ','พ','พฤ','ศ','ส'];
+
+  let html = `
+    <div class="cal-header">
+      <button class="cal-nav" id="calPrev">‹</button>
+      <span class="cal-title">${months[calMonth]} ${calYear+543}</span>
+      <button class="cal-nav" id="calNext">›</button>
+    </div>
+    <div class="cal-dow-row">`;
+  dowLabels.forEach((d,i) => { html += `<div class="cal-dow${OPEN_DAYS.includes(i)?'':' closed'}">${d}</div>`; });
+  html += '</div><div class="cal-grid">';
+
+  const startDow = firstDay.getDay();
+  for(let i=0;i<startDow;i++) html += '<div class="cal-day empty"></div>';
+  for(let d=1; d<=lastDay.getDate(); d++){
+    const dt = new Date(calYear, calMonth, d);
+    const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isOpen = OPEN_DAYS.includes(dt.getDay()) && !CLOSED_DATES.includes(dateStr);
+    const isPast = dt < today;
+    const isFuture = dt > maxDate;
+    const isToday = dt.getTime()===today.getTime();
+    const isSel = sel.date===dateStr;
+    let cls = 'cal-day';
+    if(!isOpen) cls += ' closed-day';
+    else if(isPast||isFuture) cls += ' disabled';
+    if(isToday) cls += ' today';
+    if(isSel) cls += ' selected';
+    const disabled = !isOpen || isPast || isFuture;
+    html += `<div class="${cls}" data-date="${dateStr}" ${disabled?'':'data-sel="1"'}>${d}</div>`;
+  }
+  html += '</div>';
+  wrap.innerHTML = html;
+
+  qs('#calPrev').onclick = () => { calMonth--; if(calMonth<0){calMonth=11;calYear--;} renderCalendar(); };
+  qs('#calNext').onclick = () => { calMonth++; if(calMonth>11){calMonth=0;calYear++;} renderCalendar(); };
+  wrap.querySelectorAll('[data-sel]').forEach(el => {
+    el.onclick = () => { sel.date=el.dataset.date; sel.time=null; renderCalendar(); updateSelectedDateBadge(); buildTimeGrid(); };
+  });
+}
+function updateSelectedDateBadge(){
+  const badge = qs('#selectedDateBadge');
+  if(sel.date){ badge.classList.add('visible'); qs('#selectedDateText').textContent=thaiDate(sel.date); }
+  else badge.classList.remove('visible');
+}
+
+// ── TIME SLOTS ───────────────────────────────
+function buildTimeGrid(){
+  const wrap = qs('#timeWrap');
+  const grid = qs('#timeGrid');
+  if(!sel.date){ wrap.style.display='none'; return; }
+  wrap.style.display='block';
+  grid.innerHTML='';
+
+  const now = new Date();
+  const todayStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+  const isToday = sel.date === todayStr;
+
+  const dur = calcDuration();
+  for(let h=SLOT_START; h<=SLOT_END-(dur/60); h+=SLOT_STEP/60){
+    const timeStr = `${String(h).padStart(2,'0')}:00`;
+    const full = isFull(sel.date, timeStr, sel.groomer);
+    const tooLate = isToday && (h*60) <= (now.getHours()*60+now.getMinutes()+60);
+    const btn = document.createElement('button');
+    btn.className = 'timeslot-btn';
+    const isSelected = sel.time===timeStr;
+    if(isSelected) btn.classList.add('selected');
+    if(full){ btn.classList.add('full'); btn.disabled=true; btn.textContent=timeStr+' (เต็ม)'; }
+    else if(tooLate){ btn.classList.add('too-late'); btn.disabled=true; btn.textContent=timeStr+' (ไม่ว่าง)'; }
+    else { btn.textContent=timeStr; btn.onclick=()=>{ sel.time=timeStr; buildTimeGrid(); }; }
+    grid.appendChild(btn);
+  }
+}
+
+// ── SUMMARY ──────────────────────────────────
+function buildSummary(containerId){
+  const box = qs('#'+containerId);
+  const pet = PETS.find(p=>p.id===sel.pet);
+  const svc = SERVICES.find(s=>s.id===sel.service);
+  const groomer = groomerList.find(g=>g.id===sel.groomer);
+  const addonNames = sel.addons.map(aid=>{ const a=ADDONS.find(x=>x.id===aid); return a?a.name:''; }).filter(Boolean);
+  const price = calcPrice();
+  const dur = calcDuration();
+  box.innerHTML = `
+    <div class="summary-row"><span class="summary-label">ขนาดน้องหมา</span><span class="summary-val">${pet?pet.label+' ('+pet.sub+')':'-'}</span></div>
+    <div class="summary-row"><span class="summary-label">Groomer</span><span class="summary-val">${groomer?groomer.name||groomer.id:'-'}</span></div>
+    <div class="summary-row"><span class="summary-label">บริการ</span><span class="summary-val">${svc?svc.name:'-'}</span></div>
+    ${addonNames.length?`<div class="summary-row"><span class="summary-label">บริการเสริม</span><span class="summary-val">${addonNames.join(', ')}</span></div>`:''}
+    <div class="summary-row"><span class="summary-label">วันที่</span><span class="summary-val">${thaiDate(sel.date)||'-'}</span></div>
+    <div class="summary-row"><span class="summary-label">เวลา</span><span class="summary-val">${sel.time||'-'}</span></div>
+    <div class="summary-row"><span class="summary-label">ชื่อเจ้าของ</span><span class="summary-val">${sel.ownerName||'-'}</span></div>
+    <div class="summary-row"><span class="summary-label">เบอร์โทร</span><span class="summary-val">${sel.ownerPhone||'-'}</span></div>
+    ${sel.petName?`<div class="summary-row"><span class="summary-label">ชื่อน้องหมา</span><span class="summary-val">${sel.petName}</span></div>`:''}
+    ${sel.note?`<div class="summary-row"><span class="summary-label">หมายเหตุ</span><span class="summary-val">${sel.note}</span></div>`:''}
+    <div class="summary-row"><span class="summary-label">ราคาประมาณ</span><span class="summary-val" style="color:var(--brown);font-size:15px">฿${price.toLocaleString()}+</span></div>
+    <div class="summary-row"><span class="summary-label">เวลาใช้บริการ</span><span class="summary-val">~${dur} นาที</span></div>`;
+}
+
+// ── NAVIGATION ───────────────────────────────
+function goToPage(p){
+  qs('#page'+currentPage).classList.remove('active');
+  currentPage = p;
+  qs('#page'+p).classList.add('active');
+  buildStepNav();
+  qs('#backBtn').style.display = p>1&&p<5 ? 'block' : 'none';
+  qs('#nextBtn').style.display = p<5 ? 'block' : 'none';
+  if(p===3){ initCalendar(); updateEstimate(); updateSelectedDateBadge(); buildTimeGrid(); }
+  if(p===4){ sel.ownerName=qs('#ownerName').value.trim(); sel.ownerPhone=qs('#ownerPhone').value.trim(); sel.petName=qs('#petNameInput').value.trim(); sel.note=qs('#ownerNote').value.trim(); buildSummary('summaryBox'); }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function unlockSection(id){ qs('#'+id).classList.remove('locked'); qs('#'+id).classList.add('unlocked'); }
+
+// ── VALIDATION ───────────────────────────────
+function validatePage(p){
+  if(p===1){
+    if(!sel.pet){ toast('กรุณาเลือกขนาดน้องหมา'); return false; }
+    if(!sel.groomer){ toast('กรุณาเลือก Groomer'); return false; }
+  }
+  if(p===2){
+    if(!sel.service){ toast('กรุณาเลือกบริการ'); return false; }
+  }
+  if(p===3){
+    if(!sel.date){ toast('กรุณาเลือกวันที่'); return false; }
+    if(!sel.time){ toast('กรุณาเลือกเวลา'); return false; }
+  }
+  if(p===4){
+    sel.ownerName=qs('#ownerName').value.trim();
+    sel.ownerPhone=qs('#ownerPhone').value.trim();
+    if(!sel.ownerName){ toast('กรุณากรอกชื่อเจ้าของ'); return false; }
+    if(!sel.ownerPhone){ toast('กรุณากรอกเบอร์โทร'); return false; }
+    if(!qs('#consentCheck').checked){ toast('กรุณายอมรับเงื่อนไข'); return false; }
+  }
+  return true;
+}
+
+// ── CONFIRM BOOKING ──────────────────────────
 async function confirmBooking(){
+  showLoading();
   try {
-    // ── 1. Derive duration & price safely ──
+    // ── 1. Re-check capacity ──
+    await loadBookings();
+    if(isFull(sel.date, sel.time, sel.groomer)){
+      hideLoading(); toast('ขออภัย เวลานี้เต็มแล้ว กรุณาเลือกเวลาอื่น'); goToPage(3); return;
+    }
+
+    // ── 2. Read form ──
+    sel.ownerName  = qs('#ownerName').value.trim();
+    sel.ownerPhone = qs('#ownerPhone').value.trim();
+    sel.petName    = qs('#petNameInput').value.trim();
+    sel.note       = qs('#ownerNote').value.trim();
+
+    // ── 3. Validate ──
+    if(!sel.ownerName||!sel.ownerPhone){ hideLoading(); toast('กรุณากรอกชื่อและเบอร์โทร'); return; }
+
+    // ── 4. Build booking object ──
     const dur = calcDuration();
-    const mn = dur && typeof dur.mn === 'number' ? dur.mn : 60;
-    const mx = dur && typeof dur.mx === 'number' ? dur.mx : 90;
-
-    const pr = calcPrice();
-    const pMin = pr && typeof pr.min === 'number' ? pr.min : 0;
-    const pMax = pr && typeof pr.max === 'number' ? pr.max : 0;
-
-    // ── 2. Service label — guard against undefined haircut ──
-    const petType   = S.petType  || 'dog';
-    const animalTh  = petType === 'dog' ? 'สุนัข' : 'แมว';
-    let svcLabel;
-    if (S.haircut === 'clipper') {
-      svcLabel = 'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)';
-    } else if (S.haircut === 'scissor') {
-      svcLabel = 'อาบน้ำ + ตัดขน (กรรไกร)';
-    } else {
-      svcLabel = 'อาบน้ำ' + animalTh;
-    }
-
-    // ── 3. Add-on labels ──
-    const addonArr = Array.isArray(S.addons) ? S.addons : [];
-    const addonLabels = addonArr
-      .map(av => { const a = addons.find(x => x.val === av); return a ? a.label : null; })
-      .filter(Boolean);
-
-    // ── 4. Coat label ──
-    const coatList  = petType === 'dog' ? dogCoats : catCoats;
-    const coatData  = coatList.find(c => c.val === S.coat);
-    const coatLabel = coatData ? coatData.label : (S.coat || '');
-
-    // ── 5. End times — min and max ──
-    const startTime   = S.time || '09:00';
-    const [startH, startM] = startTime.split(':').map(Number);
-    const startMins   = startH * 60 + startM;
-
-    // Validate: max end must not exceed shop closing (20:00)
-    if (startMins + mx > SHOP_CLOSE_MINS) {
-      throw new Error('เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน');
-    }
-
-    const endTimeMin  = calcEndTimeStr(startTime, mn);  // earliest possible end
-    const endTimeMax  = calcEndTimeStr(startTime, mx);  // latest possible end (used for blocking)
-
-    // ── 6. Auto-assign: find first groomer with no overlap ──
-    const newDate = S.date || '';
-    const groomerId = assignGroomer(newDate, startTime, mx);
-
-    // ── 7. Build canonical booking object ──
     const newBk = {
-      id:                   'BK-' + Date.now(),
-      customerName:         S.custName  || '',
-      phone:                S.custPhone || '',
-      petName:              S.petName   || '',
-      petType:              petType,
-      weightRange:          S.weight    || '',
-      coatType:             coatLabel,
-      service:              svcLabel,
-      addOns:               addonLabels,
-      estimatedPriceMin:    pMin,
-      estimatedPriceMax:    pMax,
-      estimatedDurationMin: mn,
-      estimatedDurationMax: mx,
-      date:                 S.date      || '',
-      startTime:            startTime,
-      endTimeMin:           endTimeMin,   // earliest end (mn)
-      endTimeMax:           endTimeMax,   // latest end (mx) — used for blocking
-      endTime:              endTimeMax,   // admin scheduler uses this for positioning
-      groomerId:            groomerId,
-      status:               'รอยืนยัน',
-      notes:                S.custNote  || '',
-      createdAt:            new Date().toISOString()
+      id: 'BK-' + Date.now(),
+      date: sel.date,
+      startTime: sel.time,
+      estimatedDurationMax: dur,
+      groomerId: sel.groomer,
+      status: 'confirmed',
+      ownerName: sel.ownerName,
+      ownerPhone: sel.ownerPhone,
+      petName: sel.petName,
+      petSize: sel.pet,
+      serviceId: sel.service,
+      addons: sel.addons,
+      note: sel.note,
+      price: calcPrice()
     };
 
+    // ── 5–7. (reserved for future use) ──
+
     // ── 8. Save to Supabase ──
-    let saveOk = false;
-    if(dbOnline){
-      try {
-        const res = await fetch(SB_URL + '/rest/v1/bookings', {
-          method: 'POST',
-          headers: SB_HEADERS_INSERT,
-          body: JSON.stringify(toRow(newBk))
-        });
-        if(!res.ok){ const t = await res.text(); throw new Error('HTTP ' + res.status + ': ' + t); }
-        saveOk = true;
-        console.log('booking saved to Supabase:', newBk.id);
-      } catch(err){
-        console.error('confirmBooking Supabase error:', err.message);
-        // Fallback: save to localStorage so admin can still see it
-        bookings.push(newBk);
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings)); } catch(e){}
-        console.warn('booking saved to localStorage fallback');
-        saveOk = true;
-      }
-    } else {
-      // Offline: save to localStorage
-      bookings.push(newBk);
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings)); } catch(e){}
-      console.log('booking saved (offline localStorage):', newBk.id);
-      saveOk = true;
-    }
+    const res = await fetch(SB_URL + '/rest/v1/bookings', {
+      method: 'POST',
+      headers: SB_HEADERS_INSERT,
+      body: JSON.stringify(toRow(newBk))
+    });
+    if(!res.ok){ const t = await res.text(); throw new Error('HTTP ' + res.status + ': ' + t); }
+    console.log('booking saved to Supabase:', newBk.id);
 
-    if(!saveOk) throw new Error('ไม่สามารถบันทึกได้');
+    // ── 9. Success ──
+    hideLoading();
+    qs('#confirmId').textContent = '# ' + newBk.id;
+    buildSummary('confirmSummary');
+    setupCalendarButton(newBk);
+    goToPage(5);
 
-    // Show success screen
-    const bw = document.querySelector('.booking-wrap');
-    if (bw) bw.style.display = 'none';
-    const sw = document.getElementById('successWrap');
-    if (sw) sw.classList.add('visible');
-    const ms = document.getElementById('miniSummary');
-    if (ms) ms.classList.remove('visible');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  } catch (err) {
+  } catch(err){
+    hideLoading();
     console.error('confirmBooking error:', err);
-    alert('เกิดข้อผิดพลาดในการจอง กรุณาลองใหม่อีกครั้ง\n\n' + err.message);
+    toast('เกิดข้อผิดพลาด: ' + err.message);
   }
 }
 
-function calcEndTimeStr(start, durationMin) {
-  // Guard: if start is null/undefined, return fallback
-  if (!start || typeof start !== 'string' || !start.includes(':')) {
-    return '10:00';
-  }
-  const parts = start.split(':').map(Number);
-  const h = parts[0] || 0;
-  const m = parts[1] || 0;
-  const total = h * 60 + m + (durationMin || 60);
-  const eh = Math.floor(total / 60) % 24;
-  const em = total % 60;
-  return String(eh).padStart(2, '0') + ':' + String(em).padStart(2, '0');
+// ── CALENDAR BUTTON ──────────────────────────
+function setupCalendarButton(bk){
+  const svc = SERVICES.find(s=>s.id===bk.serviceId);
+  const [y,m,d] = bk.date.split('-').map(Number);
+  const [h,min] = bk.startTime.split(':').map(Number);
+  const start = new Date(y,m-1,d,h,min);
+  const end   = new Date(start.getTime() + bk.estimatedDurationMax*60000);
+  const fmt = dt => dt.toISOString().replace(/[-:]/g,'').replace('.000','');
+  const title = encodeURIComponent(`Grooming @ Chou&Me - ${bk.ownerName}`);
+  const details = encodeURIComponent(`บริการ: ${svc?svc.name:bk.serviceId}\nเบอร์: ${bk.ownerPhone}`);
+  const loc = encodeURIComponent('Chou&Me Pet Wellness');
+  qs('#calBtn').onclick = () => {
+    window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(start)}/${fmt(end)}&details=${details}&location=${loc}`);
+  };
 }
 
-// ── INIT ──
-updateStepNav();
-// Load both bookings and groomer list in parallel for capacity check
+// ── NEXT / BACK BUTTONS ──────────────────────
+qs('#nextBtn').onclick = async () => {
+  if(!validatePage(currentPage)) return;
+  if(currentPage===4){ await confirmBooking(); return; }
+  goToPage(currentPage+1);
+};
+qs('#backBtn').onclick = () => goToPage(currentPage-1);
+
+// ── MODAL CLOSE ON BACKDROP ──────────────────
+document.querySelectorAll('.modal-backdrop').forEach(m => {
+  m.addEventListener('click', e => { if(e.target===m) closeModal(m.id); });
+});
+
+// ── INIT ─────────────────────────────────────
+buildStepNav();
+buildPetGrid();
+
+// Load data for capacity check
 Promise.all([loadBookings(), loadGroomerList()])
   .then(() => { console.log('init: ready, groomers:', groomerList.length, 'bookings:', bookings.length); });
 </script>
