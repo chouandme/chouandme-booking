@@ -40,132 +40,49 @@ body {
 }
 
 /* RIBBON */
-.ribbon {
-  background: var(--brown);
-  color: #fff;
-  padding: 10px 0;
-  overflow: hidden;
-  margin: 0 0px;
-  position: relative;
-  z-index: 10;
-  box-shadow: 0 4px 10px rgba(167, 165, 164, 0.22);
-}
+.ribbon { background:var(--brown); color:#fff; padding:10px 0; overflow:hidden; position:relative; z-index:10; box-shadow:0 4px 10px rgba(167,165,164,.22); }
 .ribbon-inner { display:flex; white-space:nowrap; animation:marquee 34s linear infinite; width:max-content; }
 .ribbon span { font-family:'Quicksand',sans-serif; font-size:12px; font-weight:600; letter-spacing:3px; padding:0 10px; }
-.ribbon span.dot { color:var(--pink); font-size:12px; padding:0 12px; transform: translateY(-1px);}
+.ribbon span.dot { color:var(--pink); font-size:12px; padding:0 12px; transform:translateY(-1px); }
 @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
 /* HEADER */
-.site-header {
-  background:var(--cream); padding:16px 20px 14px;
-  display:flex; align-items:center; justify-content:space-between;
-  position:sticky; top:0; z-index:100;
-}
+.site-header { background:var(--cream); padding:16px 20px 14px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
 .logo { font-family:'Quicksand',sans-serif; font-size:20px; font-weight:800; color:var(--brown); letter-spacing:2px; }
 .logo span { color:var(--sage); }
-.header-tag {
-  background:var(--pink); color:var(--text-dark);
-  font-family:'Quicksand',sans-serif; font-size:11px; font-weight:800;
-  padding:4px 12px; border-radius:var(--radius-pill); letter-spacing:1px;
-}
+.header-tag { background:var(--pink); color:var(--text-dark); font-family:'Quicksand',sans-serif; font-size:11px; font-weight:800; padding:4px 12px; border-radius:var(--radius-pill); letter-spacing:1px; }
 
 /* HERO */
-.hero {
- background:
-radial-gradient(circle at top left,#F4E2E2 0%,transparent 45%),
-radial-gradient(circle at top right,#F2F7CD 0%,transparent 30%),
-linear-gradient(
-  175deg,
-  #F1F3EC 0%,
-  #F1F3EC 60%,
-  #f8efef 100%);
-  padding:46px 20px 66px;
-  text-align:center; position:relative; overflow:hidden;
-}
+.hero { background:radial-gradient(circle at top left,#F4E2E2 0%,transparent 45%),radial-gradient(circle at top right,#F2F7CD 0%,transparent 30%),linear-gradient(175deg,#F1F3EC 0%,#F1F3EC 60%,#f8efef 100%); padding:46px 20px 66px; text-align:center; position:relative; overflow:hidden; }
 .hero-deco { position:absolute; pointer-events:none; font-size:36px; animation:floaty 4s ease-in-out infinite; }
 .hero-deco.d1{top:22px;left:30px} .hero-deco.d2{top:60px;right:40px;animation-delay:1.2s;font-size:28px}
 .hero-deco.d3{bottom:15px;left:40px;animation-delay:.7s;font-size:24px} .hero-deco.d4{bottom:8px;right:15px;animation-delay:1.8s}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(5deg)}}
-.hero-badge {
-  display:inline-block; background:var(--yellow-green); color:var(--text-mid);
-  font-family:'Quicksand',sans-serif; font-size:12px; font-weight:600; padding:5px 16px; border-radius:var(--radius-pill);
-  margin-bottom:14px; letter-spacing:1px; border:0.5px solid var(--sage);
-}
+.hero-badge { display:inline-block; background:var(--yellow-green); color:var(--text-mid); font-family:'Quicksand',sans-serif; font-size:12px; font-weight:600; padding:5px 16px; border-radius:var(--radius-pill); margin-bottom:14px; letter-spacing:1px; border:.5px solid var(--sage); }
 .hero h1 { font-size:clamp(32px,8vw,54px); font-weight:500; color:var(--brown); line-height:1; margin-bottom:12px; }
 .hero h1 span { color:var(--sage); }
 .hero p { font-size:13px; color:var(--text-mid); max-width:320px; margin:0 auto; line-height:2; font-weight:300; }
 
 /* WAVE */
-.wave{display:block;width:100%;height:34px;overflow:hidden;line-height:0}
-.wave svg{width:100%;height:100%}
-.wave-overlap {
-  height: 20px;
-  margin-top: -20px;
-  position: relative;
-  z-index: 5;
-  line-height: 0;
-  overflow: hidden;
-}
-.wave-overlap svg {
-  width: max(1600px, 100%);
-  height: 100%;
-  display: block;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
+.wave-overlap { height:20px; margin-top:-20px; position:relative; z-index:5; line-height:0; overflow:hidden; }
+.wave-overlap svg { width:max(1600px,100%); height:100%; display:block; position:absolute; left:50%; transform:translateX(-50%); }
 
 /* BOOKING WRAP */
 .booking-wrap { padding:8px 16px 120px; max-width:560px; margin:0 auto; }
 
 /* STEP NAV */
-.step-nav { display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:0;
-  overflow-x:auto; overflow-y:hidden; padding:16px 16px 20px;
-  white-space:nowrap; scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;}
+.step-nav { display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:0; overflow-x:auto; overflow-y:hidden; padding:16px 16px 20px; white-space:nowrap; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
 .step-nav::-webkit-scrollbar { display:none; }
-.step-pill {display:flex; flex-direction:row; align-items:center; justify-content:center; gap:10px; margin:0 auto;
-  flex-shrink:0; white-space:nowrap; min-width:max-content; padding:5px 12px;
-  border-radius:999px; background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%);
-  border:0px;
-  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  box-shadow:/* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
-    /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
-    /* contact */         0 1px 2px rgba(40,30,0,0.10),
-    /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
-    /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
-    /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
-  color:var(--brown); transition:all .3s ease;
-  font-size:14px; font-weight:500;}
-.step-pill .snum {
-  width:18px;height:18px; background:rgba(255,255,255,.28); border-radius:50%;
-  display:flex;align-items:center;justify-content:center; font-size:10px;}
-.step-pill.active{color: var(--brown);
-  background:linear-gradient(180deg, #fbf4f1 0%, #dcd2ca 50%, #dcd0c6 100%); border: 0px;
-  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-  box-shadow:
-    0 9px 20px -7px rgba(255,255,255,1),
-    0 18px 36px -5px rgba(0,0,0,0.10),
-    0 4px 5px #c9733e79,
-    inset 0 1px 0 rgba(255,255,255,0.95),
-    inset 0 -1px 1px rgba(255,255,255,0.95),
-    inset 0 -7px 13px -6px rgba(255,255,255,0.95);
-  transform: translateY(-2px) scale(1.05);}
-.step-pill.done { color: var(--brown);
-  background: linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%); border: 0px;
-  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-  box-shadow:
-    0 1px 2px rgba(0,0,0,0.12),
-    inset 0 2px 4px rgba(0,0,0,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.6);}
+.step-pill { display:flex; flex-direction:row; align-items:center; justify-content:center; gap:10px; margin:0 auto; flex-shrink:0; white-space:nowrap; min-width:max-content; padding:5px 12px; border-radius:999px; background:linear-gradient(180deg,#f8f8f1 0%,#f1f1e9 50%,#e9e9df 100%); border:0; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); box-shadow:0 9px 20px -7px rgba(255,252,235,1),0 18px 36px -5px rgba(40,30,0,.10),0 1px 2px rgba(40,30,0,.10),inset 0 1px 0 rgba(255,253,240,.95),inset 0 -1px 1px rgba(255,253,240,.95),inset 0 -7px 13px -6px rgba(255,253,240,.95); color:var(--brown); transition:all .3s ease; font-size:14px; font-weight:500; }
+.step-pill .snum { width:18px;height:18px; background:rgba(255,255,255,.28); border-radius:50%; display:flex;align-items:center;justify-content:center; font-size:10px; }
+.step-pill.active { color:var(--brown); background:linear-gradient(180deg,#fbf4f1 0%,#dcd2ca 50%,#dcd0c6 100%); border:0; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 9px 20px -7px rgba(255,255,255,1),0 18px 36px -5px rgba(0,0,0,.10),0 4px 5px #c9733e79,inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 1px rgba(255,255,255,.95),inset 0 -7px 13px -6px rgba(255,255,255,.95); transform:translateY(-2px) scale(1.05); }
+.step-pill.done { color:var(--brown); background:linear-gradient(180deg,#f8f8f1 0%,#f1f1e9 50%,#e9e9df 100%); border:0; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 1px 2px rgba(0,0,0,.12),inset 0 2px 4px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6); }
 .step-connector { height:1px; flex:2; flex-shrink:2; background:var(--gray); max-width:14px; min-width:14px; border-radius:1px; }
 .step-connector.done { background:var(--sage); }
 
 /* PROGRESS */
 .progress-bar { height:8px; width:82%; margin:0 auto; background:var(--sand); border-radius:999px; margin-bottom:22px; overflow:hidden; }
-.progress-fill { height:100%; background:linear-gradient(90deg,var(--sage),#f7ffd982); border-radius:999px; transition:width .45s ease;
-  box-shadow:
-  0 0 10px rgba(160,114,85,.18);}
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--sage),#f7ffd982); border-radius:999px; transition:width .45s ease; box-shadow:0 0 10px rgba(160,114,85,.18); }
 
 /* PAGES */
 .booking-page { display:none; animation:fadeUp .38s ease; }
@@ -177,109 +94,45 @@ linear-gradient(
 .sub-section.locked { opacity:.32; pointer-events:none; }
 .sub-section.unlocked { opacity:1; pointer-events:all; }
 .sub-section-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
-.sub-num {
-  width:28px;height:28px; border-radius:50%;
-  background:var(--brown); color:#fff;
-  font-family:'Mitr',sans-serif; font-size:13px; font-weight:700;
-  display:flex;align-items:center;justify-content:center; flex-shrink:0;
-}
+.sub-num { width:28px;height:28px; border-radius:50%; background:var(--brown); color:#fff; font-family:'Mitr',sans-serif; font-size:13px; font-weight:700; display:flex;align-items:center;justify-content:center; flex-shrink:0; }
 .sub-section.locked .sub-num { background:var(--gray); }
 .section-title { font-size:16px; font-weight:500; color:var(--brown); }
 .sub-section.locked .section-title { color:var(--slate); }
 .section-sub { font-size:12px; color:var(--text-mid); margin-bottom:13px; margin-top:2px; font-weight:300; padding-left:38px; }
+.inner-label { font-size:13px; font-weight:600; color:var(--brown); margin-bottom:8px; margin-top:4px; font-family:'Mitr',sans-serif; }
 
 /* CARDS */
 .card-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:6px; }
 .card-grid.col1 { grid-template-columns:1fr; }
 .card-grid.col4 { grid-template-columns:repeat(4,1fr); }
-.sel-card {
-  background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0;
-  border-radius:var(--radius-lg); padding:16px 12px; box-sizing: border-box;
-  cursor:pointer; transition: transform 180ms cubic-bezier(.2,.7,.2,1), box-shadow 220ms ease;
-  text-align:center;
-  box-shadow:
-    /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
-    /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
-    /* contact */         0 1px 2px rgba(40,30,0,0.10),
-    /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
-    /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
-    /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
-  position:relative; overflow:hidden;
-  -webkit-tap-highlight-color:transparent; user-select:none;}
-.sel-card:hover { transform:translateY(-1px) scale(1);
-  background:linear-gradient(180deg, #fbf4f1 0%, #dcd2ca 50%, #dcd0c6 100%);
-  border:0;
-  box-shadow:
-    0 9px 20px -7px rgba(255,255,255,1),
-    0 18px 36px -5px rgba(0,0,0,0.10),
-    0 4px 5px #b0673967,
-    inset 0 1px 0 rgba(255,255,255,0.95),
-    inset 0 -1px 1px rgba(255,255,255,0.95),
-    inset 0 -7px 13px -6px rgba(255,255,255,0.95);
-  backdrop-filter:blur(6px);}
-.sel-card:hover .card-emoji{transform:translateY(-1.5px) scale(1);}
-.sel-card.selected { border-color:var(--brown);  color:#fff;
-  background:linear-gradient(180deg, #fafcf4 0%, #e6e7da 50%, #e6e7d8 100%);
-  border:0;
-  box-shadow:
-    0 1px 2px rgba(0,0,0,0.12),
-    inset 0 2px 4px rgba(0,0,0,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-  backdrop-filter:blur(6px);
-  transform:scale(1);
-  animation:checkPop .28s cubic-bezier(.34,1.56,.64,1);}
-.sel-card.selected::after {
-  content:'✓'; position:absolute; top:8px;right:12px;
-  background:var(--brown); color:#fff; width:18px;height:18px;
-  border-radius:50%; font-family:'Sarabun',sans-serif; font-size:10px; font-weight:700;
-  display:flex;align-items:center;justify-content:center;}
+.sel-card { background:linear-gradient(180deg,#f8f8f1 0%,#f1f1e9 50%,#e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:0; outline:0; border-radius:var(--radius-lg); padding:16px 12px; box-sizing:border-box; cursor:pointer; transition:transform 180ms cubic-bezier(.2,.7,.2,1),box-shadow 220ms ease; text-align:center; box-shadow:0 9px 20px -7px rgba(255,252,235,1),0 18px 36px -5px rgba(40,30,0,.10),0 1px 2px rgba(40,30,0,.10),inset 0 1px 0 rgba(255,253,240,.95),inset 0 -1px 1px rgba(255,253,240,.95),inset 0 -7px 13px -6px rgba(255,253,240,.95); position:relative; overflow:hidden; -webkit-tap-highlight-color:transparent; user-select:none; }
+.sel-card:hover { transform:translateY(-1px); background:linear-gradient(180deg,#fbf4f1 0%,#dcd2ca 50%,#dcd0c6 100%); box-shadow:0 9px 20px -7px rgba(255,255,255,1),0 18px 36px -5px rgba(0,0,0,.10),0 4px 5px #b0673967,inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 1px rgba(255,255,255,.95),inset 0 -7px 13px -6px rgba(255,255,255,.95); }
+.sel-card.selected { background:linear-gradient(180deg,#fafcf4 0%,#e6e7da 50%,#e6e7d8 100%); box-shadow:0 1px 2px rgba(0,0,0,.12),inset 0 2px 4px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6); animation:checkPop .28s cubic-bezier(.34,1.56,.64,1); }
+.sel-card.selected::after { content:'✓'; position:absolute; top:8px;right:12px; background:var(--brown); color:#fff; width:18px;height:18px; border-radius:50%; font-family:'Sarabun',sans-serif; font-size:10px; font-weight:700; display:flex;align-items:center;justify-content:center; }
 .card-emoji { font-size:24px; margin-bottom:6px; display:block; line-height:1; }
-.card-label { font-family:'Sarabun',sans-serif; font-size:14px; font-weight:600; color:var(--text-dark); display:block; margin-bottom:3px; line-height:1.2; letter-spacing:1px;}
+.card-label { font-family:'Sarabun',sans-serif; font-size:14px; font-weight:600; color:var(--text-dark); display:block; margin-bottom:3px; line-height:1.2; letter-spacing:1px; }
 .card-sub { font-size:10px; color:var(--text-mid); line-height:1.5; font-weight:300; }
 
+/* PET TABS */
+.pet-tabs { display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; margin-bottom:18px; padding-bottom:2px; }
+.pet-tabs::-webkit-scrollbar { display:none; }
+.pet-tab-btn { flex-shrink:0; padding:9px 18px; border-radius:var(--radius-pill); border:2px solid var(--sand); background:var(--white); font-family:'Mitr',sans-serif; font-size:13px; font-weight:500; color:var(--text-mid); cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:5px; white-space:nowrap; }
+.pet-tab-btn:hover { border-color:var(--brown); color:var(--brown); }
+.pet-tab-btn.active { background:var(--brown); color:#fff; border-color:var(--brown); }
+.pet-tab-btn.complete { border-color:var(--sage); background:var(--yellow-green); color:var(--brown); }
+.pet-tab-btn.complete.active { background:var(--sage); color:#fff; border-color:var(--sage); }
+.tab-check { font-size:11px; }
+
+/* PET DETAIL INNER SECTIONS */
+.pet-detail-block { animation:fadeUp .25s ease; }
+.inner-section { margin-bottom:18px; }
+.inner-section.hidden { display:none; }
+
 /* SERVICE CARDS */
-.service-card {
-  background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0;
-  border-radius:var(--radius-lg); padding:16px 14px;
-  cursor:pointer; display:flex; align-items:flex-start; gap:13px;
-   box-shadow:
-    /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
-    /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
-    /* contact */         0 1px 2px rgba(40,30,0,0.10),
-    /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
-    /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
-    /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
-  transition: transform 180ms cubic-bezier(.2,.7,.2,1), box-shadow 220ms ease;
-  margin-bottom:10px; position:relative;
-  -webkit-tap-highlight-color:transparent; user-select:none;
-}
-.service-card:hover { transform:translateY(-1px) scale(1);
-  background:linear-gradient(180deg, #fbf4f1 0%, #dcd2ca 50%, #dcd0c6 100%);
-  border:0;
-  box-shadow:
-    0 9px 20px -7px rgba(255,255,255,1),
-    0 18px 36px -5px rgba(0,0,0,0.10),
-    0 4px 5px #b0673967,
-    inset 0 1px 0 rgba(255,255,255,0.95),
-    inset 0 -1px 1px rgba(255,255,255,0.95),
-    inset 0 -7px 13px -6px rgba(255,255,255,0.95);
-  backdrop-filter:blur(6px);}
-.service-card.selected { border-color:var(--brown);  color:#fff;
-  background:linear-gradient(180deg, #fafcf4 0%, #e6e7da 50%, #e6e7d8 100%);
-  border:0;
-  box-shadow:
-    0 1px 2px rgba(0,0,0,0.12),
-    inset 0 2px 4px rgba(0,0,0,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-  backdrop-filter:blur(6px);
-  transform:scale(1);
-  animation:checkPop .28s cubic-bezier(.34,1.56,.64,1);}
-.service-card.selected::after {
-  content:'✓'; position:absolute; top:10px;right:12px;
-  background:var(--brown); color:#fff; width:20px;height:20px;
-  border-radius:50%; font-size:11px; font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-}
+.service-card { background:linear-gradient(180deg,#f8f8f1 0%,#f1f1e9 50%,#e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:0; outline:0; border-radius:var(--radius-lg); padding:16px 14px; cursor:pointer; display:flex; align-items:flex-start; gap:13px; box-shadow:0 9px 20px -7px rgba(255,252,235,1),0 18px 36px -5px rgba(40,30,0,.10),0 1px 2px rgba(40,30,0,.10),inset 0 1px 0 rgba(255,253,240,.95),inset 0 -1px 1px rgba(255,253,240,.95),inset 0 -7px 13px -6px rgba(255,253,240,.95); transition:transform 180ms cubic-bezier(.2,.7,.2,1),box-shadow 220ms ease; margin-bottom:10px; position:relative; -webkit-tap-highlight-color:transparent; user-select:none; }
+.service-card:hover { transform:translateY(-1px); background:linear-gradient(180deg,#fbf4f1 0%,#dcd2ca 50%,#dcd0c6 100%); box-shadow:0 9px 20px -7px rgba(255,255,255,1),0 18px 36px -5px rgba(0,0,0,.10),0 4px 5px #b0673967,inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 1px rgba(255,255,255,.95),inset 0 -7px 13px -6px rgba(255,255,255,.95); }
+.service-card.selected { background:linear-gradient(180deg,#fafcf4 0%,#e6e7da 50%,#e6e7d8 100%); box-shadow:0 1px 2px rgba(0,0,0,.12),inset 0 2px 4px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6); animation:checkPop .28s cubic-bezier(.34,1.56,.64,1); }
+.service-card.selected::after { content:'✓'; position:absolute; top:10px;right:12px; background:var(--brown); color:#fff; width:20px;height:20px; border-radius:50%; font-size:11px; font-weight:700; display:flex;align-items:center;justify-content:center; }
 .svc-emoji { font-size:24px; flex-shrink:0; padding-top:2px; }
 .svc-info { flex:1; min-width:0; }
 .svc-name { font-family:'Sarabun',sans-serif; font-size:14px; font-weight:700; color:var(--text-dark); margin-bottom:4px; line-height:1.2; }
@@ -288,258 +141,90 @@ linear-gradient(
 .svc-tag { background:var(--brown); border-radius:var(--radius-pill); padding:2px 9px; font-size:11px; font-weight:500; color:var(--cream); }
 .svc-tag.pink { background:var(--yellow-green); color:var(--brown); }
 .svc-price { font-family:'Sarabun',sans-serif; font-size:14px; font-weight:700; color:var(--brown); flex-shrink:0; padding-top:24px; white-space:nowrap; }
-
-/* SERVICE NOTE */
-.service-note {
-  background:var(--yellow-green); border-radius:14px; padding:11px 14px;
-  font-size:11px; color:var(--text-mid); margin-bottom:14px;
-  display:flex; gap:8px; align-items:flex-start;
-}
-.service-note .ni { font-size:14px; flex-shrink:0; }
+.service-note { background:var(--yellow-green); border-radius:14px; padding:11px 14px; font-size:11px; color:var(--text-mid); margin-bottom:14px; display:flex; gap:8px; align-items:flex-start; }
 
 /* ADDON */
 .addon-grid { display:grid; grid-template-columns:1fr; gap:8px; margin-bottom:14px; }
-.addon-card {
-  background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0;
-  border-radius:16px; padding:11px 13px;
-  cursor:pointer; display:flex; align-items:center; gap:11px;
-  box-shadow:
-    /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
-    /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
-    /* contact */         0 1px 2px rgba(40,30,0,0.10),
-    /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
-    /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
-    /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
-  transition: transform 180ms cubic-bezier(.2,.7,.2,1), box-shadow 220ms ease;
-  -webkit-tap-highlight-color:transparent; user-select:none;
-}
-.addon-card:hover {
-  background:linear-gradient(180deg, #fbf4f1 0%, #dcd2ca 50%, #dcd0c6 100%);
-  border:0;
-  box-shadow:
-    0 9px 20px -7px rgba(255,255,255,1),
-    0 18px 36px -5px rgba(0,0,0,0.10),
-    0 4px 5px #b0673967,
-    inset 0 1px 0 rgba(255,255,255,0.95),
-    inset 0 -1px 1px rgba(255,255,255,0.95),
-    inset 0 -7px 13px -6px rgba(255,255,255,0.95);
-  backdrop-filter:blur(6px);}
-.addon-card.selected {
-  background:linear-gradient(180deg, #fafcf4 0%, #e6e7da 50%, #e6e7d8 100%);
-  border:0;
-  box-shadow:
-    0 1px 2px rgba(0,0,0,0.12),
-    inset 0 2px 4px rgba(0,0,0,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-  backdrop-filter:blur(6px);
-  transform:scale(1);
-  animation:checkPop .28s cubic-bezier(.34,1.56,.64,1);}
+.addon-card { background:linear-gradient(180deg,#f8f8f1 0%,#f1f1e9 50%,#e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:0; outline:0; border-radius:16px; padding:11px 13px; cursor:pointer; display:flex; align-items:center; gap:11px; box-shadow:0 9px 20px -7px rgba(255,252,235,1),0 18px 36px -5px rgba(40,30,0,.10),0 1px 2px rgba(40,30,0,.10),inset 0 1px 0 rgba(255,253,240,.95),inset 0 -1px 1px rgba(255,253,240,.95),inset 0 -7px 13px -6px rgba(255,253,240,.95); transition:transform 180ms cubic-bezier(.2,.7,.2,1),box-shadow 220ms ease; -webkit-tap-highlight-color:transparent; user-select:none; }
+.addon-card:hover { background:linear-gradient(180deg,#fbf4f1 0%,#dcd2ca 50%,#dcd0c6 100%); box-shadow:0 9px 20px -7px rgba(255,255,255,1),0 18px 36px -5px rgba(0,0,0,.10),0 4px 5px #b0673967,inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 1px rgba(255,255,255,.95),inset 0 -7px 13px -6px rgba(255,255,255,.95); }
+.addon-card.selected { background:linear-gradient(180deg,#fafcf4 0%,#e6e7da 50%,#e6e7d8 100%); box-shadow:0 1px 2px rgba(0,0,0,.12),inset 0 2px 4px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6); animation:checkPop .28s cubic-bezier(.34,1.56,.64,1); }
 .addon-card.selected .addon-check { background:var(--sage); border-color:var(--sage); }
 .addon-card.selected .addon-check::after { opacity:1; }
-.addon-check {
-  width:22px;height:22px; border-radius:6px; border:2.5px solid var(--gray);
-  flex-shrink:0; position:relative; transition:all .18s;
-}
-.addon-check::after {
-  content:'✓'; position:absolute; inset:0;
-  display:flex;align-items:center;justify-content:center;
-  color:#fff; font-size:12px; font-weight:700; opacity:0; transition:opacity .15s;
-}
+.addon-check { width:22px;height:22px; border-radius:6px; border:2.5px solid var(--gray); flex-shrink:0; position:relative; transition:all .18s; }
+.addon-check::after { content:'✓'; position:absolute; inset:0; display:flex;align-items:center;justify-content:center; color:#fff; font-size:12px; font-weight:700; opacity:0; transition:opacity .15s; }
 .addon-emoji { font-size:22px; flex-shrink:0; }
 .addon-info { flex:1; min-width:0; }
 .addon-name { font-family:'Sarabun',sans-serif; font-size:14px; font-weight:600; color:var(--text-dark); display:block; }
-.addon-desc { font-size:clamp(8px, 2.5vw, 10px); color:var(--text-mid); font-weight:300; line-height:1.4; }
+.addon-desc { font-size:clamp(8px,2.5vw,10px); color:var(--text-mid); font-weight:300; line-height:1.4; }
 .addon-price-tag { font-family:'Sarabun',sans-serif; font-size:13px; font-weight:700; color:var(--brown); flex-shrink:0; }
 
 /* DATE / TIME */
-.date-input-wrap {
-  background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 60%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0; border-radius:var(--radius-lg);
-  padding:18px; margin-bottom:14px;
-  box-shadow:
-    /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
-    /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
-    /* contact */         0 1px 2px rgba(40,30,0,0.10),
-    /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
-    /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
-    /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
-}
+.date-input-wrap { background:linear-gradient(180deg,#f8f8f1 0%,#f1f1e9 60%,#e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:0; outline:0; border-radius:var(--radius-lg); padding:18px; margin-bottom:14px; box-shadow:0 9px 20px -7px rgba(255,252,235,1),0 18px 36px -5px rgba(40,30,0,.10),0 1px 2px rgba(40,30,0,.10),inset 0 1px 0 rgba(255,253,240,.95),inset 0 -1px 1px rgba(255,253,240,.95),inset 0 -7px 13px -6px rgba(255,253,240,.95); }
 .date-input-wrap label { font-family:'Mitr',sans-serif; font-size:14px; font-weight:600; color:var(--brown); display:block; margin-bottom:10px; }
-
-/* CUSTOM CALENDAR */
 .cal-wrap { user-select:none; }
-.cal-header {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom:14px;
-}
-.cal-title {
-  font-family:'Mitr',sans-serif; font-size:16px; font-weight:700;
-  color:var(--brown);
-}
-.cal-nav {
-  background:var(--cream); border:0px; border-radius:10px;
-  width:34px; height:34px; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  font-size:16px; color:var(--brown); transition:all .16s;
-  -webkit-tap-highlight-color:transparent;
-}
+.cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.cal-title { font-family:'Mitr',sans-serif; font-size:16px; font-weight:700; color:var(--brown); }
+.cal-nav { background:var(--cream); border:0; border-radius:10px; width:34px;height:34px; cursor:pointer; display:flex;align-items:center;justify-content:center; font-size:16px; color:var(--brown); transition:all .16s; -webkit-tap-highlight-color:transparent; }
 .cal-nav:hover { background:var(--sand); }
 .cal-nav:disabled { opacity:.3; cursor:not-allowed; }
-.cal-dow-row {
-  display:grid; grid-template-columns:repeat(7,1fr);
-  gap:2px; margin-bottom:4px;
-}
-.cal-dow {
-  text-align:center; font-family:'Mitr',sans-serif;
-  font-size:12px; font-weight:500;
-  color:var(--brown); padding:4px 0;
-}
+.cal-dow-row { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; margin-bottom:4px; }
+.cal-dow { text-align:center; font-family:'Mitr',sans-serif; font-size:12px; font-weight:500; color:var(--brown); padding:4px 0; }
 .cal-dow.closed { color:var(--gray); }
-.cal-grid {
-  display:grid; grid-template-columns:repeat(7,1fr);
-  gap:4px;
-}
-.cal-day {
-  aspect-ratio:1; border-radius:12px;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Sarabun',sans-serif; font-size:13px; font-weight:600;
-  cursor:pointer; transition:all .18s cubic-bezier(.34,1.56,.64,1);
-  -webkit-tap-highlight-color:transparent;
-  border:2px solid transparent;
-  background:var(--white); color:var(--text-dark);
-}
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+.cal-day { aspect-ratio:1; border-radius:12px; display:flex;align-items:center;justify-content:center; font-family:'Sarabun',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:all .18s cubic-bezier(.34,1.56,.64,1); -webkit-tap-highlight-color:transparent; border:2px solid transparent; background:var(--white); color:var(--text-dark); }
 .cal-day:hover:not(.disabled):not(.closed-day) { background:var(--sand); transform:scale(1.05); }
-.cal-day.selected {
-  background:var(--brown); color:#fff;
-
-  box-shadow:0 4px 14px rgba(160,114,85,.28);
-  transform:scale(1.05);
-}
+.cal-day.selected { background:var(--brown); color:#fff; box-shadow:0 4px 14px rgba(160,114,85,.28); transform:scale(1.05); }
 .cal-day.today { border-color:var(--yellow-green); }
 .cal-day.disabled { opacity:.28; cursor:not-allowed; }
-.cal-day.closed-day { background:var(--cream); color:var(--gray); cursor:not-allowed; font-size:13px; }
+.cal-day.closed-day { background:var(--cream); color:var(--gray); cursor:not-allowed; }
 .cal-day.empty { background:transparent; cursor:default; }
-.cal-day.other-month { opacity:.3; }
-
-.date-note {
-  background:var(--gray); border-radius:12px; padding:10px 14px;
-  font-size:12px; color:#6c6c6c; font-weight:500; margin-top:10px; display:none;
-}
+.date-note { background:var(--gray); border-radius:12px; padding:10px 14px; font-size:12px; color:#6c6c6c; font-weight:500; margin-top:10px; display:none; }
 .date-note.visible { display:block; }
-
-.selected-date-badge {
-  display:none; align-items:center; gap:8px;
-  background:var(--yellow-green); border-radius:12px;
-  padding:10px 14px; margin-top:12px;
-  font-size:13px; font-weight:600; color:var(--text-mid);
-}
+.selected-date-badge { display:none; align-items:center; gap:8px; background:var(--yellow-green); border-radius:12px; padding:10px 14px; margin-top:12px; font-size:13px; font-weight:600; color:var(--text-mid); }
 .selected-date-badge.visible { display:flex; }
-.selected-date-badge .sdb-icon { font-size:16px; }
-
 .timeslot-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:7px; margin-top:10px; }
-.timeslot-btn {
-  background:var(--white); border:2.5px solid transparent;
-  border-radius:12px; padding:9px 4px;
-  font-family:'Sarabun',sans-serif; font-size:14px; font-weight:600;
-  color:var(--text-dark); cursor:pointer; text-align:center;
-  transition:all .16s; -webkit-tap-highlight-color:transparent;
-}
+.timeslot-btn { background:var(--white); border:2.5px solid transparent; border-radius:12px; padding:9px 4px; font-family:'Sarabun',sans-serif; font-size:14px; font-weight:600; color:var(--text-dark); cursor:pointer; text-align:center; transition:all .16s; -webkit-tap-highlight-color:transparent; }
 .timeslot-btn:hover:not(:disabled) { background:var(--sand); }
 .timeslot-btn.selected { background:var(--brown); color:#fff; }
 .timeslot-btn:disabled { opacity:.32; cursor:not-allowed; }
 .timeslot-btn.full { background:#f5f0e8; color:#b8a898; font-size:10px; }
 .timeslot-btn.too-late { background:#f5f0e8; color:#b8a898; font-size:10px; }
 
-/* BOOKING ESTIMATE CARD (above calendar) */
-.estimate-card {
-  background: linear-gradient(180deg, #fefff5e2 0%, #eff1d4c9 60%, #eef3d1c6 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0;
-  border-radius: 20px;
-  padding: 16px 18px;
-  margin-bottom: 16px;
-   box-shadow:
-    /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
-    /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
-    /* contact */         0 1px 2px #ccd584b1,
-    /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
-    /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
-    /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.estimate-icon { font-size: 32px; flex-shrink: 0; }
-.estimate-body { flex: 1; min-width: 0; }
-.estimate-label {
-  font-size: 11px; font-weight: 600; color: var(--text-mid);
-  letter-spacing: 1px; margin-bottom: 3px;
-}
-.estimate-price {
-  font-family: 'Sarabun', sans-serif;
-  font-size: 22px; font-weight: 700; color: var(--brown);
-  line-height: 1.1; margin-bottom: 2px;
-}
-.estimate-duration {
-  font-size: 12px; color: var(--text-mid); display: flex; align-items: center; gap: 4px;
-}
-.estimate-duration b { color: var(--brown); }
-.estimate-svc-tag {
-  display: inline-block;
-  background: var(--brown);
-  color: var(--white);
-  font-size: 11px; font-weight: 500;
-  padding: 2px 8px; border-radius: 99px; margin-top: 5px;
-}
+/* ESTIMATE CARD */
+.estimate-card { background:linear-gradient(180deg,#fefff5e2 0%,#eff1d4c9 60%,#eef3d1c6 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:0; border-radius:20px; padding:16px 18px; margin-bottom:16px; box-shadow:0 9px 20px -7px rgba(255,252,235,1),0 18px 36px -5px rgba(40,30,0,.10),0 1px 2px #ccd584b1,inset 0 1px 0 rgba(255,253,240,.95),inset 0 -1px 1px rgba(255,253,240,.95),inset 0 -7px 13px -6px rgba(255,253,240,.95); display:flex; align-items:center; gap:14px; }
+.estimate-icon { font-size:32px; flex-shrink:0; }
+.estimate-body { flex:1; min-width:0; }
+.estimate-label { font-size:11px; font-weight:600; color:var(--text-mid); letter-spacing:1px; margin-bottom:3px; }
+.estimate-price { font-family:'Sarabun',sans-serif; font-size:22px; font-weight:700; color:var(--brown); line-height:1.1; margin-bottom:2px; }
+.estimate-duration { font-size:12px; color:var(--text-mid); display:flex; align-items:center; gap:4px; }
+.estimate-duration b { color:var(--brown); }
+.estimate-svc-tag { display:inline-block; background:var(--brown); color:var(--white); font-size:11px; font-weight:500; padding:2px 8px; border-radius:99px; margin-top:5px; }
 
 /* FORM */
 .form-field { margin-bottom:12px; }
 .form-field label { font-family:'Mitr',sans-serif; font-size:15px; font-weight:600; color:var(--brown); display:block; margin-bottom:5px; }
-.form-field input, .form-field textarea {
-  width:100%; padding:12px 14px;
-  border:1px solid var(--sand); border-radius:14px;
-  font-family:'Sarabun',sans-serif; font-size:14px; font-weight:500; color:var(--text-dark);
-  background:var(--white); outline:none; transition:border .2s; resize:none;
-}
+.form-field input, .form-field textarea { width:100%; padding:12px 14px; border:1px solid var(--sand); border-radius:14px; font-family:'Sarabun',sans-serif; font-size:14px; font-weight:500; color:var(--text-dark); background:var(--white); outline:none; transition:border .2s; resize:none; }
 .form-field input:focus, .form-field textarea:focus { border-color:var(--brown); }
 
 /* SUMMARY */
-.summary-card {
-  background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 60%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0; border-radius:var(--radius-xl);
-  padding:22px 18px;
-  box-shadow:
-    /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
-    /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
-    /* contact */         0 1px 2px rgba(40,30,0,0.10),
-    /* rim top */         inset 0 1px 0 rgba(255,253,240,0.95),
-    /* refracted edge */  inset 0 -1px 1px rgba(255,253,240,0.95),
-    /* inner glow */      inset 0 -7px 13px -6px rgba(255,253,240,0.95);
-  margin-bottom:20px;
-}
+.summary-card { background:linear-gradient(180deg,#f8f8f1 0%,#f1f1e9 60%,#e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:0; border-radius:var(--radius-xl); padding:22px 18px; box-shadow:0 9px 20px -7px rgba(255,252,235,1),0 18px 36px -5px rgba(40,30,0,.10),0 1px 2px rgba(40,30,0,.10),inset 0 1px 0 rgba(255,253,240,.95),inset 0 -1px 1px rgba(255,253,240,.95),inset 0 -7px 13px -6px rgba(255,253,240,.95); margin-bottom:20px; }
 .summary-title { font-family:'Mitr',sans-serif; font-size:19px; font-weight:700; color:var(--brown); margin-bottom:16px; }
-.summary-row {
-  display:flex; justify-content:space-between; align-items:flex-start;
-  padding:8px 0; border-bottom:1px dashed var(--sand); gap:10px;
-}
+.summary-row { display:flex; justify-content:space-between; align-items:flex-start; padding:8px 0; border-bottom:1px dashed var(--sand); gap:10px; }
 .summary-row:last-of-type { border-bottom:none; }
 .s-label { font-size:12px; color:var(--text-mid); flex-shrink:0; }
 .s-val { font-family:'Sarabun',sans-serif; font-size:13px; font-weight:700; color:var(--text-dark); text-align:right; }
-.price-big { background:var(--yellow-green); border: 0; border-radius:14px; padding:16px 18px; margin-top:14px; text-align:center; }
+.price-big { background:var(--yellow-green); border:0; border-radius:14px; padding:16px 18px; margin-top:14px; text-align:center; }
 .price-num { font-family:'Sarabun',sans-serif; font-size:22px; font-weight:700; color:var(--brown); display:block; }
-.duration-badge {
-  display:inline-flex; align-items:center; gap:5px;
-  background:var(--brown); color:var(--white);
-  font-size:12px; font-weight:500;
-  padding:5px 13px; border-radius:var(--radius-pill); margin-top:8px;
-}
+.duration-badge { display:inline-flex; align-items:center; gap:5px; background:var(--brown); color:var(--white); font-size:12px; font-weight:500; padding:5px 13px; border-radius:var(--radius-pill); margin-top:8px; }
 .price-note { font-size:10px; color:var(--text-mid); margin-top:6px; font-weight:300; line-height:1.5; }
+.pet-summary-block { background:var(--yellow-green); border-radius:16px; padding:14px 16px; margin-bottom:10px; }
+.pet-summary-block-title { font-family:'Mitr',sans-serif; font-size:15px; font-weight:700; color:var(--brown); margin-bottom:6px; }
+.pet-summary-block-rows { font-size:12px; color:var(--text-mid); line-height:1.8; }
+.pet-summary-block-price { font-family:'Sarabun',sans-serif; font-size:13px; font-weight:700; color:var(--brown); margin-top:5px; }
+.summary-divider { height:1px; background:var(--sand); margin:14px 0; }
 
 /* BUTTONS */
-.btn {
-  display:block; width:100%; padding:15px 24px;
-  border:none; border-radius:var(--radius-pill);
-  font-family:'Mitr',sans-serif; font-size:17px; font-weight:500;
-  cursor:pointer; text-align:center;
-  transition:all .22s cubic-bezier(.34,1.56,.64,1);
-  -webkit-tap-highlight-color:transparent;
-}
+.btn { display:block; width:100%; padding:15px 24px; border:none; border-radius:var(--radius-pill); font-family:'Mitr',sans-serif; font-size:17px; font-weight:500; cursor:pointer; text-align:center; transition:all .22s cubic-bezier(.34,1.56,.64,1); -webkit-tap-highlight-color:transparent; }
 .btn:active { transform:scale(.97); }
 .btn-primary { background:var(--brown); color:#fff; box-shadow:0 6px 20px rgba(160,114,85,.3); }
 .btn-primary:hover { background:#8a6145; transform:translateY(-1px); }
@@ -550,12 +235,7 @@ linear-gradient(
 .btn-sage:hover { background:#8da880; transform:translateY(-1px); }
 
 /* MINI SUMMARY */
-.mini-summary {
-  position:fixed; bottom:0;left:0;right:0;
-  background:var(--brown);
-  padding:10px 16px 14px; z-index:200; display:none;
-  box-shadow:0 -4px 20px rgba(160,114,85,.11);
-}
+.mini-summary { position:fixed; bottom:0;left:0;right:0; background:var(--brown); padding:10px 16px 14px; z-index:200; display:none; box-shadow:0 -4px 20px rgba(160,114,85,.11); }
 .mini-summary.visible { display:block; }
 .mini-sum-row { display:flex; justify-content:space-between; align-items:center; }
 .mini-sum-info { font-size:14px; color:var(--white); }
@@ -570,64 +250,13 @@ linear-gradient(
 .success-sub { font-size:14px; color:var(--text-mid); line-height:1.8; }
 
 /* ALERT */
-.full-alert {
-  background:#fff0f0; border:1px solid #f4b0b0;
-  border-radius:12px; padding:11px 14px;
-  font-size:13px; color:#c05050; font-weight:600;
-  text-align:center; margin-top:8px; display:none;
-}
+.full-alert { background:#fff0f0; border:1px solid #f4b0b0; border-radius:12px; padding:11px 14px; font-size:13px; color:#c05050; font-weight:600; text-align:center; margin-top:8px; display:none; }
 .full-alert.visible { display:block; }
 
-/* PET COUNTER HEADER */
-.pet-counter-header {
-  display:none;
-  align-items:center;
-  justify-content:space-between;
-  background:var(--sand);
-  border-radius:14px;
-  padding:10px 16px;
-  margin-bottom:18px;
-  font-family:'Mitr',sans-serif;
-  font-size:14px;
-  font-weight:600;
-  color:var(--brown);
-}
-.pet-counter-dots {
-  display:flex;
-  gap:7px;
-  align-items:center;
-}
-.pet-counter-dot {
-  width:10px; height:10px;
-  border-radius:50%;
-  background:var(--gray);
-  transition:background .2s, transform .2s;
-}
-.pet-counter-dot.done { background:var(--sage); }
-.pet-counter-dot.active { background:var(--brown); transform:scale(1.3); }
+/* ALL-PETS-NEEDED HINT */
+.all-pets-hint { background:var(--pink); border-radius:12px; padding:10px 14px; font-size:12px; color:var(--text-mid); text-align:center; margin-bottom:12px; display:none; }
+.all-pets-hint.visible { display:block; }
 
-/* PET SUMMARY BLOCKS */
-.pet-summary-block {
-  background:var(--yellow-green);
-  border-radius:16px;
-  padding:14px 16px;
-  margin-bottom:10px;
-}
-.pet-summary-block-title {
-  font-family:'Mitr',sans-serif;
-  font-size:15px; font-weight:700;
-  color:var(--brown); margin-bottom:6px;
-  display:flex; align-items:center; gap:6px;
-}
-.pet-summary-block-rows { font-size:12px; color:var(--text-mid); line-height:1.8; }
-.pet-summary-block-price {
-  font-family:'Sarabun',sans-serif;
-  font-size:13px; font-weight:700;
-  color:var(--brown); margin-top:5px;
-}
-.summary-divider {
-  height:1px; background:var(--sand); margin:14px 0;
-}
 @keyframes checkPop { 0%{transform:scale(.92)}60%{transform:scale(1.05)}100%{transform:scale(1)} }
 </style>
 </head>
@@ -636,7 +265,6 @@ linear-gradient(
 <header class="site-header">
   <div class="logo">Chou<span> & </span>Me</div>
   <div class="header-tag">✦ PET WELLNESS</div>
-
 </header>
 
 <div class="ribbon"><div class="ribbon-inner" id="ribbonInner"></div></div>
@@ -653,18 +281,7 @@ linear-gradient(
 
 <div class="wave-overlap">
   <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
-    <path
-d="
-      M0,38
-      Q12,-4 24,38
-      T48,38 T72,38 T96,38 T120,38 T144,38 T168,38 T192,38 T216,38 T240,38
-      T264,38 T288,38 T312,38 T336,38 T360,38 T384,38 T408,38 T432,38 T456,38
-      T480,38 T504,38 T528,38 T552,38 T576,38 T600,38 T624,38 T648,38 T672,38
-      T696,38 T720,38 T744,38 T768,38 T792,38 T816,38 T840,38 T864,38 T888,38
-      T912,38 T936,38 T960,38 T984,38 T1008,38 T1032,38 T1056,38 T1080,38
-      T1104,38 T1128,38 T1152,38 T1176,38 T1200,38
-      L1200,80 L0,80 Z"
-fill="#F1F3EC"/>
+    <path d="M0,38 Q12,-4 24,38 T48,38 T72,38 T96,38 T120,38 T144,38 T168,38 T192,38 T216,38 T240,38 T264,38 T288,38 T312,38 T336,38 T360,38 T384,38 T408,38 T432,38 T456,38 T480,38 T504,38 T528,38 T552,38 T576,38 T600,38 T624,38 T648,38 T672,38 T696,38 T720,38 T744,38 T768,38 T792,38 T816,38 T840,38 T864,38 T888,38 T912,38 T936,38 T960,38 T984,38 T1008,38 T1032,38 T1056,38 T1080,38 T1104,38 T1128,38 T1152,38 T1176,38 T1200,38 L1200,80 L0,80 Z" fill="#F1F3EC"/>
   </svg>
 </div>
 
@@ -673,119 +290,119 @@ fill="#F1F3EC"/>
   <div class="step-nav" id="stepNav"></div>
   <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
 
-  <!-- PAGE A0: เลือกจำนวนสัตว์เลี้ยง -->
-  <div class="booking-page active" id="pageA0">
+  <!-- PAGE A: จำนวนสัตว์ + รายละเอียดแต่ละตัว (combined) -->
+  <div class="booking-page active" id="pageA">
+
+    <!-- 1. Pet count -->
     <div class="sub-section unlocked" id="subPetCount">
       <div class="sub-section-header">
         <div class="sub-num">1</div>
         <div class="section-title">จำนวนสัตว์เลี้ยง</div>
       </div>
-      <p class="section-sub">เลือกจำนวนน้องที่ต้องการนัด Grooming ในครั้งนี้ (สูงสุด 4 ตัว)</p>
+      <p class="section-sub">เลือกจำนวนน้องที่ต้องการนัด Grooming ในครั้งนี้</p>
       <div class="card-grid col4" id="petCountGrid"></div>
     </div>
-    <br>
-    <button class="btn btn-primary" id="btnNextA0" onclick="startPetFlow()" disabled>ถัดไป: ข้อมูลน้อง ⇨</button>
-  </div>
 
-  <!-- PAGE A: ชื่อน้อง + ประเภท + น้ำหนัก + ขน (ต่อน้องหนึ่งตัว) -->
-  <div class="booking-page" id="pageA">
-    <div class="pet-counter-header" id="petCounterA"></div>
-
-    <!-- 1. Pet name -->
-    <div class="sub-section unlocked" id="subPetName">
-      <div class="sub-section-header">
-        <div class="sub-num">1</div>
-        <div class="section-title">ชื่อน้อง</div>
-      </div>
-      <div class="form-field" style="margin-bottom:0">
-        <input type="text" id="currentPetName" placeholder="ชื่อเล่นของน้อง" oninput="onPetNameInput()">
-      </div>
-    </div>
-
-    <!-- 2. Pet type -->
-    <div class="sub-section locked" id="subPet">
+    <!-- 2. Pet details per tab -->
+    <div class="sub-section locked" id="subPetDetails">
       <div class="sub-section-header">
         <div class="sub-num">2</div>
-        <div class="section-title">ประเภทสัตว์เลี้ยง</div>
+        <div class="section-title">ข้อมูลสัตว์เลี้ยง</div>
       </div>
-      <div class="card-grid">
-        <div class="sel-card" data-val="dog" onclick="selectPetType(this,'dog')">
-          <span class="card-emoji">🐕</span>
-          <span class="card-label">สุนัข</span>
-          <span class="card-sub">Dog</span>
+      <p class="section-sub">กรอกข้อมูลของน้องแต่ละตัว — สลับตัวได้ที่แถบด้านล่าง</p>
+
+      <!-- Tab bar -->
+      <div class="pet-tabs" id="petTabsA"></div>
+
+      <!-- Pet form (shared, reflects active tab) -->
+      <div class="pet-detail-block">
+
+        <!-- Name -->
+        <div class="inner-section" id="innerName">
+          <div class="inner-label">ชื่อน้อง</div>
+          <div class="form-field" style="margin-bottom:0">
+            <input type="text" id="petNameInput" placeholder="ชื่อเล่นของน้อง" oninput="onPetNameInput()">
+          </div>
         </div>
-        <div class="sel-card" data-val="cat" onclick="selectPetType(this,'cat')">
-          <span class="card-emoji">🐈</span>
-          <span class="card-label">แมว</span>
-          <span class="card-sub">Cat</span>
+
+        <!-- Pet type -->
+        <div class="inner-section" id="innerType">
+          <div class="inner-label">ประเภทสัตว์เลี้ยง</div>
+          <div class="card-grid">
+            <div class="sel-card" data-val="dog" onclick="selectPetType(this,'dog')">
+              <span class="card-emoji">🐕</span>
+              <span class="card-label">สุนัข</span>
+              <span class="card-sub">Dog</span>
+            </div>
+            <div class="sel-card" data-val="cat" onclick="selectPetType(this,'cat')">
+              <span class="card-emoji">🐈</span>
+              <span class="card-label">แมว</span>
+              <span class="card-sub">Cat</span>
+            </div>
+          </div>
         </div>
+
+        <!-- Weight (hidden until type chosen) -->
+        <div class="inner-section hidden" id="innerWeight">
+          <div class="inner-label">น้ำหนักโดยประมาณ</div>
+          <div class="card-grid" id="weightGrid"></div>
+        </div>
+
+        <!-- Coat (hidden until weight chosen) -->
+        <div class="inner-section hidden" id="innerCoat">
+          <div class="inner-label">ลักษณะขน</div>
+          <div class="card-grid col1" id="coatGrid"></div>
+        </div>
+
       </div>
     </div>
 
-    <!-- 3. Weight -->
-    <div class="sub-section locked" id="subWeight">
-      <div class="sub-section-header">
-        <div class="sub-num">3</div>
-        <div class="section-title">น้ำหนักโดยประมาณ</div>
-      </div>
-      <p class="section-sub">ช่วยให้ประเมินราคาและระยะเวลาได้แม่นยำ</p>
-      <div class="card-grid" id="weightGrid"></div>
-    </div>
-
-    <!-- 4. Coat -->
-    <div class="sub-section locked" id="subCoat">
-      <div class="sub-section-header">
-        <div class="sub-num">4</div>
-        <div class="section-title">ลักษณะขน</div>
-      </div>
-      <p class="section-sub">ช่วยให้ประเมินราคาและระยะเวลาได้แม่นยำ</p>
-      <div class="card-grid col1" id="coatGrid"></div>
-    </div>
-
-    <br>
-    <button class="btn btn-secondary" id="btnBackA" onclick="goBackFromA()">⇦ ย้อนกลับ</button>
-    <button class="btn btn-primary" id="btnNextA" onclick="goForwardToB()" disabled>ถัดไป: เลือกบริการ ⇨</button>
+    <div class="all-pets-hint" id="hintA">⚠️ กรุณากรอกข้อมูลให้ครบทุกตัวก่อนดำเนินการต่อ</div>
+    <button class="btn btn-primary" id="btnNextA" onclick="goToPage('B')" disabled>ถัดไป: เลือกบริการ ⇨</button>
   </div>
 
-  <!-- PAGE B: บริการ + Add-ons (ต่อน้องหนึ่งตัว) -->
+  <!-- PAGE B: บริการ + Add-ons (per-pet tabs) -->
   <div class="booking-page" id="pageB">
-    <div class="pet-counter-header" id="petCounterB"></div>
 
-    <!-- 5. Service -->
     <div class="sub-section unlocked" id="subService">
       <div class="sub-section-header">
-        <div class="sub-num">5</div>
+        <div class="sub-num">3</div>
         <div class="section-title">เลือกบริการ</div>
       </div>
-      <p class="section-sub">ตัดขนต้องอาบน้ำก่อนเสมอ ไม่สามารถเลือกตัดขนอย่างเดียวได้</p>
-      <div class="service-note">
-        <span>⭐️ ราคาอาบน้ำรวมบริการ เช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น</span>
+      <p class="section-sub">เลือกบริการสำหรับน้องแต่ละตัว — สลับตัวได้ที่แถบด้านล่าง</p>
+
+      <!-- Tab bar -->
+      <div class="pet-tabs" id="petTabsB"></div>
+
+      <!-- Who we're selecting for -->
+      <div class="service-note" id="svcForNote">
+        <span id="svcForText">⭐️ ราคาอาบน้ำรวมบริการ เช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น</span>
       </div>
+
       <div id="serviceList"></div>
     </div>
 
-    <!-- 6. Add-ons -->
+    <!-- Addons -->
     <div class="sub-section locked" id="subAddon">
       <div class="sub-section-header">
-        <div class="sub-num">6</div>
+        <div class="sub-num">4</div>
         <div class="section-title">บริการเสริม</div>
       </div>
       <p class="section-sub">เลือกได้หลายรายการ ไม่บังคับ</p>
       <div class="addon-grid" id="addonGrid"></div>
     </div>
 
-    <br>
+    <div class="all-pets-hint" id="hintB">⚠️ กรุณาเลือกบริการให้ครบทุกตัวก่อนดำเนินการต่อ</div>
     <button class="btn btn-secondary" onclick="goToPage('A')">⇦ ย้อนกลับ</button>
-    <button class="btn btn-primary" id="btnNextB" onclick="advancePet()" disabled>ถัดไป ⇨</button>
+    <button class="btn btn-primary" id="btnNextB" onclick="goToPage('C')" disabled>ถัดไป: เลือกวัน-เวลา ⇨</button>
   </div>
 
-  <!-- PAGE C: วันและเวลา + ข้อมูลลูกค้า (รวมทุกตัว) -->
+  <!-- PAGE C: วันเวลา + ข้อมูลผู้จอง -->
   <div class="booking-page" id="pageC">
 
-    <!-- 7. Date & Time -->
     <div class="sub-section unlocked" id="subDate">
       <div class="sub-section-header">
-        <div class="sub-num">7</div>
+        <div class="sub-num">5</div>
         <div class="section-title">เลือกวันและเวลา</div>
       </div>
       <p class="section-sub">เปิดให้บริการ อังคาร – อาทิตย์ เวลา 09:00 – 20:00 น.</p>
@@ -809,7 +426,7 @@ fill="#F1F3EC"/>
           <div class="cal-grid" id="calGrid"></div>
         </div>
         <div class="selected-date-badge" id="selectedDateBadge">
-          <span class="sdb-icon">✦</span>
+          <span>✦</span>
           <span id="selectedDateText"></span>
         </div>
         <div class="date-note" id="dateNote">❌ คลินิกปิดวันจันทร์ กรุณาเลือกวันอื่น</div>
@@ -821,10 +438,9 @@ fill="#F1F3EC"/>
       </div>
     </div>
 
-    <!-- 8. Customer Info -->
     <div class="sub-section locked" id="subCustomer">
       <div class="sub-section-header">
-        <div class="sub-num">8</div>
+        <div class="sub-num">6</div>
         <div class="section-title">ข้อมูลผู้จอง</div>
       </div>
       <div class="form-field"><label>ชื่อลูกค้า*</label><input type="text" id="custName" placeholder="ชื่อเจ้าของ"></div>
@@ -841,7 +457,7 @@ fill="#F1F3EC"/>
   <div class="booking-page" id="pageD">
     <div class="sub-section unlocked">
       <div class="sub-section-header">
-        <div class="sub-num">9</div>
+        <div class="sub-num">7</div>
         <div class="section-title">สรุปการจอง</div>
       </div>
       <p class="section-sub">กรุณาตรวจสอบข้อมูลก่อนยืนยัน</p>
@@ -874,153 +490,89 @@ fill="#F1F3EC"/>
 // ── Supabase config ──
 const SB_URL  = 'https://qlyyeetzvtegbgasmmmb.supabase.co';
 const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFseXllZXR6dnRlZ2JnYXNtbW1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNTA1MjMsImV4cCI6MjA5MzgyNjUyM30.nryBXiYnGTPNpAAEPOdqRExVDd3IeT4S0vAiZ1sHkkg';
-const SB_HEADERS_INSERT = {
-  'Content-Type': 'application/json',
-  'apikey': SB_ANON,
-  'Authorization': 'Bearer ' + SB_ANON,
-  'Prefer': 'return=minimal'
-};
-const SB_HEADERS_READ = {
-  'Content-Type': 'application/json',
-  'apikey': SB_ANON,
-  'Authorization': 'Bearer ' + SB_ANON
-};
+const SB_HEADERS_INSERT = {'Content-Type':'application/json','apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON,'Prefer':'return=minimal'};
+const SB_HEADERS_READ   = {'Content-Type':'application/json','apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON};
 
-// Map JS camelCase booking → Supabase snake_case row
 function toRow(bk){
   return {
-    id:                     bk.id,
-    customer_name:          bk.customerName          || '',
-    phone:                  bk.phone                 || '',
-    pet_name:               bk.petName               || '',
-    pet_type:               bk.petType               || '',
-    weight_range:           bk.weightRange            || '',
-    coat_type:              bk.coatType              || '',
-    service:                bk.service               || '',
-    add_ons:                JSON.stringify(bk.addOns || []),
-    estimated_price_min:    bk.estimatedPriceMin      || 0,
-    estimated_price_max:    bk.estimatedPriceMax      || 0,
-    estimated_duration_min: bk.estimatedDurationMin   || 60,
-    estimated_duration_max: bk.estimatedDurationMax   || 60,
-    date:                   bk.date                  || '',
-    start_time:             bk.startTime             || '',
-    end_time_min:           bk.endTimeMin            || '',
-    end_time_max:           bk.endTimeMax            || '',
-    end_time:               bk.endTime               || '',
-    groomer_id:             bk.groomerId             || 'groomer1',
-    status:                 bk.status                || 'รอยืนยัน',
-    notes:                  bk.notes                 || '',
-    created_at:             bk.createdAt             || new Date().toISOString()
+    id:bk.id, customer_name:bk.customerName||'', phone:bk.phone||'',
+    pet_name:bk.petName||'', pet_type:bk.petType||'',
+    weight_range:bk.weightRange||'', coat_type:bk.coatType||'',
+    service:bk.service||'', add_ons:JSON.stringify(bk.addOns||[]),
+    estimated_price_min:bk.estimatedPriceMin||0, estimated_price_max:bk.estimatedPriceMax||0,
+    estimated_duration_min:bk.estimatedDurationMin||60, estimated_duration_max:bk.estimatedDurationMax||60,
+    date:bk.date||'', start_time:bk.startTime||'',
+    end_time_min:bk.endTimeMin||'', end_time_max:bk.endTimeMax||'', end_time:bk.endTime||'',
+    groomer_id:bk.groomerId||'groomer1', status:bk.status||'รอยืนยัน',
+    notes:bk.notes||'', created_at:bk.createdAt||new Date().toISOString()
   };
 }
 
 // ── DATA STATE ──
 const STORAGE_KEY = 'bookings';
 let bookings = [];
-const existingBookings = bookings;
 let dbOnline = false;
 
 async function loadBookings(){
   try {
-    const res = await fetch(
-      SB_URL + '/rest/v1/bookings?select=id,date,start_time,estimated_duration_max,groomer_id,status&order=date.asc',
-      { headers: SB_HEADERS_READ }
-    );
-    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const res = await fetch(SB_URL+'/rest/v1/bookings?select=id,date,start_time,estimated_duration_max,groomer_id,status&order=date.asc',{headers:SB_HEADERS_READ});
+    if(!res.ok) throw new Error('HTTP '+res.status);
     const rows = await res.json();
     bookings.length = 0;
-    rows.forEach(r => bookings.push({
-      id: r.id, date: r.date, startTime: r.start_time,
-      estimatedDurationMax: r.estimated_duration_max || 60,
-      groomerId: r.groomer_id, status: r.status
-    }));
+    rows.forEach(r=>bookings.push({id:r.id,date:r.date,startTime:r.start_time,estimatedDurationMax:r.estimated_duration_max||60,groomerId:r.groomer_id,status:r.status}));
     dbOnline = true;
   } catch(err){
     dbOnline = false;
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      const stored = raw ? JSON.parse(raw) : [];
-      bookings.length = 0; stored.forEach(b => bookings.push(b));
-    } catch(e2){}
+    try{const raw=localStorage.getItem(STORAGE_KEY);const stored=raw?JSON.parse(raw):[];bookings.length=0;stored.forEach(b=>bookings.push(b));}catch(e){}
   }
 }
+async function updateBooking(id,fields){const bk=bookings.find(b=>b.id===id);if(bk)Object.assign(bk,fields);}
+async function refreshDashboard(){}
 
-async function saveToStorage(){}
-async function updateBooking(id, fields){
-  const bk = bookings.find(b => b.id === id);
-  if(bk) Object.assign(bk, fields);
-}
-async function refreshDashboard(){ /* admin is on admin.html */ }
-
-// Shared time helpers
-function timeToMin(t){ if(!t||!t.includes(':'))return 0; const[h,m]=t.split(':').map(Number); return h*60+m; }
-function overlaps(t1,d1,t2,d2){ const s1=timeToMin(t1),e1=s1+(d1||0),s2=timeToMin(t2),e2=s2+(d2||0); return s1<e2&&e1>s2; }
-function calcEndTime(s,d){ if(!s||!s.includes(':'))return '10:00'; const[h,m]=s.split(':').map(Number),t=h*60+m+(d||60); return String(Math.floor(t/60)%24).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); }
+function timeToMin(t){if(!t||!t.includes(':'))return 0;const[h,m]=t.split(':').map(Number);return h*60+m;}
+function overlaps(t1,d1,t2,d2){const s1=timeToMin(t1),e1=s1+(d1||0),s2=timeToMin(t2),e2=s2+(d2||0);return s1<e2&&e1>s2;}
+function calcEndTime(s,d){if(!s||!s.includes(':'))return '10:00';const[h,m]=s.split(':').map(Number),t=h*60+m+(d||60);return String(Math.floor(t/60)%24).padStart(2,'0')+':'+String(t%60).padStart(2,'0');}
 
 // ── Ribbon ──
 const ribbonItems=['GROOMING','PAW','SPA','PAW','CAT GROOMING','PAW','CHOU & ME','PAW','HAIRCUT','PAW','DOG GROOMING','PAW','CHOU & ME','PAW'];
 const ri=document.getElementById('ribbonInner');
-let rh=''; for(let r=0;r<4;r++) ribbonItems.forEach(t=>{ rh+=t==='PAW'?`<span class="dot"><i class="fa-solid fa-paw"></i></span>`:`<span>${t}</span>`; }); ri.innerHTML=rh;
+let rh='';for(let r=0;r<4;r++)ribbonItems.forEach(t=>{rh+=t==='PAW'?`<span class="dot"><i class="fa-solid fa-paw"></i></span>`:`<span>${t}</span>`;});ri.innerHTML=rh;
 
 // ── STATE ──
+// Each pet: {name, petType, weight, coat, haircut, addons:[]}
 const S = {
   petCount: null,
-  pets: [],           // [{name, petType, weight, coat, haircut, addons}] — completed pet configs
-  currentPetIdx: 0,
-  // Current pet temp state:
-  currentPetName: '',
-  petType: null,
-  weight: null,
-  coat: null,
-  haircut: null,
-  addons: [],
-  // Shared:
-  date: null,
-  time: null,
-  custName: '',
-  custPhone: '',
-  custNote: ''
+  pets: [],          // array of pet objects
+  activePetTab: 0,   // which tab is currently shown
+  date: null, time: null,
+  custName: '', custPhone: '', custNote: ''
 };
+
+function cp(){ return S.pets[S.activePetTab] || {}; }  // current pet shorthand
 
 // ── DATA ──
 const dogWeights=['ต่ำกว่า 2.5 กก.','2.5 – 5 กก.','5.1 – 10 กก.','10.1 – 15 กก.','15.1 – 25 กก.','25.1 – 40 กก.','มากกว่า 40 กก.'];
 const catWeights=['ต่ำกว่า 3 กก.','3 – 5 กก.','5.1 – 10 กก.','มากกว่า 10 กก.'];
-
 const dogCoats=[
-  {val:'short', label:'ขนสั้น',          emoji:'🐕', sub:'เช่น ชิวาวา, เฟรนช์บูลด็อก, บีเกิล'},
-  {val:'long',  label:'ขนยาว',           emoji:'🐩', sub:'เช่น ชิสุ, มอลทีส, พุดเดิ้ล โกลเด้น'},
-  {val:'thick', label:'ขนหนา/สองชั้น', emoji:'🐻', sub:'เช่น ปอม ฮัสกี้, คอร์กี้'},
+  {val:'short',label:'ขนสั้น',        emoji:'🐕',sub:'เช่น ชิวาวา, เฟรนช์บูลด็อก, บีเกิล'},
+  {val:'long', label:'ขนยาว',          emoji:'🐩',sub:'เช่น ชิสุ, มอลทีส, พุดเดิ้ล โกลเด้น'},
+  {val:'thick',label:'ขนหนา/สองชั้น',emoji:'🐻',sub:'เช่น ปอม ฮัสกี้, คอร์กี้'},
 ];
 const catCoats=[
-  {val:'short', label:'ขนสั้น',          emoji:'😺', sub:'เช่น ไทย, อเมริกันช็อตแฮร์, บริติชช็อตแฮร์'},
-  {val:'long',  label:'ขนยาว',           emoji:'😼', sub:'เช่น เปอร์เซีย, เมนคูน, แร็กดอลล์'},
-  {val:'thick', label:'ขนหนา',           emoji:'🦁', sub:'ขนแน่น เป่ายาก ใช้เวลาเพิ่ม'},
+  {val:'short',label:'ขนสั้น',emoji:'😺',sub:'เช่น ไทย, อเมริกันช็อตแฮร์, บริติชช็อตแฮร์'},
+  {val:'long', label:'ขนยาว', emoji:'😼',sub:'เช่น เปอร์เซีย, เมนคูน, แร็กดอลล์'},
+  {val:'thick',label:'ขนหนา', emoji:'🦁',sub:'ขนแน่น เป่ายาก ใช้เวลาเพิ่ม'},
 ];
-
-const dogPrices={
-  'ต่ำกว่า 2.5 กก.':{bath_short:250,bath_long:300,trim:200,scissor:300},
-  '2.5 – 5 กก.':      {bath_short:300,bath_long:350,trim:250,scissor:350},
-  '5.1 – 10 กก.':     {bath_short:400,bath_long:450,trim:300,scissor:450},
-  '10.1 – 15 กก.':    {bath_short:500,bath_long:600,trim:350,scissor:600},
-  '15.1 – 25 กก.':    {bath_short:600,bath_long:700,trim:500,scissor:700},
-  '25.1 – 40 กก.':    {bath_short:700,bath_long:900,trim:600,scissor:900},
-  'มากกว่า 40 กก.': {bath_short:900,bath_long:1100,trim:700,scissor:1100},
-};
-const catPrices={
-  'ต่ำกว่า 3 กก.':  {bath_short:300,bath_long:350,trim:250,scissor:350},
-  '3 – 5 กก.':        {bath_short:400,bath_long:450,trim:300,scissor:450},
-  '5.1 – 10 กก.':     {bath_short:500,bath_long:600,trim:400,scissor:600},
-  'มากกว่า 10 กก.': {bath_short:600,bath_long:700,trim:500,scissor:700},
-};
-
+const dogPrices={'ต่ำกว่า 2.5 กก.':{bath_short:250,bath_long:300,trim:200,scissor:300},'2.5 – 5 กก.':{bath_short:300,bath_long:350,trim:250,scissor:350},'5.1 – 10 กก.':{bath_short:400,bath_long:450,trim:300,scissor:450},'10.1 – 15 กก.':{bath_short:500,bath_long:600,trim:350,scissor:600},'15.1 – 25 กก.':{bath_short:600,bath_long:700,trim:500,scissor:700},'25.1 – 40 กก.':{bath_short:700,bath_long:900,trim:600,scissor:900},'มากกว่า 40 กก.':{bath_short:900,bath_long:1100,trim:700,scissor:1100}};
+const catPrices={'ต่ำกว่า 3 กก.':{bath_short:300,bath_long:350,trim:250,scissor:350},'3 – 5 กก.':{bath_short:400,bath_long:450,trim:300,scissor:450},'5.1 – 10 กก.':{bath_short:500,bath_long:600,trim:400,scissor:600},'มากกว่า 10 กก.':{bath_short:600,bath_long:700,trim:500,scissor:700}};
 const addons=[
-  {val:'spa',     label:'สปา',              emoji:'🛁',desc:'ช่วยทำความสะอาดล้ำลึก ผ่อนคลาย บำรุงผิวและเส้นขน',      prL:[100,200],prH:[200,400],dur:[10,15]},
-  {val:'medshamp',label:'แชมพูยา',           emoji:'🫙',desc:'สำหรับน้องหมาน้องแมวที่มีปัญหาผิวหนังหรืออาการคัน',      prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'oilshamp',label:'ขจัดคราบมัน',     emoji:'🧼',desc:'ช่วยลดความมัน กลิ่นตัว และทำความสะอาดล้ำลึก',            prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'treat',   label:'ทรีตเมนต์',         emoji:'🌸',desc:'บำรุงขนให้นุ่ม เงางาม ลดขนพันกัน',                       prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'teeth',   label:'แปรงฟัน',           emoji:'🦷',desc:'ช่วยลดกลิ่นปากและดูแลสุขภาพช่องปาก',                    prL:[50,50],  prH:[100,100],dur:[5]},
-  {val:'dbl',     label:'สางขนสองชั้น',      emoji:'🪮',desc:'สำหรับขนหนาหรือขนสองชั้น',                         prL:[100,400],prH:[100,400],dur:[15,30]},
-  {val:'demat',   label:'สางขนสังกะตัง',     emoji:'😶‍🌫️',desc:'สำหรับขนพันกันหรือจับตัวเป็นก้อน',                       prL:[100,400],prH:[100,400],dur:[30,60]},
+  {val:'spa',     label:'สปา',          emoji:'🛁',desc:'ช่วยทำความสะอาดล้ำลึก ผ่อนคลาย บำรุงผิวและเส้นขน',     prL:[100,200],prH:[200,400],dur:[10,15]},
+  {val:'medshamp',label:'แชมพูยา',       emoji:'🫙',desc:'สำหรับน้องหมาน้องแมวที่มีปัญหาผิวหนังหรืออาการคัน',     prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'oilshamp',label:'ขจัดคราบมัน', emoji:'🧼',desc:'ช่วยลดความมัน กลิ่นตัว และทำความสะอาดล้ำลึก',           prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'treat',   label:'ทรีตเมนต์',     emoji:'🌸',desc:'บำรุงขนให้นุ่ม เงางาม ลดขนพันกัน',                      prL:[100,100],prH:[200,200],dur:[5,15]},
+  {val:'teeth',   label:'แปรงฟัน',       emoji:'🦷',desc:'ช่วยลดกลิ่นปากและดูแลสุขภาพช่องปาก',                   prL:[50,50],  prH:[100,100],dur:[5]},
+  {val:'dbl',     label:'สางขนสองชั้น',  emoji:'🪮',desc:'สำหรับขนหนาหรือขนสองชั้น',                       prL:[100,400],prH:[100,400],dur:[15,30]},
+  {val:'demat',   label:'สางขนสังกะตัง', emoji:'😶‍🌫️',desc:'สำหรับขนพันกันหรือจับตัวเป็นก้อน',                      prL:[100,400],prH:[100,400],dur:[30,60]},
 ];
 
 // ── HELPERS ──
@@ -1036,11 +588,8 @@ function getKg(w){
   if(w.includes('มากกว่า 10')) return 12;
   return 5;
 }
-function isHeavy(){ return getKg(S.weight)>=10; }
-function getBathKey(){ return (S.coat==='long'||S.coat==='thick'||S.coat==='matted')?'bath_long':'bath_short'; }
 function getBathKeyForPet(pet){ return (pet.coat==='long'||pet.coat==='thick'||pet.coat==='matted')?'bath_long':'bath_short'; }
 
-// ── PER-PET CALCULATIONS ──
 function calcPriceForPet(pet){
   if(!pet.weight) return {min:0,max:0};
   const tbl=pet.petType==='dog'?dogPrices:catPrices;
@@ -1051,46 +600,34 @@ function calcPriceForPet(pet){
   if(pet.haircut==='scissor') base+=row['scissor']||0;
   const hv=getKg(pet.weight)>=10;
   let mn=0,mx=0;
-  (pet.addons||[]).forEach(av=>{
-    const a=addons.find(x=>x.val===av);
-    if(a){mn+=hv?a.prH[0]:a.prL[0];mx+=hv?a.prH[1]:a.prL[1];}
-  });
+  (pet.addons||[]).forEach(av=>{const a=addons.find(x=>x.val===av);if(a){mn+=hv?a.prH[0]:a.prL[0];mx+=hv?a.prH[1]:a.prL[1];}});
   return {min:base+mn,max:base+mx};
 }
 
 function calcDurationForPet(pet){
   const kg=getKg(pet.weight); let mn=60;
-  if(kg<5){mn=60;}else if(kg<=10){mn=75;}else if(kg<=20){mn=90;}else if(kg<=40){mn=105;}else{mn=120;}
-  if(pet.coat==='long'){mn+=30;}
-  if(pet.coat==='thick'){mn+=30;}
-  if(pet.coat==='matted'){mn+=45;}
-  if(pet.haircut==='clipper'){mn+=45;}
-  if(pet.haircut==='scissor'){mn+=60;}
-  (pet.addons||[]).forEach(av=>{const a=addons.find(x=>x.val===av);if(a){mn+=a.dur[0];}});
-  return {mn, mx: mn+60};
+  if(kg<5)mn=60;else if(kg<=10)mn=75;else if(kg<=20)mn=90;else if(kg<=40)mn=105;else mn=120;
+  if(pet.coat==='long')mn+=30;
+  if(pet.coat==='thick')mn+=30;
+  if(pet.coat==='matted')mn+=45;
+  if(pet.haircut==='clipper')mn+=45;
+  if(pet.haircut==='scissor')mn+=60;
+  (pet.addons||[]).forEach(av=>{const a=addons.find(x=>x.val===av);if(a)mn+=a.dur[0];});
+  return {mn,mx:mn+60};
 }
 
-// Current pet (reads S temp state)
-function calcPrice(){
-  return calcPriceForPet({petType:S.petType,weight:S.weight,coat:S.coat,haircut:S.haircut,addons:S.addons});
-}
-function calcDuration(){
-  return calcDurationForPet({petType:S.petType,weight:S.weight,coat:S.coat,haircut:S.haircut,addons:S.addons});
-}
-
-// Total across ALL completed pets in S.pets
 function calcTotalPriceAll(){
   let min=0,max=0;
-  S.pets.forEach(pet=>{const p=calcPriceForPet(pet);min+=p.min;max+=p.max;});
+  S.pets.forEach(p=>{const r=calcPriceForPet(p);min+=r.min;max+=r.max;});
   return {min,max};
 }
 function calcTotalDurationAll(){
   let mn=0,mx=0;
-  S.pets.forEach(pet=>{const d=calcDurationForPet(pet);mn+=d.mn;mx+=d.mx;});
+  S.pets.forEach(p=>{const d=calcDurationForPet(p);mn+=d.mn;mx+=d.mx;});
   return {mn,mx};
 }
 
-const SHOP_CLOSE_MINS = 20 * 60;
+const SHOP_CLOSE_MINS = 20*60;
 
 function fmtDur(mn,mx){
   const sMin=Math.floor(mn/60)+(mn%60>=30?.5:0);
@@ -1099,23 +636,22 @@ function fmtDur(mn,mx){
   return `ประมาณ ${sMin}–${sMax} ชั่วโมง`;
 }
 
+function isPetDetailComplete(pet){ return !!(pet.petType && pet.weight && pet.coat); }
+function isPetServiceComplete(pet){ return pet.haircut !== undefined && pet.haircut !== null || pet.haircut === null; }
+// haircut can be null (bath only), so check if it's been explicitly set (not undefined)
+function hasPetChoseService(pet){ return pet.haircut !== undefined; }
+
 // ── PAGE NAV ──
-const PAGES=['A0','A','B','C','D'];
-const PAGE_LABELS=['จำนวนสัตว์','รายละเอียด','บริการ','วันเวลา','สรุป'];
-let currentPage='A0';
+const PAGES=['A','B','C','D'];
+const PAGE_LABELS=['รายละเอียด','บริการ','วันเวลา','สรุป'];
+let currentPage='A';
 
 function goToPage(p){
   document.getElementById('page'+currentPage).classList.remove('active');
   currentPage=p;
   document.getElementById('page'+p).classList.add('active');
-
-  if(p==='A0') buildPetCountGrid();
-  if(p==='A')  initPageA();
-  if(p==='B'){
-    buildServiceGrid();
-    updatePetCounterHeader('B');
-    updateNextBButton();
-  }
+  if(p==='A') onEnterPageA();
+  if(p==='B') onEnterPageB();
   if(p==='C') buildEstimateCard();
   updateStepNav();
   updateMini();
@@ -1129,31 +665,22 @@ function updateStepNav(){
   PAGES.forEach((p,i)=>{
     if(i>0) html+=`<div class="step-connector${i<=idx?' done':''}"></div>`;
     const done=i<idx,active=i===idx;
-    html+=`<div class="step-pill${done?' done':''}${active?' active':''}">
-      <div class="snum">${done?'✓':(i+1)}</div>
-      <span class="slabel">${PAGE_LABELS[i]}</span>
-    </div>`;
+    html+=`<div class="step-pill${done?' done':''}${active?' active':''}"><div class="snum">${done?'✓':(i+1)}</div><span class="slabel">${PAGE_LABELS[i]}</span></div>`;
   });
   nav.innerHTML=html;
   document.getElementById('progressFill').style.width=(idx/(PAGES.length-1)*100)+'%';
 }
 
-function unlock(id){
-  const el=document.getElementById(id);
-  el.classList.remove('locked'); el.classList.add('unlocked');
-}
-function lock(id){
-  const el=document.getElementById(id);
-  el.classList.remove('unlocked'); el.classList.add('locked');
-}
+function unlock(id){const el=document.getElementById(id);if(el){el.classList.remove('locked');el.classList.add('unlocked');}}
+function lock(id){const el=document.getElementById(id);if(el){el.classList.remove('unlocked');el.classList.add('locked');}}
 
-// ── PET COUNT PAGE ──
+// ── PET COUNT ──
 function buildPetCountGrid(){
   const petEmojis=['🐾','🐾🐾','🐾🐾🐾','🐾🐾🐾🐾'];
   document.getElementById('petCountGrid').innerHTML=[1,2,3,4].map(n=>{
     const sel=S.petCount===n?'selected':'';
     return `<div class="sel-card ${sel}" onclick="selectPetCount(this,${n})">
-      <span class="card-emoji" style="font-size:16px;line-height:1.5">${petEmojis[n-1]}</span>
+      <span class="card-emoji" style="font-size:16px;line-height:1.6">${petEmojis[n-1]}</span>
       <span class="card-label">${n} ตัว</span>
       <span class="card-sub">${n===1?'One pet':n+' pets'}</span>
     </div>`;
@@ -1163,321 +690,225 @@ function buildPetCountGrid(){
 function selectPetCount(el,n){
   el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  S.petCount=n;
-  S.pets=[];
-  document.getElementById('btnNextA0').disabled=false;
-}
 
-function startPetFlow(){
-  S.currentPetIdx=0;
-  resetCurrentPetState();
-  goToPage('A');
-}
-
-function resetCurrentPetState(){
-  S.currentPetName='';
-  S.petType=null; S.weight=null; S.coat=null;
-  S.haircut=null; S.addons=[];
-}
-
-// ── PAGE A INIT ──
-function initPageA(){
-  // Restore existing pet data if going back to a pet already configured
-  const existing=S.pets[S.currentPetIdx];
-  if(existing){
-    S.currentPetName=existing.name||'';
-    S.petType=existing.petType;
-    S.weight=existing.weight;
-    S.coat=existing.coat;
-    S.haircut=existing.haircut;
-    S.addons=[...(existing.addons||[])];
+  // Only rebuild if count actually changed
+  if(S.petCount!==n){
+    S.petCount=n;
+    S.activePetTab=0;
+    // Build pets array — preserve existing data where possible
+    const old=S.pets.slice();
+    S.pets=Array.from({length:n},(_,i)=>old[i]||{name:'',petType:null,weight:null,coat:null,haircut:undefined,addons:[]});
   }
 
-  document.getElementById('currentPetName').value=S.currentPetName;
-
-  // Determine locked/unlocked state based on current data
-  lock('subPet'); lock('subWeight'); lock('subCoat');
-  document.getElementById('btnNextA').disabled=true;
-  document.getElementById('weightGrid').innerHTML='';
-  document.getElementById('coatGrid').innerHTML='';
-
-  if(S.currentPetName){
-    unlock('subPet');
-    // Restore pet type selection visually
-    if(S.petType){
-      const ptCards=document.querySelectorAll('#subPet .sel-card');
-      ptCards.forEach(c=>{if(c.dataset.val===S.petType)c.classList.add('selected');else c.classList.remove('selected');});
-      buildWeightGrid();
-      unlock('subWeight');
-      // Restore weight selection
-      if(S.weight){
-        setTimeout(()=>{
-          document.querySelectorAll('#weightGrid .sel-card').forEach(c=>{
-            if(decodeURIComponent(c.dataset.val||'')===S.weight||c.dataset.val===S.weight)
-              c.classList.add('selected');
-          });
-        },0);
-        buildCoatGrid();
-        unlock('subCoat');
-        // Restore coat selection
-        if(S.coat){
-          setTimeout(()=>{
-            document.querySelectorAll('#coatGrid .sel-card').forEach(c=>{
-              if(c.dataset.val===S.coat) c.classList.add('selected');
-            });
-          },0);
-          document.getElementById('btnNextA').disabled=false;
-        }
-      }
-    }
-  }
-
-  updatePetCounterHeader('A');
-  updateBackButtonA();
+  unlock('subPetDetails');
+  buildPetTabsA();
+  renderPetDetailForm();
+  checkAllPetsDetailComplete();
 }
 
-function updatePetCounterHeader(page){
-  const el=document.getElementById('petCounter'+page);
+// ── PET TABS ──
+function buildPetTabsA(){
+  const el=document.getElementById('petTabsA');
   if(!el) return;
-  if(!S.petCount||S.petCount<=1){el.style.display='none';return;}
+  if(S.petCount===1){ el.style.display='none'; return; }
   el.style.display='flex';
-  const dots=Array.from({length:S.petCount},(_,i)=>{
-    let cls='pet-counter-dot';
-    if(i<S.currentPetIdx) cls+=' done';
-    else if(i===S.currentPetIdx) cls+=' active';
-    return `<div class="${cls}"></div>`;
+  el.innerHTML=S.pets.map((pet,i)=>{
+    const active=i===S.activePetTab;
+    const complete=isPetDetailComplete(pet);
+    const label=pet.name||`น้องที่ ${i+1}`;
+    let cls='pet-tab-btn'+(active?' active':'')+(complete?' complete':'');
+    return `<button class="${cls}" onclick="switchTabA(${i})">${complete?'<span class="tab-check">✓</span> ':''}${label}</button>`;
   }).join('');
-  el.innerHTML=`<span>🐾 น้องที่ ${S.currentPetIdx+1} จาก ${S.petCount}</span><div class="pet-counter-dots">${dots}</div>`;
 }
 
-function updateBackButtonA(){
-  const btn=document.getElementById('btnBackA');
-  if(!btn) return;
-  btn.textContent=S.currentPetIdx===0?'⇦ ย้อนกลับ: จำนวนสัตว์':`⇦ ย้อนกลับ: น้องที่ ${S.currentPetIdx}`;
+function buildPetTabsB(){
+  const el=document.getElementById('petTabsB');
+  if(!el) return;
+  if(S.petCount===1){ el.style.display='none'; return; }
+  el.style.display='flex';
+  el.innerHTML=S.pets.map((pet,i)=>{
+    const active=i===S.activePetTab;
+    const complete=hasPetChoseService(pet);
+    const label=pet.name||`น้องที่ ${i+1}`;
+    let cls='pet-tab-btn'+(active?' active':'')+(complete?' complete':'');
+    return `<button class="${cls}" onclick="switchTabB(${i})">${complete?'<span class="tab-check">✓</span> ':''}${label}</button>`;
+  }).join('');
 }
 
-function goBackFromA(){
-  if(S.currentPetIdx===0){
-    goToPage('A0');
-  } else {
-    // Go back to page B of previous pet
-    S.currentPetIdx--;
-    const prev=S.pets[S.currentPetIdx];
-    if(prev){
-      S.currentPetName=prev.name;
-      S.petType=prev.petType;
-      S.weight=prev.weight;
-      S.coat=prev.coat;
-      S.haircut=prev.haircut;
-      S.addons=[...(prev.addons||[])];
-    }
-    // Remove from pets so it gets re-saved when advancing
-    S.pets.splice(S.currentPetIdx,1);
-    // Go to B with restored state (don't reset service)
-    document.getElementById('page'+currentPage).classList.remove('active');
-    currentPage='B';
-    document.getElementById('pageB').classList.add('active');
-    buildServiceGrid();
-    // Restore service card selection
-    if(S.haircut!==null){
-      setTimeout(()=>{
-        const key=S.haircut==='clipper'?'bath_clipper':S.haircut==='scissor'?'bath_scissor':'bath_only';
-        document.querySelectorAll('.service-card').forEach(c=>{
-          if(c.dataset.key===key) c.classList.add('selected');
-        });
-        buildAddonGrid();
-        unlock('subAddon');
-        document.getElementById('btnNextB').disabled=false;
-      },0);
-    } else {
-      lock('subAddon');
-      document.getElementById('btnNextB').disabled=true;
-    }
-    updatePetCounterHeader('B');
-    updateNextBButton();
-    updateStepNav();
-    updateMini();
-    window.scrollTo({top:0,behavior:'smooth'});
+function switchTabA(idx){
+  S.activePetTab=idx;
+  buildPetTabsA();
+  renderPetDetailForm();
+}
+
+function switchTabB(idx){
+  S.activePetTab=idx;
+  buildPetTabsB();
+  renderServiceAndAddonForTab();
+  updateSvcForNote();
+}
+
+// ── PAGE A: PET DETAIL FORM ──
+function onEnterPageA(){
+  buildPetCountGrid();
+  if(S.petCount){
+    unlock('subPetDetails');
+    buildPetTabsA();
+    renderPetDetailForm();
+    checkAllPetsDetailComplete();
   }
 }
 
-function goBackFromC(){
-  // Restore last pet's state before going back to page B
-  const lastPet=S.pets[S.currentPetIdx];
-  if(lastPet){
-    S.currentPetName=lastPet.name;
-    S.petType=lastPet.petType;
-    S.weight=lastPet.weight;
-    S.coat=lastPet.coat;
-    S.haircut=lastPet.haircut;
-    S.addons=[...(lastPet.addons||[])];
-  }
-  // Remove last pet so it gets re-saved when advancing again
-  S.pets.splice(S.currentPetIdx,1);
+function renderPetDetailForm(){
+  const pet=S.pets[S.activePetTab]||{};
 
-  document.getElementById('page'+currentPage).classList.remove('active');
-  currentPage='B';
-  document.getElementById('pageB').classList.add('active');
-  buildServiceGrid();
-  if(S.haircut!==null){
-    setTimeout(()=>{
-      const key=S.haircut==='clipper'?'bath_clipper':S.haircut==='scissor'?'bath_scissor':'bath_only';
-      document.querySelectorAll('.service-card').forEach(c=>{
-        if(c.dataset.key===key) c.classList.add('selected');
-      });
-      buildAddonGrid();
-      unlock('subAddon');
-      document.getElementById('btnNextB').disabled=false;
-    },0);
-  } else {
-    lock('subAddon');
-    document.getElementById('btnNextB').disabled=true;
-  }
-  updatePetCounterHeader('B');
-  updateNextBButton();
-  updateStepNav();
-  updateMini();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+  // Name
+  document.getElementById('petNameInput').value=pet.name||'';
 
-// ── PET NAME ──
-function onPetNameInput(){
-  const val=document.getElementById('currentPetName').value.trim();
-  S.currentPetName=val;
-  if(val){
-    unlock('subPet');
+  // Pet type cards
+  document.querySelectorAll('#innerType .sel-card').forEach(c=>{
+    c.classList.toggle('selected',c.dataset.val===pet.petType);
+  });
+
+  // Weight
+  if(pet.petType){
+    buildWeightGrid(pet.petType,pet.weight);
+    document.getElementById('innerWeight').classList.remove('hidden');
   } else {
-    lock('subPet'); lock('subWeight'); lock('subCoat');
-    document.getElementById('btnNextA').disabled=true;
-    S.petType=null; S.weight=null; S.coat=null;
+    document.getElementById('innerWeight').classList.add('hidden');
     document.getElementById('weightGrid').innerHTML='';
+  }
+
+  // Coat
+  if(pet.weight){
+    buildCoatGrid(pet.petType,pet.coat);
+    document.getElementById('innerCoat').classList.remove('hidden');
+  } else {
+    document.getElementById('innerCoat').classList.add('hidden');
     document.getElementById('coatGrid').innerHTML='';
-    // Clear pet type selection
-    document.querySelectorAll('#subPet .sel-card').forEach(c=>c.classList.remove('selected'));
   }
 }
 
-// ── PET TYPE ──
+function onPetNameInput(){
+  const val=document.getElementById('petNameInput').value;
+  if(S.pets[S.activePetTab]) S.pets[S.activePetTab].name=val;
+  buildPetTabsA(); // update tab label
+}
+
 function selectPetType(el,val){
   el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  S.petType=val; S.weight=null; S.coat=null; S.haircut=null; S.addons=[];
-  buildWeightGrid();
-  unlock('subWeight');
-  lock('subCoat');
+  const pet=S.pets[S.activePetTab];
+  if(!pet) return;
+  // If type changed, reset downstream
+  if(pet.petType!==val){ pet.weight=null; pet.coat=null; pet.haircut=undefined; pet.addons=[]; }
+  pet.petType=val;
+  buildWeightGrid(val,pet.weight);
+  document.getElementById('innerWeight').classList.remove('hidden');
+  document.getElementById('innerCoat').classList.add('hidden');
   document.getElementById('coatGrid').innerHTML='';
-  document.getElementById('btnNextA').disabled=true;
+  checkAllPetsDetailComplete();
   updateMini();
 }
 
-// ── WEIGHT ──
-function buildWeightGrid(){
-  const weights=S.petType==='dog'?dogWeights:catWeights;
-  document.getElementById('weightGrid').innerHTML=weights.map(w=>
-    `<div class="sel-card" data-val="${w}" onclick="selectWeight(this,'${encodeURIComponent(w)}')">
-      <span class="card-label">${w}</span>
-    </div>`).join('');
+function buildWeightGrid(type,selectedWeight){
+  const weights=type==='dog'?dogWeights:catWeights;
+  document.getElementById('weightGrid').innerHTML=weights.map(w=>{
+    const sel=w===selectedWeight?'selected':'';
+    return `<div class="sel-card ${sel}" data-val="${encodeURIComponent(w)}" onclick="selectWeight(this,'${encodeURIComponent(w)}')"><span class="card-label">${w}</span></div>`;
+  }).join('');
 }
 
 function selectWeight(el,encoded){
   el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  S.weight=decodeURIComponent(encoded); S.coat=null; S.haircut=null;
-  buildCoatGrid();
-  unlock('subCoat');
-  document.getElementById('btnNextA').disabled=true;
+  const pet=S.pets[S.activePetTab];
+  if(!pet) return;
+  const w=decodeURIComponent(encoded);
+  if(pet.weight!==w){ pet.coat=null; }
+  pet.weight=w;
+  buildCoatGrid(pet.petType,pet.coat);
+  document.getElementById('innerCoat').classList.remove('hidden');
+  checkAllPetsDetailComplete();
   updateMini();
 }
 
-// ── COAT ──
-function buildCoatGrid(){
-  const coats=S.petType==='dog'?dogCoats:catCoats;
-  document.getElementById('coatGrid').innerHTML=coats.map(c=>
-    `<div class="sel-card" data-val="${c.val}" onclick="selectCoat(this,'${c.val}')">
+function buildCoatGrid(type,selectedCoat){
+  const coats=type==='dog'?dogCoats:catCoats;
+  document.getElementById('coatGrid').innerHTML=coats.map(c=>{
+    const sel=c.val===selectedCoat?'selected':'';
+    return `<div class="sel-card ${sel}" data-val="${c.val}" onclick="selectCoat(this,'${c.val}')">
       <span class="card-emoji">${c.emoji}</span>
       <span class="card-label">${c.label}</span>
       <span class="card-sub">${c.sub}</span>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function selectCoat(el,val){
   el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  S.coat=val;
-  document.getElementById('btnNextA').disabled=false;
+  const pet=S.pets[S.activePetTab];
+  if(!pet) return;
+  pet.coat=val;
+  buildPetTabsA();
+  checkAllPetsDetailComplete();
   updateMini();
 }
 
-// ── ADVANCE: A → B (forward, reset service) ──
-function goForwardToB(){
-  S.haircut=null; S.addons=[];
-  lock('subAddon');
-  document.getElementById('btnNextB').disabled=true;
-  goToPage('B');
+function checkAllPetsDetailComplete(){
+  const allDone=S.pets.length>0 && S.pets.every(p=>isPetDetailComplete(p));
+  document.getElementById('btnNextA').disabled=!allDone;
+  const hint=document.getElementById('hintA');
+  if(hint) hint.classList.toggle('visible', S.pets.length>0 && !allDone && S.pets.some(p=>isPetDetailComplete(p)));
 }
 
-// ── ADVANCE: B → next pet A or C ──
-function advancePet(){
-  // Save current pet to pets array
-  S.pets[S.currentPetIdx]={
-    name: S.currentPetName,
-    petType: S.petType,
-    weight: S.weight,
-    coat: S.coat,
-    haircut: S.haircut,
-    addons: [...S.addons]
-  };
-  if(S.currentPetIdx<S.petCount-1){
-    S.currentPetIdx++;
-    resetCurrentPetState();
-    goToPage('A');
+// ── PAGE B: SERVICE PER PET ──
+function onEnterPageB(){
+  S.activePetTab=0;
+  buildPetTabsB();
+  renderServiceAndAddonForTab();
+  updateSvcForNote();
+  checkAllPetsServiceComplete();
+}
+
+function updateSvcForNote(){
+  const pet=S.pets[S.activePetTab]||{};
+  const name=pet.name?`น้อง${pet.name}`:`น้องที่ ${S.activePetTab+1}`;
+  document.getElementById('svcForText').innerHTML=`⭐️ เลือกบริการสำหรับ <b>${name}</b> · ราคาอาบน้ำรวมเช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น`;
+}
+
+function renderServiceAndAddonForTab(){
+  const pet=S.pets[S.activePetTab]||{};
+  buildServiceGrid(pet);
+  if(pet.haircut!==undefined){
+    buildAddonGrid(pet);
+    unlock('subAddon');
   } else {
-    goToPage('C');
+    document.getElementById('addonGrid').innerHTML='';
+    lock('subAddon');
   }
 }
 
-function updateNextBButton(){
-  const btn=document.getElementById('btnNextB');
-  if(!btn) return;
-  const isLast=S.currentPetIdx>=S.petCount-1;
-  btn.textContent=isLast
-    ?'ถัดไป: เลือกวัน-เวลา ⇨'
-    :`ถัดไป: น้องที่ ${S.currentPetIdx+2} ⇨`;
-}
-
-// ── SERVICE ──
-function buildServiceGrid(){
-  if(!S.weight||!S.coat) return;
-  const tbl=S.petType==='dog'?dogPrices:catPrices;
-  const row=tbl[S.weight];
-  const bk=getBathKey();
-  const animal=S.petType==='dog'?'สุนัข':'แมว';
-  const bathTypeLabel=(S.coat==='long'||S.coat==='thick'||S.coat==='matted')?'ขนยาว/หนา':'ขนสั้น';
-
+function buildServiceGrid(pet){
+  if(!pet||!pet.weight||!pet.coat) return;
+  const tbl=pet.petType==='dog'?dogPrices:catPrices;
+  const row=tbl[pet.weight];
+  const bk=getBathKeyForPet(pet);
+  const animal=pet.petType==='dog'?'สุนัข':'แมว';
+  const bathTypeLabel=(pet.coat==='long'||pet.coat==='thick'||pet.coat==='matted')?'ขนยาว/หนา':'ขนสั้น';
   const pBath=row?row[bk]:0;
   const pTrim=row?row['trim']:0;
   const pSci=row?row['scissor']:0;
 
   const svcs=[
-    {key:'bath_only',  hcut:null,      emoji:'🚿',
-     name:`อาบน้ำ${animal}`,
-     desc:`รวมเช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น`,
-     tags:[`Bathing (${bathTypeLabel})`],
-     price:pBath},
-    {key:'bath_clipper',hcut:'clipper',emoji:'✂️',
-     name:`อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)`,
-     desc:`อาบน้ำและตัดขนด้วยเครื่องปัตตาเลี่ยน`,
-     tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Clippers)'],
-     price:row?pBath+pTrim:0},
-    {key:'bath_scissor',hcut:'scissor',emoji:'✂️',
-     name:`อาบน้ำ + ตัดขน (กรรไกร)`,
-     desc:`อาบน้ำและตัดขนด้วยกรรไกร ละเอียดกว่า ใช้เวลาเพิ่ม`,
-     tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Scissors)'],
-     price:row?pBath+pSci:0},
+    {key:'bath_only', hcut:null,      emoji:'🚿', name:`อาบน้ำ${animal}`, desc:'รวมเช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น', tags:[`Bathing (${bathTypeLabel})`], price:pBath},
+    {key:'bath_clipper',hcut:'clipper',emoji:'✂️', name:'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)', desc:'อาบน้ำและตัดขนด้วยเครื่องปัตตาเลี่ยน', tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Clippers)'], price:row?pBath+pTrim:0},
+    {key:'bath_scissor',hcut:'scissor',emoji:'✂️', name:'อาบน้ำ + ตัดขน (กรรไกร)', desc:'อาบน้ำและตัดขนด้วยกรรไกร ละเอียดกว่า ใช้เวลาเพิ่ม', tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Scissors)'], price:row?pBath+pSci:0},
   ];
 
   document.getElementById('serviceList').innerHTML=svcs.map(sv=>{
-    const sel=S.haircut===sv.hcut?'selected':'';
+    const sel=pet.haircut===sv.hcut?'selected':'';
     return `<div class="service-card ${sel}" data-key="${sv.key}" onclick="selectService(this,'${sv.key}','${sv.hcut}')">
       <span class="svc-emoji">${sv.emoji}</span>
       <div class="svc-info">
@@ -1493,93 +924,91 @@ function buildServiceGrid(){
 function selectService(el,key,hcutStr){
   document.querySelectorAll('.service-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  S.haircut=hcutStr==='null'?null:hcutStr;
+  const pet=S.pets[S.activePetTab];
+  if(!pet) return;
+  pet.haircut=hcutStr==='null'?null:hcutStr;
+  buildAddonGrid(pet);
   unlock('subAddon');
-  buildAddonGrid();
-  document.getElementById('btnNextB').disabled=false;
-  updateNextBButton();
+  buildPetTabsB();
+  checkAllPetsServiceComplete();
   updateMini();
 }
 
-// ── ADDONS ──
-function buildAddonGrid(){
-  const hv=isHeavy();
+function buildAddonGrid(pet){
+  const hv=getKg(pet.weight)>=10;
   document.getElementById('addonGrid').innerHTML=addons.map(a=>{
     const pr=hv?a.prH:a.prL;
     const ps=pr[0]===pr[1]?`+฿${pr[0]}`:`+฿${pr[0]}–฿${pr[1]}`;
-    const sel=S.addons.includes(a.val)?'selected':'';
+    const sel=(pet.addons||[]).includes(a.val)?'selected':'';
     return `<div class="addon-card ${sel}" data-val="${a.val}" onclick="toggleAddon(this)">
-      <div class="addon-check${sel?' selected':''}"></div>
+      <div class="addon-check"></div>
       <span class="addon-emoji">${a.emoji}</span>
-      <div class="addon-info">
-        <span class="addon-name">${a.label}</span>
-        <span class="addon-desc">${a.desc}</span>
-      </div>
+      <div class="addon-info"><span class="addon-name">${a.label}</span><span class="addon-desc">${a.desc}</span></div>
       <div class="addon-price-tag">${ps}</div>
     </div>`;
   }).join('');
-  // Apply selected styling to checkboxes
-  document.querySelectorAll('.addon-card.selected .addon-check').forEach(chk=>{
-    chk.style.background='var(--sage)';chk.style.borderColor='var(--sage)';
-  });
+  document.querySelectorAll('.addon-card.selected .addon-check').forEach(chk=>{chk.style.background='var(--sage)';chk.style.borderColor='var(--sage)';});
 }
 
 function toggleAddon(el){
   const v=el.dataset.val;
   el.classList.toggle('selected');
   const chk=el.querySelector('.addon-check');
+  const pet=S.pets[S.activePetTab];
+  if(!pet) return;
+  if(!pet.addons) pet.addons=[];
   if(el.classList.contains('selected')){
     chk.style.background='var(--sage)';chk.style.borderColor='var(--sage)';
-    if(!S.addons.includes(v)) S.addons.push(v);
+    if(!pet.addons.includes(v)) pet.addons.push(v);
   } else {
     chk.style.background='';chk.style.borderColor='';
-    S.addons=S.addons.filter(x=>x!==v);
+    pet.addons=pet.addons.filter(x=>x!==v);
   }
   updateMini();
 }
 
-// ── ESTIMATE CARD (shows total for all pets) ──
+function checkAllPetsServiceComplete(){
+  const allDone=S.pets.length>0 && S.pets.every(p=>hasPetChoseService(p));
+  document.getElementById('btnNextB').disabled=!allDone;
+  const hint=document.getElementById('hintB');
+  if(hint) hint.classList.toggle('visible', S.pets.length>0 && !allDone && S.pets.some(p=>hasPetChoseService(p)));
+}
+
+// ── PAGE C ──
+function goBackFromC(){
+  goToPage('B');
+}
+
+// ── ESTIMATE CARD (total for all pets) ──
 function buildEstimateCard(){
   const{min:pMin,max:pMax}=calcTotalPriceAll();
   const{mn,mx}=calcTotalDurationAll();
-  const petCount=S.pets.length;
   const petNames=S.pets.map(p=>p.name||'?').join(', ');
   const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
-  const durStr=fmtDur(mn,mx);
   const slotWarning=mx>120?`<div style="font-size:10px;color:#b07a30;margin-top:4px">⚠️ จากการประเมินเวลาทำให้บางช่วงเวลาอาจไม่สามารถจองได้</div>`:'';
   document.getElementById('estimateCard').innerHTML=`
     <div class="estimate-icon">🧾</div>
     <div class="estimate-body">
-      <div class="estimate-label">ราคาและระยะเวลารวมทุกตัว (${petCount} ตัว)</div>
+      <div class="estimate-label">ราคาและระยะเวลารวมทุกตัว (${S.pets.length} ตัว)</div>
       <div class="estimate-price">${priceStr}</div>
-      <div class="estimate-duration">🕓 <b>${durStr}</b></div>
+      <div class="estimate-duration">🕓 <b>${fmtDur(mn,mx)}</b></div>
       <div class="estimate-svc-tag">🐾 ${petNames}</div>
       ${slotWarning}
     </div>`;
 }
 
-// ── CUSTOM CALENDAR ──
+// ── CALENDAR ──
 const thMonths=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
-let calYear, calMonth;
-(function initCal(){
-  const now=new Date();
-  calYear=now.getFullYear(); calMonth=now.getMonth();
-  renderCal();
-})();
+let calYear,calMonth;
+(function initCal(){const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth();renderCal();})();
 
-function calNav(dir){
-  calMonth+=dir;
-  if(calMonth>11){calMonth=0;calYear++;}
-  if(calMonth<0){calMonth=11;calYear--;}
-  renderCal();
-}
+function calNav(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCal();}
 
 function renderCal(){
-  const now=new Date(); now.setHours(0,0,0,0);
+  const now=new Date();now.setHours(0,0,0,0);
   document.getElementById('calTitle').textContent=`${thMonths[calMonth]} ${calYear+543}`;
   const isCurrentMonth=(calYear===now.getFullYear()&&calMonth===now.getMonth());
   document.getElementById('calPrev').disabled=isCurrentMonth;
-
   const firstDow=new Date(calYear,calMonth,1).getDay();
   const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
   let html='';
@@ -1593,10 +1022,10 @@ function renderCal(){
     const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const isSelected=S.date===dateStr;
     let cls='cal-day';
-    if(isPast) cls+=' disabled';
-    else if(isMon) cls+=' closed-day';
-    else if(isToday) cls+=' today';
-    if(isSelected) cls+=' selected';
+    if(isPast)cls+=' disabled';
+    else if(isMon)cls+=' closed-day';
+    else if(isToday)cls+=' today';
+    if(isSelected)cls+=' selected';
     const label=isMon?'ปิด':String(d);
     const clickable=!isPast&&!isMon;
     html+=`<div class="${cls}" ${clickable?`onclick="selectDate('${dateStr}',${dow})"`:''} title="${dateStr}">${label}</div>`;
@@ -1605,13 +1034,12 @@ function renderCal(){
 }
 
 function selectDate(dateStr,dow){
-  S.date=dateStr; S.time=null;
+  S.date=dateStr;S.time=null;
   lock('subCustomer');
   document.getElementById('timeWrap').style.display='none';
   document.getElementById('dateNote').classList.remove('visible');
   const d=new Date(dateStr+'T12:00:00');
-  document.getElementById('selectedDateText').textContent=
-    d.toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('selectedDateText').textContent=d.toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   document.getElementById('selectedDateBadge').classList.add('visible');
   renderCal();
   buildTimeslots(dateStr);
@@ -1628,30 +1056,20 @@ function buildTimeslots(date){
   }
   document.getElementById('timeslotGrid').innerHTML=slots.map(t=>{
     const[sh,sm]=t.split(':').map(Number);
-    const startMins=sh*60+sm;
-    const endMins=startMins+mx;
     const full=isSlotFull(date,t);
-    const tooLate=endMins>SHOP_CLOSE_MINS;
+    const tooLate=(sh*60+sm+mx)>SHOP_CLOSE_MINS;
     const disabled=full||tooLate;
     let label=t;
-    if(full) label='เต็ม';
-    else if(tooLate) label='ใกล้ปิด';
+    if(full)label='เต็ม';else if(tooLate)label='ใกล้ปิด';
     return `<button class="timeslot-btn${full?' full':''}${tooLate?' too-late':''}" ${disabled?'disabled':''} onclick="selectTime(this,'${t}')">${label}</button>`;
   }).join('');
 }
 
-// Groomer list cache
 let groomerList=[];
-
 async function loadGroomerList(){
-  try {
-    const res=await fetch(SB_URL+'/rest/v1/groomers?select=id,name&order=sort_order.asc',{headers:SB_HEADERS_READ});
-    if(res.ok){groomerList=await res.json();}
-  } catch(e){}
-  if(!groomerList.length){
-    try{const raw=localStorage.getItem('chouandme_groomers');if(raw)groomerList=JSON.parse(raw);}catch(e){}
-  }
-  if(!groomerList.length) groomerList=[{id:'groomer1'},{id:'groomer2'}];
+  try{const res=await fetch(SB_URL+'/rest/v1/groomers?select=id,name&order=sort_order.asc',{headers:SB_HEADERS_READ});if(res.ok)groomerList=await res.json();}catch(e){}
+  if(!groomerList.length){try{const raw=localStorage.getItem('chouandme_groomers');if(raw)groomerList=JSON.parse(raw);}catch(e){}}
+  if(!groomerList.length)groomerList=[{id:'groomer1'},{id:'groomer2'}];
 }
 
 function countBusy(date,slot){
@@ -1659,28 +1077,21 @@ function countBusy(date,slot){
   const ss=sh*60+sm;
   const{mx}=calcTotalDurationAll();
   const se=ss+mx;
-  const busyGroomers=new Set();
+  const busy=new Set();
   bookings.forEach(b=>{
     if(b.date!==date||b.status==='ยกเลิก') return;
-    const t=b.startTime||'00:00';
-    const dur=b.estimatedDurationMax||b.estimatedDurationMin||60;
-    const[bh,bm]=t.split(':').map(Number);
-    const bs=bh*60+bm,be=bs+dur;
-    if(bs<se&&be>ss) busyGroomers.add(b.groomerId||'groomer1');
+    const[bh,bm]=(b.startTime||'00:00').split(':').map(Number);
+    const bs=bh*60+bm,be=bs+(b.estimatedDurationMax||60);
+    if(bs<se&&be>ss) busy.add(b.groomerId||'groomer1');
   });
-  return busyGroomers.size;
+  return busy.size;
 }
-
-function isSlotFull(date,slot){
-  return countBusy(date,slot)>=groomerList.length;
-}
+function isSlotFull(date,slot){ return countBusy(date,slot)>=groomerList.length; }
 
 function assignGroomer(date,startTime,mx){
   const dayBks=bookings.filter(b=>b.date===date&&b.status!=='ยกเลิก');
   for(const g of groomerList){
-    const busy=dayBks
-      .filter(b=>(b.groomerId||'groomer1')===g.id)
-      .some(b=>overlaps(b.startTime,b.estimatedDurationMax||60,startTime,mx));
+    const busy=dayBks.filter(b=>(b.groomerId||'groomer1')===g.id).some(b=>overlaps(b.startTime,b.estimatedDurationMax||60,startTime,mx));
     if(!busy) return g.id;
   }
   return groomerList[0]?.id||'groomer1';
@@ -1691,17 +1102,14 @@ function selectTime(el,t){
   const[sh,sm]=t.split(':').map(Number);
   if(sh*60+sm+mx>SHOP_CLOSE_MINS){
     const alertEl=document.getElementById('fullAlert');
-    if(alertEl){
-      alertEl.textContent='เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน';
-      alertEl.classList.add('visible');
-    }
+    if(alertEl){alertEl.textContent='เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน';alertEl.classList.add('visible');}
     return;
   }
   document.querySelectorAll('.timeslot-btn').forEach(b=>b.classList.remove('selected'));
   el.classList.add('selected');
   S.time=t;
   const alertEl=document.getElementById('fullAlert');
-  if(alertEl) alertEl.classList.remove('visible');
+  if(alertEl)alertEl.classList.remove('visible');
   unlock('subCustomer');
   updateMini();
 }
@@ -1711,7 +1119,7 @@ function doSummary(){
   const n=document.getElementById('custName').value.trim();
   const ph=document.getElementById('custPhone').value.trim();
   if(!n||!ph){alert('กรุณากรอกข้อมูลให้ครบถ้วน');return;}
-  S.custName=n; S.custPhone=ph;
+  S.custName=n;S.custPhone=ph;
   S.custNote=document.getElementById('custNote').value.trim();
   buildSummary();
   goToPage('D');
@@ -1720,29 +1128,21 @@ function doSummary(){
 function buildSummary(){
   const{min:pMin,max:pMax}=calcTotalPriceAll();
   const{mn,mx}=calcTotalDurationAll();
-
-  // Individual pet blocks
   const petBlocks=S.pets.map((pet,i)=>{
     const petLabel=pet.petType==='dog'?'🐕 สุนัข':'🐈 แมว';
     const coatData=(pet.petType==='dog'?dogCoats:catCoats).find(c=>c.val===pet.coat);
-    const svcLabel=pet.haircut===null
-      ?`อาบน้ำ${pet.petType==='dog'?'สุนัข':'แมว'}`
-      :pet.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
+    const svcLabel=pet.haircut===null?`อาบน้ำ${pet.petType==='dog'?'สุนัข':'แมว'}`:pet.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
     const addonLabels=(pet.addons||[]).map(av=>addons.find(a=>a.val===av)?.label).filter(Boolean);
     const pp=calcPriceForPet(pet);
     const pd=calcDurationForPet(pet);
     const ppStr=pp.min===pp.max?`฿${pp.min.toLocaleString()}`:`฿${pp.min.toLocaleString()} – ฿${pp.max.toLocaleString()}`;
     return `<div class="pet-summary-block">
       <div class="pet-summary-block-title">🐾 น้อง${pet.name||'ตัวที่ '+(i+1)}</div>
-      <div class="pet-summary-block-rows">
-        ${petLabel} · ${pet.weight} · ${coatData?.label||''}<br>
-        ${svcLabel}${addonLabels.length?' + '+addonLabels.join(', '):''}
-      </div>
+      <div class="pet-summary-block-rows">${petLabel} · ${pet.weight} · ${coatData?.label||''}<br>${svcLabel}${addonLabels.length?' + '+addonLabels.join(', '):''}</div>
       <div class="pet-summary-block-price">${ppStr} · ${fmtDur(pd.mn,pd.mx)}</div>
     </div>`;
   }).join('');
 
-  // Pickup range
   let pickupRange='';
   if(S.time){
     const[h,m]=S.time.split(':').map(Number);
@@ -1776,21 +1176,13 @@ function buildSummary(){
 // ── MINI SUMMARY ──
 function updateMini(){
   const mini=document.getElementById('miniSummary');
-  if(currentPage==='A0'||currentPage==='D'){mini.classList.remove('visible');return;}
-
-  let priceMin=0,priceMax=0;
-  S.pets.forEach(pet=>{const p=calcPriceForPet(pet);priceMin+=p.min;priceMax+=p.max;});
-  if(S.petType&&S.weight&&S.coat&&S.haircut!==undefined){
-    const p=calcPrice();priceMin+=p.min;priceMax+=p.max;
-  }
-  if(priceMin===0){mini.classList.remove('visible');return;}
-
+  if(currentPage==='D'){mini.classList.remove('visible');return;}
+  const{min:pMin,max:pMax}=calcTotalPriceAll();
+  if(pMin===0){mini.classList.remove('visible');return;}
   mini.classList.add('visible');
-  const allNames=[...S.pets.map(p=>p.name),S.currentPetName].filter(Boolean);
-  document.getElementById('miniInfo').textContent=allNames.join(' · ')+(S.petCount>1?` (${allNames.length}/${S.petCount} ตัว)`:'');
-  document.getElementById('miniPrice').textContent=priceMin===priceMax
-    ?`฿${priceMin.toLocaleString()}`
-    :`฿${priceMin.toLocaleString()}–฿${priceMax.toLocaleString()}`;
+  const names=S.pets.filter(p=>p.name).map(p=>p.name).join(' · ')||`${S.pets.length} ตัว`;
+  document.getElementById('miniInfo').textContent=`🐾 ${names}`;
+  document.getElementById('miniPrice').textContent=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()}–฿${pMax.toLocaleString()}`;
 }
 
 // ── CONFIRM ──
@@ -1798,122 +1190,55 @@ async function confirmBooking(){
   try {
     const{min:pMin,max:pMax}=calcTotalPriceAll();
     const{mn,mx}=calcTotalDurationAll();
-
-    // Build combined fields for admin table
     const petNames=S.pets.map(p=>p.name||'?').join(', ');
     const petTypes=S.pets.map(p=>p.petType==='dog'?'สุนัข':'แมว').join(', ');
     const weights=S.pets.map(p=>p.weight||'').join(' | ');
-    const coatTypes=S.pets.map(p=>{
-      const cd=(p.petType==='dog'?dogCoats:catCoats).find(c=>c.val===p.coat);
-      return cd?.label||p.coat||'';
-    }).join(', ');
-    const services=S.pets.map(p=>{
-      if(p.haircut==='clipper') return 'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)';
-      if(p.haircut==='scissor') return 'อาบน้ำ + ตัดขน (กรรไกร)';
-      return `อาบน้ำ${p.petType==='dog'?'สุนัข':'แมว'}`;
-    }).join(' | ');
-
-    // All addons combined (unique labels)
+    const coatTypes=S.pets.map(p=>{const cd=(p.petType==='dog'?dogCoats:catCoats).find(c=>c.val===p.coat);return cd?.label||p.coat||'';}).join(', ');
+    const services=S.pets.map(p=>p.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':p.haircut==='scissor'?'อาบน้ำ + ตัดขน (กรรไกร)':`อาบน้ำ${p.petType==='dog'?'สุนัข':'แมว'}`).join(' | ');
     const allAddonLabels=[];
-    S.pets.forEach(pet=>{
-      (pet.addons||[]).forEach(av=>{
-        const a=addons.find(x=>x.val===av);
-        if(a&&!allAddonLabels.includes(a.label)) allAddonLabels.push(a.label);
-      });
-    });
-
+    S.pets.forEach(p=>{(p.addons||[]).forEach(av=>{const a=addons.find(x=>x.val===av);if(a&&!allAddonLabels.includes(a.label))allAddonLabels.push(a.label);});});
     const startTime=S.time||'09:00';
     const[startH,startM]=startTime.split(':').map(Number);
-    const startMins=startH*60+startM;
-    if(startMins+mx>SHOP_CLOSE_MINS){
-      throw new Error('เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน');
-    }
-
+    if(startH*60+startM+mx>SHOP_CLOSE_MINS) throw new Error('เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน');
     const endTimeMin=calcEndTimeStr(startTime,mn);
     const endTimeMax=calcEndTimeStr(startTime,mx);
-    const newDate=S.date||'';
-    const groomerId=assignGroomer(newDate,startTime,mx);
-
-    // Full pets data for admin (stored in notes as JSON)
+    const groomerId=assignGroomer(S.date||'',startTime,mx);
     const petsData=S.pets.map(pet=>{
       const cd=(pet.petType==='dog'?dogCoats:catCoats).find(c=>c.val===pet.coat);
-      const svc=pet.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)'
-        :pet.haircut==='scissor'?'อาบน้ำ + ตัดขน (กรรไกร)'
-        :`อาบน้ำ${pet.petType==='dog'?'สุนัข':'แมว'}`;
+      const svc=pet.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':pet.haircut==='scissor'?'อาบน้ำ + ตัดขน (กรรไกร)':`อาบน้ำ${pet.petType==='dog'?'สุนัข':'แมว'}`;
       const als=(pet.addons||[]).map(av=>addons.find(a=>a.val===av)?.label).filter(Boolean);
-      const pp=calcPriceForPet(pet);
-      const pd=calcDurationForPet(pet);
+      const pp=calcPriceForPet(pet);const pd=calcDurationForPet(pet);
       return {name:pet.name,petType:pet.petType,weight:pet.weight,coat:cd?.label||pet.coat,service:svc,addons:als,priceMin:pp.min,priceMax:pp.max,durationMin:pd.mn,durationMax:pd.mx};
     });
     const notesStr=JSON.stringify({petCount:S.petCount,pets:petsData,note:S.custNote||''});
-
-    const newBk={
-      id:'BK-'+Date.now(),
-      customerName:S.custName||'',
-      phone:S.custPhone||'',
-      petName:petNames,
-      petType:petTypes,
-      weightRange:weights,
-      coatType:coatTypes,
-      service:services,
-      addOns:allAddonLabels,
-      estimatedPriceMin:pMin,
-      estimatedPriceMax:pMax,
-      estimatedDurationMin:mn,
-      estimatedDurationMax:mx,
-      date:S.date||'',
-      startTime:startTime,
-      endTimeMin:endTimeMin,
-      endTimeMax:endTimeMax,
-      endTime:endTimeMax,
-      groomerId:groomerId,
-      status:'รอยืนยัน',
-      notes:notesStr,
-      createdAt:new Date().toISOString()
-    };
-
+    const newBk={id:'BK-'+Date.now(),customerName:S.custName||'',phone:S.custPhone||'',petName:petNames,petType:petTypes,weightRange:weights,coatType:coatTypes,service:services,addOns:allAddonLabels,estimatedPriceMin:pMin,estimatedPriceMax:pMax,estimatedDurationMin:mn,estimatedDurationMax:mx,date:S.date||'',startTime,endTimeMin,endTimeMax,endTime:endTimeMax,groomerId,status:'รอยืนยัน',notes:notesStr,createdAt:new Date().toISOString()};
     let saveOk=false;
     if(dbOnline){
-      try {
-        const res=await fetch(SB_URL+'/rest/v1/bookings',{method:'POST',headers:SB_HEADERS_INSERT,body:JSON.stringify(toRow(newBk))});
-        if(!res.ok){const t=await res.text();throw new Error('HTTP '+res.status+': '+t);}
-        saveOk=true;
-      } catch(err){
-        bookings.push(newBk);
-        try{localStorage.setItem(STORAGE_KEY,JSON.stringify(bookings));}catch(e){}
-        saveOk=true;
-      }
+      try{const res=await fetch(SB_URL+'/rest/v1/bookings',{method:'POST',headers:SB_HEADERS_INSERT,body:JSON.stringify(toRow(newBk))});if(!res.ok){const t=await res.text();throw new Error('HTTP '+res.status+': '+t);}saveOk=true;}
+      catch(err){bookings.push(newBk);try{localStorage.setItem(STORAGE_KEY,JSON.stringify(bookings));}catch(e){}saveOk=true;}
     } else {
-      bookings.push(newBk);
-      try{localStorage.setItem(STORAGE_KEY,JSON.stringify(bookings));}catch(e){}
-      saveOk=true;
+      bookings.push(newBk);try{localStorage.setItem(STORAGE_KEY,JSON.stringify(bookings));}catch(e){}saveOk=true;
     }
     if(!saveOk) throw new Error('ไม่สามารถบันทึกได้');
-
-    const bw=document.querySelector('.booking-wrap');
-    if(bw) bw.style.display='none';
-    const sw=document.getElementById('successWrap');
-    if(sw) sw.classList.add('visible');
-    const ms=document.getElementById('miniSummary');
-    if(ms) ms.classList.remove('visible');
+    const bw=document.querySelector('.booking-wrap');if(bw)bw.style.display='none';
+    const sw=document.getElementById('successWrap');if(sw)sw.classList.add('visible');
+    const ms=document.getElementById('miniSummary');if(ms)ms.classList.remove('visible');
     window.scrollTo({top:0,behavior:'smooth'});
-
   } catch(err){
     alert('เกิดข้อผิดพลาดในการจอง กรุณาลองใหม่อีกครั้ง\n\n'+err.message);
   }
 }
 
 function calcEndTimeStr(start,durationMin){
-  if(!start||typeof start!=='string'||!start.includes(':')) return '10:00';
-  const parts=start.split(':').map(Number);
-  const h=parts[0]||0,m=parts[1]||0;
+  if(!start||!start.includes(':'))return '10:00';
+  const[h,m]=start.split(':').map(Number);
   const total=h*60+m+(durationMin||60);
   return String(Math.floor(total/60)%24).padStart(2,'0')+':'+String(total%60).padStart(2,'0');
 }
 
 // ── INIT ──
-updateStepNav();
 buildPetCountGrid();
+updateStepNav();
 Promise.all([loadBookings(),loadGroomerList()])
   .then(()=>{console.log('init: ready, groomers:',groomerList.length,'bookings:',bookings.length);});
 </script>
