@@ -78,7 +78,7 @@ linear-gradient(
   175deg,
   #F1F3EC 0%,
   #F1F3EC 60%,
-  #f8efef 100%); 
+  #f8efef 100%);
   padding:46px 20px 66px;
   text-align:center; position:relative; overflow:hidden;
 }
@@ -119,8 +119,8 @@ linear-gradient(
 .booking-wrap { padding:8px 16px 120px; max-width:560px; margin:0 auto; }
 
 /* STEP NAV */
-.step-nav { display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:0; 
-  overflow-x:auto; overflow-y:hidden; padding:16px 16px 20px; 
+.step-nav { display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:0;
+  overflow-x:auto; overflow-y:hidden; padding:16px 16px 20px;
   white-space:nowrap; scrollbar-width:none;
   -webkit-overflow-scrolling:touch;}
 .step-nav::-webkit-scrollbar { display:none; }
@@ -163,7 +163,7 @@ linear-gradient(
 
 /* PROGRESS */
 .progress-bar { height:8px; width:82%; margin:0 auto; background:var(--sand); border-radius:999px; margin-bottom:22px; overflow:hidden; }
-.progress-fill { height:100%; background:linear-gradient(90deg,var(--sage),#f7ffd982); border-radius:999px; transition:width .45s ease; 
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--sage),#f7ffd982); border-radius:999px; transition:width .45s ease;
   box-shadow:
   0 0 10px rgba(160,114,85,.18);}
 
@@ -191,6 +191,7 @@ linear-gradient(
 /* CARDS */
 .card-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:6px; }
 .card-grid.col1 { grid-template-columns:1fr; }
+.card-grid.col4 { grid-template-columns:repeat(4,1fr); }
 .sel-card {
   background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 50%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0;
   border-radius:var(--radius-lg); padding:16px 12px; box-sizing: border-box;
@@ -353,7 +354,7 @@ linear-gradient(
 /* DATE / TIME */
 .date-input-wrap {
   background:linear-gradient(180deg, #f8f8f1 0%, #f1f1e9 60%, #e9e9df 100%); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border: 0; outline: 0; border-radius:var(--radius-lg);
-  padding:18px; margin-bottom:14px; 
+  padding:18px; margin-bottom:14px;
   box-shadow:
     /* cream halo */      0 9px 20px -7px rgba(255,252,235,1),
     /* drop shadow */     0 18px 36px -5px rgba(40,30,0,0.10),
@@ -409,7 +410,7 @@ linear-gradient(
 .cal-day:hover:not(.disabled):not(.closed-day) { background:var(--sand); transform:scale(1.05); }
 .cal-day.selected {
   background:var(--brown); color:#fff;
-  
+
   box-shadow:0 4px 14px rgba(160,114,85,.28);
   transform:scale(1.05);
 }
@@ -551,7 +552,7 @@ linear-gradient(
 /* MINI SUMMARY */
 .mini-summary {
   position:fixed; bottom:0;left:0;right:0;
-  background:var(--brown); 
+  background:var(--brown);
   padding:10px 16px 14px; z-index:200; display:none;
   box-shadow:0 -4px 20px rgba(160,114,85,.11);
 }
@@ -576,6 +577,58 @@ linear-gradient(
   text-align:center; margin-top:8px; display:none;
 }
 .full-alert.visible { display:block; }
+
+/* PET COUNTER HEADER */
+.pet-counter-header {
+  display:none;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--sand);
+  border-radius:14px;
+  padding:10px 16px;
+  margin-bottom:18px;
+  font-family:'Mitr',sans-serif;
+  font-size:14px;
+  font-weight:600;
+  color:var(--brown);
+}
+.pet-counter-dots {
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+.pet-counter-dot {
+  width:10px; height:10px;
+  border-radius:50%;
+  background:var(--gray);
+  transition:background .2s, transform .2s;
+}
+.pet-counter-dot.done { background:var(--sage); }
+.pet-counter-dot.active { background:var(--brown); transform:scale(1.3); }
+
+/* PET SUMMARY BLOCKS */
+.pet-summary-block {
+  background:var(--yellow-green);
+  border-radius:16px;
+  padding:14px 16px;
+  margin-bottom:10px;
+}
+.pet-summary-block-title {
+  font-family:'Mitr',sans-serif;
+  font-size:15px; font-weight:700;
+  color:var(--brown); margin-bottom:6px;
+  display:flex; align-items:center; gap:6px;
+}
+.pet-summary-block-rows { font-size:12px; color:var(--text-mid); line-height:1.8; }
+.pet-summary-block-price {
+  font-family:'Sarabun',sans-serif;
+  font-size:13px; font-weight:700;
+  color:var(--brown); margin-top:5px;
+}
+.summary-divider {
+  height:1px; background:var(--sand); margin:14px 0;
+}
+@keyframes checkPop { 0%{transform:scale(.92)}60%{transform:scale(1.05)}100%{transform:scale(1)} }
 </style>
 </head>
 <body>
@@ -583,7 +636,7 @@ linear-gradient(
 <header class="site-header">
   <div class="logo">Chou<span> & </span>Me</div>
   <div class="header-tag">✦ PET WELLNESS</div>
-  
+
 </header>
 
 <div class="ribbon"><div class="ribbon-inner" id="ribbonInner"></div></div>
@@ -603,64 +656,15 @@ linear-gradient(
     <path
 d="
       M0,38
-
       Q12,-4 24,38
-      T48,38
-      T72,38
-      T96,38
-      T120,38
-      T144,38
-      T168,38
-      T192,38
-      T216,38
-      T240,38
-      T264,38
-      T288,38
-      T312,38
-      T336,38
-      T360,38
-      T384,38
-      T408,38
-      T432,38
-      T456,38
-      T480,38
-      T504,38
-      T528,38
-      T552,38
-      T576,38
-      T600,38
-      T624,38
-      T648,38
-      T672,38
-      T696,38
-      T720,38
-      T744,38
-      T768,38
-      T792,38
-      T816,38
-      T840,38
-      T864,38
-      T888,38
-      T912,38
-      T936,38
-      T960,38
-      T984,38
-      T1008,38
-      T1032,38
-      T1056,38
-      T1080,38
-      T1104,38
-      T1128,38
-      T1152,38
-      T1176,38
-      T1200,38
-
-      L1200,80
-      L0,80
-      Z
-      "
-fill="#F1F3EC"
-    />
+      T48,38 T72,38 T96,38 T120,38 T144,38 T168,38 T192,38 T216,38 T240,38
+      T264,38 T288,38 T312,38 T336,38 T360,38 T384,38 T408,38 T432,38 T456,38
+      T480,38 T504,38 T528,38 T552,38 T576,38 T600,38 T624,38 T648,38 T672,38
+      T696,38 T720,38 T744,38 T768,38 T792,38 T816,38 T840,38 T864,38 T888,38
+      T912,38 T936,38 T960,38 T984,38 T1008,38 T1032,38 T1056,38 T1080,38
+      T1104,38 T1128,38 T1152,38 T1176,38 T1200,38
+      L1200,80 L0,80 Z"
+fill="#F1F3EC"/>
   </svg>
 </div>
 
@@ -669,13 +673,39 @@ fill="#F1F3EC"
   <div class="step-nav" id="stepNav"></div>
   <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
 
-  <!-- PAGE A: ประเภท + น้ำหนัก + ขน -->
-  <div class="booking-page active" id="pageA">
-
-    <!-- 1. Pet type -->
-    <div class="sub-section unlocked" id="subPet">
+  <!-- PAGE A0: เลือกจำนวนสัตว์เลี้ยง -->
+  <div class="booking-page active" id="pageA0">
+    <div class="sub-section unlocked" id="subPetCount">
       <div class="sub-section-header">
         <div class="sub-num">1</div>
+        <div class="section-title">จำนวนสัตว์เลี้ยง</div>
+      </div>
+      <p class="section-sub">เลือกจำนวนน้องที่ต้องการนัด Grooming ในครั้งนี้ (สูงสุด 4 ตัว)</p>
+      <div class="card-grid col4" id="petCountGrid"></div>
+    </div>
+    <br>
+    <button class="btn btn-primary" id="btnNextA0" onclick="startPetFlow()" disabled>ถัดไป: ข้อมูลน้อง ⇨</button>
+  </div>
+
+  <!-- PAGE A: ชื่อน้อง + ประเภท + น้ำหนัก + ขน (ต่อน้องหนึ่งตัว) -->
+  <div class="booking-page" id="pageA">
+    <div class="pet-counter-header" id="petCounterA"></div>
+
+    <!-- 1. Pet name -->
+    <div class="sub-section unlocked" id="subPetName">
+      <div class="sub-section-header">
+        <div class="sub-num">1</div>
+        <div class="section-title">ชื่อน้อง</div>
+      </div>
+      <div class="form-field" style="margin-bottom:0">
+        <input type="text" id="currentPetName" placeholder="ชื่อเล่นของน้อง" oninput="onPetNameInput()">
+      </div>
+    </div>
+
+    <!-- 2. Pet type -->
+    <div class="sub-section locked" id="subPet">
+      <div class="sub-section-header">
+        <div class="sub-num">2</div>
         <div class="section-title">ประเภทสัตว์เลี้ยง</div>
       </div>
       <div class="card-grid">
@@ -692,24 +722,20 @@ fill="#F1F3EC"
       </div>
     </div>
 
-    <div class="sub-divider"></div>
-
-    <!-- 2. Weight -->
+    <!-- 3. Weight -->
     <div class="sub-section locked" id="subWeight">
       <div class="sub-section-header">
-        <div class="sub-num">2</div>
+        <div class="sub-num">3</div>
         <div class="section-title">น้ำหนักโดยประมาณ</div>
       </div>
       <p class="section-sub">ช่วยให้ประเมินราคาและระยะเวลาได้แม่นยำ</p>
       <div class="card-grid" id="weightGrid"></div>
     </div>
 
-    <div class="sub-divider"></div>
-
-    <!-- 3. Coat -->
+    <!-- 4. Coat -->
     <div class="sub-section locked" id="subCoat">
       <div class="sub-section-header">
-        <div class="sub-num">3</div>
+        <div class="sub-num">4</div>
         <div class="section-title">ลักษณะขน</div>
       </div>
       <p class="section-sub">ช่วยให้ประเมินราคาและระยะเวลาได้แม่นยำ</p>
@@ -717,16 +743,18 @@ fill="#F1F3EC"
     </div>
 
     <br>
-    <button class="btn btn-primary" id="btnNextA" onclick="goToPage('B')" disabled>ถัดไป: เลือกบริการ ⇨</button>
+    <button class="btn btn-secondary" id="btnBackA" onclick="goBackFromA()">⇦ ย้อนกลับ</button>
+    <button class="btn btn-primary" id="btnNextA" onclick="goForwardToB()" disabled>ถัดไป: เลือกบริการ ⇨</button>
   </div>
 
-  <!-- PAGE B: บริการ + Add-ons -->
+  <!-- PAGE B: บริการ + Add-ons (ต่อน้องหนึ่งตัว) -->
   <div class="booking-page" id="pageB">
+    <div class="pet-counter-header" id="petCounterB"></div>
 
-    <!-- 4. Service -->
+    <!-- 5. Service -->
     <div class="sub-section unlocked" id="subService">
       <div class="sub-section-header">
-        <div class="sub-num">4</div>
+        <div class="sub-num">5</div>
         <div class="section-title">เลือกบริการ</div>
       </div>
       <p class="section-sub">ตัดขนต้องอาบน้ำก่อนเสมอ ไม่สามารถเลือกตัดขนอย่างเดียวได้</p>
@@ -736,12 +764,10 @@ fill="#F1F3EC"
       <div id="serviceList"></div>
     </div>
 
-    <div class="sub-divider"></div>
-
-    <!-- 5. Add-ons -->
+    <!-- 6. Add-ons -->
     <div class="sub-section locked" id="subAddon">
       <div class="sub-section-header">
-        <div class="sub-num">5</div>
+        <div class="sub-num">6</div>
         <div class="section-title">บริการเสริม</div>
       </div>
       <p class="section-sub">เลือกได้หลายรายการ ไม่บังคับ</p>
@@ -750,16 +776,16 @@ fill="#F1F3EC"
 
     <br>
     <button class="btn btn-secondary" onclick="goToPage('A')">⇦ ย้อนกลับ</button>
-    <button class="btn btn-primary" id="btnNextB" onclick="goToPage('C')" disabled>ถัดไป: เลือกวัน-เวลา ⇨</button>
+    <button class="btn btn-primary" id="btnNextB" onclick="advancePet()" disabled>ถัดไป ⇨</button>
   </div>
 
-  <!-- PAGE C: วันและเวลา + ข้อมูลลูกค้า (merged) -->
+  <!-- PAGE C: วันและเวลา + ข้อมูลลูกค้า (รวมทุกตัว) -->
   <div class="booking-page" id="pageC">
 
-    <!-- 6. Date & Time -->
+    <!-- 7. Date & Time -->
     <div class="sub-section unlocked" id="subDate">
       <div class="sub-section-header">
-        <div class="sub-num">6</div>
+        <div class="sub-num">7</div>
         <div class="section-title">เลือกวันและเวลา</div>
       </div>
       <p class="section-sub">เปิดให้บริการ อังคาร – อาทิตย์ เวลา 09:00 – 20:00 น.</p>
@@ -773,7 +799,7 @@ fill="#F1F3EC"
           </div>
           <div class="cal-dow-row">
             <div class="cal-dow">อา</div>
-            <div class="cal-dow closed">จ</div><!-- closed but shown -->
+            <div class="cal-dow closed">จ</div>
             <div class="cal-dow">อ</div>
             <div class="cal-dow">พ</div>
             <div class="cal-dow">พฤ</div>
@@ -795,22 +821,19 @@ fill="#F1F3EC"
       </div>
     </div>
 
-    <div class="sub-divider"></div>
-
-    <!-- 7. Customer Info -->
+    <!-- 8. Customer Info -->
     <div class="sub-section locked" id="subCustomer">
       <div class="sub-section-header">
-        <div class="sub-num">7</div>
+        <div class="sub-num">8</div>
         <div class="section-title">ข้อมูลผู้จอง</div>
       </div>
       <div class="form-field"><label>ชื่อลูกค้า*</label><input type="text" id="custName" placeholder="ชื่อเจ้าของ"></div>
       <div class="form-field"><label>เบอร์โทร*</label><input type="tel" id="custPhone" placeholder="0XX-XXX-XXXX"></div>
-      <div class="form-field"><label>ชื่อสัตว์เลี้ยง*</label><input type="text" id="petName" placeholder="ชื่อเล่นของน้อง"></div>
       <div class="form-field"><label>หมายเหตุเพิ่มเติม</label><textarea id="custNote" rows="3" placeholder="เช่น น้องตื่นเต้น ชอบให้อุ้ม กลัวเสียงดัง ฯลฯ"></textarea></div>
     </div>
 
     <br>
-    <button class="btn btn-secondary" onclick="goToPage('B')">⇦ ย้อนกลับ</button>
+    <button class="btn btn-secondary" onclick="goBackFromC()">⇦ ย้อนกลับ</button>
     <button class="btn btn-primary" onclick="doSummary()">ดูสรุปการจอง ⇨</button>
   </div>
 
@@ -818,7 +841,7 @@ fill="#F1F3EC"
   <div class="booking-page" id="pageD">
     <div class="sub-section unlocked">
       <div class="sub-section-header">
-        <div class="sub-num">8</div>
+        <div class="sub-num">9</div>
         <div class="section-title">สรุปการจอง</div>
       </div>
       <p class="section-sub">กรุณาตรวจสอบข้อมูลก่อนยืนยัน</p>
@@ -848,18 +871,14 @@ fill="#F1F3EC"
 </div>
 
 <script>
-// ── Supabase + shared data layer ──
-// ══════════════════════════════════════════
-// ══════════════════════════════════════════
-// SUPABASE CONFIG
-// ══════════════════════════════════════════
+// ── Supabase config ──
 const SB_URL  = 'https://qlyyeetzvtegbgasmmmb.supabase.co';
 const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFseXllZXR6dnRlZ2JnYXNtbW1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyNTA1MjMsImV4cCI6MjA5MzgyNjUyM30.nryBXiYnGTPNpAAEPOdqRExVDd3IeT4S0vAiZ1sHkkg';
 const SB_HEADERS_INSERT = {
   'Content-Type': 'application/json',
   'apikey': SB_ANON,
   'Authorization': 'Bearer ' + SB_ANON,
-  'Prefer': 'return=minimal'   // customer page only inserts, no read-back needed
+  'Prefer': 'return=minimal'
 };
 const SB_HEADERS_READ = {
   'Content-Type': 'application/json',
@@ -895,13 +914,12 @@ function toRow(bk){
   };
 }
 
-// ── DATA STATE ─────────────────────────────
+// ── DATA STATE ──
 const STORAGE_KEY = 'bookings';
 let bookings = [];
-const existingBookings = bookings; // backward-compat alias
+const existingBookings = bookings;
 let dbOnline = false;
 
-// ── LOAD (for capacity check on page load) ──
 async function loadBookings(){
   try {
     const res = await fetch(
@@ -917,11 +935,8 @@ async function loadBookings(){
       groomerId: r.groomer_id, status: r.status
     }));
     dbOnline = true;
-    console.log('loadBookings: Supabase OK,', bookings.length, 'rows');
   } catch(err){
-    // Silently fall back to localStorage — customer page still works without live data
     dbOnline = false;
-    console.log('loadBookings: offline mode -', err.message);
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       const stored = raw ? JSON.parse(raw) : [];
@@ -930,15 +945,10 @@ async function loadBookings(){
   }
 }
 
-// ── SAVE (called after confirmBooking) ──────
-async function saveToStorage(){
-  // No-op: actual save happens in confirmBooking via Supabase INSERT
-}
-
+async function saveToStorage(){}
 async function updateBooking(id, fields){
   const bk = bookings.find(b => b.id === id);
   if(bk) Object.assign(bk, fields);
-  // Customer page doesn't update bookings after save — no-op
 }
 async function refreshDashboard(){ /* admin is on admin.html */ }
 
@@ -947,19 +957,29 @@ function timeToMin(t){ if(!t||!t.includes(':'))return 0; const[h,m]=t.split(':')
 function overlaps(t1,d1,t2,d2){ const s1=timeToMin(t1),e1=s1+(d1||0),s2=timeToMin(t2),e2=s2+(d2||0); return s1<e2&&e1>s2; }
 function calcEndTime(s,d){ if(!s||!s.includes(':'))return '10:00'; const[h,m]=s.split(':').map(Number),t=h*60+m+(d||60); return String(Math.floor(t/60)%24).padStart(2,'0')+':'+String(t%60).padStart(2,'0'); }
 
-
-// ── Customer booking UI ──
+// ── Ribbon ──
 const ribbonItems=['GROOMING','PAW','SPA','PAW','CAT GROOMING','PAW','CHOU & ME','PAW','HAIRCUT','PAW','DOG GROOMING','PAW','CHOU & ME','PAW'];
 const ri=document.getElementById('ribbonInner');
 let rh=''; for(let r=0;r<4;r++) ribbonItems.forEach(t=>{ rh+=t==='PAW'?`<span class="dot"><i class="fa-solid fa-paw"></i></span>`:`<span>${t}</span>`; }); ri.innerHTML=rh;
 
 // ── STATE ──
-const S={
-  petType:null, weight:null, coat:null,
-  haircut:null, // null | 'clipper' | 'scissor'
-  addons:[],
-  date:null, time:null,
-  custName:'', custPhone:'', petName:'', custNote:''
+const S = {
+  petCount: null,
+  pets: [],           // [{name, petType, weight, coat, haircut, addons}] — completed pet configs
+  currentPetIdx: 0,
+  // Current pet temp state:
+  currentPetName: '',
+  petType: null,
+  weight: null,
+  coat: null,
+  haircut: null,
+  addons: [],
+  // Shared:
+  date: null,
+  time: null,
+  custName: '',
+  custPhone: '',
+  custNote: ''
 };
 
 // ── DATA ──
@@ -967,16 +987,14 @@ const dogWeights=['ต่ำกว่า 2.5 กก.','2.5 – 5 กก.','5.1 �
 const catWeights=['ต่ำกว่า 3 กก.','3 – 5 กก.','5.1 – 10 กก.','มากกว่า 10 กก.'];
 
 const dogCoats=[
-  {val:'short', label:'ขนสั้น',              emoji:'🐕', sub:'เช่น ชิวาวา, เฟรนช์บูลด็อก, บีเกิล'},
-  {val:'long',  label:'ขนยาว',               emoji:'🐩', sub:'เช่น ชิสุ, มอลทีส, พุดเดิ้ล โกลเด้น'},
-  {val:'thick', label:'ขนหนา/สองชั้น',     emoji:'🐻', sub:'เช่น ปอม ฮัสกี้, คอร์กี้'},
- 
+  {val:'short', label:'ขนสั้น',          emoji:'🐕', sub:'เช่น ชิวาวา, เฟรนช์บูลด็อก, บีเกิล'},
+  {val:'long',  label:'ขนยาว',           emoji:'🐩', sub:'เช่น ชิสุ, มอลทีส, พุดเดิ้ล โกลเด้น'},
+  {val:'thick', label:'ขนหนา/สองชั้น', emoji:'🐻', sub:'เช่น ปอม ฮัสกี้, คอร์กี้'},
 ];
 const catCoats=[
-  {val:'short', label:'ขนสั้น',              emoji:'😺', sub:'เช่น ไทย, อเมริกันช็อตแฮร์, บริติชช็อตแฮร์'},
-  {val:'long',  label:'ขนยาว',               emoji:'😼', sub:'เช่น เปอร์เซีย, เมนคูน, แร็กดอลล์'},
-  {val:'thick', label:'ขนหนา',               emoji:'🦁', sub:'ขนแน่น เป่ายาก ใช้เวลาเพิ่ม'},
-  
+  {val:'short', label:'ขนสั้น',          emoji:'😺', sub:'เช่น ไทย, อเมริกันช็อตแฮร์, บริติชช็อตแฮร์'},
+  {val:'long',  label:'ขนยาว',           emoji:'😼', sub:'เช่น เปอร์เซีย, เมนคูน, แร็กดอลล์'},
+  {val:'thick', label:'ขนหนา',           emoji:'🦁', sub:'ขนแน่น เป่ายาก ใช้เวลาเพิ่ม'},
 ];
 
 const dogPrices={
@@ -1019,43 +1037,60 @@ function getKg(w){
   return 5;
 }
 function isHeavy(){ return getKg(S.weight)>=10; }
-
-// Bath key: long/thick/matted → bath_long, else → bath_short
 function getBathKey(){ return (S.coat==='long'||S.coat==='thick'||S.coat==='matted')?'bath_long':'bath_short'; }
+function getBathKeyForPet(pet){ return (pet.coat==='long'||pet.coat==='thick'||pet.coat==='matted')?'bath_long':'bath_short'; }
 
-function calcPrice(){
-  if(!S.weight) return {min:0,max:0};
-  const tbl=S.petType==='dog'?dogPrices:catPrices;
-  const row=tbl[S.weight]; if(!row) return {min:0,max:0};
-  const bk=getBathKey();
+// ── PER-PET CALCULATIONS ──
+function calcPriceForPet(pet){
+  if(!pet.weight) return {min:0,max:0};
+  const tbl=pet.petType==='dog'?dogPrices:catPrices;
+  const row=tbl[pet.weight]; if(!row) return {min:0,max:0};
+  const bk=getBathKeyForPet(pet);
   let base=row[bk]||0;
-  if(S.haircut==='clipper') base+=row['trim']||0;
-  if(S.haircut==='scissor') base+=row['scissor']||0;
+  if(pet.haircut==='clipper') base+=row['trim']||0;
+  if(pet.haircut==='scissor') base+=row['scissor']||0;
+  const hv=getKg(pet.weight)>=10;
   let mn=0,mx=0;
-  const hv=isHeavy();
-  S.addons.forEach(av=>{
+  (pet.addons||[]).forEach(av=>{
     const a=addons.find(x=>x.val===av);
     if(a){mn+=hv?a.prH[0]:a.prL[0];mx+=hv?a.prH[1]:a.prL[1];}
   });
   return {min:base+mn,max:base+mx};
 }
 
-// SHOP_CLOSE_MINS: 20:00 = 1200 minutes from midnight
-const SHOP_CLOSE_MINS = 20 * 60; // 1200
-
-function calcDuration(){
-  const kg=getKg(S.weight); let mn=60;
+function calcDurationForPet(pet){
+  const kg=getKg(pet.weight); let mn=60;
   if(kg<5){mn=60;}else if(kg<=10){mn=75;}else if(kg<=20){mn=90;}else if(kg<=40){mn=105;}else{mn=120;}
-  if(S.coat==='long'){mn+=30;}
-  if(S.coat==='thick'){mn+=30;}
-  if(S.coat==='matted'){mn+=45;}
-  if(S.haircut==='clipper'){mn+=45;}
-  if(S.haircut==='scissor'){mn+=60;}
-  S.addons.forEach(av=>{const a=addons.find(x=>x.val===av);if(a){mn+=a.dur[0];}});
-  // Max is always min + 60 minutes (range capped at 1 hour)
-  const mx = mn + 60;
-  return{mn,mx};
+  if(pet.coat==='long'){mn+=30;}
+  if(pet.coat==='thick'){mn+=30;}
+  if(pet.coat==='matted'){mn+=45;}
+  if(pet.haircut==='clipper'){mn+=45;}
+  if(pet.haircut==='scissor'){mn+=60;}
+  (pet.addons||[]).forEach(av=>{const a=addons.find(x=>x.val===av);if(a){mn+=a.dur[0];}});
+  return {mn, mx: mn+60};
 }
+
+// Current pet (reads S temp state)
+function calcPrice(){
+  return calcPriceForPet({petType:S.petType,weight:S.weight,coat:S.coat,haircut:S.haircut,addons:S.addons});
+}
+function calcDuration(){
+  return calcDurationForPet({petType:S.petType,weight:S.weight,coat:S.coat,haircut:S.haircut,addons:S.addons});
+}
+
+// Total across ALL completed pets in S.pets
+function calcTotalPriceAll(){
+  let min=0,max=0;
+  S.pets.forEach(pet=>{const p=calcPriceForPet(pet);min+=p.min;max+=p.max;});
+  return {min,max};
+}
+function calcTotalDurationAll(){
+  let mn=0,mx=0;
+  S.pets.forEach(pet=>{const d=calcDurationForPet(pet);mn+=d.mn;mx+=d.mx;});
+  return {mn,mx};
+}
+
+const SHOP_CLOSE_MINS = 20 * 60;
 
 function fmtDur(mn,mx){
   const sMin=Math.floor(mn/60)+(mn%60>=30?.5:0);
@@ -1065,22 +1100,22 @@ function fmtDur(mn,mx){
 }
 
 // ── PAGE NAV ──
-const PAGES=['A','B','C','D'];
-const PAGE_LABELS=['รายละเอียด','บริการ','วันเวลา','สรุป'];
-let currentPage='A';
+const PAGES=['A0','A','B','C','D'];
+const PAGE_LABELS=['จำนวนสัตว์','รายละเอียด','บริการ','วันเวลา','สรุป'];
+let currentPage='A0';
 
 function goToPage(p){
   document.getElementById('page'+currentPage).classList.remove('active');
   currentPage=p;
   document.getElementById('page'+p).classList.add('active');
-  // rebuild service list on entering B so prices reflect latest state
+
+  if(p==='A0') buildPetCountGrid();
+  if(p==='A')  initPageA();
   if(p==='B'){
-    S.haircut=null; S.addons=[];
-    lock('subAddon');
-    document.getElementById('btnNextB').disabled=true;
     buildServiceGrid();
+    updatePetCounterHeader('B');
+    updateNextBButton();
   }
-  // populate estimate card when entering C
   if(p==='C') buildEstimateCard();
   updateStepNav();
   updateMini();
@@ -1105,25 +1140,230 @@ function updateStepNav(){
 
 function unlock(id){
   const el=document.getElementById(id);
-  el.classList.remove('locked');
-  el.classList.add('unlocked');
+  el.classList.remove('locked'); el.classList.add('unlocked');
 }
 function lock(id){
   const el=document.getElementById(id);
-  el.classList.remove('unlocked');
-  el.classList.add('locked');
+  el.classList.remove('unlocked'); el.classList.add('locked');
+}
+
+// ── PET COUNT PAGE ──
+function buildPetCountGrid(){
+  const petEmojis=['🐾','🐾🐾','🐾🐾🐾','🐾🐾🐾🐾'];
+  document.getElementById('petCountGrid').innerHTML=[1,2,3,4].map(n=>{
+    const sel=S.petCount===n?'selected':'';
+    return `<div class="sel-card ${sel}" onclick="selectPetCount(this,${n})">
+      <span class="card-emoji" style="font-size:16px;line-height:1.5">${petEmojis[n-1]}</span>
+      <span class="card-label">${n} ตัว</span>
+      <span class="card-sub">${n===1?'One pet':n+' pets'}</span>
+    </div>`;
+  }).join('');
+}
+
+function selectPetCount(el,n){
+  el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  S.petCount=n;
+  S.pets=[];
+  document.getElementById('btnNextA0').disabled=false;
+}
+
+function startPetFlow(){
+  S.currentPetIdx=0;
+  resetCurrentPetState();
+  goToPage('A');
+}
+
+function resetCurrentPetState(){
+  S.currentPetName='';
+  S.petType=null; S.weight=null; S.coat=null;
+  S.haircut=null; S.addons=[];
+}
+
+// ── PAGE A INIT ──
+function initPageA(){
+  // Restore existing pet data if going back to a pet already configured
+  const existing=S.pets[S.currentPetIdx];
+  if(existing){
+    S.currentPetName=existing.name||'';
+    S.petType=existing.petType;
+    S.weight=existing.weight;
+    S.coat=existing.coat;
+    S.haircut=existing.haircut;
+    S.addons=[...(existing.addons||[])];
+  }
+
+  document.getElementById('currentPetName').value=S.currentPetName;
+
+  // Determine locked/unlocked state based on current data
+  lock('subPet'); lock('subWeight'); lock('subCoat');
+  document.getElementById('btnNextA').disabled=true;
+  document.getElementById('weightGrid').innerHTML='';
+  document.getElementById('coatGrid').innerHTML='';
+
+  if(S.currentPetName){
+    unlock('subPet');
+    // Restore pet type selection visually
+    if(S.petType){
+      const ptCards=document.querySelectorAll('#subPet .sel-card');
+      ptCards.forEach(c=>{if(c.dataset.val===S.petType)c.classList.add('selected');else c.classList.remove('selected');});
+      buildWeightGrid();
+      unlock('subWeight');
+      // Restore weight selection
+      if(S.weight){
+        setTimeout(()=>{
+          document.querySelectorAll('#weightGrid .sel-card').forEach(c=>{
+            if(decodeURIComponent(c.dataset.val||'')===S.weight||c.dataset.val===S.weight)
+              c.classList.add('selected');
+          });
+        },0);
+        buildCoatGrid();
+        unlock('subCoat');
+        // Restore coat selection
+        if(S.coat){
+          setTimeout(()=>{
+            document.querySelectorAll('#coatGrid .sel-card').forEach(c=>{
+              if(c.dataset.val===S.coat) c.classList.add('selected');
+            });
+          },0);
+          document.getElementById('btnNextA').disabled=false;
+        }
+      }
+    }
+  }
+
+  updatePetCounterHeader('A');
+  updateBackButtonA();
+}
+
+function updatePetCounterHeader(page){
+  const el=document.getElementById('petCounter'+page);
+  if(!el) return;
+  if(!S.petCount||S.petCount<=1){el.style.display='none';return;}
+  el.style.display='flex';
+  const dots=Array.from({length:S.petCount},(_,i)=>{
+    let cls='pet-counter-dot';
+    if(i<S.currentPetIdx) cls+=' done';
+    else if(i===S.currentPetIdx) cls+=' active';
+    return `<div class="${cls}"></div>`;
+  }).join('');
+  el.innerHTML=`<span>🐾 น้องที่ ${S.currentPetIdx+1} จาก ${S.petCount}</span><div class="pet-counter-dots">${dots}</div>`;
+}
+
+function updateBackButtonA(){
+  const btn=document.getElementById('btnBackA');
+  if(!btn) return;
+  btn.textContent=S.currentPetIdx===0?'⇦ ย้อนกลับ: จำนวนสัตว์':`⇦ ย้อนกลับ: น้องที่ ${S.currentPetIdx}`;
+}
+
+function goBackFromA(){
+  if(S.currentPetIdx===0){
+    goToPage('A0');
+  } else {
+    // Go back to page B of previous pet
+    S.currentPetIdx--;
+    const prev=S.pets[S.currentPetIdx];
+    if(prev){
+      S.currentPetName=prev.name;
+      S.petType=prev.petType;
+      S.weight=prev.weight;
+      S.coat=prev.coat;
+      S.haircut=prev.haircut;
+      S.addons=[...(prev.addons||[])];
+    }
+    // Remove from pets so it gets re-saved when advancing
+    S.pets.splice(S.currentPetIdx,1);
+    // Go to B with restored state (don't reset service)
+    document.getElementById('page'+currentPage).classList.remove('active');
+    currentPage='B';
+    document.getElementById('pageB').classList.add('active');
+    buildServiceGrid();
+    // Restore service card selection
+    if(S.haircut!==null){
+      setTimeout(()=>{
+        const key=S.haircut==='clipper'?'bath_clipper':S.haircut==='scissor'?'bath_scissor':'bath_only';
+        document.querySelectorAll('.service-card').forEach(c=>{
+          if(c.dataset.key===key) c.classList.add('selected');
+        });
+        buildAddonGrid();
+        unlock('subAddon');
+        document.getElementById('btnNextB').disabled=false;
+      },0);
+    } else {
+      lock('subAddon');
+      document.getElementById('btnNextB').disabled=true;
+    }
+    updatePetCounterHeader('B');
+    updateNextBButton();
+    updateStepNav();
+    updateMini();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+
+function goBackFromC(){
+  // Restore last pet's state before going back to page B
+  const lastPet=S.pets[S.currentPetIdx];
+  if(lastPet){
+    S.currentPetName=lastPet.name;
+    S.petType=lastPet.petType;
+    S.weight=lastPet.weight;
+    S.coat=lastPet.coat;
+    S.haircut=lastPet.haircut;
+    S.addons=[...(lastPet.addons||[])];
+  }
+  // Remove last pet so it gets re-saved when advancing again
+  S.pets.splice(S.currentPetIdx,1);
+
+  document.getElementById('page'+currentPage).classList.remove('active');
+  currentPage='B';
+  document.getElementById('pageB').classList.add('active');
+  buildServiceGrid();
+  if(S.haircut!==null){
+    setTimeout(()=>{
+      const key=S.haircut==='clipper'?'bath_clipper':S.haircut==='scissor'?'bath_scissor':'bath_only';
+      document.querySelectorAll('.service-card').forEach(c=>{
+        if(c.dataset.key===key) c.classList.add('selected');
+      });
+      buildAddonGrid();
+      unlock('subAddon');
+      document.getElementById('btnNextB').disabled=false;
+    },0);
+  } else {
+    lock('subAddon');
+    document.getElementById('btnNextB').disabled=true;
+  }
+  updatePetCounterHeader('B');
+  updateNextBButton();
+  updateStepNav();
+  updateMini();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── PET NAME ──
+function onPetNameInput(){
+  const val=document.getElementById('currentPetName').value.trim();
+  S.currentPetName=val;
+  if(val){
+    unlock('subPet');
+  } else {
+    lock('subPet'); lock('subWeight'); lock('subCoat');
+    document.getElementById('btnNextA').disabled=true;
+    S.petType=null; S.weight=null; S.coat=null;
+    document.getElementById('weightGrid').innerHTML='';
+    document.getElementById('coatGrid').innerHTML='';
+    // Clear pet type selection
+    document.querySelectorAll('#subPet .sel-card').forEach(c=>c.classList.remove('selected'));
+  }
 }
 
 // ── PET TYPE ──
 function selectPetType(el,val){
   el.closest('.card-grid').querySelectorAll('.sel-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  // Reset downstream
   S.petType=val; S.weight=null; S.coat=null; S.haircut=null; S.addons=[];
-  // Rebuild & unlock weight
   buildWeightGrid();
   unlock('subWeight');
-  // Re-lock coat
   lock('subCoat');
   document.getElementById('coatGrid').innerHTML='';
   document.getElementById('btnNextA').disabled=true;
@@ -1168,8 +1408,44 @@ function selectCoat(el,val){
   updateMini();
 }
 
+// ── ADVANCE: A → B (forward, reset service) ──
+function goForwardToB(){
+  S.haircut=null; S.addons=[];
+  lock('subAddon');
+  document.getElementById('btnNextB').disabled=true;
+  goToPage('B');
+}
+
+// ── ADVANCE: B → next pet A or C ──
+function advancePet(){
+  // Save current pet to pets array
+  S.pets[S.currentPetIdx]={
+    name: S.currentPetName,
+    petType: S.petType,
+    weight: S.weight,
+    coat: S.coat,
+    haircut: S.haircut,
+    addons: [...S.addons]
+  };
+  if(S.currentPetIdx<S.petCount-1){
+    S.currentPetIdx++;
+    resetCurrentPetState();
+    goToPage('A');
+  } else {
+    goToPage('C');
+  }
+}
+
+function updateNextBButton(){
+  const btn=document.getElementById('btnNextB');
+  if(!btn) return;
+  const isLast=S.currentPetIdx>=S.petCount-1;
+  btn.textContent=isLast
+    ?'ถัดไป: เลือกวัน-เวลา ⇨'
+    :`ถัดไป: น้องที่ ${S.currentPetIdx+2} ⇨`;
+}
+
 // ── SERVICE ──
-// 3 options: bath only | bath + clipper | bath + scissor
 function buildServiceGrid(){
   if(!S.weight||!S.coat) return;
   const tbl=S.petType==='dog'?dogPrices:catPrices;
@@ -1183,46 +1459,45 @@ function buildServiceGrid(){
   const pSci=row?row['scissor']:0;
 
   const svcs=[
-    {key:'bath_only', hcut:null,      emoji:'🚿',
+    {key:'bath_only',  hcut:null,      emoji:'🚿',
      name:`อาบน้ำ${animal}`,
      desc:`รวมเช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น`,
      tags:[`Bathing (${bathTypeLabel})`],
      price:pBath},
-    {key:'bath_clipper', hcut:'clipper', emoji:'✂️',
+    {key:'bath_clipper',hcut:'clipper',emoji:'✂️',
      name:`อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)`,
      desc:`อาบน้ำและตัดขนด้วยเครื่องปัตตาเลี่ยน`,
      tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Clippers)'],
      price:row?pBath+pTrim:0},
-    {key:'bath_scissor', hcut:'scissor', emoji:'✂️',
+    {key:'bath_scissor',hcut:'scissor',emoji:'✂️',
      name:`อาบน้ำ + ตัดขน (กรรไกร)`,
      desc:`อาบน้ำและตัดขนด้วยกรรไกร ละเอียดกว่า ใช้เวลาเพิ่ม`,
      tags:[`Bathing (${bathTypeLabel})`,'Haircutting (Scissors)'],
      price:row?pBath+pSci:0},
   ];
 
-  // Always render with no pre-selection — user must choose
   document.getElementById('serviceList').innerHTML=svcs.map(sv=>{
-    return `<div class="service-card" data-key="${sv.key}" onclick="selectService(this,'${sv.key}','${sv.hcut}')">
+    const sel=S.haircut===sv.hcut?'selected':'';
+    return `<div class="service-card ${sel}" data-key="${sv.key}" onclick="selectService(this,'${sv.key}','${sv.hcut}')">
       <span class="svc-emoji">${sv.emoji}</span>
       <div class="svc-info">
         <div class="svc-name">${sv.name}</div>
         <div class="svc-desc">${sv.desc}</div>
-        <div class="svc-tags">
-          ${sv.tags.map((t,i)=>`<span class="svc-tag${i>0?' pink':''}">${t}</span>`).join('')}
-        </div>
+        <div class="svc-tags">${sv.tags.map((t,i)=>`<span class="svc-tag${i>0?' pink':''}">${t}</span>`).join('')}</div>
       </div>
       <div class="svc-price">${row?`฿${sv.price.toLocaleString()}`:''}</div>
     </div>`;
   }).join('');
 }
 
-function selectService(el, key, hcutStr){
+function selectService(el,key,hcutStr){
   document.querySelectorAll('.service-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  S.haircut = hcutStr==='null'?null:hcutStr;
+  S.haircut=hcutStr==='null'?null:hcutStr;
   unlock('subAddon');
   buildAddonGrid();
   document.getElementById('btnNextB').disabled=false;
+  updateNextBButton();
   updateMini();
 }
 
@@ -1234,7 +1509,7 @@ function buildAddonGrid(){
     const ps=pr[0]===pr[1]?`+฿${pr[0]}`:`+฿${pr[0]}–฿${pr[1]}`;
     const sel=S.addons.includes(a.val)?'selected':'';
     return `<div class="addon-card ${sel}" data-val="${a.val}" onclick="toggleAddon(this)">
-      <div class="addon-check"></div>
+      <div class="addon-check${sel?' selected':''}"></div>
       <span class="addon-emoji">${a.emoji}</span>
       <div class="addon-info">
         <span class="addon-name">${a.label}</span>
@@ -1243,6 +1518,10 @@ function buildAddonGrid(){
       <div class="addon-price-tag">${ps}</div>
     </div>`;
   }).join('');
+  // Apply selected styling to checkboxes
+  document.querySelectorAll('.addon-card.selected .addon-check').forEach(chk=>{
+    chk.style.background='var(--sage)';chk.style.borderColor='var(--sage)';
+  });
 }
 
 function toggleAddon(el){
@@ -1259,33 +1538,28 @@ function toggleAddon(el){
   updateMini();
 }
 
-// ── ESTIMATE CARD ──
+// ── ESTIMATE CARD (shows total for all pets) ──
 function buildEstimateCard(){
-  const{min:pMin,max:pMax}=calcPrice();
-  const{mn,mx}=calcDuration();
-  const svcLabel=S.haircut===null
-    ?`อาบน้ำ${S.petType==='dog'?'สุนัข':'แมว'}`
-    :S.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
+  const{min:pMin,max:pMax}=calcTotalPriceAll();
+  const{mn,mx}=calcTotalDurationAll();
+  const petCount=S.pets.length;
+  const petNames=S.pets.map(p=>p.name||'?').join(', ');
   const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
   const durStr=fmtDur(mn,mx);
-  const addonCount=S.addons.length;
-  // Warn if any time slot could exceed closing
-  const slotWarning = mx > 120 ? `<div style="font-size:10px;color:#b07a30;margin-top:4px">⚠️ จากการประเมินเวลาทำให้บางช่วงเวลาอาจไม่สามารถจองได้</div>` : '';
+  const slotWarning=mx>120?`<div style="font-size:10px;color:#b07a30;margin-top:4px">⚠️ จากการประเมินเวลาทำให้บางช่วงเวลาอาจไม่สามารถจองได้</div>`:'';
   document.getElementById('estimateCard').innerHTML=`
     <div class="estimate-icon">🧾</div>
     <div class="estimate-body">
-      <div class="estimate-label">ระยะเวลาและราคาจริงอาจเปลี่ยนแปลงตามสภาพขนและพฤติกรรมของน้องหมาน้องแมว</div>
+      <div class="estimate-label">ราคาและระยะเวลารวมทุกตัว (${petCount} ตัว)</div>
       <div class="estimate-price">${priceStr}</div>
       <div class="estimate-duration">🕓 <b>${durStr}</b></div>
-      <div class="estimate-svc-tag">${svcLabel}${addonCount?` + ${addonCount} เสริม`:''}</div>
+      <div class="estimate-svc-tag">🐾 ${petNames}</div>
       ${slotWarning}
     </div>`;
 }
 
 // ── CUSTOM CALENDAR ──
 const thMonths=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
-const thDaysShort=['อา','จ','อ','พ','พฤ','ศ','ส'];
-
 let calYear, calMonth;
 (function initCal(){
   const now=new Date();
@@ -1302,169 +1576,120 @@ function calNav(dir){
 
 function renderCal(){
   const now=new Date(); now.setHours(0,0,0,0);
-  const title=document.getElementById('calTitle');
-  const grid=document.getElementById('calGrid');
-  const prevBtn=document.getElementById('calPrev');
-
-  title.textContent=`${thMonths[calMonth]} ${calYear+543}`;
-
-  // Disable prev if we're already at current month
+  document.getElementById('calTitle').textContent=`${thMonths[calMonth]} ${calYear+543}`;
   const isCurrentMonth=(calYear===now.getFullYear()&&calMonth===now.getMonth());
-  prevBtn.disabled=isCurrentMonth;
+  document.getElementById('calPrev').disabled=isCurrentMonth;
 
-  // First day of month (0=Sun)
   const firstDow=new Date(calYear,calMonth,1).getDay();
-  // Total days in month
   const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
-
   let html='';
-  // Empty cells before first day
   for(let i=0;i<firstDow;i++) html+=`<div class="cal-day empty"></div>`;
-
   for(let d=1;d<=daysInMonth;d++){
     const date=new Date(calYear,calMonth,d);
-    const dow=date.getDay(); // 0=Sun,1=Mon
+    const dow=date.getDay();
     const isPast=date<now;
     const isMon=dow===1;
     const isToday=date.getTime()===now.getTime();
-
-    // Format yyyy-mm-dd
     const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const isSelected=S.date===dateStr;
-
     let cls='cal-day';
     if(isPast) cls+=' disabled';
     else if(isMon) cls+=' closed-day';
     else if(isToday) cls+=' today';
     if(isSelected) cls+=' selected';
-
     const label=isMon?'ปิด':String(d);
     const clickable=!isPast&&!isMon;
     html+=`<div class="${cls}" ${clickable?`onclick="selectDate('${dateStr}',${dow})"`:''} title="${dateStr}">${label}</div>`;
   }
-  grid.innerHTML=html;
+  document.getElementById('calGrid').innerHTML=html;
 }
 
-function selectDate(dateStr, dow){
+function selectDate(dateStr,dow){
   S.date=dateStr; S.time=null;
-  // re-lock customer
   lock('subCustomer');
-  // hide time wrap, reset
   document.getElementById('timeWrap').style.display='none';
   document.getElementById('dateNote').classList.remove('visible');
-
-  // Update badge
   const d=new Date(dateStr+'T12:00:00');
-  const badge=document.getElementById('selectedDateBadge');
   document.getElementById('selectedDateText').textContent=
     d.toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  badge.classList.add('visible');
-
-  // Re-render calendar to show selection
+  document.getElementById('selectedDateBadge').classList.add('visible');
   renderCal();
-
-  // Show timeslots
   buildTimeslots(dateStr);
   document.getElementById('timeWrap').style.display='block';
 }
 
 function buildTimeslots(date){
-  // Get max duration so we can block slots that would run past closing
-  const{mx}=calcDuration();
-
+  const{mx}=calcTotalDurationAll();
   const slots=[];
   for(let h=9;h<20;h++){
-    if(h===13) continue; // lunch break — no 13:00 or 13:30
+    if(h===13) continue;
     slots.push(`${String(h).padStart(2,'0')}:00`);
     if(h<19) slots.push(`${String(h).padStart(2,'0')}:30`);
   }
-
   document.getElementById('timeslotGrid').innerHTML=slots.map(t=>{
-    const [sh,sm]=t.split(':').map(Number);
-    const startMins = sh*60+sm;
-    const endMins   = startMins + mx;
-
-    // Check groomer capacity
-    const full    = isSlotFull(date, t);
-
-    // Check if booking would run past shop closing (20:00)
-    const tooLate = endMins > SHOP_CLOSE_MINS;
-
-    const disabled = full || tooLate;
-    let label = t;
-    if(full) label = 'เต็ม';
-    else if(tooLate) label = 'ใกล้ปิด';
-
+    const[sh,sm]=t.split(':').map(Number);
+    const startMins=sh*60+sm;
+    const endMins=startMins+mx;
+    const full=isSlotFull(date,t);
+    const tooLate=endMins>SHOP_CLOSE_MINS;
+    const disabled=full||tooLate;
+    let label=t;
+    if(full) label='เต็ม';
+    else if(tooLate) label='ใกล้ปิด';
     return `<button class="timeslot-btn${full?' full':''}${tooLate?' too-late':''}" ${disabled?'disabled':''} onclick="selectTime(this,'${t}')">${label}</button>`;
   }).join('');
 }
 
-// Groomer list cache for customer page (loaded once from Supabase)
-let groomerList = [];
+// Groomer list cache
+let groomerList=[];
 
 async function loadGroomerList(){
   try {
-    const res = await fetch(SB_URL + '/rest/v1/groomers?select=id,name&order=sort_order.asc',
-      { headers: SB_HEADERS_READ });
-    if(res.ok){ groomerList = await res.json(); }
+    const res=await fetch(SB_URL+'/rest/v1/groomers?select=id,name&order=sort_order.asc',{headers:SB_HEADERS_READ});
+    if(res.ok){groomerList=await res.json();}
   } catch(e){}
-  // Fallback: load from localStorage groomers key
   if(!groomerList.length){
-    try {
-      const raw = localStorage.getItem('chouandme_groomers');
-      if(raw) groomerList = JSON.parse(raw);
-    } catch(e){}
+    try{const raw=localStorage.getItem('chouandme_groomers');if(raw)groomerList=JSON.parse(raw);}catch(e){}
   }
-  // Final fallback: 2 default groomers
-  if(!groomerList.length) groomerList = [{id:'groomer1'},{id:'groomer2'}];
+  if(!groomerList.length) groomerList=[{id:'groomer1'},{id:'groomer2'}];
 }
 
-// Count how many groomers are busy at a given slot
-// A slot is "full" when ALL groomers are busy during that time
-function countBusy(date, slot){
-  const [sh,sm] = slot.split(':').map(Number);
-  const ss = sh*60+sm;
-  const {mx} = calcDuration();
-  const se = ss + mx; // new booking end
-
-  // For each groomer, check if ANY existing booking overlaps this slot
-  const busyGroomers = new Set();
-  bookings.forEach(b => {
-    if(b.date !== date || b.status === 'ยกเลิก') return;
-    const t = b.startTime || '00:00';
-    const dur = b.estimatedDurationMax || b.estimatedDurationMin || 60;
-    const [bh,bm] = t.split(':').map(Number);
-    const bs = bh*60+bm, be = bs+dur;
-    // overlap: existing booking overlaps the new slot window
-    if(bs < se && be > ss){
-      busyGroomers.add(b.groomerId || 'groomer1');
-    }
+function countBusy(date,slot){
+  const[sh,sm]=slot.split(':').map(Number);
+  const ss=sh*60+sm;
+  const{mx}=calcTotalDurationAll();
+  const se=ss+mx;
+  const busyGroomers=new Set();
+  bookings.forEach(b=>{
+    if(b.date!==date||b.status==='ยกเลิก') return;
+    const t=b.startTime||'00:00';
+    const dur=b.estimatedDurationMax||b.estimatedDurationMin||60;
+    const[bh,bm]=t.split(':').map(Number);
+    const bs=bh*60+bm,be=bs+dur;
+    if(bs<se&&be>ss) busyGroomers.add(b.groomerId||'groomer1');
   });
-  return busyGroomers.size; // number of groomers busy during this slot
+  return busyGroomers.size;
 }
 
-function isSlotFull(date, slot){
-  // Slot is full when all groomers are busy
-  return countBusy(date, slot) >= groomerList.length;
+function isSlotFull(date,slot){
+  return countBusy(date,slot)>=groomerList.length;
 }
 
-// Auto-assign: find first groomer with no overlap at startTime for duration mx
-function assignGroomer(date, startTime, mx){
-  const dayBks = bookings.filter(b => b.date === date && b.status !== 'ยกเลิก');
+function assignGroomer(date,startTime,mx){
+  const dayBks=bookings.filter(b=>b.date===date&&b.status!=='ยกเลิก');
   for(const g of groomerList){
-    const busy = dayBks
-      .filter(b => (b.groomerId || 'groomer1') === g.id)
-      .some(b => overlaps(b.startTime, b.estimatedDurationMax || 60, startTime, mx));
+    const busy=dayBks
+      .filter(b=>(b.groomerId||'groomer1')===g.id)
+      .some(b=>overlaps(b.startTime,b.estimatedDurationMax||60,startTime,mx));
     if(!busy) return g.id;
   }
-  return groomerList[0]?.id || 'groomer1'; // fallback (shouldn't reach here)
+  return groomerList[0]?.id||'groomer1';
 }
 
 function selectTime(el,t){
-  // Validate: startTime + maxDuration must not exceed 20:00
-  const{mx}=calcDuration();
+  const{mx}=calcTotalDurationAll();
   const[sh,sm]=t.split(':').map(Number);
-  if(sh*60+sm+mx > SHOP_CLOSE_MINS){
+  if(sh*60+sm+mx>SHOP_CLOSE_MINS){
     const alertEl=document.getElementById('fullAlert');
     if(alertEl){
       alertEl.textContent='เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน';
@@ -1485,47 +1710,56 @@ function selectTime(el,t){
 function doSummary(){
   const n=document.getElementById('custName').value.trim();
   const ph=document.getElementById('custPhone').value.trim();
-  const pe=document.getElementById('petName').value.trim();
-  if(!n||!ph||!pe){alert('กรุณากรอกข้อมูลให้ครบถ้วน');return;}
+  if(!n||!ph){alert('กรุณากรอกข้อมูลให้ครบถ้วน');return;}
   S.custName=n; S.custPhone=ph;
-  S.petName=pe; S.custNote=document.getElementById('custNote').value.trim();
+  S.custNote=document.getElementById('custNote').value.trim();
   buildSummary();
   goToPage('D');
 }
 
 function buildSummary(){
-  const{mn,mx}=calcDuration();
-  const{min:pMin,max:pMax}=calcPrice();
-  const petLabel=S.petType==='dog'?'🐕 สุนัข':'🐈 แมว';
-  const coatData=(S.petType==='dog'?dogCoats:catCoats).find(c=>c.val===S.coat);
-  const svcLabel=S.haircut===null
-    ?`อาบน้ำ${S.petType==='dog'?'สุนัข':'แมว'}`
-    :S.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
-  const addonLabels=S.addons.map(av=>addons.find(a=>a.val===av)?.label).filter(Boolean);
+  const{min:pMin,max:pMax}=calcTotalPriceAll();
+  const{mn,mx}=calcTotalDurationAll();
 
-  // Pickup range: earliest (mn) to latest (mx)
+  // Individual pet blocks
+  const petBlocks=S.pets.map((pet,i)=>{
+    const petLabel=pet.petType==='dog'?'🐕 สุนัข':'🐈 แมว';
+    const coatData=(pet.petType==='dog'?dogCoats:catCoats).find(c=>c.val===pet.coat);
+    const svcLabel=pet.haircut===null
+      ?`อาบน้ำ${pet.petType==='dog'?'สุนัข':'แมว'}`
+      :pet.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':'อาบน้ำ + ตัดขน (กรรไกร)';
+    const addonLabels=(pet.addons||[]).map(av=>addons.find(a=>a.val===av)?.label).filter(Boolean);
+    const pp=calcPriceForPet(pet);
+    const pd=calcDurationForPet(pet);
+    const ppStr=pp.min===pp.max?`฿${pp.min.toLocaleString()}`:`฿${pp.min.toLocaleString()} – ฿${pp.max.toLocaleString()}`;
+    return `<div class="pet-summary-block">
+      <div class="pet-summary-block-title">🐾 น้อง${pet.name||'ตัวที่ '+(i+1)}</div>
+      <div class="pet-summary-block-rows">
+        ${petLabel} · ${pet.weight} · ${coatData?.label||''}<br>
+        ${svcLabel}${addonLabels.length?' + '+addonLabels.join(', '):''}
+      </div>
+      <div class="pet-summary-block-price">${ppStr} · ${fmtDur(pd.mn,pd.mx)}</div>
+    </div>`;
+  }).join('');
+
+  // Pickup range
   let pickupRange='';
   if(S.time){
     const[h,m]=S.time.split(':').map(Number);
     const t0=h*60+m;
-    const earlyH=Math.floor((t0+mn)/60)%24, earlyM=(t0+mn)%60;
-    const lateH =Math.floor((t0+mx)/60)%24, lateM =(t0+mx)%60;
+    const earlyH=Math.floor((t0+mn)/60)%24,earlyM=(t0+mn)%60;
+    const lateH=Math.floor((t0+mx)/60)%24,lateM=(t0+mx)%60;
     const early=`${String(earlyH).padStart(2,'0')}:${String(earlyM).padStart(2,'0')}`;
-    const late =`${String(lateH).padStart(2,'0')}:${String(lateM).padStart(2,'0')}`;
-    pickupRange = early===late ? `${early} น.` : `${early}–${late} น.`;
+    const late=`${String(lateH).padStart(2,'0')}:${String(lateM).padStart(2,'0')}`;
+    pickupRange=early===late?`${early} น.`:`${early}–${late} น.`;
   }
-
   const dateDisp=S.date?new Date(S.date+'T12:00:00').toLocaleDateString('th-TH',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'';
   const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
 
   document.getElementById('summaryCard').innerHTML=`
     <div class="summary-title">🧾 รายละเอียดการจอง</div>
-    <div class="summary-row"><span class="s-label">ประเภทสัตว์</span><span class="s-val">${petLabel}</span></div>
-    <div class="summary-row"><span class="s-label">ชื่อน้อง</span><span class="s-val">${S.petName}</span></div>
-    <div class="summary-row"><span class="s-label">น้ำหนัก</span><span class="s-val">${S.weight}</span></div>
-    <div class="summary-row"><span class="s-label">ลักษณะขน</span><span class="s-val">${coatData?.label||''}</span></div>
-    <div class="summary-row"><span class="s-label">บริการ</span><span class="s-val">${svcLabel}</span></div>
-    <div class="summary-row"><span class="s-label">บริการเสริม</span><span class="s-val">${addonLabels.length?addonLabels.join(', '):'–'}</span></div>
+    ${petBlocks}
+    <div class="summary-divider"></div>
     <div class="summary-row"><span class="s-label">วันที่</span><span class="s-val">${dateDisp}</span></div>
     <div class="summary-row"><span class="s-label">เวลาเริ่ม</span><span class="s-val">${S.time} น.</span></div>
     <div class="summary-row"><span class="s-label">เวลารับกลับโดยประมาณ</span><span class="s-val">${pickupRange}</span></div>
@@ -1533,7 +1767,7 @@ function buildSummary(){
     <div class="summary-row"><span class="s-label">เบอร์โทร</span><span class="s-val">${S.custPhone}</span></div>
     ${S.custNote?`<div class="summary-row"><span class="s-label">หมายเหตุ</span><span class="s-val">${S.custNote}</span></div>`:''}
     <div class="price-big">
-      <span class="price-num">ราคาคาดการณ์ ${priceStr}</span>
+      <span class="price-num">ราคารวมทั้งหมด ${priceStr}</span>
       <div class="duration-badge">🕓 ${fmtDur(mn,mx)}</div>
       <p class="price-note">ระยะเวลาและราคาจริงอาจเปลี่ยนแปลงตามสภาพขนและพฤติกรรมของน้องหมาน้องแมว</p>
     </div>`;
@@ -1542,156 +1776,146 @@ function buildSummary(){
 // ── MINI SUMMARY ──
 function updateMini(){
   const mini=document.getElementById('miniSummary');
-  const{min:pMin,max:pMax}=calcPrice();
-  if(currentPage==='A'||currentPage==='D'||pMin===0){mini.classList.remove('visible');return;}
+  if(currentPage==='A0'||currentPage==='D'){mini.classList.remove('visible');return;}
+
+  let priceMin=0,priceMax=0;
+  S.pets.forEach(pet=>{const p=calcPriceForPet(pet);priceMin+=p.min;priceMax+=p.max;});
+  if(S.petType&&S.weight&&S.coat&&S.haircut!==undefined){
+    const p=calcPrice();priceMin+=p.min;priceMax+=p.max;
+  }
+  if(priceMin===0){mini.classList.remove('visible');return;}
+
   mini.classList.add('visible');
-  const svcShort=S.haircut===null?'อาบน้ำ':S.haircut==='clipper'?'อาบน้ำ+ตัดขน(เครื่อง)':'อาบน้ำ+ตัดขน(กรรไกร)';
-  document.getElementById('miniInfo').textContent=svcShort+(S.petName?' · '+S.petName:'');
-  document.getElementById('miniPrice').textContent=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()}–฿${pMax.toLocaleString()}`;
+  const allNames=[...S.pets.map(p=>p.name),S.currentPetName].filter(Boolean);
+  document.getElementById('miniInfo').textContent=allNames.join(' · ')+(S.petCount>1?` (${allNames.length}/${S.petCount} ตัว)`:'');
+  document.getElementById('miniPrice').textContent=priceMin===priceMax
+    ?`฿${priceMin.toLocaleString()}`
+    :`฿${priceMin.toLocaleString()}–฿${priceMax.toLocaleString()}`;
 }
 
 // ── CONFIRM ──
 async function confirmBooking(){
   try {
-    // ── 1. Derive duration & price safely ──
-    const dur = calcDuration();
-    const mn = dur && typeof dur.mn === 'number' ? dur.mn : 60;
-    const mx = dur && typeof dur.mx === 'number' ? dur.mx : 90;
+    const{min:pMin,max:pMax}=calcTotalPriceAll();
+    const{mn,mx}=calcTotalDurationAll();
 
-    const pr = calcPrice();
-    const pMin = pr && typeof pr.min === 'number' ? pr.min : 0;
-    const pMax = pr && typeof pr.max === 'number' ? pr.max : 0;
+    // Build combined fields for admin table
+    const petNames=S.pets.map(p=>p.name||'?').join(', ');
+    const petTypes=S.pets.map(p=>p.petType==='dog'?'สุนัข':'แมว').join(', ');
+    const weights=S.pets.map(p=>p.weight||'').join(' | ');
+    const coatTypes=S.pets.map(p=>{
+      const cd=(p.petType==='dog'?dogCoats:catCoats).find(c=>c.val===p.coat);
+      return cd?.label||p.coat||'';
+    }).join(', ');
+    const services=S.pets.map(p=>{
+      if(p.haircut==='clipper') return 'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)';
+      if(p.haircut==='scissor') return 'อาบน้ำ + ตัดขน (กรรไกร)';
+      return `อาบน้ำ${p.petType==='dog'?'สุนัข':'แมว'}`;
+    }).join(' | ');
 
-    // ── 2. Service label — guard against undefined haircut ──
-    const petType   = S.petType  || 'dog';
-    const animalTh  = petType === 'dog' ? 'สุนัข' : 'แมว';
-    let svcLabel;
-    if (S.haircut === 'clipper') {
-      svcLabel = 'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)';
-    } else if (S.haircut === 'scissor') {
-      svcLabel = 'อาบน้ำ + ตัดขน (กรรไกร)';
-    } else {
-      svcLabel = 'อาบน้ำ' + animalTh;
-    }
+    // All addons combined (unique labels)
+    const allAddonLabels=[];
+    S.pets.forEach(pet=>{
+      (pet.addons||[]).forEach(av=>{
+        const a=addons.find(x=>x.val===av);
+        if(a&&!allAddonLabels.includes(a.label)) allAddonLabels.push(a.label);
+      });
+    });
 
-    // ── 3. Add-on labels ──
-    const addonArr = Array.isArray(S.addons) ? S.addons : [];
-    const addonLabels = addonArr
-      .map(av => { const a = addons.find(x => x.val === av); return a ? a.label : null; })
-      .filter(Boolean);
-
-    // ── 4. Coat label ──
-    const coatList  = petType === 'dog' ? dogCoats : catCoats;
-    const coatData  = coatList.find(c => c.val === S.coat);
-    const coatLabel = coatData ? coatData.label : (S.coat || '');
-
-    // ── 5. End times — min and max ──
-    const startTime   = S.time || '09:00';
-    const [startH, startM] = startTime.split(':').map(Number);
-    const startMins   = startH * 60 + startM;
-
-    // Validate: max end must not exceed shop closing (20:00)
-    if (startMins + mx > SHOP_CLOSE_MINS) {
+    const startTime=S.time||'09:00';
+    const[startH,startM]=startTime.split(':').map(Number);
+    const startMins=startH*60+startM;
+    if(startMins+mx>SHOP_CLOSE_MINS){
       throw new Error('เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน');
     }
 
-    const endTimeMin  = calcEndTimeStr(startTime, mn);  // earliest possible end
-    const endTimeMax  = calcEndTimeStr(startTime, mx);  // latest possible end (used for blocking)
+    const endTimeMin=calcEndTimeStr(startTime,mn);
+    const endTimeMax=calcEndTimeStr(startTime,mx);
+    const newDate=S.date||'';
+    const groomerId=assignGroomer(newDate,startTime,mx);
 
-    // ── 6. Auto-assign: find first groomer with no overlap ──
-    const newDate = S.date || '';
-    const groomerId = assignGroomer(newDate, startTime, mx);
+    // Full pets data for admin (stored in notes as JSON)
+    const petsData=S.pets.map(pet=>{
+      const cd=(pet.petType==='dog'?dogCoats:catCoats).find(c=>c.val===pet.coat);
+      const svc=pet.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)'
+        :pet.haircut==='scissor'?'อาบน้ำ + ตัดขน (กรรไกร)'
+        :`อาบน้ำ${pet.petType==='dog'?'สุนัข':'แมว'}`;
+      const als=(pet.addons||[]).map(av=>addons.find(a=>a.val===av)?.label).filter(Boolean);
+      const pp=calcPriceForPet(pet);
+      const pd=calcDurationForPet(pet);
+      return {name:pet.name,petType:pet.petType,weight:pet.weight,coat:cd?.label||pet.coat,service:svc,addons:als,priceMin:pp.min,priceMax:pp.max,durationMin:pd.mn,durationMax:pd.mx};
+    });
+    const notesStr=JSON.stringify({petCount:S.petCount,pets:petsData,note:S.custNote||''});
 
-    // ── 7. Build canonical booking object ──
-    const newBk = {
-      id:                   'BK-' + Date.now(),
-      customerName:         S.custName  || '',
-      phone:                S.custPhone || '',
-      petName:              S.petName   || '',
-      petType:              petType,
-      weightRange:          S.weight    || '',
-      coatType:             coatLabel,
-      service:              svcLabel,
-      addOns:               addonLabels,
-      estimatedPriceMin:    pMin,
-      estimatedPriceMax:    pMax,
-      estimatedDurationMin: mn,
-      estimatedDurationMax: mx,
-      date:                 S.date      || '',
-      startTime:            startTime,
-      endTimeMin:           endTimeMin,   // earliest end (mn)
-      endTimeMax:           endTimeMax,   // latest end (mx) — used for blocking
-      endTime:              endTimeMax,   // admin scheduler uses this for positioning
-      groomerId:            groomerId,
-      status:               'รอยืนยัน',
-      notes:                S.custNote  || '',
-      createdAt:            new Date().toISOString()
+    const newBk={
+      id:'BK-'+Date.now(),
+      customerName:S.custName||'',
+      phone:S.custPhone||'',
+      petName:petNames,
+      petType:petTypes,
+      weightRange:weights,
+      coatType:coatTypes,
+      service:services,
+      addOns:allAddonLabels,
+      estimatedPriceMin:pMin,
+      estimatedPriceMax:pMax,
+      estimatedDurationMin:mn,
+      estimatedDurationMax:mx,
+      date:S.date||'',
+      startTime:startTime,
+      endTimeMin:endTimeMin,
+      endTimeMax:endTimeMax,
+      endTime:endTimeMax,
+      groomerId:groomerId,
+      status:'รอยืนยัน',
+      notes:notesStr,
+      createdAt:new Date().toISOString()
     };
 
-    // ── 8. Save to Supabase ──
-    let saveOk = false;
+    let saveOk=false;
     if(dbOnline){
       try {
-        const res = await fetch(SB_URL + '/rest/v1/bookings', {
-          method: 'POST',
-          headers: SB_HEADERS_INSERT,
-          body: JSON.stringify(toRow(newBk))
-        });
-        if(!res.ok){ const t = await res.text(); throw new Error('HTTP ' + res.status + ': ' + t); }
-        saveOk = true;
-        console.log('booking saved to Supabase:', newBk.id);
+        const res=await fetch(SB_URL+'/rest/v1/bookings',{method:'POST',headers:SB_HEADERS_INSERT,body:JSON.stringify(toRow(newBk))});
+        if(!res.ok){const t=await res.text();throw new Error('HTTP '+res.status+': '+t);}
+        saveOk=true;
       } catch(err){
-        console.error('confirmBooking Supabase error:', err.message);
-        // Fallback: save to localStorage so admin can still see it
         bookings.push(newBk);
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings)); } catch(e){}
-        console.warn('booking saved to localStorage fallback');
-        saveOk = true;
+        try{localStorage.setItem(STORAGE_KEY,JSON.stringify(bookings));}catch(e){}
+        saveOk=true;
       }
     } else {
-      // Offline: save to localStorage
       bookings.push(newBk);
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings)); } catch(e){}
-      console.log('booking saved (offline localStorage):', newBk.id);
-      saveOk = true;
+      try{localStorage.setItem(STORAGE_KEY,JSON.stringify(bookings));}catch(e){}
+      saveOk=true;
     }
-
     if(!saveOk) throw new Error('ไม่สามารถบันทึกได้');
 
-    // Show success screen
-    const bw = document.querySelector('.booking-wrap');
-    if (bw) bw.style.display = 'none';
-    const sw = document.getElementById('successWrap');
-    if (sw) sw.classList.add('visible');
-    const ms = document.getElementById('miniSummary');
-    if (ms) ms.classList.remove('visible');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const bw=document.querySelector('.booking-wrap');
+    if(bw) bw.style.display='none';
+    const sw=document.getElementById('successWrap');
+    if(sw) sw.classList.add('visible');
+    const ms=document.getElementById('miniSummary');
+    if(ms) ms.classList.remove('visible');
+    window.scrollTo({top:0,behavior:'smooth'});
 
-  } catch (err) {
-    console.error('confirmBooking error:', err);
-    alert('เกิดข้อผิดพลาดในการจอง กรุณาลองใหม่อีกครั้ง\n\n' + err.message);
+  } catch(err){
+    alert('เกิดข้อผิดพลาดในการจอง กรุณาลองใหม่อีกครั้ง\n\n'+err.message);
   }
 }
 
-function calcEndTimeStr(start, durationMin) {
-  // Guard: if start is null/undefined, return fallback
-  if (!start || typeof start !== 'string' || !start.includes(':')) {
-    return '10:00';
-  }
-  const parts = start.split(':').map(Number);
-  const h = parts[0] || 0;
-  const m = parts[1] || 0;
-  const total = h * 60 + m + (durationMin || 60);
-  const eh = Math.floor(total / 60) % 24;
-  const em = total % 60;
-  return String(eh).padStart(2, '0') + ':' + String(em).padStart(2, '0');
+function calcEndTimeStr(start,durationMin){
+  if(!start||typeof start!=='string'||!start.includes(':')) return '10:00';
+  const parts=start.split(':').map(Number);
+  const h=parts[0]||0,m=parts[1]||0;
+  const total=h*60+m+(durationMin||60);
+  return String(Math.floor(total/60)%24).padStart(2,'0')+':'+String(total%60).padStart(2,'0');
 }
 
 // ── INIT ──
 updateStepNav();
-// Load both bookings and groomer list in parallel for capacity check
-Promise.all([loadBookings(), loadGroomerList()])
-  .then(() => { console.log('init: ready, groomers:', groomerList.length, 'bookings:', bookings.length); });
+buildPetCountGrid();
+Promise.all([loadBookings(),loadGroomerList()])
+  .then(()=>{console.log('init: ready, groomers:',groomerList.length,'bookings:',bookings.length);});
 </script>
 </body>
 </html>
