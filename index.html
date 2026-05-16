@@ -777,19 +777,29 @@ function calcPriceForPet(pet){
 
 function calcDurationForPet(pet){
   let mn=60;
+  let coatLong=0,coatThick=0;
   if(pet.petType==='cat'){
     const w=pet.weight||'';
-    if(w.includes('ต่ำกว่า 3'))   mn=60;
-    else if(w.includes('3 – 5'))  mn=75;
-    else if(w.includes('5.1 – 8'))mn=90;
-    else if(w.includes('8.1 – 12'))mn=105;
-    else                           mn=120; // มากกว่า 12
+    if(w.includes('ต่ำกว่า 3'))    {mn=60;}
+    else if(w.includes('3 – 5'))   {mn=75;}
+    else if(w.includes('5.1 – 8')) {mn=90;}
+    else if(w.includes('8.1 – 12')){mn=105;}
+    else                            {mn=120;}
+    coatLong=30; coatThick=30;
   } else {
-    const kg=getKg(pet.weight);
-    if(kg<5)mn=60;else if(kg<=10)mn=75;else if(kg<=20)mn=90;else if(kg<=35)mn=105;else mn=120;
+    const w=pet.weight||'';
+    if(w.includes('ต่ำกว่า 2.5'))      {mn=60;  coatLong=15; coatThick=15;}
+    else if(w.includes('2.5 – 5'))     {mn=60;  coatLong=30; coatThick=30;}
+    else if(w.includes('5.1 – 10'))    {mn=75;  coatLong=15; coatThick=30;}
+    else if(w.includes('10.1 – 15'))   {mn=90;  coatLong=15; coatThick=30;}
+    else if(w.includes('15.1 – 25'))   {mn=90;  coatLong=15; coatThick=30;}
+    else if(w.includes('25.1 – 35'))   {mn=105; coatLong=15; coatThick=45;}
+    else if(w.includes('35.1 – 50'))   {mn=105; coatLong=15; coatThick=45;}
+    else if(w.includes('มากกว่า 50'))  {mn=120; coatLong=30; coatThick=60;}
+    else                                {mn=60;  coatLong=15; coatThick=15;}
   }
-  if(pet.coat==='long')mn+=30;
-  if(pet.coat==='thick')mn+=30;
+  if(pet.coat==='long')mn+=coatLong;
+  if(pet.coat==='thick')mn+=coatThick;
   if(pet.coat==='matted')mn+=45;
   if(pet.haircut==='clipper')mn+=45;
   if(pet.haircut==='scissor')mn+=60;
