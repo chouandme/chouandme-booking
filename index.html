@@ -736,10 +736,10 @@ const dogPrices={'ต่ำกว่า 2.5 กก.':{bath_short:250,bath_long:3
 const catPrices={'ต่ำกว่า 3 กก.':{bath_short:300,bath_long:350,trim:250,scissor:350},'3 – 5 กก.':{bath_short:400,bath_long:450,trim:300,scissor:450},'5.1 – 8 กก.':{bath_short:500,bath_long:600,trim:400,scissor:600},'8.1 – 12 กก.':{bath_short:600,bath_long:700,trim:500,scissor:700},'มากกว่า 12 กก.':{bath_short:600,bath_long:700,trim:500,scissor:700}};
 const addons=[
   {val:'spa',     label:'สปา',          emoji:'🛁',desc:'ช่วยทำความสะอาดล้ำลึก ผ่อนคลาย บำรุงผิวและเส้นขน',     prL:[100,200],prH:[200,400],dur:[10,15]},
-  {val:'medshamp',label:'แชมพูยา',       emoji:'🫙',desc:'สำหรับน้องหมาน้องแมวที่มีปัญหาผิวหนังหรืออาการคัน',     prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'oilshamp',label:'ขจัดคราบมัน', emoji:'🧼',desc:'ช่วยลดความมัน กลิ่นตัว และทำความสะอาดล้ำลึก',           prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'treat',   label:'ทรีตเมนต์',     emoji:'🌸',desc:'บำรุงขนให้นุ่ม เงางาม ลดขนพันกัน',                      prL:[100,100],prH:[200,200],dur:[5,15]},
-  {val:'teeth',   label:'แปรงฟัน',       emoji:'🦷',desc:'ช่วยลดกลิ่นปากและดูแลสุขภาพช่องปาก',                   prL:[50,50],  prH:[100,100],dur:[5]},
+  {val:'medshamp',label:'แชมพูยา',       emoji:'🫙',desc:'สำหรับน้องหมาน้องแมวที่มีปัญหาผิวหนังหรืออาการคัน',     prL:[100,100],prH:[200,200],dur:[10,15]},
+  {val:'oilshamp',label:'ขจัดคราบมัน', emoji:'🧼',desc:'ช่วยลดความมัน กลิ่นตัว และทำความสะอาดล้ำลึก',           prL:[100,100],prH:[200,200],dur:[10,15]},
+  {val:'treat',   label:'ทรีตเมนต์',     emoji:'🌸',desc:'บำรุงขนให้นุ่ม เงางาม ลดขนพันกัน',                      prL:[100,100],prH:[200,200],dur:[0,15]},
+  {val:'teeth',   label:'แปรงฟัน',       emoji:'🦷',desc:'ช่วยลดกลิ่นปากและดูแลสุขภาพช่องปาก',                   prL:[50,50],  prH:[100,100],dur:[0]},
   {val:'dbl',     label:'สางขนสองชั้น',  emoji:'🪮',desc:'สำหรับขนหนาหรือขนสองชั้น',                       prL:[100,400],prH:[100,400],dur:[15,30]},
   {val:'demat',   label:'สางขนสังกะตัง', emoji:'😶‍🌫️',desc:'สำหรับขนพันกันหรือจับตัวเป็นก้อน',                      prL:[100,400],prH:[100,400],dur:[30,60]},
 ];
@@ -777,32 +777,59 @@ function calcPriceForPet(pet){
 
 function calcDurationForPet(pet){
   let mn=60;
-  let coatLong=0,coatThick=0;
+  const w=pet.weight||'';
   if(pet.petType==='cat'){
-    const w=pet.weight||'';
-    if(w.includes('ต่ำกว่า 3'))    {mn=60;}
-    else if(w.includes('3 – 5'))   {mn=75;}
-    else if(w.includes('5.1 – 8')) {mn=90;}
-    else if(w.includes('8.1 – 12')){mn=105;}
-    else                            {mn=120;}
-    coatLong=30; coatThick=30;
+    if(pet.haircut==='clipper'){
+      if(w.includes('ต่ำกว่า 3'))    mn=120;
+      else if(w.includes('3 – 5'))   mn=150;
+      else if(w.includes('5.1 – 8')) mn=165;
+      else if(w.includes('8.1 – 12'))mn=180;
+      else                            mn=210;
+    } else if(pet.haircut==='scissor'){
+      if(w.includes('ต่ำกว่า 3'))    mn=150;
+      else if(w.includes('3 – 5'))   mn=180;
+      else if(w.includes('5.1 – 8')) mn=195;
+      else if(w.includes('8.1 – 12'))mn=210;
+      else                            mn=240;
+    } else {
+      if(w.includes('ต่ำกว่า 3'))    mn=60;
+      else if(w.includes('3 – 5'))   mn=75;
+      else if(w.includes('5.1 – 8')) mn=90;
+      else if(w.includes('8.1 – 12'))mn=105;
+      else                            mn=120;
+      if(pet.coat==='long'||pet.coat==='thick') mn+=30;
+    }
   } else {
-    const w=pet.weight||'';
-    if(w.includes('ต่ำกว่า 2.5'))      {mn=60;  coatLong=15; coatThick=15;}
-    else if(w.includes('2.5 – 5'))     {mn=60;  coatLong=30; coatThick=30;}
-    else if(w.includes('5.1 – 10'))    {mn=75;  coatLong=15; coatThick=30;}
-    else if(w.includes('10.1 – 15'))   {mn=90;  coatLong=15; coatThick=30;}
-    else if(w.includes('15.1 – 25'))   {mn=90;  coatLong=15; coatThick=30;}
-    else if(w.includes('25.1 – 35'))   {mn=105; coatLong=15; coatThick=45;}
-    else if(w.includes('35.1 – 50'))   {mn=105; coatLong=15; coatThick=45;}
-    else if(w.includes('มากกว่า 50'))  {mn=120; coatLong=30; coatThick=60;}
-    else                                {mn=60;  coatLong=15; coatThick=15;}
+    if(pet.haircut==='clipper'){
+      if(w.includes('ต่ำกว่า 2.5'))     mn=120;
+      else if(w.includes('2.5 – 5'))    mn=150;
+      else if(w.includes('5.1 – 10'))   mn=150;
+      else if(w.includes('10.1 – 15'))  mn=165;
+      else if(w.includes('15.1 – 25'))  mn=180;
+      else if(w.includes('25.1 – 35'))  mn=210;
+      else if(w.includes('35.1 – 50'))  mn=240;
+      else if(w.includes('มากกว่า 50')) mn=240;
+    } else if(pet.haircut==='scissor'){
+      if(w.includes('ต่ำกว่า 2.5'))     mn=150;
+      else if(w.includes('2.5 – 5'))    mn=180;
+      else if(w.includes('5.1 – 10'))   mn=180;
+      else if(w.includes('10.1 – 15'))  mn=195;
+      else if(w.includes('15.1 – 25'))  mn=210;
+      else if(w.includes('25.1 – 35'))  mn=240;
+      else if(w.includes('35.1 – 50'))  mn=300;
+      else if(w.includes('มากกว่า 50')) mn=300;
+    } else {
+      if(w.includes('ต่ำกว่า 2.5'))     {mn=60;  if(pet.coat==='long'||pet.coat==='thick') mn+=15;}
+      else if(w.includes('2.5 – 5'))    {mn=60;  if(pet.coat==='long'||pet.coat==='thick') mn+=30;}
+      else if(w.includes('5.1 – 10'))   {mn=75;  if(pet.coat==='long') mn+=15; else if(pet.coat==='thick') mn+=30;}
+      else if(w.includes('10.1 – 15'))  {mn=90;  if(pet.coat==='long') mn+=15; else if(pet.coat==='thick') mn+=30;}
+      else if(w.includes('15.1 – 25'))  {mn=90;  if(pet.coat==='long') mn+=15; else if(pet.coat==='thick') mn+=30;}
+      else if(w.includes('25.1 – 35'))  {mn=105; if(pet.coat==='long') mn+=15; else if(pet.coat==='thick') mn+=45;}
+      else if(w.includes('35.1 – 50'))  {mn=105; if(pet.coat==='long') mn+=15; else if(pet.coat==='thick') mn+=45;}
+      else if(w.includes('มากกว่า 50')) {mn=120; if(pet.coat==='long') mn+=30; else if(pet.coat==='thick') mn+=60;}
+    }
   }
-  if(pet.coat==='long')mn+=coatLong;
-  if(pet.coat==='thick')mn+=coatThick;
-  if(pet.coat==='matted')mn+=45;
-  if(pet.haircut==='clipper')mn+=45;
-  if(pet.haircut==='scissor')mn+=60;
+  if(pet.coat==='matted') mn+=45;
   (pet.addons||[]).forEach(av=>{const a=addons.find(x=>x.val===av);if(a)mn+=a.dur[0];});
   return {mn,mx:mn+60};
 }
@@ -815,6 +842,9 @@ function calcTotalPriceAll(){
 function calcTotalDurationAll(){
   let mn=0,mx=0;
   S.pets.forEach(p=>{const d=calcDurationForPet(p);mn+=d.mn;mx+=d.mx;});
+  const discount=(S.petCount===2?30:S.petCount===3?60:S.petCount===4?90:0);
+  mn=Math.max(0,mn-discount);
+  mx=Math.max(0,mx-discount);
   return {mn,mx};
 }
 
