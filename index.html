@@ -478,7 +478,7 @@ body {
         <div class="sub-num">2</div>
         <div class="section-title">ข้อมูลสัตว์เลี้ยง</div>
       </div>
-      <p class="section-sub">กรอกข้อมูลของน้องแต่ละตัว — สลับตัวได้ที่แถบด้านล่าง</p>
+      <p class="section-sub">กรอกข้อมูลให้ครบถ้วน เพื่อเลือกบริการถัดไป</p>
 
       <!-- Tab bar -->
       <div class="pet-tabs" id="petTabsA"></div>
@@ -488,9 +488,9 @@ body {
 
         <!-- Name -->
         <div class="inner-section" id="innerName">
-          <div class="inner-label">ชื่อน้อง</div>
+          <div class="inner-label">ชื่อสัตว์เลี้ยง</div>
           <div class="form-field" style="margin-bottom:0">
-            <input type="text" id="petNameInput" placeholder="ชื่อเล่นของน้อง" oninput="onPetNameInput()">
+            <input type="text" id="petNameInput" placeholder="Pet's name" oninput="onPetNameInput()">
           </div>
         </div>
 
@@ -538,7 +538,7 @@ body {
         <div class="sub-num">3</div>
         <div class="section-title">เลือกบริการ</div>
       </div>
-      <p class="section-sub">เลือกบริการสำหรับน้องแต่ละตัว — สลับตัวได้ที่แถบด้านล่าง</p>
+      <p class="section-sub">กรอกข้อมูลให้ครบถ้วน เพื่อเลือกบริการถัดไป</p>
 
       <!-- Tab bar -->
       <div class="pet-tabs" id="petTabsB"></div>
@@ -845,13 +845,13 @@ function lock(id){const el=document.getElementById(id);if(el){el.classList.remov
 
 // ── PET COUNT ──
 function buildPetCountGrid(){
-  const petEmojis=['🐾','🐾🐾','🐾🐾🐾','🐾🐾🐾🐾'];
+  const petEmojis=['🧸','🎏','🫐','🍀'];
   document.getElementById('petCountGrid').innerHTML=[1,2,3,4].map(n=>{
     const sel=S.petCount===n?'selected':'';
     return `<div class="sel-card ${sel}" onclick="selectPetCount(this,${n})">
-      <span class="card-emoji" style="font-size:16px;line-height:1.6">${petEmojis[n-1]}</span>
+      <span class="card-emoji" style="font-size:24px;line-height:1.6">${petEmojis[n-1]}</span>
       <span class="card-label">${n} ตัว</span>
-      <span class="card-sub">${n===1?'One pet':n+' pets'}</span>
+      <span class="card-sub">${n===1?'1 pet':n+' pets'}</span>
     </div>`;
   }).join('');
 }
@@ -884,7 +884,7 @@ function buildPetTabsA(){
   el.innerHTML=S.pets.map((pet,i)=>{
     const active=i===S.activePetTab;
     const complete=isPetDetailComplete(pet);
-    const label=pet.name||`น้องที่ ${i+1}`;
+    const label=pet.name||`ชื่อ ${i+1}`;
     let cls='pet-tab-btn'+(active?' active':'')+(complete?' complete':'');
     return `<button class="${cls}" onclick="switchTabA(${i})">${complete?'<span class="tab-check">✓</span> ':''}${label}</button>`;
   }).join('');
@@ -898,7 +898,7 @@ function buildPetTabsB(){
   el.innerHTML=S.pets.map((pet,i)=>{
     const active=i===S.activePetTab;
     const complete=hasPetChoseService(pet);
-    const label=pet.name||`น้องที่ ${i+1}`;
+    const label=pet.name||`ชื่อ ${i+1}`;
     let cls='pet-tab-btn'+(active?' active':'')+(complete?' complete':'');
     return `<button class="${cls}" onclick="switchTabB(${i})">${complete?'<span class="tab-check">✓</span> ':''}${label}</button>`;
   }).join('');
@@ -1043,7 +1043,7 @@ function onEnterPageB(){
 
 function updateSvcForNote(){
   const pet=S.pets[S.activePetTab]||{};
-  const name=pet.name?`น้อง${pet.name}`:`น้องที่ ${S.activePetTab+1}`;
+  const name=pet.name?`น้อง${pet.name}`:`ชื่อ ${S.activePetTab+1}`;
   document.getElementById('svcForText').innerHTML=`⭐️ เลือกบริการสำหรับ <b>${name}</b> · ราคาอาบน้ำรวมเช็ดหู ตัดเล็บ ไถขนอุ้งเท้า และบีบต่อมก้น`;
 }
 
