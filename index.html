@@ -720,8 +720,8 @@ const S = {
 function cp(){ return S.pets[S.activePetTab] || {}; }  // current pet shorthand
 
 // ── DATA ──
-const dogWeights=['ต่ำกว่า 2.5 กก.','2.5 – 5 กก.','5.1 – 10 กก.','10.1 – 15 กก.','15.1 – 25 กก.','25.1 – 40 กก.','มากกว่า 40 กก.'];
-const catWeights=['ต่ำกว่า 3 กก.','3 – 5 กก.','5.1 – 10 กก.','มากกว่า 10 กก.'];
+const dogWeights=['ต่ำกว่า 2.5 กก.','2.5 – 5 กก.','5.1 – 10 กก.','10.1 – 15 กก.','15.1 – 25 กก.','25.1 – 35 กก.','35.1 – 50 กก.','มากกว่า 50 กก.'];
+const catWeights=['ต่ำกว่า 3 กก.','3 – 5 กก.','5.1 – 8 กก.','8.1 – 12 กก.','มากกว่า 12 กก.'];
 const dogCoats=[
   {val:'short',label:'ขนสั้น',        emoji:'🐕',sub:'เช่น ชิวาวา, เฟรนช์บูลด็อก, บีเกิล'},
   {val:'long', label:'ขนยาว',          emoji:'🐩',sub:'เช่น ชิสุ, มอลทีส, พุดเดิ้ล โกลเด้น'},
@@ -732,8 +732,8 @@ const catCoats=[
   {val:'long', label:'ขนยาว', emoji:'😼',sub:'เช่น เปอร์เซีย, เมนคูน, แร็กดอลล์'},
   {val:'thick',label:'ขนหนา', emoji:'🦁',sub:'ขนแน่น เป่ายาก ใช้เวลาเพิ่ม'},
 ];
-const dogPrices={'ต่ำกว่า 2.5 กก.':{bath_short:250,bath_long:300,trim:200,scissor:300},'2.5 – 5 กก.':{bath_short:300,bath_long:350,trim:250,scissor:350},'5.1 – 10 กก.':{bath_short:400,bath_long:450,trim:300,scissor:450},'10.1 – 15 กก.':{bath_short:500,bath_long:600,trim:350,scissor:600},'15.1 – 25 กก.':{bath_short:600,bath_long:700,trim:500,scissor:700},'25.1 – 40 กก.':{bath_short:700,bath_long:900,trim:600,scissor:900},'มากกว่า 40 กก.':{bath_short:900,bath_long:1100,trim:700,scissor:1100}};
-const catPrices={'ต่ำกว่า 3 กก.':{bath_short:300,bath_long:350,trim:250,scissor:350},'3 – 5 กก.':{bath_short:400,bath_long:450,trim:300,scissor:450},'5.1 – 10 กก.':{bath_short:500,bath_long:600,trim:400,scissor:600},'มากกว่า 10 กก.':{bath_short:600,bath_long:700,trim:500,scissor:700}};
+const dogPrices={'ต่ำกว่า 2.5 กก.':{bath_short:250,bath_long:300,trim:200,scissor:300},'2.5 – 5 กก.':{bath_short:300,bath_long:350,trim:250,scissor:350},'5.1 – 10 กก.':{bath_short:400,bath_long:450,trim:300,scissor:450},'10.1 – 15 กก.':{bath_short:500,bath_long:600,trim:350,scissor:600},'15.1 – 25 กก.':{bath_short:600,bath_long:700,trim:500,scissor:700},'25.1 – 35 กก.':{bath_short:700,bath_long:900,trim:600,scissor:900},'35.1 – 50 กก.':{bath_short:900,bath_long:1100,trim:700,scissor:1100},'มากกว่า 50 กก.':{bath_short:900,bath_long:1100,trim:700,scissor:1100}};
+const catPrices={'ต่ำกว่า 3 กก.':{bath_short:300,bath_long:350,trim:250,scissor:350},'3 – 5 กก.':{bath_short:400,bath_long:450,trim:300,scissor:450},'5.1 – 8 กก.':{bath_short:500,bath_long:600,trim:400,scissor:600},'8.1 – 12 กก.':{bath_short:600,bath_long:700,trim:500,scissor:700},'มากกว่า 12 กก.':{bath_short:600,bath_long:700,trim:500,scissor:700}};
 const addons=[
   {val:'spa',     label:'สปา',          emoji:'🛁',desc:'ช่วยทำความสะอาดล้ำลึก ผ่อนคลาย บำรุงผิวและเส้นขน',     prL:[100,200],prH:[200,400],dur:[10,15]},
   {val:'medshamp',label:'แชมพูยา',       emoji:'🫙',desc:'สำหรับน้องหมาน้องแมวที่มีปัญหาผิวหนังหรืออาการคัน',     prL:[100,100],prH:[200,200],dur:[5,15]},
@@ -749,12 +749,14 @@ function getKg(w){
   if(!w) return 5;
   if(w.includes('ต่ำกว่า 2.5')) return 2;
   if(w.includes('2.5 – 5')||w.includes('ต่ำกว่า 3')||w.includes('3 – 5')) return 4;
-  if(w.includes('5.1 – 10')) return 7;
+  if(w.includes('5.1 – 10')||w.includes('5.1 – 8')) return 7;
+  if(w.includes('8.1 – 12')) return 10;
   if(w.includes('10.1 – 15')) return 12;
   if(w.includes('15.1 – 25')) return 20;
-  if(w.includes('25.1 – 40')) return 30;
-  if(w.includes('มากกว่า 40')) return 45;
-  if(w.includes('มากกว่า 10')) return 12;
+  if(w.includes('25.1 – 35')||w.includes('25.1 – 40')) return 30;
+  if(w.includes('35.1 – 50')||w.includes('มากกว่า 40')) return 42;
+  if(w.includes('มากกว่า 50')) return 55;
+  if(w.includes('มากกว่า 12')||w.includes('มากกว่า 10')) return 13;
   return 5;
 }
 function getBathKeyForPet(pet){ return (pet.coat==='long'||pet.coat==='thick'||pet.coat==='matted')?'bath_long':'bath_short'; }
@@ -774,8 +776,18 @@ function calcPriceForPet(pet){
 }
 
 function calcDurationForPet(pet){
-  const kg=getKg(pet.weight); let mn=60;
-  if(kg<5)mn=60;else if(kg<=10)mn=75;else if(kg<=20)mn=90;else if(kg<=40)mn=105;else mn=120;
+  let mn=60;
+  if(pet.petType==='cat'){
+    const w=pet.weight||'';
+    if(w.includes('ต่ำกว่า 3'))   mn=60;
+    else if(w.includes('3 – 5'))  mn=75;
+    else if(w.includes('5.1 – 8'))mn=90;
+    else if(w.includes('8.1 – 12'))mn=105;
+    else                           mn=120; // มากกว่า 12
+  } else {
+    const kg=getKg(pet.weight);
+    if(kg<5)mn=60;else if(kg<=10)mn=75;else if(kg<=20)mn=90;else if(kg<=35)mn=105;else mn=120;
+  }
   if(pet.coat==='long')mn+=30;
   if(pet.coat==='thick')mn+=30;
   if(pet.coat==='matted')mn+=45;
