@@ -668,6 +668,10 @@ const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsIn
 const SB_HEADERS_INSERT = {'Content-Type':'application/json','apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON,'Prefer':'return=minimal'};
 const SB_HEADERS_READ   = {'Content-Type':'application/json','apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON};
 
+// ── LINE NOTIFICATION via Make.com webhook ──
+// Paste your Make.com webhook URL below (leave empty to disable)
+const MAKE_WEBHOOK_URL = '';
+
 function toRow(bk){
   return {
     id:bk.id, customer_name:bk.customerName||'', phone:bk.phone||'',
@@ -1450,6 +1454,21 @@ function updateMini(){
 }
 
 // ── CONFIRM ──
+async function sendLineNotification(bk){
+  if(!MAKE_WEBHOOK_URL) return;
+  const petLines=(JSON.parse(bk.notes||'{}').pets||[]).map(p=>`  • ${p.name} (${p.petType==='dog'?'หมา':'แมว'}) ${p.weight} — ${p.service}${p.addons?.length?' + '+p.addons.join(', '):''}`).join('\n');
+  const msg=[
+    '🐾 จองใหม่! '+bk.id,
+    '👤 '+bk.customerName+'  📞 '+bk.phone,
+    '📅 '+bk.date+'  🕐 '+bk.startTime+' น.',
+    '⏱ ประมาณ '+bk.estimatedDurationMin+' นาที',
+    petLines,
+    '💰 '+bk.estimatedPriceMin.toLocaleString()+(bk.estimatedPriceMin!==bk.estimatedPriceMax?' – '+bk.estimatedPriceMax.toLocaleString():'')+' บาท',
+    bk.notes?JSON.parse(bk.notes).note?'📝 '+JSON.parse(bk.notes).note:'':''
+  ].filter(Boolean).join('\n');
+  await fetch(MAKE_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,bookingId:bk.id})});
+}
+
 async function confirmBooking(){
   try {
     const{min:pMin,max:pMax}=calcTotalPriceAll();
@@ -1484,6 +1503,7 @@ async function confirmBooking(){
       bookings.push(newBk);try{localStorage.setItem(STORAGE_KEY,JSON.stringify(bookings));}catch(e){}saveOk=true;
     }
     if(!saveOk) throw new Error('ไม่สามารถบันทึกได้');
+    sendLineNotification(newBk).catch(()=>{});
     const bw=document.querySelector('.booking-wrap');if(bw)bw.style.display='none';
     const sw=document.getElementById('successWrap');if(sw)sw.classList.add('visible');
     const ms=document.getElementById('miniSummary');if(ms)ms.classList.remove('visible');
