@@ -831,8 +831,10 @@ function calcDurationForPet(pet){
   }
   if(pet.coat==='matted') mn+=45;
   (pet.addons||[]).forEach(av=>{const a=addons.find(x=>x.val===av);if(a)mn+=a.dur[0];});
-  return {mn,mx:mn+60};
+  return {mn};
 }
+
+function roundUpTo30(mn){return Math.ceil(mn/30)*30;}
 
 function calcTotalPriceAll(){
   let min=0,max=0;
@@ -840,12 +842,11 @@ function calcTotalPriceAll(){
   return {min,max};
 }
 function calcTotalDurationAll(){
-  let mn=0,mx=0;
-  S.pets.forEach(p=>{const d=calcDurationForPet(p);mn+=d.mn;mx+=d.mx;});
+  let raw=0;
+  S.pets.forEach(p=>{raw+=calcDurationForPet(p).mn;});
   const discount=(S.petCount===2?30:S.petCount===3?60:S.petCount===4?90:0);
-  mn=Math.max(0,mn-discount);
-  mx=Math.max(0,mx-discount);
-  return {mn,mx};
+  const mn=roundUpTo30(Math.max(0,raw-discount));
+  return {mn,mx:mn+30};
 }
 
 const SHOP_CLOSE_MINS = 20*60;
@@ -1360,7 +1361,7 @@ function buildSummary(){
     return `<div class="pet-summary-block">
       <div class="pet-summary-block-title">🐾 น้อง${pet.name||'ตัวที่ '+(i+1)}</div>
       <div class="pet-summary-block-rows">${petLabel} · ${pet.weight} · ${coatData?.label||''}<br>${svcLabel}${addonLabels.length?' + '+addonLabels.join(', '):''}</div>
-      <div class="pet-summary-block-price">${ppStr} · ${fmtDur(pd.mn,pd.mx)}</div>
+      <div class="pet-summary-block-price">${ppStr} · ${fmtDur(roundUpTo30(pd.mn),roundUpTo30(pd.mn)+30)}</div>
     </div>`;
   }).join('');
 
@@ -1429,7 +1430,7 @@ async function confirmBooking(){
       const svc=pet.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':pet.haircut==='scissor'?'อาบน้ำ + ตัดขน (กรรไกร)':`อาบน้ำ${pet.petType==='dog'?'สุนัข':'แมว'}`;
       const als=(pet.addons||[]).map(av=>addons.find(a=>a.val===av)?.label).filter(Boolean);
       const pp=calcPriceForPet(pet);const pd=calcDurationForPet(pet);
-      return {name:pet.name,petType:pet.petType,weight:pet.weight,coat:cd?.label||pet.coat,service:svc,addons:als,priceMin:pp.min,priceMax:pp.max,durationMin:pd.mn,durationMax:pd.mx};
+      return {name:pet.name,petType:pet.petType,weight:pet.weight,coat:cd?.label||pet.coat,service:svc,addons:als,priceMin:pp.min,priceMax:pp.max,durationMin:roundUpTo30(pd.mn),durationMax:roundUpTo30(pd.mn)+30};
     });
     const notesStr=JSON.stringify({petCount:S.petCount,pets:petsData,note:S.custNote||''});
     const newBk={id:'BK-'+Date.now(),customerName:S.custName||'',phone:S.custPhone||'',petName:petNames,petType:petTypes,weightRange:weights,coatType:coatTypes,service:services,addOns:allAddonLabels,estimatedPriceMin:pMin,estimatedPriceMax:pMax,estimatedDurationMin:mn,estimatedDurationMax:mx,date:S.date||'',startTime,endTimeMin,endTimeMax,endTime:endTimeMax,groomerId,status:'รอยืนยัน',notes:notesStr,createdAt:new Date().toISOString()};
