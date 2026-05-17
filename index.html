@@ -1207,7 +1207,7 @@ function buildEstimateCard(){
   const{mn,mx}=calcTotalDurationAll();
   const petNames=S.pets.map(p=>p.name||'?').join(', ');
   const priceStr=pMin===pMax?`฿${pMin.toLocaleString()}`:`฿${pMin.toLocaleString()} – ฿${pMax.toLocaleString()}`;
-  const slotWarning=mx>120?`<div style="font-size:10px;color:#b07a30;margin-top:4px">⚠️ จากการประเมินเวลาทำให้บางช่วงเวลาอาจไม่สามารถจองได้</div>`:'';
+  const slotWarning=mn>120?`<div style="font-size:10px;color:#b07a30;margin-top:4px">⚠️ จากการประเมินเวลาทำให้บางช่วงเวลาอาจไม่สามารถจองได้</div>`:'';
   document.getElementById('estimateCard').innerHTML=`
     <div class="estimate-icon">🧾</div>
     <div class="estimate-body">
@@ -1269,7 +1269,7 @@ function selectDate(dateStr,dow){
 }
 
 function buildTimeslots(date){
-  const{mx}=calcTotalDurationAll();
+  const{mn}=calcTotalDurationAll();
   const slots=[];
   for(let h=9;h<20;h++){
     if(h===13) continue;
@@ -1279,7 +1279,7 @@ function buildTimeslots(date){
   document.getElementById('timeslotGrid').innerHTML=slots.map(t=>{
     const[sh,sm]=t.split(':').map(Number);
     const full=isSlotFull(date,t);
-    const tooLate=(sh*60+sm+mx)>SHOP_CLOSE_MINS;
+    const tooLate=(sh*60+sm+mn)>SHOP_CLOSE_MINS;
     const disabled=full||tooLate;
     let label=t;
     if(full)label='เต็ม';else if(tooLate)label='ใกล้ปิด';
@@ -1297,8 +1297,8 @@ async function loadGroomerList(){
 function countBusy(date,slot){
   const[sh,sm]=slot.split(':').map(Number);
   const ss=sh*60+sm;
-  const{mx}=calcTotalDurationAll();
-  const se=ss+mx;
+  const{mn}=calcTotalDurationAll();
+  const se=ss+mn;
   const busy=new Set();
   bookings.forEach(b=>{
     if(b.date!==date||b.status==='ยกเลิก') return;
@@ -1320,9 +1320,9 @@ function assignGroomer(date,startTime,mx){
 }
 
 function selectTime(el,t){
-  const{mx}=calcTotalDurationAll();
+  const{mn}=calcTotalDurationAll();
   const[sh,sm]=t.split(':').map(Number);
-  if(sh*60+sm+mx>SHOP_CLOSE_MINS){
+  if(sh*60+sm+mn>SHOP_CLOSE_MINS){
     const alertEl=document.getElementById('fullAlert');
     if(alertEl){alertEl.textContent='เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน';alertEl.classList.add('visible');}
     return;
