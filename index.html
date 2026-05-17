@@ -783,14 +783,14 @@ function calcDurationForPet(pet){
       if(w.includes('ต่ำกว่า 3'))    mn=120;
       else if(w.includes('3 – 5'))   mn=150;
       else if(w.includes('5.1 – 8')) mn=165;
-      else if(w.includes('8.1 – 12'))mn=180;
-      else                            mn=210;
+      else if(w.includes('8.1 – 12'))mn=195;
+      else                            mn=195;
     } else if(pet.haircut==='scissor'){
       if(w.includes('ต่ำกว่า 3'))    mn=150;
       else if(w.includes('3 – 5'))   mn=180;
-      else if(w.includes('5.1 – 8')) mn=195;
+      else if(w.includes('5.1 – 8')) mn=180;
       else if(w.includes('8.1 – 12'))mn=210;
-      else                            mn=240;
+      else                            mn=210;
     } else {
       if(w.includes('ต่ำกว่า 3'))    mn=60;
       else if(w.includes('3 – 5'))   mn=75;
@@ -802,7 +802,7 @@ function calcDurationForPet(pet){
   } else {
     if(pet.haircut==='clipper'){
       if(w.includes('ต่ำกว่า 2.5'))     mn=120;
-      else if(w.includes('2.5 – 5'))    mn=150;
+      else if(w.includes('2.5 – 5'))    mn=135;
       else if(w.includes('5.1 – 10'))   mn=150;
       else if(w.includes('10.1 – 15'))  mn=165;
       else if(w.includes('15.1 – 25'))  mn=180;
@@ -811,7 +811,7 @@ function calcDurationForPet(pet){
       else if(w.includes('มากกว่า 50')) mn=240;
     } else if(pet.haircut==='scissor'){
       if(w.includes('ต่ำกว่า 2.5'))     mn=150;
-      else if(w.includes('2.5 – 5'))    mn=180;
+      else if(w.includes('2.5 – 5'))    mn=150;
       else if(w.includes('5.1 – 10'))   mn=180;
       else if(w.includes('10.1 – 15'))  mn=195;
       else if(w.includes('15.1 – 25'))  mn=210;
