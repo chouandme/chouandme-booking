@@ -428,6 +428,9 @@ body {
 .all-pets-hint { background:var(--pink); border-radius:12px; padding:10px 14px; font-size:12px; color:var(--text-mid); text-align:center; margin-bottom:12px; display:none; }
 .all-pets-hint.visible { display:block; }
 
+/* VALIDATION HINT */
+.validation-hint { font-size:12px; color:#b94a3a; margin-top:8px; text-align:center; min-height:18px; }
+
 @keyframes checkPop { 0%{transform:scale(.92)}60%{transform:scale(1.05)}100%{transform:scale(1)} }
 </style>
 </head>
@@ -614,14 +617,15 @@ body {
         <div class="sub-num">6</div>
         <div class="section-title">ข้อมูลผู้จอง</div>
       </div>
-      <div class="form-field"><label>ชื่อลูกค้า*</label><input type="text" id="custName" placeholder="ชื่อเจ้าของ"></div>
-      <div class="form-field"><label>เบอร์โทร*</label><input type="tel" id="custPhone" placeholder="0XX-XXX-XXXX"></div>
+      <div class="form-field"><label>ชื่อลูกค้า*</label><input type="text" id="custName" placeholder="ชื่อเจ้าของ" oninput="checkCustomerForm()"></div>
+      <div class="form-field"><label>เบอร์โทร*</label><input type="tel" id="custPhone" placeholder="0XX-XXX-XXXX" oninput="checkCustomerForm()"></div>
       <div class="form-field"><label>หมายเหตุเพิ่มเติม</label><textarea id="custNote" rows="3" placeholder="เช่น น้องตื่นเต้น ชอบให้อุ้ม กลัวเสียงดัง ฯลฯ"></textarea></div>
     </div>
 
     <br>
     <button class="btn btn-secondary" onclick="goBackFromC()">⇦ ย้อนกลับ</button>
-    <button class="btn btn-primary" onclick="doSummary()">ดูสรุปการจอง ⇨</button>
+    <button class="btn btn-primary" id="btnNextC" onclick="doSummary()" disabled>ดูสรุปการจอง ⇨</button>
+    <div class="validation-hint" id="hintC"></div>
   </div>
 
   <!-- PAGE D: Summary -->
@@ -878,7 +882,7 @@ function goToPage(p){
   document.getElementById('page'+p).classList.add('active');
   if(p==='A') onEnterPageA();
   if(p==='B') onEnterPageB();
-  if(p==='C') buildEstimateCard();
+  if(p==='C'){buildEstimateCard();checkCustomerForm();}
   updateStepNav();
   updateMini();
   window.scrollTo({top:0,behavior:'smooth'});
@@ -1340,13 +1344,28 @@ function selectTime(el,t){
   if(alertEl)alertEl.classList.remove('visible');
   unlock('subCustomer');
   updateMini();
+  checkCustomerForm();
+}
+
+function checkCustomerForm(){
+  const missing=[];
+  if(!S.date) missing.push('วันที่');
+  if(!S.time) missing.push('เวลา');
+  const n=(document.getElementById('custName')?.value||'').trim();
+  const ph=(document.getElementById('custPhone')?.value||'').trim();
+  if(!n) missing.push('ชื่อลูกค้า');
+  if(!ph) missing.push('เบอร์โทร');
+  const btn=document.getElementById('btnNextC');
+  const hint=document.getElementById('hintC');
+  if(btn) btn.disabled=missing.length>0;
+  if(hint) hint.textContent=missing.length?'กรุณากรอก: '+missing.join(', '):'';
 }
 
 // ── SUMMARY ──
 function doSummary(){
   const n=document.getElementById('custName').value.trim();
   const ph=document.getElementById('custPhone').value.trim();
-  if(!n||!ph){alert('กรุณากรอกข้อมูลให้ครบถ้วน');return;}
+  if(!n||!ph||!S.date||!S.time) return;
   S.custName=n;S.custPhone=ph;
   S.custNote=document.getElementById('custNote').value.trim();
   buildSummary();
