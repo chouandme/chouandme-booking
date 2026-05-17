@@ -531,7 +531,7 @@ body {
       </div>
     </div>
 
-    <div class="all-pets-hint" id="hintA">⚠️ กรุณากรอกข้อมูลให้ครบทุกตัวก่อนดำเนินการต่อ</div>
+    <div class="all-pets-hint" id="hintA"></div>
     <button class="btn btn-primary" id="btnNextA" onclick="goToPage('B')" disabled>ถัดไป: เลือกบริการ ⇨</button>
   </div>
 
@@ -566,7 +566,7 @@ body {
       <div class="addon-grid" id="addonGrid"></div>
     </div>
 
-    <div class="all-pets-hint" id="hintB">⚠️ กรุณาเลือกบริการให้ครบทุกตัวก่อนดำเนินการต่อ</div>
+    <div class="all-pets-hint" id="hintB"></div>
     <button class="btn btn-secondary" onclick="goToPage('A')">⇦ ย้อนกลับ</button>
     <button class="btn btn-primary" id="btnNextB" onclick="goToPage('C')" disabled>ถัดไป: เลือกวัน-เวลา ⇨</button>
   </div>
@@ -1089,10 +1089,23 @@ function selectCoat(el,val){
 }
 
 function checkAllPetsDetailComplete(){
-  const allDone=S.pets.length>0 && S.pets.every(p=>isPetDetailComplete(p));
+  const allDone=S.pets.length>0&&S.pets.every(p=>isPetDetailComplete(p));
   document.getElementById('btnNextA').disabled=!allDone;
   const hint=document.getElementById('hintA');
-  if(hint) hint.classList.toggle('visible', S.pets.length>0 && !allDone && S.pets.some(p=>isPetDetailComplete(p)));
+  if(!hint) return;
+  if(allDone||S.pets.length===0){hint.classList.remove('visible');hint.innerHTML='';return;}
+  const lines=[];
+  S.pets.forEach((p,i)=>{
+    const label=p.name?`น้อง${p.name}`:`ตัวที่ ${i+1}`;
+    const miss=[];
+    if(!p.name) miss.push('ชื่อ');
+    if(!p.petType) miss.push('ประเภทสัตว์');
+    if(!p.weight) miss.push('น้ำหนัก');
+    if(!p.coat) miss.push('ประเภทขน');
+    if(miss.length) lines.push(`${label}: ${miss.join(', ')}`);
+  });
+  hint.innerHTML='⚠️ '+lines.join('<br>');
+  hint.classList.add('visible');
 }
 
 // ── PAGE B: SERVICE PER PET ──
@@ -1200,10 +1213,14 @@ function toggleAddon(el){
 }
 
 function checkAllPetsServiceComplete(){
-  const allDone=S.pets.length>0 && S.pets.every(p=>hasPetChoseService(p));
+  const allDone=S.pets.length>0&&S.pets.every(p=>hasPetChoseService(p));
   document.getElementById('btnNextB').disabled=!allDone;
   const hint=document.getElementById('hintB');
-  if(hint) hint.classList.toggle('visible', S.pets.length>0 && !allDone && S.pets.some(p=>hasPetChoseService(p)));
+  if(!hint) return;
+  if(allDone||S.pets.length===0){hint.classList.remove('visible');hint.innerHTML='';return;}
+  const names=S.pets.filter(p=>!hasPetChoseService(p)).map((p,_,__)=>p.name?`น้อง${p.name}`:`ตัวที่ ${S.pets.indexOf(p)+1}`);
+  hint.innerHTML='⚠️ ยังไม่ได้เลือกบริการ: '+names.join(', ');
+  hint.classList.add('visible');
 }
 
 // ── PAGE C ──
