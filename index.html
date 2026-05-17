@@ -1421,10 +1421,10 @@ async function confirmBooking(){
     S.pets.forEach(p=>{(p.addons||[]).forEach(av=>{const a=addons.find(x=>x.val===av);if(a&&!allAddonLabels.includes(a.label))allAddonLabels.push(a.label);});});
     const startTime=S.time||'09:00';
     const[startH,startM]=startTime.split(':').map(Number);
-    if(startH*60+startM+mx>SHOP_CLOSE_MINS) throw new Error('เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน');
+    if(startH*60+startM+mn>SHOP_CLOSE_MINS) throw new Error('เวลานี้ไม่สามารถจองได้ เนื่องจากอาจใช้เวลาเกินเวลาปิดร้าน');
     const endTimeMin=calcEndTimeStr(startTime,mn);
-    const endTimeMax=calcEndTimeStr(startTime,mx);
-    const groomerId=assignGroomer(S.date||'',startTime,mx);
+    const endTimeMax=calcEndTimeStr(startTime,mn);
+    const groomerId=assignGroomer(S.date||'',startTime,mn);
     const petsData=S.pets.map(pet=>{
       const cd=(pet.petType==='dog'?dogCoats:catCoats).find(c=>c.val===pet.coat);
       const svc=pet.haircut==='clipper'?'อาบน้ำ + ตัดขน (ปัตตาเลี่ยน)':pet.haircut==='scissor'?'อาบน้ำ + ตัดขน (กรรไกร)':`อาบน้ำ${pet.petType==='dog'?'สุนัข':'แมว'}`;
@@ -1433,7 +1433,7 @@ async function confirmBooking(){
       return {name:pet.name,petType:pet.petType,weight:pet.weight,coat:cd?.label||pet.coat,service:svc,addons:als,priceMin:pp.min,priceMax:pp.max,durationMin:roundUpTo30(pd.mn),durationMax:roundUpTo30(pd.mn)+30};
     });
     const notesStr=JSON.stringify({petCount:S.petCount,pets:petsData,note:S.custNote||''});
-    const newBk={id:'BK-'+Date.now(),customerName:S.custName||'',phone:S.custPhone||'',petName:petNames,petType:petTypes,weightRange:weights,coatType:coatTypes,service:services,addOns:allAddonLabels,estimatedPriceMin:pMin,estimatedPriceMax:pMax,estimatedDurationMin:mn,estimatedDurationMax:mx,date:S.date||'',startTime,endTimeMin,endTimeMax,endTime:endTimeMax,groomerId,status:'รอยืนยัน',notes:notesStr,createdAt:new Date().toISOString()};
+    const newBk={id:'BK-'+Date.now(),customerName:S.custName||'',phone:S.custPhone||'',petName:petNames,petType:petTypes,weightRange:weights,coatType:coatTypes,service:services,addOns:allAddonLabels,estimatedPriceMin:pMin,estimatedPriceMax:pMax,estimatedDurationMin:mn,estimatedDurationMax:mn,date:S.date||'',startTime,endTimeMin,endTimeMax,endTime:endTimeMax,groomerId,status:'รอยืนยัน',notes:notesStr,createdAt:new Date().toISOString()};
     let saveOk=false;
     if(dbOnline){
       try{const res=await fetch(SB_URL+'/rest/v1/bookings',{method:'POST',headers:SB_HEADERS_INSERT,body:JSON.stringify(toRow(newBk))});if(!res.ok){const t=await res.text();throw new Error('HTTP '+res.status+': '+t);}saveOk=true;}
