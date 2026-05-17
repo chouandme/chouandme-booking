@@ -860,7 +860,7 @@ function fmtDur(mn,mx){
   return `ประมาณ ${sMin}–${sMax} ชั่วโมง`;
 }
 
-function isPetDetailComplete(pet){ return !!(pet.petType && pet.weight && pet.coat); }
+function isPetDetailComplete(pet){ return !!(pet.name && pet.petType && pet.weight && pet.coat); }
 function isPetServiceComplete(pet){ return pet.haircut !== undefined && pet.haircut !== null || pet.haircut === null; }
 // haircut can be null (bath only), so check if it's been explicitly set (not undefined)
 function hasPetChoseService(pet){ return pet.haircut !== undefined; }
@@ -869,10 +869,12 @@ function hasPetChoseService(pet){ return pet.haircut !== undefined; }
 const PAGES=['A','B','C','D'];
 const PAGE_LABELS=['รายละเอียด','บริการ','วันเวลา','สรุป'];
 let currentPage='A';
+const visitedPages=new Set(['A']);
 
 function goToPage(p){
   document.getElementById('page'+currentPage).classList.remove('active');
   currentPage=p;
+  visitedPages.add(p);
   document.getElementById('page'+p).classList.add('active');
   if(p==='A') onEnterPageA();
   if(p==='B') onEnterPageB();
@@ -889,7 +891,7 @@ function updateStepNav(){
   PAGES.forEach((p,i)=>{
     if(i>0) html+=`<div class="step-connector${i<=idx?' done':''}"></div>`;
     const done=i<idx,active=i===idx;
-    const clickable=done&&!active;
+    const clickable=!active&&visitedPages.has(p);
     html+=`<div class="step-pill${done?' done':''}${active?' active':''}${clickable?' clickable':''}"${clickable?` onclick="goToPage('${p}')" role="button" tabindex="0"`:''}><div class="snum">${done?'✓':(i+1)}</div><span class="slabel">${PAGE_LABELS[i]}</span></div>`;
   });
   nav.innerHTML=html;
@@ -1017,7 +1019,8 @@ function renderPetDetailForm(){
 function onPetNameInput(){
   const val=document.getElementById('petNameInput').value;
   if(S.pets[S.activePetTab]) S.pets[S.activePetTab].name=val;
-  buildPetTabsA(); // update tab label
+  buildPetTabsA();
+  checkAllPetsDetailComplete();
 }
 
 function selectPetType(el,val){
