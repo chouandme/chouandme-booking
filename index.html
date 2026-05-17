@@ -132,6 +132,8 @@ body {
     0 2px 4px rgba(60, 60, 50, 0.061);}
 .step-connector { height:1px; flex:2; flex-shrink:2; background:var(--gray); max-width:14px; min-width:14px; border-radius:1px; }
 .step-connector.done { background:var(--sage); }
+.step-pill.clickable { cursor:pointer; }
+.step-pill.clickable:hover { opacity:0.8; transform:scale(1.04); transition:opacity .15s,transform .15s; }
 
 /* PROGRESS */
 .progress-bar { height:8px; width:82%; margin:0 auto; background:var(--sand); border-radius:999px; margin-bottom:22px; overflow:hidden; }
@@ -887,7 +889,8 @@ function updateStepNav(){
   PAGES.forEach((p,i)=>{
     if(i>0) html+=`<div class="step-connector${i<=idx?' done':''}"></div>`;
     const done=i<idx,active=i===idx;
-    html+=`<div class="step-pill${done?' done':''}${active?' active':''}"><div class="snum">${done?'✓':(i+1)}</div><span class="slabel">${PAGE_LABELS[i]}</span></div>`;
+    const clickable=done&&!active;
+    html+=`<div class="step-pill${done?' done':''}${active?' active':''}${clickable?' clickable':''}"${clickable?` onclick="goToPage('${p}')" role="button" tabindex="0"`:''}><div class="snum">${done?'✓':(i+1)}</div><span class="slabel">${PAGE_LABELS[i]}</span></div>`;
   });
   nav.innerHTML=html;
   document.getElementById('progressFill').style.width=(idx/(PAGES.length-1)*100)+'%';
