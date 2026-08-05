@@ -758,6 +758,7 @@ body {
       </div>
       <div class="form-field"><label>ชื่อลูกค้า*</label><input type="text" id="custName" placeholder="ชื่อเจ้าของ" oninput="checkCustomerForm()"></div>
       <div class="form-field"><label>เบอร์โทร*</label><input type="tel" id="custPhone" placeholder="0XX-XXX-XXXX" oninput="checkCustomerForm()"></div>
+      <div class="form-field"><label>อีเมล* (รับการยืนยันการจอง)</label><input type="email" id="custEmail" placeholder="example@email.com" oninput="checkCustomerForm()"></div>
       <div class="form-field"><label>หมายเหตุเพิ่มเติม</label><textarea id="custNote" rows="3" placeholder="เช่น น้องตื่นเต้น ชอบให้อุ้ม กลัวเสียงดัง ฯลฯ"></textarea></div>
     </div>
 
@@ -809,10 +810,11 @@ const SB_HEADERS_READ   = {'Content-Type':'application/json','apikey':SB_ANON,'A
 
 // ── EMAIL NOTIFICATION via EmailJS ──
 // Fill in your EmailJS credentials (leave empty to disable)
-const EJS_PUBLIC_KEY   = '_KE4426BxkN0qP5z9';
-const EJS_SERVICE_ID   = 'service_274gt6g';
-const EJS_TEMPLATE_ID  = 'template_56r383w';
-const EJS_TO_EMAIL     = 'chouandme.petwellness@gmail.com';
+const EJS_PUBLIC_KEY        = '_KE4426BxkN0qP5z9';
+const EJS_SERVICE_ID        = 'service_274gt6g';
+const EJS_TEMPLATE_CLINIC   = 'template_56r383w';   // notification to clinic
+const EJS_TEMPLATE_CUSTOMER = '';                    // confirmation to customer — fill in after creating template
+const EJS_TO_EMAIL          = 'chouandme.petwellness@gmail.com';
 
 function toRow(bk){
   return {
@@ -866,7 +868,7 @@ const S = {
   pets: [],          // array of pet objects
   activePetTab: 0,   // which tab is currently shown
   date: null, time: null,
-  custName: '', custPhone: '', custNote: ''
+  custName: '', custPhone: '', custEmail: '', custNote: ''
 };
 
 function cp(){ return S.pets[S.activePetTab] || {}; }  // current pet shorthand
@@ -1516,20 +1518,23 @@ function checkCustomerForm(){
   if(!S.time) missing.push('เวลา');
   const n=(document.getElementById('custName')?.value||'').trim();
   const ph=(document.getElementById('custPhone')?.value||'').trim();
+  const em=(document.getElementById('custEmail')?.value||'').trim();
   if(!n) missing.push('ชื่อลูกค้า');
   if(!ph) missing.push('เบอร์โทร');
+  if(!em) missing.push('อีเมล');
   const btn=document.getElementById('btnNextC');
   const hint=document.getElementById('hintC');
   if(btn) btn.disabled=missing.length>0;
-  if(hint) hint.textContent=missing.length?'กรุณาเลือก: '+missing.join(', '):'';
+  if(hint) hint.textContent=missing.length?'กรุณากรอก: '+missing.join(', '):'';
 }
 
 // ── SUMMARY ──
 function doSummary(){
   const n=document.getElementById('custName').value.trim();
   const ph=document.getElementById('custPhone').value.trim();
-  if(!n||!ph||!S.date||!S.time) return;
-  S.custName=n;S.custPhone=ph;
+  const em=document.getElementById('custEmail').value.trim();
+  if(!n||!ph||!em||!S.date||!S.time) return;
+  S.custName=n;S.custPhone=ph;S.custEmail=em;
   S.custNote=document.getElementById('custNote').value.trim();
   buildSummary();
   goToPage('D');
@@ -1575,6 +1580,7 @@ function buildSummary(){
     <div class="summary-row"><span class="s-label">เวลารับกลับโดยประมาณ</span><span class="s-val">${pickupRange}</span></div>
     <div class="summary-row"><span class="s-label">ชื่อลูกค้า</span><span class="s-val">${S.custName}</span></div>
     <div class="summary-row"><span class="s-label">เบอร์โทร</span><span class="s-val">${S.custPhone}</span></div>
+    <div class="summary-row"><span class="s-label">อีเมล</span><span class="s-val">${S.custEmail}</span></div>
     ${S.custNote?`<div class="summary-row"><span class="s-label">หมายเหตุ</span><span class="s-val">${S.custNote}</span></div>`:''}
     <div class="price-big">
       <span class="price-num">ราคารวมทั้งหมด ${priceStr}</span>
@@ -1597,16 +1603,14 @@ function updateMini(){
 
 // ── CONFIRM ──
 async function sendEmailNotification(bk){
-  if(!EJS_PUBLIC_KEY||!EJS_SERVICE_ID||!EJS_TEMPLATE_ID||!EJS_TO_EMAIL) return;
+  if(!EJS_PUBLIC_KEY||!EJS_SERVICE_ID) return;
   const petsData=(JSON.parse(bk.notes||'{}').pets||[]);
   const petLines=petsData.map(p=>`• ${p.name} (${p.petType==='dog'?'หมา':'แมว'}) ${p.weight} — ${p.service}${p.addons?.length?' + '+p.addons.join(', '):''}`).join('\n');
   const price=bk.estimatedPriceMin===bk.estimatedPriceMax
     ?bk.estimatedPriceMin.toLocaleString()
     :bk.estimatedPriceMin.toLocaleString()+' – '+bk.estimatedPriceMax.toLocaleString();
   const noteData=JSON.parse(bk.notes||'{}');
-  emailjs.init({publicKey:EJS_PUBLIC_KEY});
-  await emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_ID,{
-    to_email:   EJS_TO_EMAIL,
+  const params={
     booking_id: bk.id,
     customer:   bk.customerName,
     phone:      bk.phone,
@@ -1616,7 +1620,14 @@ async function sendEmailNotification(bk){
     pets:       petLines,
     price:      price+' บาท',
     note:       noteData.note||'-',
-  });
+  };
+  emailjs.init({publicKey:EJS_PUBLIC_KEY});
+  // notify clinic
+  if(EJS_TEMPLATE_CLINIC&&EJS_TO_EMAIL)
+    await emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CLINIC,{...params,to_email:EJS_TO_EMAIL});
+  // confirm to customer
+  if(EJS_TEMPLATE_CUSTOMER&&S.custEmail)
+    await emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_CUSTOMER,{...params,to_email:S.custEmail});
 }
 
 async function confirmBooking(){
